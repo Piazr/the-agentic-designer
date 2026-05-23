@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Integrations - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #4e9b7a;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #4e9b7a; background-image: url('../assets/gradients/gradient_emerald_olive.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-black/60 hover:text-black transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-black/30 mb-6">CHAPTER 10</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">MCP Integrations</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-black/50">Connecting Figma, Miro, MagicPattern, and other tools via MCP</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">18 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#s-10-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">MCP: The Universal Design Tool Connector</a>
+        <a href="#s-10-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Configuring MCP Servers in Each Agent Platform</a>
+        <a href="#s-10-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Figma MCP Server: Reading Designs Programmatically</a>
+        <a href="#s-10-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Miro MCP Server: AI-Powered Whiteboarding</a>
+        <a href="#s-10-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">MagicPattern MCP: Generative Design Patterns</a>
+        <a href="#s-10-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Paper MCP Server: 22 Tools for Connected Canvas</a>
+        <a href="#s-10-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Chaining MCP Servers: Multi-Tool Workflows</a>
+        <a href="#s-10-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Troubleshooting MCP Connections</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-10-1" data-section="s-10-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MCP: The Universal Design Tool Connector</span></a>
+          <a href="#s-10-2" data-section="s-10-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Configuring MCP Servers in Each Agent Platform</span></a>
+          <a href="#s-10-3" data-section="s-10-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Figma MCP Server: Reading Designs Programmatically</span></a>
+          <a href="#s-10-4" data-section="s-10-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Miro MCP Server: AI-Powered Whiteboarding</span></a>
+          <a href="#s-10-5" data-section="s-10-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MagicPattern MCP: Generative Design Patterns</span></a>
+          <a href="#s-10-6" data-section="s-10-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper MCP Server: 22 Tools for Connected Canvas</span></a>
+          <a href="#s-10-7" data-section="s-10-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Chaining MCP Servers: Multi-Tool Workflows</span></a>
+          <a href="#s-10-8" data-section="s-10-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-10-1" data-section="s-10-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MCP: The Universal Design Tool Connector</span></a>
+          <a href="#s-10-2" data-section="s-10-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Configuring MCP Servers in Each Agent Platform</span></a>
+          <a href="#s-10-3" data-section="s-10-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Figma MCP Server: Reading Designs Programmatically</span></a>
+          <a href="#s-10-4" data-section="s-10-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Miro MCP Server: AI-Powered Whiteboarding</span></a>
+          <a href="#s-10-5" data-section="s-10-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MagicPattern MCP: Generative Design Patterns</span></a>
+          <a href="#s-10-6" data-section="s-10-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper MCP Server: 22 Tools for Connected Canvas</span></a>
+          <a href="#s-10-7" data-section="s-10-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Chaining MCP Servers: Multi-Tool Workflows</span></a>
+          <a href="#s-10-8" data-section="s-10-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<h3 id="s-10-1">MCP: The Universal Design Tool Connector</h3>
+
+  <p>MCP is a standardized protocol that lets AI agents talk to external tools. Think of it as an authenticated API that an LLM can call during a conversation. Instead of copying design specs between tools by hand, the agent reads from one MCP server and writes to another. All in a single session.</p>
+
+  <p>MCP servers expose three things: <strong>tools</strong> (functions the agent can call), <strong>resources</strong> (data the agent can read), and <strong>prompts</strong> (guided workflows). For design work, tools are what matter most. A tool like <code>get_jsx</code> on the Paper MCP server is the difference between manually translating a design and having the agent do it in seconds.</p>
+
+  <p>Two transport types exist. <strong>HTTP</strong> (remote) connects to a URL like <code>https://mcp.figma.com/mcp</code>. <strong>stdio</strong> (local) spawns a process on your machine. Figma uses HTTP. Paper uses HTTP too, but the server runs locally inside the Paper Desktop app at <code>http://127.0.0.1:29979/mcp</code>. The transport type matters for configuration, which I cover next.</p>
+
+  <p>As of May 2026, MCP is supported by every major agent platform: Claude Code, Codex CLI, Cursor, VS Code Copilot, OpenCode, Windsurf, Gemini CLI, Warp, Kiro, Factory, Firebender, Replit, Amazon Q, and Android Studio. The ecosystem is mature enough that MCP support is table stakes for any agent tool.</p>
+
+  <h3 id="s-10-2">Configuring MCP Servers in Each Agent Platform</h3>
+
+  <p>Every agent platform has its own MCP configuration syntax. Some use CLI commands. Others use JSON config files. A few support both. Here is the complete reference for the three agents this book focuses on, plus VS Code and Cursor for teams using those editors.</p>
+<figure class="figure--full" id="ch10-fig-01">
+  <img src="../images/ch10-fig-01--web.webp" alt="VS Code split editor view showing three MCP configuration files side by side: Claude Code settings with Paper and Figma HTTP servers, OpenCode JSON config with remote type, and VS Code mcp.json with server definitions" loading="eager" />
+  <figcaption>MCP configuration across Claude Code, OpenCode, and VS Code showing different syntaxes</figcaption>
+</figure>
+
+
+  <h4 id="s-10-2-1">Claude Code</h4>
+
+  <p>Claude Code supports two approaches: the <code>mcp add</code> CLI command and the plugin system. Plugins are preferred because they include skill files that teach the agent how to use the MCP tools effectively.</p>
+
+  <pre><code># Plugin approach (preferred for Figma)
+$ claude plugin install figma@claude-plugins-official
+
+# Plugin approach for Paper
+$ claude plugin install paper-desktop@paper
+
+# Manual remote server (Figma)
+$ claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp
+
+# Manual local server (Paper via stdio bridge)
+$ claude mcp add --transport stdio paper -- npx mcp-remote http://127.0.0.1:29979/mcp
+
+# Verify: type /mcp in Claude Code
+# You should see figma and paper listed
+# Authenticate when prompted</code></pre>
+
+  <p>The <code>--scope user</code> flag makes the MCP server available across all projects. Without it, the server is scoped to the current project only. For design tools you use daily, user-scoped is the right default.</p>
+
+  <h4 id="s-10-2-2">Codex CLI</h4>
+
+  <p>Codex uses a simpler configuration model. The <code>mcp add</code> command takes a name and URL. For tools that need plugins (like Figma), use the app settings UI.</p>
+
+  <pre><code># CLI: add Figma remote server
+$ codex mcp add figma --url https://mcp.figma.com/mcp
+
+# App: Settings > Plugins > + Figma > Install > Authenticate
+
+# App: Settings > MCP Servers > Streamable HTTP
+# Name: paper, URL: http://127.0.0.1:29979/mcp</code></pre>
+
+  <h4 id="s-10-2-3">OpenCode</h4>
+
+  <p>OpenCode configures MCP servers in <code>opencode.json</code>. The configuration is declarative JSON, which makes it versionable and shareable across a team.</p>
+
+  <pre><code>// opencode.json
+{
+  "mcp": {
+    "paper": {
+      "type": "remote",
+      "url": "http://127.0.0.1:29979/mcp",
+      "enabled": true
+    },
+    "figma": {
+      "type": "remote",
+      "url": "https://mcp.figma.com/mcp",
+      "enabled": true
+    }
+  }
+}</code></pre>
+
+  <h4 id="s-10-2-4">VS Code and Cursor</h4>
+
+  <p>VS Code and Cursor both use JSON config for MCP servers, placed in <code>.vscode/mcp.json</code> at the project root. Cursor additionally supports a plugin deep-link format.</p>
+
+  <pre><code>// .vscode/mcp.json
+{
+  "servers": {
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "type": "http"
+    },
+    "paper": {
+      "type": "http",
+      "url": "http://127.0.0.1:29979/mcp"
+    }
+  }
+}</code></pre>
+
+  <p>For Cursor, the plugin approach is cleaner:</p>
+
+  <pre><code># Cursor plugins
+/add-plugin figma
+/add-plugin paper-desktop
+
+# Cursor deep link for Figma (one-click setup)
+cursor://anysphere.cursor-deeplink/mcp/install?name=Figma&amp;config=...</code></pre>
+
+  <p>The following table summarizes the configuration approach for each agent platform.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Platform</th>
+        <th>Config Method</th>
+        <th>Remote Servers</th>
+        <th>Local Servers</th>
+        <th>Plugin Support</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Claude Code</td>
+        <td>CLI + <code>opencode.json</code></td>
+        <td><code>mcp add --transport http</code></td>
+        <td><code>mcp add --transport stdio</code></td>
+        <td>Yes (<code>claude plugin</code>)</td>
+      </tr>
+      <tr>
+        <td>Codex CLI</td>
+        <td>CLI + App Settings</td>
+        <td><code>mcp add --url</code></td>
+        <td>App Settings only</td>
+        <td>Yes (Skills)</td>
+      </tr>
+      <tr>
+        <td>OpenCode</td>
+        <td><code>opencode.json</code></td>
+        <td><code>"type": "remote"</code></td>
+        <td><code>"type": "local"</code></td>
+        <td>Yes (Skills)</td>
+      </tr>
+      <tr>
+        <td>VS Code</td>
+        <td><code>.vscode/mcp.json</code></td>
+        <td><code>"type": "http"</code></td>
+        <td><code>"type": "stdio"</code></td>
+        <td>Yes (Extensions)</td>
+      </tr>
+      <tr>
+        <td>Cursor</td>
+        <td><code>.vscode/mcp.json</code> + plugins</td>
+        <td><code>"type": "http"</code></td>
+        <td><code>"type": "stdio"</code></td>
+        <td>Yes (<code>/add-plugin</code>)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>My take:</strong> Claude Code's plugin system is the most mature MCP configuration experience as of May 2026. The plugin includes both the server connection and the skill file that teaches the agent how to use the tools. With Codex and OpenCode, you get the connection but need to write your own skill context. This gap will close, but right now Claude Code has the edge for MCP-heavy workflows.</p>
+  </div>
+
+  <h3 id="s-10-3">Figma MCP Server: Reading Designs Programmatically</h3>
+
+  <p>Figma offers two MCP server types: <strong>Remote</strong> at <code>https://mcp.figma.com/mcp</code> (available to all plans) and <strong>Desktop</strong> (runs inside the Figma desktop app, available on Dev or Full seats for paid plans). The remote server is the one to use. It supports write-to-canvas, code-to-canvas, and diagram generation. The desktop server is limited to read operations for most users.</p>
+<figure class="figure--full" id="ch10-fig-02">
+  <img src="../images/ch10-fig-02--web.webp" alt="Figma design editor showing a product design file with the canvas, layers panel, and an agent terminal reading design node data through the Figma MCP server including component names and properties" loading="eager" />
+  <figcaption>Figma design file with agent reading design data through the Figma MCP server connection</figcaption>
+</figure>
+
+
+  <p>Authentication is OAuth-based. When you first connect, a browser window opens for the Figma sign-in flow. After that, the token is cached. No API keys to manage.</p>
+
+  <p>Figma's MCP server exposes 18 tools. Here is the complete reference.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Remote</th>
+        <th>Desktop</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>get_design_context</code></td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>React+Tailwind code from selection (or custom framework)</td>
+      </tr>
+      <tr>
+        <td><code>get_screenshot</code></td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Screenshot of current selection</td>
+      </tr>
+      <tr>
+        <td><code>get_variable_defs</code></td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Variables and styles used in selection</td>
+      </tr>
+      <tr>
+        <td><code>get_metadata</code></td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Sparse XML of selection (IDs, names, types, positions, sizes)</td>
+      </tr>
+      <tr>
+        <td><code>get_figjam</code></td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>FigJam diagrams as XML with screenshots</td>
+      </tr>
+      <tr>
+        <td><code>get_code_connect_map</code></td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Figma node to code component mappings</td>
+      </tr>
+      <tr>
+        <td><code>use_figma</code></td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>General-purpose write to canvas (create, edit, delete)</td>
+      </tr>
+      <tr>
+        <td><code>create_new_file</code></td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Create new Figma Design or FigJam file</td>
+      </tr>
+      <tr>
+        <td><code>generate_diagram</code></td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Generate FigJam diagram from Mermaid or natural language</td>
+      </tr>
+      <tr>
+        <td><code>generate_figma_design</code></td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Send live UI to Figma as design layers (code to canvas)</td>
+      </tr>
+      <tr>
+        <td><code>search_design_system</code></td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Search libraries for components, variables, styles</td>
+      </tr>
+      <tr>
+        <td><code>whoami</code></td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>Authenticated user identity</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The primary workflow is link-based. You select a layer in Figma, copy the URL from the browser address bar, and paste it into your agent prompt. The agent extracts the node ID and calls <code>get_design_context</code>. The tool returns React+Tailwind code by default, or you can specify a custom framework output.</p>
+
+  <p>Write-to-canvas capabilities are more ambitious. The agent can create, edit, and delete pages, frames, components, variants, variables, styles, text, and images. For FigJam, it can create stickies, sections, connectors, shapes, tables, and code blocks. The agent is supposed to check the design system before creating elements from scratch. In practice, this works best when paired with a skill file that enforces design system constraints.</p>
+
+  <p>Supported diagram types for <code>generate_diagram</code>: flowchart, Gantt chart, state diagram, sequence diagram, architecture diagram, and ERD. Useful for having an agent generate architecture documentation directly in FigJam.</p>
+
+  <p>Figma also provides built-in skills for the plugin system: Code Connect, Build/Update Screens from Design System, and Create New File. These skills teach the agent specific Figma workflows beyond raw tool access.</p>
+
+  <p>Client support varies by feature. The following table shows which agent platforms support which Figma MCP capabilities as of May 2026.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Desktop</th>
+        <th>Remote</th>
+        <th>Write to Canvas</th>
+        <th>Code to Canvas</th>
+        <th>Plugin/Skills</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Claude Code</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes (Figma plugin)</td>
+      </tr>
+      <tr>
+        <td>Codex</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes (Codex Skills)</td>
+      </tr>
+      <tr>
+        <td>Cursor</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes (Figma plugin)</td>
+      </tr>
+      <tr>
+        <td>VS Code Copilot</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes (Figma plugin)</td>
+      </tr>
+      <tr>
+        <td>Gemini CLI</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>No</td>
+        <td>No</td>
+        <td>Yes (Extension)</td>
+      </tr>
+      <tr>
+        <td>Warp</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>Yes</td>
+        <td>No</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-10-4">Miro MCP Server: AI-Powered Whiteboarding</h3>
+
+  <p>Miro has been developing MCP integrations that give agents access to boards. The server enables reading board content, creating shapes and stickies, and making connections between elements. Typical use cases include automated diagram generation, turning meeting notes into structured boards, and architecture documentation.</p>
+<figure class="figure--full" id="ch10-fig-03">
+  <img src="../images/ch10-fig-03--web.webp" alt="Miro whiteboard showing an AI-agent-generated design workshop board with color-coded sticky notes arranged in columns, flow connectors between ideas, and section headers for different design phases" loading="eager" />
+  <figcaption>Miro board with agent-generated whiteboard content created through the Miro MCP server</figcaption>
+</figure>
+
+
+  <p>The Miro MCP server follows standard MCP server configuration patterns. Configuration for each agent platform uses the same approaches covered in <a href="#s-10-2">section 10.2</a>. The key difference is that Miro boards are freeform canvases, not structured design files, so agent outputs tend to be more exploratory and less pixel-precise than Figma or Paper outputs.</p>
+
+  <p>As of May 2026, Miro's MCP documentation is limited compared to Figma and Paper. The tool list and configuration details may evolve. Check <a href="https://developers.miro.com/docs/mcp">the official Miro developer docs</a> for the current state.</p>
+
+  <h3 id="s-10-5">MagicPattern MCP: Generative Design Patterns</h3>
+
+  <p>MagicPattern provides generative design patterns --- gradients, mesh gradients, blobs, patterns, and other decorative elements. The MCP server lets agents generate SVG and CSS patterns programmatically rather than browsing a UI library by hand.</p>
+<figure class="figure--half-right" id="ch10-fig-04">
+  <img src="../images/ch10-fig-04--web.webp" alt="Terminal output showing Paper MCP server token synchronization reading 47 design tokens from the Paper canvas and writing them to a local tokens.json file with confirmation of each token category" loading="eager" />
+  <figcaption>Paper MCP token sync pulling design tokens from canvas to a local JSON file</figcaption>
+</figure>
+
+
+  <p>This is a niche tool in the MCP ecosystem, but it solves a real problem. Background patterns, decorative dividers, and visual texture are the kinds of tasks that slow down a design workflow. Having the agent generate these on demand, with parameters you control via prompt, is faster than any manual approach.</p>
+
+  <p>Configuration follows the standard MCP server pattern. The server exposes tools for generating specific pattern types with parameters like color, scale, density, and seed value. Each call returns SVG or CSS that the agent can write into a design file or codebase.</p>
+
+  <h3 id="s-10-6">Paper MCP Server: 22 Tools for Connected Canvas</h3>
+
+  <p>Paper's MCP server runs inside the Paper Desktop app. When a file is open, the server listens at <code>http://127.0.0.1:29979/mcp</code>. It connects to Cursor, Claude Code, Claude Desktop, Codex, Copilot, OpenCode, and Antigravity. The setup for each platform is covered in <a href="#s-10-2">section 10.2</a>.</p>
+<figure class="figure--full" id="ch10-fig-05">
+  <img src="../images/ch10-fig-05--web.webp" alt="Flow diagram showing an AI agent chaining two MCP servers: reading design specifications from Figma MCP, processing and normalizing design tokens, then writing the transformed output to Paper MCP canvas in a single agent session" loading="eager" />
+  <figcaption>Multi-MCP chain: agent reads from Figma, processes tokens, and writes to Paper in one session</figcaption>
+</figure>
+
+
+  <p>Paper exposes 22 tools --- the largest surface of any design tool MCP server. Here is the complete reference.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Category</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>get_basic_info</code></td>
+        <td>Read</td>
+        <td>File name, page name, node count, artboard list with dimensions</td>
+      </tr>
+      <tr>
+        <td><code>get_selection</code></td>
+        <td>Read</td>
+        <td>Selected nodes (IDs, names, types, size, artboard)</td>
+      </tr>
+      <tr>
+        <td><code>get_node_info</code></td>
+        <td>Read</td>
+        <td>Node details by ID (size, visibility, lock, parent, children, text)</td>
+      </tr>
+      <tr>
+        <td><code>get_children</code></td>
+        <td>Read</td>
+        <td>Direct children of a node</td>
+      </tr>
+      <tr>
+        <td><code>get_tree_summary</code></td>
+        <td>Read</td>
+        <td>Compact text summary of subtree (optional depth limit)</td>
+      </tr>
+      <tr>
+        <td><code>get_screenshot</code></td>
+        <td>Read</td>
+        <td>Screenshot by ID (base64, optional 1x or 2x scale)</td>
+      </tr>
+      <tr>
+        <td><code>get_jsx</code></td>
+        <td>Export</td>
+        <td>JSX for node+descendants (Tailwind or inline-styles format)</td>
+      </tr>
+      <tr>
+        <td><code>get_computed_styles</code></td>
+        <td>Read</td>
+        <td>Computed CSS styles for nodes (batch)</td>
+      </tr>
+      <tr>
+        <td><code>get_fill_image</code></td>
+        <td>Read</td>
+        <td>Image data from image fill node (base64 JPEG)</td>
+      </tr>
+      <tr>
+        <td><code>get_font_family_info</code></td>
+        <td>Read</td>
+        <td>Font availability check (local or Google Fonts)</td>
+      </tr>
+      <tr>
+        <td><code>get_guide</code></td>
+        <td>Workflow</td>
+        <td>Guided workflows (e.g., figma-import)</td>
+      </tr>
+      <tr>
+        <td><code>export</code></td>
+        <td>Export</td>
+        <td>Export nodes as PNG, JPG, SVG, MP4 with scale overrides</td>
+      </tr>
+      <tr>
+        <td><code>create_artboard</code></td>
+        <td>Write</td>
+        <td>Create new artboard with name and styles</td>
+      </tr>
+      <tr>
+        <td><code>write_html</code></td>
+        <td>Write</td>
+        <td>Parse HTML and add/replace nodes</td>
+      </tr>
+      <tr>
+        <td><code>set_text_content</code></td>
+        <td>Write</td>
+        <td>Set text of Text nodes (batch)</td>
+        </tr>
+      <tr>
+        <td><code>rename_nodes</code></td>
+        <td>Write</td>
+        <td>Rename layers (batch)</td>
+      </tr>
+      <tr>
+        <td><code>duplicate_nodes</code></td>
+        <td>Write</td>
+        <td>Deep-clone nodes with descendant ID map</td>
+      </tr>
+      <tr>
+        <td><code>move_nodes</code></td>
+        <td>Write</td>
+        <td>Reposition or reparent nodes</td>
+      </tr>
+      <tr>
+        <td><code>update_styles</code></td>
+        <td>Write</td>
+        <td>Update CSS styles on nodes</td>
+      </tr>
+      <tr>
+        <td><code>delete_nodes</code></td>
+        <td>Write</td>
+        <td>Delete nodes and descendants</td>
+      </tr>
+      <tr>
+        <td><code>finish_working_on_nodes</code></td>
+        <td>Signal</td>
+        <td>Clear working indicator from artboards</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The <code>get_jsx</code> tool is Paper's killer feature for the design-to-code pipeline. It returns production-ready JSX with Tailwind classes directly from the canvas. No translation layer. No approximation. Paper is HTML/CSS natively, so the JSX output is a faithful representation of what is on screen. Chapter 12 covers this pipeline in depth.</p>
+
+  <p>The <code>write_html</code> tool enables the reverse direction: code to canvas. The agent generates HTML, calls <code>write_html</code>, and the content appears on the Paper canvas. This bi-directional flow is unique to Paper. Figma can write to canvas via <code>use_figma</code>, but the input format is a structured API call, not raw HTML.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> Paper's 22-tool MCP surface is the most complete in the ecosystem. The <code>get_jsx</code> tool alone saves hours of translating design to code. But the Desktop app requirement is a real limitation for Linux users and CI environments. If Paper offered a headless server mode, it would be the clear default for agentic design workflows.</p>
+  </div>
+
+  <h3 id="s-10-7">Chaining MCP Servers: Multi-Tool Workflows</h3>
+
+  <p>Multiple MCP servers can run simultaneously in a single agent session. The agent orchestrates between them using sequential tool calls. This is where MCP gets powerful --- a single agent prompt can trigger a workflow that spans Figma, Paper, Notion, and your codebase.</p>
+
+  <p>Three chaining patterns show up repeatedly in production use.</p>
+
+  <p><strong>Pattern 1: Figma to Paper token sync.</strong> Open the design system file in Figma. Open the Paper file where you want the design system. Prompt the agent: "Create a design system in Paper that matches the Figma file." The agent calls <code>get_variable_defs</code> on the Figma MCP server to read colors, spacing, and typography. Then it calls <code>create_artboard</code> and <code>write_html</code> on the Paper MCP server to create the design system elements. Finally it calls <code>update_styles</code> to apply the tokens from Figma.</p>
+
+  <pre><code># Figma → Paper token sync workflow
+# Both MCP servers active in same agent session
+
+# Step 1: Agent reads Figma design system
+# Figma MCP: get_variable_defs() → colors, spacing, typography
+# Figma MCP: get_screenshot() → visual reference
+
+# Step 2: Agent creates Paper design system
+# Paper MCP: create_artboard({ name: "Design System" })
+# Paper MCP: write_html({ html: "&lt;div&gt;...design system elements...&lt;/div&gt;" })
+# Paper MCP: update_styles({ styles: { /* tokens from Figma */ } })</code></pre>
+
+  <p><strong>Pattern 2: Notion to Paper content sync.</strong> Open the Paper file with placeholder content. Prompt: "Sync the content from the Notion Testimonials database with this frame." The agent reads from the Notion MCP server, then writes the real content into Paper via <code>set_text_content</code>.</p>
+
+  <pre><code># Notion → Paper content sync workflow
+
+# Step 1: Agent reads Notion database
+# Notion MCP: query_database({ database_id: "testimonials" })
+# Returns: [{ name: "Sarah", quote: "...", company: "..." }, ...]
+
+# Step 2: Agent populates Paper design
+# Paper MCP: set_text_content({ updates: [
+#   { nodeId: "name-1", text: "Sarah" },
+#   { nodeId: "quote-1", text: "..." },
+#   { nodeId: "company-1", text: "..." },
+#   ...
+# ]})</code></pre>
+
+  <p><strong>Pattern 3: Design to code and back.</strong> The agent reads a design from Figma or Paper via MCP, generates production code, then optionally writes the coded version back to the canvas for visual verification. This pattern is the foundation of the pipeline covered in Chapter 12.</p>
+
+  <pre><code># Design → Code → Canvas verification loop
+
+# Step 1: Read design
+# Figma MCP: get_design_context({ url: "https://figma.com/..." })
+# Returns: React + Tailwind JSX
+
+# Step 2: Agent generates production code
+# (Agent writes files, runs dev server, verifies visually)
+
+# Step 3: Write back to Paper for verification
+# Paper MCP: write_html({ html: "&lt;div class='hero'&gt;...&lt;/div&gt;" })
+# Human reviews on Paper canvas
+# Agent iterates based on feedback</code></pre>
+
+  <p>Each MCP server uses the currently opened file as context. Figma MCP operates on whatever file you have open in the browser. Paper MCP operates on whatever file you have open in the Paper Desktop app. The agent does not switch files --- you do.</p>
+
+  <div class="callout warning">
+    <p><strong>Warning:</strong> Long-running agent sessions can cause MCP connection drops. If the agent reports it cannot access a tool that should be available, restart the agent session. LLMs can also hallucinate tool parameters occasionally --- if you see repeated tool call errors, restart the session to reset the agent's tool-use context.</p>
+  </div>
+
+  <h3 id="s-10-8">Troubleshooting MCP Connections</h3>
+
+  <p>MCP connections fail in predictable ways. Here is a troubleshooting reference for the most common issues.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Symptom</th>
+        <th>Cause</th>
+        <th>Fix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Agent says MCP tool is not available</td>
+        <td>Agent session started before MCP server was configured</td>
+        <td>Restart the agent session</td>
+      </tr>
+      <tr>
+        <td>Agent session cannot connect to Paper MCP</td>
+        <td>Paper Desktop app is not running or no file is open</td>
+        <td>Open Paper Desktop and ensure a file is loaded</td>
+      </tr>
+      <tr>
+        <td>Paper MCP connected but agent reports no access</td>
+        <td>MCP host tool needs restart</td>
+        <td>Restart the MCP host (Paper Desktop app)</td>
+      </tr>
+      <tr>
+        <td>Figma MCP returns errors on large designs</td>
+        <td>Large, deeply nested designs exceed response limits</td>
+        <td>Select specific frames instead of entire pages</td>
+      </tr>
+      <tr>
+        <td>Figma SVG fills returned as images</td>
+        <td>Known Figma MCP behavior</td>
+        <td>Use <code>get_design_context</code> for code output instead</td>
+      </tr>
+      <tr>
+        <td>Paper MCP fails on Windows WSL</td>
+        <td>WSL cannot access <code>127.0.0.1:29979</code></td>
+        <td>Enable mirrored mode networking in WSL config</td>
+      </tr>
+      <tr>
+        <td>MCP limits not reset after Paper plan upgrade</td>
+        <td>Desktop app caches plan limits</td>
+        <td>Update Paper Desktop app and restart</td>
+      </tr>
+      <tr>
+        <td>Repeated tool call errors from agent</td>
+        <td>LLM hallucinating tool parameters</td>
+        <td>Restart the agent session</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>I spent an hour debugging an MCP connection before I realized the Paper Desktop app was not running. The error message was generic --- "connection refused" --- which pointed me toward network issues instead of the obvious cause. Start with the basics: is the tool running, is a file open, is the server listening?</p>
+
+  <p>Figma MCP has additional quirks. It ignores spacer elements. It does not convert inset borders to outlines. Code Connect components are not reliably converted. These are known limitations as of May 2026 and will likely improve over time. For now, work around them by selecting specific frames and validating the output.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> MCP connection issues are the number one source of frustration when starting with agentic design. The tools work well when they work, but the failure modes are silent and confusing. I recommend keeping a terminal tab open with a test MCP call ready to paste. When the agent reports a connection issue, verify independently before spending time on agent-side debugging.</p>
+  </div>
+
+  <div class="callout tip">
+    <p><strong>Next:</strong> With MCP servers configured and connected, the next question is scale. How do multiple agents collaborate on a single design? Chapter 11 covers multi-agent design teams, the orchestrator pattern, and when parallelizing is worth the complexity overhead.</p>
+  </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="09.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 09</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Motion and Video</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 09</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Motion and Video</p>
+        </div>
+      </div>
+    </a>
+    <a href="11.html" class="group relative flex-1 overflow-hidden border border-black p-6 text-right">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 11</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Multi-Agent Design Teams</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 11</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Multi-Agent Design Teams</p>
+        </div>
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Chapter CTA -->
+  <section class="chapter-stack bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-[13px] uppercase tracking-wider text-white/30 mb-4">Next Chapter</p>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl lg:text-6xl">Multi-Agent Design Teams</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">Concurrent agents, task delegation, and orchestration patterns</p>
+        </div>
+        <a href="11.html" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #7aa865;">
+          Continue Reading
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>

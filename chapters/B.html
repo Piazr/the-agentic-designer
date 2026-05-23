@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Server Reference - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #4e9b7a;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #4e9b7a; background-image: url('../assets/gradients/gradient_emerald_olive.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-black/60 hover:text-black transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-black/30 mb-6">APPENDIX B</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">MCP Server Reference</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-black/50">Every MCP server, every tool, and configuration snippets</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">9 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#appendix-B-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Paper MCP Server Tools</a>
+        <a href="#appendix-B-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Pencil MCP Server Tools</a>
+        <a href="#appendix-B-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">OpenPencil MCP Server Tools</a>
+        <a href="#appendix-B-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Figma MCP Server Tools</a>
+        <a href="#appendix-B-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Miro MCP Server Tools</a>
+        <a href="#appendix-B-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">MagicPattern MCP Tools</a>
+        <a href="#appendix-B-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Configuration Reference by Agent Platform</a>
+        <a href="#appendix-B-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Troubleshooting MCP Connections</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#appendix-B-1" data-section="appendix-B-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper MCP Server Tools</span></a>
+          <a href="#appendix-B-2" data-section="appendix-B-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Pencil MCP Server Tools</span></a>
+          <a href="#appendix-B-3" data-section="appendix-B-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil MCP Server Tools</span></a>
+          <a href="#appendix-B-4" data-section="appendix-B-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Figma MCP Server Tools</span></a>
+          <a href="#appendix-B-5" data-section="appendix-B-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Miro MCP Server Tools</span></a>
+          <a href="#appendix-B-6" data-section="appendix-B-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MagicPattern MCP Tools</span></a>
+          <a href="#appendix-B-7" data-section="appendix-B-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Configuration Reference by Agent Platform</span></a>
+          <a href="#appendix-B-8" data-section="appendix-B-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#appendix-B-1" data-section="appendix-B-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper MCP Server Tools</span></a>
+          <a href="#appendix-B-2" data-section="appendix-B-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Pencil MCP Server Tools</span></a>
+          <a href="#appendix-B-3" data-section="appendix-B-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil MCP Server Tools</span></a>
+          <a href="#appendix-B-4" data-section="appendix-B-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Figma MCP Server Tools</span></a>
+          <a href="#appendix-B-5" data-section="appendix-B-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Miro MCP Server Tools</span></a>
+          <a href="#appendix-B-6" data-section="appendix-B-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MagicPattern MCP Tools</span></a>
+          <a href="#appendix-B-7" data-section="appendix-B-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Configuration Reference by Agent Platform</span></a>
+          <a href="#appendix-B-8" data-section="appendix-B-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<div class="callout"><p><strong>Note:</strong> Configuration snippets are illustrative examples. Refer to each tool's official documentation for current setup instructions.</p></div>
+
+  <h3 id="appendix-B-1">Paper MCP Server Tools</h3>
+
+  <p>Paper's MCP server runs locally when Paper Desktop is open. It listens on <code>http://127.0.0.1:29979/mcp</code> and exposes 22 tools split into read, write, and export categories. This is the most polished MCP server in the design tool ecosystem as of May 2026.</p>
+<figure class="figure--full" id="chB-fig-02">
+  <img src="../images/chB-fig-02--web.webp" alt="Reference grid listing all MCP tools per server: Paper with 22 tools including get_jsx, write_html, and export; Figma with design reading tools; Miro with whiteboard tools; and MagicPattern with generative pattern tools, each with parameter summaries" loading="eager" />
+  <figcaption>MCP server tool reference showing Paper, Figma, Miro, and MagicPattern tool inventories</figcaption>
+</figure>
+
+<figure class="figure--full" id="chB-fig-01">
+  <img src="../images/chB-fig-01--web.webp" alt="VS Code editor displaying MCP server configuration snippets for Paper at localhost port 29979, Figma at mcp dot figma dot com, and OpenPencil with their respective transport types and authentication methods" loading="eager" />
+  <figcaption>MCP server configuration reference showing Paper, Figma, and OpenPencil connection settings</figcaption>
+</figure>
+
+
+  <h4 id="appendix-B-1-1">Read Tools</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Parameters</th>
+        <th>Returns</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>get_basic_info</code></td>
+        <td>---</td>
+        <td>File name, page name, node count, artboard list</td>
+        <td>Overview of open file</td>
+      </tr>
+      <tr>
+        <td><code>get_selection</code></td>
+        <td>---</td>
+        <td>Selected node IDs, names, types, size</td>
+        <td>Current selection context</td>
+      </tr>
+      <tr>
+        <td><code>get_node_info</code></td>
+        <td>nodeId</td>
+        <td>Size, visibility, lock, parent, children, text</td>
+        <td>Detailed node data</td>
+      </tr>
+      <tr>
+        <td><code>get_children</code></td>
+        <td>nodeId</td>
+        <td>Direct children: IDs, names, types</td>
+        <td>One level deep</td>
+      </tr>
+      <tr>
+        <td><code>get_tree_summary</code></td>
+        <td>nodeId, depth?</td>
+        <td>Compact text summary of subtree</td>
+        <td>Optional depth limit</td>
+      </tr>
+      <tr>
+        <td><code>get_screenshot</code></td>
+        <td>nodeId, scale?</td>
+        <td>Base64 image (1x or 2x)</td>
+        <td>Visual capture</td>
+      </tr>
+      <tr>
+        <td><code>get_jsx</code></td>
+        <td>nodeId, format</td>
+        <td>JSX string (tailwind or inline-styles)</td>
+        <td>Key tool for design-to-code</td>
+      </tr>
+      <tr>
+        <td><code>get_computed_styles</code></td>
+        <td>nodeIds[]</td>
+        <td>Computed CSS styles (batch)</td>
+        <td>Production-ready values</td>
+      </tr>
+      <tr>
+        <td><code>get_fill_image</code></td>
+        <td>nodeId</td>
+        <td>Base64 JPEG of image fill</td>
+        <td>Extract embedded images</td>
+      </tr>
+      <tr>
+        <td><code>get_font_family_info</code></td>
+        <td>fontFamily</td>
+        <td>Availability, weights, styles</td>
+        <td>Check font access</td>
+      </tr>
+      <tr>
+        <td><code>get_guide</code></td>
+        <td>topic</td>
+        <td>Guided workflow steps</td>
+        <td>e.g., "figma-import"</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 id="appendix-B-1-2">Write Tools</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Parameters</th>
+        <th>Returns</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>create_artboard</code></td>
+        <td>name?, styles?</td>
+        <td>New artboard ID</td>
+        <td>Create new canvas area</td>
+      </tr>
+      <tr>
+        <td><code>write_html</code></td>
+        <td>html, mode, parentId?</td>
+        <td>Updated node IDs</td>
+        <td>Parse HTML, add or replace nodes</td>
+      </tr>
+      <tr>
+        <td><code>set_text_content</code></td>
+        <td>nodeIds[], content</td>
+        <td>Updated count</td>
+        <td>Batch text update</td>
+      </tr>
+      <tr>
+        <td><code>rename_nodes</code></td>
+        <td>nodeIds[], names</td>
+        <td>Updated count</td>
+        <td>Batch rename</td>
+      </tr>
+      <tr>
+        <td><code>duplicate_nodes</code></td>
+        <td>nodeIds[]</td>
+        <td>New IDs, descendant ID map</td>
+        <td>Deep clone</td>
+      </tr>
+      <tr>
+        <td><code>move_nodes</code></td>
+        <td>nodeIds[], parentId?, index?</td>
+        <td>Updated positions</td>
+        <td>Reparent and reorder</td>
+      </tr>
+      <tr>
+        <td><code>update_styles</code></td>
+        <td>nodeIds[], styles</td>
+        <td>Updated count</td>
+        <td>Batch CSS updates</td>
+      </tr>
+      <tr>
+        <td><code>delete_nodes</code></td>
+        <td>nodeIds[]</td>
+        <td>Deleted count</td>
+        <td>Cascade delete descendants</td>
+      </tr>
+      <tr>
+        <td><code>finish_working_on_nodes</code></td>
+        <td>artboardIds[]</td>
+        <td>---</td>
+        <td>Clear working indicator</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 id="appendix-B-1-3">Export Tool</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Parameters</th>
+        <th>Returns</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>export</code></td>
+        <td>nodes[], format?, scale?</td>
+        <td>Exported files</td>
+        <td>PNG, JPG, SVG, MP4; overrides like 2x, 512w, 1080p</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The <code>get_jsx</code> and <code>write_html</code> tools make Paper's MCP server the tightest design-to-code loop available. No other tool lets an agent read JSX from a design and write HTML back in the same session. The Desktop app requirement is a real limitation for Linux users and CI environments, but for daily design work it's the server I reach for first.</p>
+  </div>
+
+  <h3 id="appendix-B-2">Pencil MCP Server Tools</h3>
+
+  <p>Pencil exposes design tools through its IDE extension and CLI. The MCP server provides access to .pen files, design variables, component definitions, and code generation.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>File operations</td>
+        <td>Read and write .pen files</td>
+      </tr>
+      <tr>
+        <td>Design variables</td>
+        <td>Access variables and convert to CSS custom properties</td>
+      </tr>
+      <tr>
+        <td>Components</td>
+        <td>Read component definitions with slots and overrides</td>
+      </tr>
+      <tr>
+        <td>Code export</td>
+        <td>Generate React + Tailwind from .pen designs</td>
+      </tr>
+      <tr>
+        <td>Node manipulation</td>
+        <td>Insert, copy, update, replace, move, delete nodes</td>
+      </tr>
+      <tr>
+        <td>Visual capture</td>
+        <td>Screenshots and export to PNG, JPEG, WEBP, PDF</td>
+      </tr>
+      <tr>
+        <td>Search</td>
+        <td>Search nodes by pattern or ID</td>
+      </tr>
+      <tr>
+        <td>Variables and themes</td>
+        <td>Get and set design variables and themes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Configure Pencil's MCP server in OpenCode:</p>
+  <pre><code>// opencode.json
+{
+  "mcp": {
+    "pencil": {
+      "type": "remote",
+      "url": "http://127.0.0.1:<port>/mcp",
+      "enabled": true
+    }
+  }
+}</code></pre>
+
+  <h3 id="appendix-B-3">OpenPencil MCP Server Tools</h3>
+
+  <p>OpenPencil's built-in MCP server ships as the <code>pen-mcp</code> package. It provides a layered design workflow and code generation pipeline.</p>
+
+  <h4 id="appendix-B-3-1">Document and Design Tools</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool Category</th>
+        <th>Capabilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Document operations</td>
+        <td>Read, create, modify .op files; multi-page support</td>
+      </tr>
+      <tr>
+        <td>Node manipulation</td>
+        <td>Insert, update, move, delete nodes</td>
+      </tr>
+      <tr>
+        <td>Style guides</td>
+        <td><code>get_style_guide_tags</code>, <code>get_style_guide</code> for visual styles</td>
+      </tr>
+      <tr>
+        <td>Design workflow</td>
+        <td><code>design_skeleton</code>, <code>design_content</code>, <code>design_refine</code></td>
+      </tr>
+      <tr>
+        <td>Prompt retrieval</td>
+        <td>Segmented: load schema, layout, roles, icons, planning as needed</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 id="appendix-B-3-2">Codegen Tools</h4>
+
+  <pre><code>// Codegen pipeline
+codegen_plan        → plan the code generation
+codegen_submit_chunk → submit code chunks incrementally
+codegen_assemble    → assemble final output
+codegen_clean       → clean temporary files</code></pre>
+
+  <p>Install OpenPencil's MCP server from the OpenPencil UI: Settings > MCP > Install for [Agent]. One-click setup.</p>
+
+  <div class="callout warning">
+    <p><strong>Warning:</strong> OpenPencil's codegen pipeline is incremental. If the agent crashes mid-generation, partial chunks may remain. Run <code>codegen_clean</code> to reset state before retrying.</p>
+  </div>
+
+  <h3 id="appendix-B-4">Figma MCP Server Tools</h3>
+
+  <p>Figma's official MCP server provides read-only access to design files. As of May 2026, write access is not available --- agents can read but cannot modify Figma files.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Read design files</td>
+        <td>Node tree, component definitions, styles</td>
+      </tr>
+      <tr>
+        <td>Selection context</td>
+        <td>Get current selection</td>
+      </tr>
+      <tr>
+        <td>Variables</td>
+        <td>Read variables (must have element selected that uses the variable)</td>
+      </tr>
+      <tr>
+        <td>Styles</td>
+        <td>Text styles, color variables, effect styles</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Known limitations: SVG fills returned as images, component instance color overrides not reliably returned, spacer elements ignored, and code-connected components not reliably converted.</p>
+
+  <p>Configure Figma's MCP server in Claude Desktop:</p>
+  <pre><code>// Claude Desktop config
+{
+  "mcpServers": {
+    "figma": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=$FIGMA_API_KEY",
+        "--stdio"
+      ]
+    }
+  }
+}</code></pre>
+  <div class="callout warning"><p><strong>Security:</strong> Never commit API keys to version control. Use environment variables or a secrets manager.</p></div>
+
+  <h3 id="appendix-B-5">Miro MCP Server Tools</h3>
+
+  <p>Miro's MCP server enables AI-powered whiteboarding. It provides read and limited write access to Miro boards.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Read board content</td>
+        <td>Sticky notes, shapes, text, connectors</td>
+      </tr>
+      <tr>
+        <td>Write board elements</td>
+        <td>Create and modify board elements (limited)</td>
+      </tr>
+      <tr>
+        <td>Board metadata</td>
+        <td>Access board structure and metadata</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Miro uses OAuth-based authentication. Available through Miro's developer platform. Compatible with Claude Code and Cursor.</p>
+
+  <h3 id="appendix-B-6">MagicPattern MCP Tools</h3>
+
+  <p>MagicPattern generates design patterns --- dots, gradients, waves, blobs --- via MCP. Agents can create and customize patterns, then export them as SVG, PNG, or CSS backgrounds.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pattern generation</td>
+        <td>Dots, gradients, waves, blobs, and more</td>
+      </tr>
+      <tr>
+        <td>Customization</td>
+        <td>Colors, spacing, density parameters</td>
+      </tr>
+      <tr>
+        <td>Export formats</td>
+        <td>SVG, PNG, CSS backgrounds</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>API key-based authentication. Compatible with Claude Code. Free and paid tiers available.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> Paper's 22-tool MCP server is the gold standard. Every other server in this appendix is either read-only (Figma), limited-write (Miro), or single-purpose (MagicPattern). The design tools that win the agent era will be the ones that give agents full read-write access with well-documented tools. If you're evaluating a new design tool for agent workflows, MCP tool count and write access are the two metrics that matter most.</p>
+  </div>
+
+  <h3 id="appendix-B-7">Configuration Reference by Agent Platform</h3>
+
+  <p>The same MCP server needs different configuration in each agent. Here are the snippets for Paper's MCP server --- the pattern is the same for other servers, just change the URL.</p>
+
+  <p>Claude Code (plugin, recommended):</p>
+  <pre><code># Add marketplace
+/plugin marketplace add paper-design/agent-plugins
+# Install plugin
+/plugin install paper-desktop@paper</code></pre>
+
+  <p>Claude Code (manual):</p>
+  <pre><code>claude mcp add paper --transport http http://127.0.0.1:29979/mcp --scope user</code></pre>
+
+  <p>Codex CLI:</p>
+  <pre><code>Settings > MCP Servers > Streamable HTTP
+Name: paper
+URL: http://127.0.0.1:29979/mcp</code></pre>
+
+  <p>OpenCode:</p>
+  <pre><code>// opencode.json
+{
+  "mcp": {
+    "paper": {
+      "type": "remote",
+      "url": "http://127.0.0.1:29979/mcp",
+      "enabled": true
+    }
+  }
+}</code></pre>
+
+  <p>GitHub Copilot:</p>
+  <pre><code>// .vscode/mcp.json
+{
+  "servers": {
+    "paper": {
+      "type": "http",
+      "url": "http://127.0.0.1:29979/mcp"
+    }
+  }
+}</code></pre>
+
+  <p>Cursor:</p>
+  <pre><code>/add-plugin paper-desktop
+# Or search "paper-desktop" in Cursor Marketplace</code></pre>
+
+  <p>Antigravity:</p>
+  <pre><code>// mcp_config.json
+{
+  "mcpServers": {
+    "paper": {
+      "serverUrl": "http://127.0.0.1:29979/mcp"
+    }
+  }
+}</code></pre>
+
+  <p>Claude Desktop (manual):</p>
+  <pre><code>// Settings > Developer > Edit Config
+{
+  "mcpServers": {
+    "paper": {
+      "command": "npx",
+      "args": ["mcp-remote", "http://127.0.0.1:29979/mcp"]
+    }
+  }
+}</code></pre>
+
+  <h3 id="appendix-B-8">Troubleshooting MCP Connections</h3>
+
+  <p>MCP connections break. It is the most common source of friction in agent-driven design workflows. Here are the issues I see most often.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Symptom</th>
+        <th>Cause</th>
+        <th>Fix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Agent cannot find MCP tools</td>
+        <td>Host tool not running or MCP not connected</td>
+        <td>Restart the agent session</td>
+      </tr>
+      <tr>
+        <td>MCP shows connected but tools fail</td>
+        <td>Stale connection after long session</td>
+        <td>Restart both the agent and the host tool</td>
+      </tr>
+      <tr>
+        <td>Agent hallucinates tool parameters</td>
+        <td>LLM context drift over long sessions</td>
+        <td>Restart the agent session</td>
+      </tr>
+      <tr>
+        <td>Rate limit errors after upgrade</td>
+        <td>Limits not reset after plan change</td>
+        <td>Update Paper Desktop (About > Check for updates) then restart</td>
+      </tr>
+      <tr>
+        <td>Cannot reach 127.0.0.1 on Windows WSL</td>
+        <td>WSL networking isolation</td>
+        <td>Enable mirrored mode networking in WSL config</td>
+      </tr>
+    </tbody>
+  </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="A.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix A</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Tool Comparison Matrix</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix A</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Tool Comparison Matrix</p>
+        </div>
+      </div>
+    </a>
+    <a href="C.html" class="group relative flex-1 overflow-hidden border border-black p-6 text-right">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix C</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Prompt Library for Design Tasks</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix C</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Prompt Library for Design Tasks</p>
+        </div>
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Chapter CTA -->
+  <section class="chapter-stack bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-[13px] uppercase tracking-wider text-white/30 mb-4">Next Chapter</p>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl lg:text-6xl">Prompt Library for Design Tasks</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">Battle-tested prompts for common agentic design tasks</p>
+        </div>
+        <a href="C.html" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #8d7ab5;">
+          Continue Reading
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>

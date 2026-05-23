@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Library for Design Tasks - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #8d7ab5;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #8d7ab5; background-image: url('../assets/gradients/gradient_lavender_violet.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-black/60 hover:text-black transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-black/30 mb-6">APPENDIX C</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">Prompt Library for Design Tasks</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-black/50">Battle-tested prompts for common agentic design tasks</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">9 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#appendix-C-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Prototyping Prompts</a>
+        <a href="#appendix-C-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Visual Design Prompts</a>
+        <a href="#appendix-C-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Motion Design Prompts</a>
+        <a href="#appendix-C-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Design System Prompts</a>
+        <a href="#appendix-C-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Production UI Prompts</a>
+        <a href="#appendix-C-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Multi-Tool Workflow Prompts</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#appendix-C-1" data-section="appendix-C-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Prototyping Prompts</span></a>
+          <a href="#appendix-C-2" data-section="appendix-C-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Visual Design Prompts</span></a>
+          <a href="#appendix-C-3" data-section="appendix-C-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Motion Design Prompts</span></a>
+          <a href="#appendix-C-4" data-section="appendix-C-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design System Prompts</span></a>
+          <a href="#appendix-C-5" data-section="appendix-C-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Production UI Prompts</span></a>
+          <a href="#appendix-C-6" data-section="appendix-C-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Multi-Tool Workflow Prompts</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#appendix-C-1" data-section="appendix-C-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Prototyping Prompts</span></a>
+          <a href="#appendix-C-2" data-section="appendix-C-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Visual Design Prompts</span></a>
+          <a href="#appendix-C-3" data-section="appendix-C-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Motion Design Prompts</span></a>
+          <a href="#appendix-C-4" data-section="appendix-C-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design System Prompts</span></a>
+          <a href="#appendix-C-5" data-section="appendix-C-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Production UI Prompts</span></a>
+          <a href="#appendix-C-6" data-section="appendix-C-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Multi-Tool Workflow Prompts</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<h3 id="appendix-C-1">Prototyping Prompts</h3>
+
+  <p>Quick wireframes, interactive prototypes, and dashboard layouts. These prompts work across tools --- adjust the tool reference for your setup.</p>
+<figure class="figure--full" id="chC-fig-01">
+  <img src="../images/chC-fig-01--web.webp" alt="Card grid showing prompt templates for design tasks: Quick Wireframe for any tool, Interactive iOS Prototype for Huashu Design, Web Prototype for Open Design, and Dashboard Prototype with their target tools and expected output descriptions" loading="eager" />
+  <figcaption>Prompt template gallery organized by task category with target tools and expected outputs</figcaption>
+</figure>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Prompt</th>
+        <th>Target Tool(s)</th>
+        <th>Expected Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Quick Wireframe</td>
+        <td>Any</td>
+        <td>Gray-block layout with information architecture</td>
+      </tr>
+      <tr>
+        <td>Interactive App Prototype</td>
+        <td>Huashu Design</td>
+        <td>Clickable iOS prototype with real images</td>
+      </tr>
+      <tr>
+        <td>Web Prototype</td>
+        <td>Open Design</td>
+        <td>Styled web page with hero, features, pricing</td>
+      </tr>
+      <tr>
+        <td>Mobile Onboarding Flow</td>
+        <td>Open Design</td>
+        <td>3-screen dark mode onboarding</td>
+      </tr>
+      <tr>
+        <td>Dashboard Prototype</td>
+        <td>Open Design</td>
+        <td>Admin dashboard with sidebar, KPI cards, table, chart</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Quick wireframe --- works with any tool:</p>
+  <pre><code>Create a wireframe for a [type] app with [key screens].
+Use gray blocks for content areas. No styling needed ---
+just layout and structure. Show me the information architecture.</code></pre>
+
+  <p>Interactive iOS prototype --- Huashu Design:</p>
+  <pre><code>Build an iOS prototype for a [app description] ---
+[4 screens], actually clickable. Use real images from
+Wikimedia/Unsplash. Include navigation between screens.</code></pre>
+
+  <p>Web prototype with design system --- Open Design:</p>
+  <pre><code>Using the [design-system-name] design system, create a
+web prototype for [product description]. Target audience:
+[audience]. Tone: [tone]. Include hero, features, and
+pricing sections.</code></pre>
+
+  <p>Mobile onboarding flow --- Open Design:</p>
+  <pre><code>Create a 3-screen mobile onboarding flow for [app name].
+Screen 1: Splash with brand mark
+Screen 2: Value proposition (3 key benefits)
+Screen 3: Sign-in form
+Use [design-system] style. Dark mode.</code></pre>
+
+  <p>Dashboard prototype --- Open Design:</p>
+  <pre><code>Build an admin dashboard for [use case]. Include:
+- Sidebar navigation (6 items)
+- KPI cards (4 metrics)
+- Data table with sorting
+- Chart section
+Use the [design-system] design system.</code></pre>
+
+  <h3 id="appendix-C-2">Visual Design Prompts</h3>
+
+  <p>Landing pages, brand identities, and design direction exploration. These prompts combine design tools with agent capabilities.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Prompt</th>
+        <th>Target Tool(s)</th>
+        <th>Expected Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Landing Page Build</td>
+        <td>Paper + Claude Code</td>
+        <td>React + Tailwind website from Paper design</td>
+      </tr>
+      <tr>
+        <td>Design Direction Advisor</td>
+        <td>Huashu Design</td>
+        <td>3 distinct visual directions to choose from</td>
+      </tr>
+      <tr>
+        <td>Brand-Consistent Design</td>
+        <td>Huashu Design</td>
+        <td>Design using real brand assets</td>
+      </tr>
+      <tr>
+        <td>Token Sync</td>
+        <td>Paper + Figma MCP</td>
+        <td>Design tokens migrated from Figma to Paper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Landing page from Paper design:</p>
+  <pre><code>I'd like you to build a website in this folder using the
+landing page I have selected in Paper. Use React and
+Tailwind for the styling. Start with the hero section,
+then build out the remaining sections one at a time.</code></pre>
+
+  <p>Design direction exploration --- Huashu Design:</p>
+  <pre><code>I need a visual identity for [project description].
+Give me 3 style directions to pick from. Make them
+visually distinct from each other.</code></pre>
+
+  <p>Brand-consistent design --- Huashu Design:</p>
+  <pre><code>Design a [deliverable] for [brand name]. Follow the
+Core Asset Protocol: find their official brand assets
+(logo, colors, fonts, product shots) before starting.
+Their website is [URL].</code></pre>
+
+  <p>Token sync between Figma and Paper:</p>
+  <pre><code>Create a design system in Paper that matches the design
+system in the currently open Figma file. Include colors,
+text styles, and spacing tokens. Read from Figma, write
+to Paper.</code></pre>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The most effective prompts are specific about output format and constraints. "Build me a website" produces garbage. "Build a React + Tailwind landing page from the Paper selection, starting with the hero section" produces something usable in one shot. Specificity is the lever that turns an agent from a toy into a tool.</p>
+  </div>
+
+  <h3 id="appendix-C-3">Motion Design Prompts</h3>
+
+  <p>Product videos, social content, and data animations. These prompts target Remotion and Hyperframes --- two different approaches to programmatic video.</p>
+
+  <p>Product launch video --- Huashu Design:</p>
+  <pre><code>Turn this product description into a 60-second launch
+animation. Export MP4 and GIF. Use the Stage + Sprite
+model. Include: title reveal, feature showcase, CTA.</code></pre>
+
+  <p>Explainer video --- Hyperframes:</p>
+  <pre><code>Using /hyperframes, create a 10-second product intro
+with a fade-in title, a background video, and background
+music. Resolution: 1920x1080.</code></pre>
+
+  <p>Social media video --- Hyperframes:</p>
+  <pre><code>Make a 9:16 TikTok-style hook video about [topic] using
+/hyperframes, with bouncy captions synced to a TTS
+narration. Include a lower third at 0:03 with my name
+and title.</code></pre>
+
+  <p>Data animation --- Hyperframes:</p>
+  <pre><code>Turn this CSV data into an animated bar chart race using
+/hyperframes. 15-second duration. Dark theme. Include
+axis labels and a title card.</code></pre>
+
+  <p>Iterate on video --- Hyperframes:</p>
+  <pre><code>Make the title 2x bigger, swap to dark mode, and add
+a fade-out at the end. Add a lower third at 0:03 with
+"Product Launch 2026".</code></pre>
+
+  <p>Motion design hero --- Open Design:</p>
+  <pre><code>Create a motion-design hero with looping CSS animations.
+Include rotating type ring, animated globe, and ticking
+timer. Single-frame, hand-off ready for Hyperframes.</code></pre>
+
+  <h3 id="appendix-C-4">Design System Prompts</h3>
+
+  <p>Creating, syncing, and maintaining design systems with agents. These prompts handle the tedious parts of design system management.</p>
+
+  <p>Create a design system from an existing website:</p>
+  <pre><code>Create a DESIGN.md for [product/company name] based on
+their existing website at [URL]. Include: color palette
+(hex values), typography (font families, sizes, weights),
+spacing scale, component patterns, motion guidelines,
+anti-patterns to avoid.</code></pre>
+
+  <p>Sync tokens between Figma and Paper:</p>
+  <pre><code>Read the design tokens from the Figma file (colors,
+text styles, spacing) and create matching design tokens
+in the Paper file. Use the same variable names. Create
+a sticker sheet showing all tokens.</code></pre>
+
+  <p>Generate component library --- OpenPencil:</p>
+  <pre><code>Design a component library for [design system] with these
+components: Button (3 variants), Input, Card, Modal,
+Navigation, Badge. Use design variables for colors and
+spacing. Export as React + Tailwind.</code></pre>
+
+  <p>Maintain token parity --- Pencil:</p>
+  <pre><code>Read the design variables from the .pen file and compare
+them with the CSS custom properties in src/styles/tokens.css.
+List any discrepancies and fix them to match the .pen source
+of truth.</code></pre>
+
+  <h3 id="appendix-C-5">Production UI Prompts</h3>
+
+  <p>Design artifacts to production code. These prompts enforce accessibility, performance, and responsive design standards.</p>
+<figure class="figure--full" id="chC-fig-02">
+  <img src="../images/chC-fig-02--web.webp" alt="Comparison grid showing the same design prompt executed in Paper producing JSX output, in Open Design producing an HTML artifact, and in Huashu Design producing an HTML prototype, with quality and format annotations for each tool variant" loading="eager" />
+  <figcaption>Same prompts run through Paper, Open Design, and Huashu Design showing output format differences</figcaption>
+</figure>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Prompt</th>
+        <th>Target Tool(s)</th>
+        <th>Expected Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Design to Production Code</td>
+        <td>Paper + Claude Code</td>
+        <td>Accessible React + Tailwind component</td>
+      </tr>
+      <tr>
+        <td>Responsive Breakpoints</td>
+        <td>Paper</td>
+        <td>Mobile-first responsive layout</td>
+      </tr>
+      <tr>
+        <td>Accessibility Audit</td>
+        <td>Any</td>
+        <td>Fixed a11y issues with change summary</td>
+      </tr>
+      <tr>
+        <td>Performance Optimization</td>
+        <td>Any</td>
+        <td>Core Web Vitals improvements</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Design to production code:</p>
+  <pre><code>Read the [section] frame I have selected in Paper and
+build it as a React component using Tailwind. Follow
+these rules:
+1. Use semantic HTML elements (nav, main, section, article)
+2. All images must have descriptive alt text
+3. All interactive elements must be keyboard accessible
+4. Use the design tokens from our DESIGN.md
+5. Ensure color contrast ratio >= 4.5:1 for body text
+Commit the changes when done.</code></pre>
+
+  <p>Responsive breakpoints from Paper frames:</p>
+  <pre><code>Add responsive breakpoints to the website based on the
+frames I have selected in Paper. Each frame is a different
+breakpoint:
+- 375px frame = mobile (default)
+- 768px frame = tablet (md:)
+- 1440px frame = desktop (xl:)
+Use Tailwind responsive classes. Test each breakpoint.</code></pre>
+
+  <p>Accessibility audit:</p>
+  <pre><code>Review the generated code for accessibility issues:
+1. Missing alt text on images
+2. Missing labels on form inputs
+3. Insufficient color contrast (< 4.5:1 for text)
+4. Missing ARIA attributes on custom widgets
+5. Keyboard navigation gaps
+6. Missing focus indicators
+Fix all issues found. Show me what you changed.</code></pre>
+
+  <p>Performance optimization:</p>
+  <pre><code>Optimize the generated code for Core Web Vitals:
+1. Add width/height to all images to prevent CLS
+2. Lazy-load below-fold images with loading="eager"
+3. Preload critical fonts
+4. Minimize CSS by removing unused Tailwind classes
+5. Add proper srcset for responsive images
+Show me the Lighthouse score improvements.</code></pre>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The accessibility audit prompt is the single most valuable prompt in this appendix. Agents are better than most developers at catching a11y issues systematically --- they don't get tired, they don't skip steps, and they check every element. Make this prompt part of every design-to-code workflow.</p>
+  </div>
+
+  <h3 id="appendix-C-6">Multi-Tool Workflow Prompts</h3>
+
+  <p>Chains that span multiple tools. These prompts coordinate across MCP servers and agent sessions to accomplish tasks no single tool handles alone.</p>
+
+  <p>Full website build --- Paper to deployment:</p>
+  <pre><code>Phase 1 - Design:
+  "I have a landing page design in Paper. Read the hero
+  section using the Paper MCP and build it with React +
+  Tailwind."
+
+Phase 2 - Git checkpoint:
+  "Add git to this folder and commit the changes."
+
+Phase 3 - Responsive:
+  "Add responsive breakpoints based on the frames I have
+  selected in Paper. Each frame is a different breakpoint."
+
+Phase 4 - Deploy:
+  "Deploy this to [Vercel/Netlify]. Set up a production
+  build."</code></pre>
+
+  <p>Figma to Paper to code migration:</p>
+  <pre><code>Step 1: Read the design tokens from the Figma file and
+create them in Paper.
+Step 2: Copy each section from Figma to Paper, maintaining
+layout fidelity.
+Step 3: Verify the Paper design matches the Figma original.
+Step 4: Generate React + Tailwind from the Paper design.</code></pre>
+
+  <p>Pitch deck to video pipeline --- Open Design to Hyperframes:</p>
+  <pre><code>Step 1: "Using the magazine-deck skill, create a 10-slide
+pitch deck for [startup]. Use [design-system] visual style."
+
+Step 2: "Take slide 1 (the hero) and turn it into a 5-second
+intro animation using /hyperframes. Add a cinematic background
+and title reveal."
+
+Step 3: "Render all animations and assemble into a final
+60-second pitch video with transitions between each slide."</code></pre>
+
+  <p>Design system to component library --- Pencil + OpenPencil:</p>
+  <pre><code>Step 1: "Design the Button, Input, and Card components in
+the .pen file. Define color, spacing, and typography variables."
+
+Step 2: "Export the components as React + Tailwind. Map
+design variables to CSS custom properties."
+
+Step 3: "Create a Storybook story for each component showing
+all variants. Include accessibility testing in each story."</code></pre>
+
+  <p>Each prompt in this appendix is designed to be copied directly into an agent session. Swap bracketed values for your project specifics. The prompts that work best are specific about output format, tool selection, and quality constraints. Vague prompts produce vague output.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="B.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix B</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">MCP Server Reference</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix B</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">MCP Server Reference</p>
+        </div>
+      </div>
+    </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- End CTA -->
+  <section class="bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-center">
+        <div>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl">Thanks for reading</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">You reached the end. Go build something.</p>
+        </div>
+        <a href="../" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #fe7141;">
+          Back to Home
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>

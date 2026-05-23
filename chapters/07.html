@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huashu Design - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #748ef5;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #748ef5; background-image: url('../assets/gradients/gradient_blue_turquoise.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-black/60 hover:text-black transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-black/30 mb-6">CHAPTER 07</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">Huashu Design</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-black/50">HTML-native design, 20 philosophies, and 5-dimension review</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#s-07-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">What Makes Huashu Design Different</a>
+        <a href="#s-07-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Installing and Configuring Huashu Design</a>
+        <a href="#s-07-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Junior Designer Workflow</a>
+        <a href="#s-07-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Core Asset Protocol: Brand-Consistent Output</a>
+        <a href="#s-07-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Design Direction Advisor: 5 Schools x 20 Philosophies</a>
+        <a href="#s-07-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Anti-AI-Slop Rules and Quality Guardrails</a>
+        <a href="#s-07-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The 5-Dimension Expert Critique</a>
+        <a href="#s-07-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Export: MP4, GIF, PPTX, PDF</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-07-1" data-section="s-07-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>What Makes Huashu Design Different</span></a>
+          <a href="#s-07-2" data-section="s-07-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Installing and Configuring Huashu Design</span></a>
+          <a href="#s-07-3" data-section="s-07-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Junior Designer Workflow</span></a>
+          <a href="#s-07-4" data-section="s-07-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Core Asset Protocol: Brand-Consistent Output</span></a>
+          <a href="#s-07-5" data-section="s-07-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Direction Advisor: 5 Schools x 20 Philosophies</span></a>
+          <a href="#s-07-6" data-section="s-07-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Anti-AI-Slop Rules and Quality Guardrails</span></a>
+          <a href="#s-07-7" data-section="s-07-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The 5-Dimension Expert Critique</span></a>
+          <a href="#s-07-8" data-section="s-07-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Export: MP4, GIF, PPTX, PDF</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-07-1" data-section="s-07-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>What Makes Huashu Design Different</span></a>
+          <a href="#s-07-2" data-section="s-07-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Installing and Configuring Huashu Design</span></a>
+          <a href="#s-07-3" data-section="s-07-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Junior Designer Workflow</span></a>
+          <a href="#s-07-4" data-section="s-07-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Core Asset Protocol: Brand-Consistent Output</span></a>
+          <a href="#s-07-5" data-section="s-07-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Direction Advisor: 5 Schools x 20 Philosophies</span></a>
+          <a href="#s-07-6" data-section="s-07-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Anti-AI-Slop Rules and Quality Guardrails</span></a>
+          <a href="#s-07-7" data-section="s-07-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The 5-Dimension Expert Critique</span></a>
+          <a href="#s-07-8" data-section="s-07-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Export: MP4, GIF, PPTX, PDF</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<h3 id="s-07-1">What Makes Huashu Design Different</h3>
+
+  <p>Most design tools give you a canvas, panels, and property inspectors. Huashu Design gives you none of that. The entire tool is a <code>SKILL.md</code> file --- 811 lines of instructions that teach any skill-capable agent how to produce production-grade visual artifacts using nothing but HTML, CSS, and JavaScript.</p>
+
+  <p>The distinction matters. When I say "HTML-native design," I don't mean "export to HTML." I mean the agent embodies different roles depending on the task --- UX designer for prototypes, animator for motion design, slide designer for decks --- and produces HTML as the primary artifact. There is no graphics tool layer. The conversation <em>is</em> the interface.</p>
+
+  <p>Created by 花叔 (Huasheng, @AlchainHust), an independent developer whose other work includes <em>A Book on DeepSeek</em> and the Nüwa.skill framework (12k+ stars). As of May 2026, Huashu Design is MIT licensed, free for personal and commercial use, and runs on Claude Code, Cursor, Codex, Trae, Hermes, OpenClaw --- any agent that reads markdown skill files.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GitHub stars</td>
+        <td>14.1k (May 2026)</td>
+      </tr>
+      <tr>
+        <td>License</td>
+        <td>MIT</td>
+      </tr>
+      <tr>
+        <td>Author</td>
+        <td>花叔 (@AlchainHust)</td>
+      </tr>
+      <tr>
+        <td>Format</td>
+        <td>SKILL.md (markdown skill file)</td>
+      </tr>
+      <tr>
+        <td>Agent compatibility</td>
+        <td>Any skill-capable agent</td>
+      </tr>
+      <tr>
+        <td>Output formats</td>
+        <td>HTML, MP4, GIF, PPTX, PDF</td>
+      </tr>
+      <tr>
+        <td>Install</td>
+        <td><code>npx skills add alchaincyf/huashu-design</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The comparison with Claude Design (Chapter 06) is instructive. Claude Design is a web product --- you use it in a browser, on a canvas. Huashu Design lives inside your agent session. Claude Design is Claude-only. Huashu Design runs on anything that reads <code>SKILL.md</code>. Claude Design exports to canvas and Figma. Huashu Design exports HTML, MP4, GIF, PPTX, and PDF.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Claude Design</th>
+        <th>Huashu Design</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Form</td>
+        <td>Web product (browser)</td>
+        <td>Skill (in agent)</td>
+      </tr>
+      <tr>
+        <td>Agent compatibility</td>
+        <td>Claude.ai only</td>
+        <td>Any skill-capable agent</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>Canvas + Figma export</td>
+        <td>HTML/MP4/GIF/PPTX/PDF</td>
+      </tr>
+      <tr>
+        <td>Complex animation</td>
+        <td>Limited</td>
+        <td>Stage + Sprite timeline, 60fps</td>
+      </tr>
+      <tr>
+        <td>Pricing</td>
+        <td>Subscription</td>
+        <td>Free (MIT), API usage costs</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-07-2">Installing and Configuring Huashu Design</h3>
+
+  <p>One command:</p>
+
+  <pre><code>$ npx skills add alchaincyf/huashu-design</code></pre>
+
+  <p>That drops the skill into your agent's skill directory. No app to install. No plugin to configure. No Figma integration to set up. The agent reads the skill file and follows its instructions.</p>
+
+  <p>The repository structure tells you everything about what the skill can do:</p>
+
+  <div class="file-tree">
+    <pre><code>huashu-design/
+├── SKILL.md
+├── assets/
+│   ├── animations.jsx
+│   ├── ios_frame.jsx
+│   ├── deck_stage.js
+│   ├── design_canvas.jsx
+│   └── showcases/
+├── references/
+│   ├── animation-pitfalls.md
+│   ├── design-styles.md
+│   ├── slide-decks.md
+│   ├── editable-pptx.md
+│   ├── critique-guide.md
+│   └── video-export.md
+├── scripts/
+│   ├── render-video.js
+│   ├── convert-formats.sh
+│   ├── add-music.sh
+│   ├── export_deck_pdf.mjs
+│   ├── export_deck_pptx.mjs
+│   └── html2pptx.js
+└── demos/</code></pre>
+  </div>
+
+  <p>The <code>SKILL.md</code> is the main instruction file. The <code>assets/</code> directory holds starter components --- animation APIs, iOS device frames, deck templates. The <code>references/</code> directory contains drill-down docs the agent can load when it needs deeper guidance on a specific task. The <code>scripts/</code> directory is the export toolchain.</p>
+
+  <p>After installation, you start a conversation with your agent and describe what you want. The skill activates when the agent detects a design task. You don't invoke it explicitly.</p>
+
+  <h3 id="s-07-3">The Junior Designer Workflow</h3>
+
+  <p>This is the core pattern of Huashu Design. The agent is your junior designer. You are the manager. The workflow exists because one-shotting a complex design rarely produces good results.</p>
+<figure class="figure--full" id="ch07-fig-02">
+  <img src="../images/ch07-fig-02--web.webp" alt="Huashu Design HTML prototype showing a polished iOS application interface with real Unsplash images, navigation between screens, and production-quality visual design output" loading="eager" />
+  <figcaption>iOS app prototype generated by Huashu Design with real images and interactive navigation</figcaption>
+</figure>
+
+
+  <p>The rule is simple: <strong>never one-shot a big design</strong>. Start with assumptions, placeholders, and reasoning comments baked into the HTML. Show early. Get feedback. Then iterate.</p>
+
+  <div class="flow">
+    <div class="flow-item">
+      <strong>Clarify</strong>
+      <p>Ask questions, batch them, wait for answers</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Hypothesize</strong>
+      <p>Write assumptions + placeholders + reasoning in HTML</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Show Early</strong>
+      <p>Present the rough draft, even if just gray blocks</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Iterate</strong>
+      <p>Fill real content, add variations, Tweaks</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Verify</strong>
+      <p>Eyeball with Playwright before delivery</p>
+    </div>
+  </div>
+
+  <p>"Fixing a misunderstanding early is 100x cheaper than fixing it late." This isn't a platitude. It's the engineering principle behind the entire workflow. The agent writes <code>/* assumption: user wants dark mode */</code> directly into the HTML. You see the assumption. You correct it immediately. The alternative --- the agent spending 10 minutes building a polished design on wrong assumptions --- wastes everyone's time.</p>
+
+  <p>The skill uses the React + Babel pattern for live rendering. All starter components load via <code>&lt;script type="text/babel"&gt;</code> tags, which means the agent writes JSX that compiles in the browser. No build step. No bundler. The HTML file is the deliverable.</p>
+
+  <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;
+  &lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+  &lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="root"&gt;&lt;/div&gt;
+  &lt;script type="text/babel"&gt;
+    function App() {
+      return &lt;div style={{padding: 32}}&gt;
+        {/* placeholder: hero section */}
+        &lt;div style={{
+          height: 400,
+          background: 'var(--surface-muted)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 12
+        }}&gt;
+          [Hero placeholder — awaiting copy]
+        &lt;/div&gt;
+      &lt;/div&gt;;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(&lt;App/&gt;);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+  <p>The Tweaks system enables live variant switching. The agent renders multiple design variations with parameter controls. You adjust parameters and see changes instantly, without regenerating the entire file.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The Junior Designer Workflow is the most important contribution Huashu Design makes to the agent design ecosystem. Most agent-generated design fails because the agent tries to produce a final artifact immediately. Huashu's approach --- hypothesis first, polish later --- maps onto how real designers actually work. I use this pattern even when I'm not using Huashu Design specifically.</p>
+  </div>
+
+  <h3 id="s-07-4">Core Asset Protocol: Brand-Consistent Output</h3>
+
+  <p>The hardest rule in the skill. When your task involves a specific brand, the agent must follow a 5-step process before writing a single line of HTML.</p>
+
+  <p>The problem the protocol solves: agents default to generic visuals. Without real brand assets, an iPhone prototype looks like every other phone. A Volta Motors slide deck looks like a generic car pitch. The Core Asset Protocol forces the agent to gather real assets first.</p>
+
+  <div class="step">
+    <span class="step-num">1</span>
+    <div class="step-content">
+      <p><strong>Ask</strong> for 6 asset types: logo, product shots, UI screenshots, color palette, fonts, brand guidelines. The agent presents a checklist and waits.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">2</span>
+    <div class="step-content">
+      <p><strong>Search official channels</strong>: <code>&lt;brand&gt;.com/brand</code>, <code>&lt;brand&gt;.com/press</code>, <code>brand.&lt;brand&gt;.com</code>, product pages, launch films. Three fallback paths per asset type.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">3</span>
+    <div class="step-content">
+      <p><strong>Download by asset type</strong>. Logo: SVG file, then inline SVG extraction from homepage, then social media avatar. Product shots: product page hero, then press kit, then YouTube video frame, then AI-generated from reference. UI: App Store screenshots, then official video frames, then user screenshots.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">4</span>
+    <div class="step-content">
+      <p><strong>Verify and extract</strong>. Check resolution, fidelity, freshness. Grep exact colors from real assets.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">5</span>
+    <div class="step-content">
+      <p><strong>Freeze to spec</strong>. Write <code>brand-spec.md</code> with all paths, CSS variables, and constraints. All generated HTML references <code>var(--brand-*)</code> exclusively --- never hardcoded values.</p>
+    </div>
+  </div>
+
+  <p>The quality gate is called the 5-10-2-8 rule: 5 rounds of search, 10 candidates, pick the 2 best, each must score 8 out of 10 or higher on fidelity.</p>
+
+  <p>The asset importance ranking keeps the agent focused:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th>Asset Type</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mandatory</td>
+        <td>Logo</td>
+        <td>No exceptions. Without the real logo, brand recognition is zero.</td>
+      </tr>
+      <tr>
+        <td>High</td>
+        <td>Product renders</td>
+        <td>For physical products. Real photos, never CSS silhouettes.</td>
+      </tr>
+      <tr>
+        <td>High</td>
+        <td>UI screenshots</td>
+        <td>For digital products. App Store captures work well.</td>
+      </tr>
+      <tr>
+        <td>Auxiliary</td>
+        <td>Color values</td>
+        <td>Grepped from real assets, not guessed.</td>
+      </tr>
+      <tr>
+        <td>Auxiliary</td>
+        <td>Fonts</td>
+        <td>From brand guidelines or identified from screenshots.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The anti-pattern the protocol explicitly forbids: using CSS silhouettes or SVG hand-drawn substitutes for real product images. The skill calls this out as producing "generic tech animation with zero brand recognition." I've seen this failure mode in every agent design tool that doesn't enforce asset gathering.</p>
+
+  <p>Before the Core Asset Protocol runs, Principle #0 kicks in: fact verification. If the task mentions a specific product, technology, or event, the agent must search first to confirm it exists. The canonical failure case: an agent assumed "DJI Pocket 4" wasn't released yet, but it had launched four days earlier. The search costs 10 seconds. The wrong assumption costs 1-2 hours of rework.</p>
+
+  <p>The frozen brand spec looks like this:</p>
+
+  <pre><code># Volta Motors · Brand Spec
+&gt; Collected: 2026-05-18
+&gt; Sources: voltamotors.com/press, voltamotors.com/design
+&gt; Completeness: complete
+
+## Core Assets
+### Logo
+- Main: assets/volta-brand/logo.svg
+- Inverted: assets/volta-brand/logo-white.svg
+
+### Product Images
+- Hero: assets/volta-brand/volta-ev-hero.png (2000x1500)
+- Detail: assets/volta-brand/volta-ev-interior.png
+
+## Color Palette
+- Primary: #0066CC
+- Background: #FFFFFF
+- Ink: #000000
+- Surface: #F5F5F5
+- Forbidden: never use red tones
+
+## Typography
+- Display: 'Volta Sans', 'Inter', sans-serif, 700
+- Body: 'Volta Sans', 'Inter', sans-serif, 400
+- Mono: 'JetBrains Mono', monospace, 400</code></pre>
+
+  <h3 id="s-07-5">Design Direction Advisor: 5 Schools x 20 Philosophies</h3>
+
+  <p>When the brief is vague --- no brand context, no style reference, user wants recommendations --- the Direction Advisor activates. It presents 20 design philosophies organized into 5 schools, each with a distinct worldview.</p>
+<figure class="figure--grid-3" id="ch07-fig-03">
+  <img src="../images/ch07-fig-03--web.webp" alt="Three-column comparison showing the same design brief rendered in three different Huashu Design philosophical directions with distinct color palettes, typography, and layout approaches" loading="eager" />
+  <figcaption>Three design variants of the same brief showing different philosophical directions</figcaption>
+</figure>
+
+<figure class="figure--full" id="ch07-fig-01">
+  <img src="../images/ch07-fig-01--web.webp" alt="Grid showing Huashu Design five schools of design philosophy with four directions each: Information Architecture, Motion Poetry, Eastern Minimalism, Experimental Avant-garde, and Swiss Rational design approaches" loading="eager" />
+  <figcaption>Huashu Design direction advisor with 5 schools and 20 design philosophies</figcaption>
+</figure>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>School</th>
+        <th>Philosophies</th>
+        <th>Exemplar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Information Architecture</td>
+        <td>4 philosophies (01-04)</td>
+        <td>Pentagram --- rational, data-driven, restrained</td>
+      </tr>
+      <tr>
+        <td>Kinetic Poetry</td>
+        <td>4 philosophies (05-08)</td>
+        <td>Field.io --- dynamic, immersive, technical aesthetics</td>
+      </tr>
+      <tr>
+        <td>Minimalism</td>
+        <td>4 philosophies (09-12)</td>
+        <td>Kenya Hara --- order, whitespace, refinement</td>
+      </tr>
+      <tr>
+        <td>Experimental Avant-Garde</td>
+        <td>4 philosophies (13-16)</td>
+        <td>Sagmeister --- pioneer, generative art, visual impact</td>
+      </tr>
+      <tr>
+        <td>Eastern Philosophy</td>
+        <td>4 philosophies (17-20)</td>
+        <td>Warm, poetic, contemplative</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The advisor follows an 8-phase flow:</p>
+
+  <ol>
+    <li>Deep understanding --- max 3 questions, no more.</li>
+    <li>Advisory restatement --- 100-200 words confirming what the agent understood.</li>
+    <li>Recommend 3 philosophies --- must be from 3 different schools.</li>
+    <li>Show showcase gallery --- 24 prebuilt samples (8 scenes x 3 styles).</li>
+    <li>Generate 3 visual demos --- parallel if the agent supports subagents.</li>
+    <li>User picks one, mixes, or requests a redo.</li>
+    <li>Generate AI prompt with specific characteristics from the chosen direction.</li>
+    <li>Continue into the Junior Designer main flow.</li>
+  </ol>
+
+  <p>Example prompt that triggers the advisor:</p>
+
+  <pre><code>"Make a keynote for AI psychology. Give me 3 style directions to pick from."</code></pre>
+
+  <p>The agent asks up to 3 clarifying questions, then presents 3 directions from different schools --- say, an Information Architecture approach, a Kinetic Poetry approach, and an Eastern Philosophy approach --- with live HTML demos for each. You pick one. The agent then builds the full artifact using that direction's constraints.</p>
+
+  <p>The parallel demo generation is worth emphasizing. If your agent supports subagents (Chapter 11), it generates all 3 demos simultaneously. On a single-agent setup, it generates them sequentially. The quality difference is negligible --- the parallelism is a speed optimization, not a quality one. What matters is that you see real, rendered HTML before you commit, not descriptions or mood boards.</p>
+
+  <p>The 24 prebuilt showcases serve a specific purpose: they give you a visual vocabulary. Most people can't describe what they want in design terms. But when you see a Minimalist layout next to a Kinetic Poetry layout next to an Eastern Philosophy layout, you can point and say "something like that one." The showcases bridge the gap between vague intent and specific direction.</p>
+
+  <h3 id="s-07-6">Anti-AI-Slop Rules and Quality Guardrails</h3>
+
+  <p>The skill defines "AI slop" precisely: <em>the visual greatest common denominator of AI training data</em>. It carries zero brand information. You've seen it. Aggressive purple gradients. Emoji as icons. Rounded cards with a left colored border. Dark blue <code>#0D1117</code> backgrounds. Inter or Roboto as the display font.</p>
+
+  <p>The skill lists specific elements to avoid:</p>
+
+  <ul>
+    <li>Aggressive purple gradients (the AI "tech feel" formula)</li>
+    <li>Emoji as icons (training data's "every bullet needs emoji" disease)</li>
+    <li>Rounded cards + left colored border accent (2020-2024 Material/Tailwind cliché)</li>
+    <li>SVG-drawn imagery --- faces, scenes, objects --- always anatomically wrong</li>
+    <li>CSS silhouettes or SVG hand-drawn substitutes for real product shots</li>
+    <li>Inter, Roboto, Arial, or system fonts as display type</li>
+    <li>Cyber neon or dark blue <code>#0D1117</code> backgrounds</li>
+  </ul>
+
+  <p>One exception: "the brand itself uses it" is the only valid reason to break any rule.</p>
+
+  <p>The positive replacements are more interesting:</p>
+
+  <ul>
+    <li><code>text-wrap: pretty</code> + CSS Grid + advanced CSS --- typographic details AI can't distinguish from human work</li>
+    <li><code>oklch()</code> colors or colors extracted from real assets, never invented</li>
+    <li>AI-generated images (via Gemini/Flash) over SVG hand-drawn --- the real thing looks better than any approximation</li>
+    <li>Serif display fonts (Newsreader, Source Serif, EB Garamond) for personality</li>
+    <li>One detail at 120%, everything else at 80% --- the definition of taste</li>
+  </ul>
+
+  <p>That last rule is worth pausing on. "One detail at 120%, everything else at 80%." Most AI-generated design is 100% everything --- every element competing for attention, nothing breathing. Restraint is the signal.</p>
+
+  <h3 id="s-07-7">The 5-Dimension Expert Critique</h3>
+
+  <p>After the agent produces an artifact, you can run a critique. The skill evaluates on 5 dimensions, each scored 0-10:</p>
+<figure class="figure--full" id="ch07-fig-04">
+  <img src="../images/ch07-fig-04--web.webp" alt="Huashu Design 5-dimension expert critique showing a radar chart with scores for philosophical consistency, visual hierarchy, detail execution, functionality, and innovation each rated on a 10-point scale" loading="eager" />
+  <figcaption>5-dimension expert critique with radar chart scoring philosophical consistency through innovation</figcaption>
+</figure>
+
+
+  <ol>
+    <li><strong>Philosophy coherence</strong> --- does the output match the chosen design direction consistently?</li>
+    <li><strong>Visual hierarchy</strong> --- can you tell what matters most? Does the eye flow correctly?</li>
+    <li><strong>Execution craft</strong> --- typography, spacing, alignment, color accuracy. The details.</li>
+    <li><strong>Functionality</strong> --- do interactive elements work? Do links go places? Is the prototype actually clickable?</li>
+    <li><strong>Innovation</strong> --- does anything surprise? Or is it a competent reproduction of a template?</li>
+  </ol>
+
+  <p>The output is a radar chart visualization plus a Keep/Fix/Quick Wins punch list. It takes about 3 minutes to run.</p>
+
+  <pre><code>"Run a 5-dimension expert review on this design."</code></pre>
+
+  <p>The critique is honest. I've run it on the skill's own output and received scores of 6/10 on innovation. That's appropriate. The value of the critique isn't the score --- it's the specific fix items. "The hero section has correct hierarchy but the footer uses a different spacing scale than the rest of the page. Quick win: unify to the 8px grid."</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The self-critique capability is the feature I didn't know I needed. Most agent design tools produce output and stop. Huashu Design produces output, then evaluates its own work against explicit criteria. The radar chart makes the evaluation legible. I run the critique on every artifact before delivery, even when I think it looks good.</p>
+  </div>
+
+  <h3 id="s-07-8">Export: MP4, GIF, PPTX, PDF</h3>
+
+  <p>Huashu Design doesn't just produce HTML. The <code>scripts/</code> directory contains a full export toolchain.</p>
+
+  <p><strong>Motion design</strong>: MP4 at 25fps base with 60fps interpolation. GIF with palette optimization. 6 scene-specific background music tracks with automatic ducking. The animation model uses Stage + Sprite time-slicing with <code>useTime</code>, <code>useSprite</code>, <code>interpolate</code>, and <code>Easing</code> APIs from <code>assets/animations.jsx</code>.</p>
+
+  <pre><code>// Stage + Sprite animation model (from assets/animations.jsx)
+function ProductReveal() {
+  const time = useTime();
+  const spriteProgress = useSprite(time, {
+    duration: 2,
+    easing: Easing.easeOutExpo
+  });
+
+  const logoScale = interpolate(spriteProgress, [0, 1], [0, 1]);
+  const titleOpacity = interpolate(spriteProgress, [0.3, 0.8], [0, 1]);
+
+  return (
+    &lt;Stage background="var(--brand-background)"&gt;
+      &lt;Sprite style={{
+        transform: `scale(${logoScale})`,
+        opacity: titleOpacity
+      }}&gt;
+        &lt;img src="var(--brand-logo)" alt="Logo" /&gt;
+      &lt;/Sprite&gt;
+    &lt;/Stage&gt;
+  );
+}</code></pre>
+
+  <p><strong>Slide decks</strong>: HTML deck for browser presentation, plus editable PPTX via <code>html2pptx.js</code>. This is not a screenshot export. The script translates DOM computed styles to real PowerPoint objects --- actual text frames, shapes, and formatting. You get a PPTX file someone can edit in PowerPoint without knowing HTML existed.</p>
+
+  <p><strong>Infographics</strong>: Print-quality typography with PDF, PNG, and SVG export.</p>
+
+  <p>The narrated animation pipeline is particularly sophisticated: TTS generates voice, the agent measures duration, generates <code>timeline.json</code>, a NarrationStage drives visuals to match the audio, ducking mix blends voice and music, and the deliverable is both a live-play HTML version and a published MP4.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Deliverable</th>
+        <th>Typical Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Interactive prototype</td>
+        <td>Single-file HTML, real iPhone bezel, clickable</td>
+        <td>10-15 min</td>
+      </tr>
+      <tr>
+        <td>Slide deck</td>
+        <td>HTML deck + editable PPTX</td>
+        <td>15-25 min</td>
+      </tr>
+      <tr>
+        <td>Motion design</td>
+        <td>MP4 + GIF + BGM</td>
+        <td>8-12 min</td>
+      </tr>
+      <tr>
+        <td>Design variations</td>
+        <td>3+ side-by-side with Tweaks</td>
+        <td>10 min</td>
+      </tr>
+      <tr>
+        <td>Infographic</td>
+        <td>Print-quality, PDF/PNG/SVG</td>
+        <td>10 min</td>
+      </tr>
+      <tr>
+        <td>Direction advisor</td>
+        <td>3 directions with parallel demos</td>
+        <td>5 min</td>
+      </tr>
+      <tr>
+        <td>Expert critique</td>
+        <td>Radar chart + Keep/Fix/Quick Wins</td>
+        <td>3 min</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Example prompts for common tasks:</p>
+
+  <pre><code>"Build an iOS prototype for a Pomodoro app — 4 screens, actually clickable."
+
+"Turn this logic into a 60-second animation. Export MP4 and GIF."
+
+"Make a keynote for AI psychology. Give me 3 style directions to pick from."
+
+"Run a 5-dimension expert review on this design."</code></pre>
+
+  <p>The iOS prototype is worth calling out specifically. The <code>assets/ios_frame.jsx</code> component renders a real iPhone bezel with status bar (time, battery, signal). The prototype inside is actually clickable --- not a scroll-through mockup. Before delivery, the agent runs Playwright click tests to verify every interactive element responds correctly.</p>
+
+  <pre><code>&lt;script type="text/babel"&gt;
+  // Load iosFrameStyles + IosFrame from assets/ios_frame.jsx
+  function App() {
+    return &lt;IosFrame time="9:41" battery={85}&gt;
+      &lt;PomodoroScreen /&gt;
+    &lt;/IosFrame&gt;;
+  }
+&lt;/script&gt;</code></pre>
+
+  <div class="callout tip">
+    <p><strong>Next:</strong> Huashu Design produces brand-consistent output through its Core Asset Protocol and CSS variable system. Chapter 08 goes deeper into design tokens --- how they work across tools, how to sync them between Figma and code, and how to write your own design system that agents can read.</p>
+  </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="06.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 06</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Open Design and OpenPencil</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 06</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Open Design and OpenPencil</p>
+        </div>
+      </div>
+    </a>
+    <a href="08.html" class="group relative flex-1 overflow-hidden border border-black p-6 text-right">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 08</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Design Systems and Tokens</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 08</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Design Systems and Tokens</p>
+        </div>
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Chapter CTA -->
+  <section class="chapter-stack bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-[13px] uppercase tracking-wider text-white/30 mb-4">Next Chapter</p>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl lg:text-6xl">Design Systems and Tokens</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">Maintaining design systems with agents across tools and codebases</p>
+        </div>
+        <a href="08.html" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #60aeb8;">
+          Continue Reading
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>

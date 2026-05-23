@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Systems and Tokens - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #60aeb8;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #60aeb8; background-image: url('../assets/gradients/gradient_blue_turquoise.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-black/60 hover:text-black transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-black/30 mb-6">CHAPTER 08</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">Design Systems and Tokens</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-black/50">Maintaining design systems with agents across tools and codebases</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#s-08-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Design Systems as Code: The DESIGN.md Schema</a>
+        <a href="#s-08-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Open Design&#x27;s 129-System Library</a>
+        <a href="#s-08-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Syncing Tokens Between Tools</a>
+        <a href="#s-08-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Design Variables in .pen and .op Files</a>
+        <a href="#s-08-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Generating Consistent UI from Design System Constraints</a>
+        <a href="#s-08-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Writing Your Own Design System for Agents</a>
+        <a href="#s-08-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Cross-Tool Token Parity Strategies</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-08-1" data-section="s-08-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Systems as Code: The DESIGN.md Schema</span></a>
+          <a href="#s-08-2" data-section="s-08-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Open Design&amp;#x27;s 129-System Library</span></a>
+          <a href="#s-08-3" data-section="s-08-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Syncing Tokens Between Tools</span></a>
+          <a href="#s-08-4" data-section="s-08-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Variables in .pen and .op Files</span></a>
+          <a href="#s-08-5" data-section="s-08-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Generating Consistent UI from Design System Constraints</span></a>
+          <a href="#s-08-6" data-section="s-08-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Writing Your Own Design System for Agents</span></a>
+          <a href="#s-08-7" data-section="s-08-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Cross-Tool Token Parity Strategies</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-08-1" data-section="s-08-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Systems as Code: The DESIGN.md Schema</span></a>
+          <a href="#s-08-2" data-section="s-08-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Open Design&amp;#x27;s 129-System Library</span></a>
+          <a href="#s-08-3" data-section="s-08-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Syncing Tokens Between Tools</span></a>
+          <a href="#s-08-4" data-section="s-08-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Variables in .pen and .op Files</span></a>
+          <a href="#s-08-5" data-section="s-08-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Generating Consistent UI from Design System Constraints</span></a>
+          <a href="#s-08-6" data-section="s-08-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Writing Your Own Design System for Agents</span></a>
+          <a href="#s-08-7" data-section="s-08-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Cross-Tool Token Parity Strategies</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<h3 id="s-08-1">Design Systems as Code: The DESIGN.md Schema</h3>
+
+  <p>The DESIGN.md schema started at <a href="https://github.com/VoltAgent/awesome-design-md">awesome-design-md</a> and became the de facto standard for machine-readable design systems. It's a Markdown file with 9 sections that any agent can parse and apply:</p>
+<figure class="figure--full" id="ch08-fig-01">
+  <img src="../images/ch08-fig-01--web.webp" alt="VS Code editor showing a DESIGN.md file with structured sections for color palette, typography, spacing scale, layout breakpoints, component definitions, motion tokens, voice guidelines, brand rules, and anti-patterns" loading="eager" />
+  <figcaption>A DESIGN.md file showing the 9-section schema for machine-readable design systems</figcaption>
+</figure>
+
+
+  <ol>
+    <li><strong>Color</strong> --- brand palette, semantic colors, forbidden colors</li>
+    <li><strong>Typography</strong> --- display, body, mono font stacks with sizes and weights</li>
+    <li><strong>Spacing</strong> --- margin/padding scale, grid units</li>
+    <li><strong>Layout</strong> --- breakpoints, container widths, grid system</li>
+    <li><strong>Components</strong> --- button variants, card styles, form elements</li>
+    <li><strong>Motion</strong> --- transitions, durations, easing curves</li>
+    <li><strong>Voice</strong> --- tone, language patterns, copy guidelines</li>
+    <li><strong>Brand</strong> --- logo usage, imagery style, photography direction</li>
+    <li><strong>Anti-patterns</strong> --- what not to do, forbidden combinations</li>
+  </ol>
+
+  <pre><code># Payflow Design System
+
+## Color
+- Primary: #4F46E5
+- Secondary: #1E293B
+- Background: #FFFFFF
+- Surface: #F8FAFC
+- Text Primary: #1E293B
+- Text Secondary: #64748B
+- Accent: #06B6D4
+- Error: #EF4444
+- Success: #22C55E
+- Forbidden: never use pure black #000000 for text
+
+## Typography
+- Display: 'Payflow Sans', -apple-system, sans-serif, 700
+- Heading: 'Payflow Sans', -apple-system, sans-serif, 600
+- Body: 'Payflow Sans', -apple-system, sans-serif, 400
+- Mono: 'Payflow Mono', 'SF Mono', monospace, 400
+
+## Spacing
+- xs: 4px
+- sm: 8px
+- md: 16px
+- lg: 24px
+- xl: 32px
+- 2xl: 48px
+
+## Layout
+- Max width: 1200px
+- Grid: 12 columns
+- Breakpoints: mobile 640px, tablet 768px, desktop 1024px
+
+## Components
+- Button primary: bg-primary, text-white, rounded-lg, px-md py-sm
+- Card: bg-surface, rounded-xl, shadow-md, p-lg
+- Input: border-gray-300, rounded-lg, px-md py-sm
+
+## Motion
+- Fast: 150ms ease-out
+- Normal: 250ms ease-out
+- Slow: 350ms ease-out
+
+## Voice
+- Tone: professional but approachable
+- Language: active voice, direct sentences
+
+## Brand
+- Logo: always on white/dark backgrounds, minimum 24px height
+- Imagery: abstract geometric patterns, no stock photography
+
+## Anti-patterns
+- Never use gradient fills on text
+- Never pair sans-serif heading with serif body
+- Never animate layout properties (width, height, top, left)</code></pre>
+
+  <p>That anti-patterns section is critical. Most design system documentation tells you what to do. The anti-patterns section tells the agent what <em>not</em> to do. In practice, this is more valuable. Agents are prone to falling back to defaults. Explicit prohibitions prevent that.</p>
+
+  <p>The schema works because it's Markdown. Agents read Markdown natively. No JSON parsing. No API calls. No SDK integration. The DESIGN.md file sits in your repo, and any agent that can read files can consume it.</p>
+
+  <pre><code>// Agent prompt to read a design system
+"Read DESIGN.md from the repo root. Generate a pricing page
+that uses the exact colors, fonts, spacing, and component styles
+defined in the design system. Do not invent any values."</code></pre>
+
+  <h3 id="s-08-2">Open Design's 129-System Library</h3>
+
+  <p>Open Design (covered in Chapter 06) ships 129 design systems using the DESIGN.md schema. The breakdown:</p>
+<figure class="figure--full" id="ch08-fig-03">
+  <img src="../images/ch08-fig-03--web.webp" alt="Generated component library showcase displaying button variants, card components, form input fields, and typography samples all styled consistently from design system token definitions" loading="eager" />
+  <figcaption>Component library generated from design system tokens showing buttons, cards, and form elements</figcaption>
+</figure>
+
+
+  <ul>
+    <li>2 hand-authored starter systems</li>
+    <li>70 product design systems from awesome-design-md</li>
+    <li>57 design skills from awesome-design-skills</li>
+  </ul>
+
+  <p>The 70 product systems include real brand systems: Linear, Stripe, Vercel, Airbnb, Tesla, Notion, Anthropic, Apple, Cursor, Supabase, Figma, Resend, Raycast, Cohere, Mistral, ElevenLabs, Spotify, PostHog, Sentry, MongoDB, and roughly 50 more.</p>
+
+  <p>Each system shows its 4-color signature in the picker. Click for the full DESIGN.md, a swatch grid, and a live showcase. The catalog endpoint at <code>GET /api/skills</code> lists available systems programmatically.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Count</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Starter systems</td>
+        <td>2</td>
+        <td>Hand-authored for Open Design</td>
+      </tr>
+      <tr>
+        <td>Product design systems</td>
+        <td>70</td>
+        <td>awesome-design-md</td>
+      </tr>
+      <tr>
+        <td>Design skills</td>
+        <td>57</td>
+        <td>awesome-design-skills</td>
+      </tr>
+      <tr>
+        <td>Curated visual directions</td>
+        <td>5</td>
+        <td>Deterministic OKLch palettes + font stacks</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>When no brand design system exists, Open Design falls back to 5 curated visual directions, each with a deterministic OKLch palette and matched font stack:</p>
+
+  <pre><code>Editorial Monocle  — serif font stack, warm OKLch palette
+Modern Minimal     — sans-serif font stack, neutral OKLch palette
+Warm Soft          — humanist font stack, warm OKLch palette
+Tech Utility       — monospace-leaning font stack, cool OKLch palette
+Brutalist Experimental — display font stack, high-contrast OKLch palette</code></pre>
+
+  <p>Switch the design system and the next render uses the new tokens immediately. This is the key insight: "Design Systems are portable Markdown, not theme JSON." Every artifact reads from the active system at generation time.</p>
+
+  <p>The most-used systems in the library, based on community activity:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Design System</th>
+        <th>Brand</th>
+        <th>Signature</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Linear</td>
+        <td>Linear (productivity)</td>
+        <td>Purple accent, dark-first, sharp corners</td>
+      </tr>
+      <tr>
+        <td>Stripe</td>
+        <td>Stripe (payments)</td>
+        <td>Purple primary, white surfaces, isometric illustrations</td>
+      </tr>
+      <tr>
+        <td>Vercel</td>
+        <td>Vercel (developer tools)</td>
+        <td>Black/white, monospace accents, gradient borders</td>
+      </tr>
+      <tr>
+        <td>Notion</td>
+        <td>Notion (productivity)</td>
+        <td>Warm blacks, serif headings, illustration style</td>
+      </tr>
+      <tr>
+        <td>Apple</td>
+        <td>Apple (hardware/software)</td>
+        <td>San Francisco, rounded corners, spacious layouts</td>
+      </tr>
+      <tr>
+        <td>Anthropic</td>
+        <td>Anthropic (AI research)</td>
+        <td>Earthy tones, serif display, academic feel</td>
+      </tr>
+      <tr>
+        <td>Spotify</td>
+        <td>Spotify (music)</td>
+        <td>Green accent, bold typography, dark backgrounds</td>
+      </tr>
+      <tr>
+        <td>Resend</td>
+        <td>Resend (email API)</td>
+        <td>Dark theme, green accents, code-forward aesthetic</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-08-3">Syncing Tokens Between Tools</h3>
+
+  <p>Design tokens need to flow between tools. A color defined in Figma must appear identically in Paper, in your codebase, and in generated HTML. The synchronization strategy depends on which tools you're connecting.</p>
+<figure class="figure--grid-2" id="ch08-fig-02">
+  <img src="../images/ch08-fig-02--web.webp" alt="Side-by-side comparison of a dashboard component rendered in light theme and dark theme using the same design token variable names mapped to different color values" loading="eager" />
+  <figcaption>Same component rendered with light and dark theme tokens from a single design system</figcaption>
+</figure>
+
+
+  <p><strong>Figma to Paper</strong> requires dual MCP servers in the same agent session. The Figma MCP reads variables and styles. The Paper MCP writes them to the Paper canvas.</p>
+
+  <pre><code>"I have a design system in Figma with colors and text styles.
+Please create a matching design system sticker sheet in Paper
+using the same tokens. The element with the variable applied
+is selected in Figma."</code></pre>
+
+  <p>The agent reads Figma tokens via the Figma MCP, then writes to Paper via the Paper MCP. Chapter 10 covers the MCP configuration in detail.</p>
+
+  <p>Gotchas with Figma-to-Paper sync:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Issue</th>
+        <th>Cause</th>
+        <th>Fix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SVG fills become images</td>
+        <td>Figma exports SVG fills as embedded raster</td>
+        <td>Use fill color tokens instead of SVG imports</td>
+      </tr>
+      <tr>
+        <td>Spacer elements ignored</td>
+        <td>Figma spacers have no visual output</td>
+        <td>Map spacer values to padding tokens manually</td>
+      </tr>
+      <tr>
+        <td>Code-connected components unreliable</td>
+        <td>Figma's code connect feature has sync gaps</td>
+        <td>Verify component output against source manually</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Figma to Code</strong> is simpler. The agent reads Figma variables via the Figma MCP and generates CSS custom properties directly.</p>
+
+  <pre><code>:root {
+  --color-primary: #4F46E5;
+  --color-secondary: #1E293B;
+  --color-background: #FFFFFF;
+  --color-surface: #F8FAFC;
+  --color-text: #1E293B;
+  --color-text-secondary: #64748B;
+  --color-accent: #06B6D4;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --font-display: 'Payflow Sans', -apple-system, sans-serif;
+  --font-body: 'Payflow Sans', -apple-system, sans-serif;
+  --font-mono: 'Payflow Mono', 'SF Mono', monospace;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}</code></pre>
+
+  <p><strong>Paper to Code</strong> uses the Paper MCP's <code>get_computed_styles</code> and <code>get_jsx</code> tools. The agent reads the design from Paper, extracts token values, and generates matching code tokens.</p>
+
+  <pre><code>// Agent prompt for Paper-to-code token extraction
+"Read the design from Paper. Extract all colors, fonts, and
+spacing values into CSS custom properties. Generate a tokens.css
+file that matches the Paper design exactly."</code></pre>
+
+  <pre><code>// Generated tokens.css from Paper design
+:root {
+  --paper-color-hero-bg: oklch(0.95 0.02 260);
+  --paper-color-text-primary: oklch(0.15 0.02 260);
+  --paper-font-display: 'Instrument Serif', Georgia, serif;
+  --paper-font-body: 'Inter', -apple-system, sans-serif;
+  --paper-spacing-section: 96px;
+  --paper-spacing-content: 24px;
+}</code></pre>
+
+  <p><strong>Multi-source sync</strong> chains all of this together. Connect Figma MCP + Paper MCP + codebase access in a single agent session. The agent reads from Figma, writes to Paper, generates code, and verifies parity --- all in one conversation.</p>
+
+  <h3 id="s-08-4">Design Variables in .pen and .op Files</h3>
+
+  <p>Both Pencil (.pen files) and OpenPencil (.op files) support design variables. The mechanisms differ, but the goal is the same: tokens defined once, referenced everywhere.</p>
+
+  <h4 id="s-08-4-1">Pencil (.pen) Variables</h4>
+
+  <p>Pencil (Chapter 05) provides a variables system for design tokens inside .pen files. Variables map to CSS custom properties on export. Components and slots let you build reusable elements that reference these variables.</p>
+
+  <pre><code>// .pen file variable structure (JSON)
+{
+  "variables": {
+    "color-primary": "#4F46E5",
+    "color-background": "#FFFFFF",
+    "spacing-md": 16,
+    "radius-lg": 12
+  }
+}</code></pre>
+
+  <p>When the agent generates UI from a .pen file, every token reference becomes <code>var(--color-primary)</code> in the output. Change the variable in the .pen file, and the exported code updates accordingly.</p>
+
+  <h4 id="s-08-4-2">OpenPencil (.op) Variables</h4>
+
+  <p>OpenPencil (Chapter 06) extends the concept with typed variables and multi-theme support.</p>
+
+  <pre><code>{
+  "variables": {
+    "color-primary": { "type": "color", "value": "#4F46E5" },
+    "color-secondary": { "type": "color", "value": "#1E293B" },
+    "spacing-md": { "type": "number", "value": 16 },
+    "font-body": { "type": "string", "value": "Inter, sans-serif" }
+  },
+  "themes": {
+    "mode": {
+      "Light": { "color-background": "#FFFFFF" },
+      "Dark": { "color-background": "#1E293B" }
+    },
+    "density": {
+      "Compact": { "spacing-md": 12 },
+      "Comfortable": { "spacing-md": 16 }
+    }
+  }
+}</code></pre>
+
+  <p>The theme axes are independent. Light + Compact, Dark + Comfortable, any combination. Variables reference values via <code>$variable-name</code> syntax in the .op file, which becomes <code>var(--variable-name)</code> in generated CSS.</p>
+
+  <pre><code>// Theme switching in generated CSS from .op file
+:root {
+  --color-background: #FFFFFF;
+  --color-text: #1A1A2E;
+  --spacing-md: 16px;
+}
+
+[data-theme="Dark"] {
+  --color-background: #1E293B;
+  --color-text: #F8FAFC;
+}
+
+[data-density="Compact"] {
+  --spacing-md: 12px;
+}</code></pre>
+
+  <p>The generated CSS uses data-attribute selectors for theme switching. This is a deliberate choice: data attributes work without JavaScript. The browser applies the correct theme based on the attribute value, with no runtime cost. The design system remains purely declarative.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Pencil (.pen)</th>
+        <th>OpenPencil (.op)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Variable types</td>
+        <td>Untyped values</td>
+        <td>Typed (color, number, string)</td>
+      </tr>
+      <tr>
+        <td>Theme support</td>
+        <td>Single theme</td>
+        <td>Multi-axis themes</td>
+      </tr>
+      <tr>
+        <td>Reference syntax</td>
+        <td>Variable name</td>
+        <td><code>$variable-name</code></td>
+      </tr>
+      <tr>
+        <td>CSS output</td>
+        <td><code>var(--name)</code></td>
+        <td><code>var(--name)</code></td>
+      </tr>
+      <tr>
+        <td>File format</td>
+        <td>Design-as-code</td>
+        <td>Git-friendly JSON</td>
+      </tr>
+      <tr>
+        <td>Component reuse</td>
+        <td>Components + slots</td>
+        <td>Components + instances + overrides</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-08-5">Generating Consistent UI from Design System Constraints</h3>
+
+  <p>Reading a design system is one thing. Enforcing it during generation is another. Each tool takes a different approach.</p>
+
+  <p><strong>Open Design</strong>: The agent picks a skill and a design system. The skill template enforces the system's tokens at generation time. Every color comes from the system's palette. Every font comes from the system's typography section. The agent doesn't get to invent values.</p>
+
+  <p><strong>Huashu Design</strong> (Chapter 07): The Core Asset Protocol freezes brand knowledge into <code>brand-spec.md</code>. All generated HTML references <code>var(--brand-*)</code> CSS variables exclusively. The anti-slop rules prevent fallback to generic defaults.</p>
+
+  <pre><code>:root {
+  --brand-primary: #4F46E5;
+  --brand-background: #FFFFFF;
+  --brand-ink: #1E293B;
+  --brand-accent: #06B6D4;
+}
+
+/* All generated HTML uses var(--brand-*) — never hardcoded values.
+   To change brand, update brand-spec.md, not individual HTML files. */</code></pre>
+
+  <p><strong>OpenPencil</strong>: Style guides with 50+ built-in styles, tag-based fuzzy matching applied during AI generation. The agent writes a component, and OpenPencil matches it against the style guide to ensure consistency. The matching is tag-based and fuzzy, meaning it doesn't require exact name matches --- "primary button" matches "Button/Primary/Large" through similarity scoring.</p>
+
+  <p>The common thread across all tools: agents read the design system before generating anything. This "read before write" pattern is fundamental. An agent that generates UI without reading the design system first will produce generic output. An agent that reads the system first produces consistent output. The design system file --- whether DESIGN.md, brand-spec.md, or .op variables --- is the contract.</p>
+
+  <pre><code>// Agent workflow: read system, then generate
+// Step 1: Agent reads DESIGN.md
+// Step 2: Agent extracts tokens into CSS variables
+// Step 3: Agent generates UI referencing those variables
+
+// Generated component using design system tokens
+.pricing-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border, oklch(0.85 0.02 260));
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  font-family: var(--font-body);
+  transition: box-shadow var(--motion-normal);
+}
+
+.pricing-card:hover {
+  box-shadow: 0 4px 12px oklch(0.15 0.02 260 / 0.1);
+}</code></pre>
+
+  <p>The enforcement pattern that works across all tools:</p>
+
+  <pre><code>/* Anti-slop enforcement rules, common to all design-as-code tools */
+
+/* 1. Never invent new colors outside the system */
+/* BAD: color: #8B5CF6; (invented purple) */
+/* GOOD: color: var(--color-accent); */
+
+/* 2. Never use display fonts not in the spec */
+/* BAD: font-family: 'Montserrat', sans-serif; */
+/* GOOD: font-family: var(--font-display); */
+
+/* 3. Never add decorative elements not justified by content */
+/* BAD: decorative SVG divider between every section */
+/* GOOD: spacing and typography alone create separation */
+
+/* 4. Use oklch() or spec-existing colors only */
+/* BAD: filter: hue-rotate(45deg); */
+/* GOOD: color: oklch(0.7 0.15 250); */</code></pre>
+
+  <pre><code>/* CSS Grid + text-wrap: pretty as quality signals */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.card-content {
+  text-wrap: pretty;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}</code></pre>
+
+  <h3 id="s-08-6">Writing Your Own Design System for Agents</h3>
+
+  <p>Based on the patterns across Open Design, Huashu Design, Pencil, and OpenPencil, here's how to write a design system that agents can actually use.</p>
+<figure class="figure--full" id="ch08-fig-04">
+  <img src="../images/ch08-fig-04--web.webp" alt="Flow diagram showing bidirectional design token synchronization between Figma, Paper canvas, Pencil dot-pen files, and CSS custom properties with MCP and CLI sync methods labeled" loading="eager" />
+  <figcaption>Token synchronization flow between Figma, Paper, Pencil, and production code</figcaption>
+</figure>
+
+
+  <div class="step">
+    <span class="step-num">1</span>
+    <div class="step-content">
+      <p><strong>Start with the 9-section schema.</strong> Color, typography, spacing, layout, components, motion, voice, brand, anti-patterns. Even if some sections are thin, include them all. Agents expect the full structure.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">2</span>
+    <div class="step-content">
+      <p><strong>Be specific.</strong> Exact HEX values, not "a shade of blue." Font stacks with fallbacks, not "a nice sans-serif." Pixel measurements, not "comfortable spacing."</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">3</span>
+    <div class="step-content">
+      <p><strong>Include anti-patterns.</strong> What not to do is as important as what to do. "Never use gradient fills on text" prevents more failures than "use solid fills."</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">4</span>
+    <div class="step-content">
+      <p><strong>Map every token to a CSS variable.</strong> The agent needs <code>--color-primary</code>, not just <code>#4F46E5</code>. The variable name is the contract between the design system and generated code.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">5</span>
+    <div class="step-content">
+      <p><strong>Freeze brand assets.</strong> Logo paths, product images, UI screenshots --- not just colors. Huashu Design's <code>brand-spec.md</code> pattern is the reference implementation (Chapter 07).</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="step-num">6</span>
+    <div class="step-content">
+      <p><strong>Add theme variants.</strong> Light and dark at minimum. Compact and comfortable as a density axis if applicable. OpenPencil's multi-axis theme system is the most flexible model.</p>
+    </div>
+  </div>
+
+  <pre><code># My Product Design System
+
+## Color
+- Primary: #1A1A2E
+- Accent: #E94560
+- Background: #FFFFFF
+- Surface: #F8F9FA
+- Text: #1A1A2E
+- Text Secondary: #6C757D
+- Forbidden: never use #E94560 for large background areas
+
+## Typography
+- Display: 'Newsreader', Georgia, serif, 700
+- Heading: 'Inter', -apple-system, sans-serif, 600
+- Body: 'Inter', -apple-system, sans-serif, 400
+- Mono: 'JetBrains Mono', 'SF Mono', monospace, 400
+
+## Spacing
+- xs: 4px
+- sm: 8px
+- md: 16px
+- lg: 24px
+- xl: 32px
+
+## Layout
+- Max width: 1120px
+- Grid: 12 columns, 24px gutter
+- Breakpoints: sm 640px, md 768px, lg 1024px, xl 1280px
+
+## Components
+- Button primary: bg-primary, text-white, rounded-md, px-md py-sm, font-heading
+- Card: bg-surface, border-1 border-gray-200, rounded-lg, p-lg
+- Input: border-gray-300, rounded-md, px-md py-sm, focus:ring-accent
+
+## Motion
+- Fast: 150ms ease-out
+- Normal: 250ms ease-out
+- Slow: 400ms ease-in-out
+
+## Voice
+- Tone: direct, technical, no hype
+- Language: active voice, short sentences
+
+## Brand
+- Logo: SVG only, minimum 32px height
+- Imagery: abstract geometric patterns, no stock photos
+
+## Anti-patterns
+- Never use box-shadow for elevation (use border instead)
+- Never animate color properties (use opacity transitions)
+- Never use emoji in UI copy
+- Never center-align body text paragraphs</code></pre>
+
+  <pre><code>:root {
+  --color-primary: #1A1A2E;
+  --color-accent: #E94560;
+  --color-background: #FFFFFF;
+  --color-surface: #F8F9FA;
+  --color-text: #1A1A2E;
+  --color-text-secondary: #6C757D;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-heading: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --motion-fast: 150ms ease-out;
+  --motion-normal: 250ms ease-out;
+  --motion-slow: 400ms ease-in-out;
+}</code></pre>
+
+  <h3 id="s-08-7">Cross-Tool Token Parity Strategies</h3>
+
+  <p>Maintaining token parity across Figma, Paper, Pencil, your codebase, and generated HTML is the operational challenge of design-as-code. Five strategies, from simplest to most robust:</p>
+
+  <p><strong>1. DESIGN.md as single source of truth.</strong> Put the DESIGN.md in your repo. Every agent session reads it before generating anything. Other tools (Figma, Paper) are downstream consumers. Simple but requires manual sync.</p>
+
+  <p><strong>2. MCP chaining for real-time sync.</strong> Connect Figma MCP + Paper MCP + codebase in one agent session. The agent reads from one source and writes to others. Real-time parity, but requires all MCP servers running simultaneously.</p>
+
+  <p><strong>3. Export/import bridges.</strong> Figma exports tokens via its MCP. Paper reads them. Paper exports JSX with tokens. Your codebase imports it. Each bridge is a one-way sync point. Robust but adds pipeline complexity.</p>
+
+  <p><strong>4. Git-based parity.</strong> DESIGN.md lives in the repo. CI verifies that generated CSS custom properties match the DESIGN.md values. Tokens diverge, build fails. Most reliable for teams with CI discipline.</p>
+
+  <p><strong>5. Variable reference pattern.</strong> All generated code uses <code>var(--token-name)</code> instead of hardcoded values. The CSS variables file is generated from DESIGN.md. If the variable reference is present, the value is correct by construction. This is the pattern Huashu Design enforces.</p>
+
+  <pre><code>/* Variable reference pattern — all tools converge here */
+
+/* Generated from DESIGN.md, single source of truth */
+:root {
+  --color-primary: #1A1A2E;
+  --color-accent: #E94560;
+}
+
+/* Agent-generated component — never hardcodes values */
+.hero {
+  background: var(--color-primary);
+  color: var(--color-background);
+  padding: var(--spacing-xl);
+  font-family: var(--font-display);
+  border-radius: var(--radius-lg);
+  transition: transform var(--motion-normal);
+}</code></pre>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Strategy</th>
+        <th>Complexity</th>
+        <th>Reliability</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DESIGN.md as source</td>
+        <td>Low</td>
+        <td>Medium (manual sync)</td>
+        <td>Solo developers, small teams</td>
+      </tr>
+      <tr>
+        <td>MCP chaining</td>
+        <td>Medium</td>
+        <td>High (real-time)</td>
+        <td>Teams using Figma + Paper</td>
+      </tr>
+      <tr>
+        <td>Export/import bridges</td>
+        <td>Medium</td>
+        <td>Medium (pipeline)</td>
+        <td>Teams with CI pipelines</td>
+      </tr>
+      <tr>
+        <td>Git-based parity</td>
+        <td>High</td>
+        <td>High (automated)</td>
+        <td>Teams with strong CI discipline</td>
+      </tr>
+      <tr>
+        <td>Variable reference pattern</td>
+        <td>Low</td>
+        <td>High (by construction)</td>
+        <td>All teams --- combine with other strategies</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The variable reference pattern is the foundation everything else builds on. If your generated code hardcodes <code>#4F46E5</code> instead of <code>var(--color-primary)</code>, no amount of DESIGN.md discipline will save you. Start there. Add MCP chaining or CI verification on top if your team size warrants it.</p>
+  </div>
+
+  <p>The direction system provides a fallback when no brand design system exists. Open Design's 5 curated directions --- Editorial Monocle, Modern Minimal, Warm Soft, Tech Utility, Brutalist Experimental --- each with deterministic OKLch palettes, give agents a consistent starting point. The key word is deterministic: the same direction always produces the same palette, which means the same prompt generates visually consistent output across sessions.</p>
+
+  <div class="callout tip">
+    <p><strong>Next:</strong> Design systems give visual consistency. Motion gives temporal consistency. Chapter 09 covers programmatic video --- how agents produce animations, explainer videos, and motion design using Remotion and Hyperframes.</p>
+  </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="07.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 07</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Huashu Design</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 07</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Huashu Design</p>
+        </div>
+      </div>
+    </a>
+    <a href="09.html" class="group relative flex-1 overflow-hidden border border-black p-6 text-right">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 09</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Motion and Video</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 09</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Motion and Video</p>
+        </div>
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Chapter CTA -->
+  <section class="chapter-stack bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-[13px] uppercase tracking-wider text-white/30 mb-4">Next Chapter</p>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl lg:text-6xl">Motion and Video</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">Remotion, Hyperframes, and programmatic video for agents</p>
+        </div>
+        <a href="09.html" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #597e87;">
+          Continue Reading
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>

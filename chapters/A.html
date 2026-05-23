@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tool Comparison Matrix - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #cc7373;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #cc7373; background-image: url('../assets/gradients/gradient_coral_peach.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-black/60 hover:text-black transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-black/30 mb-6">APPENDIX A</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">Tool Comparison Matrix</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-black/50">Side-by-side feature comparisons for every tool covered in this book</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">14 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#appendix-A-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Agent Platforms Compared</a>
+        <a href="#appendix-A-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Design Canvas Tools Compared</a>
+        <a href="#appendix-A-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Design Skill Frameworks Compared</a>
+        <a href="#appendix-A-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Motion and Video Tools Compared</a>
+        <a href="#appendix-A-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">MCP-Connected Tools Compared</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#appendix-A-1" data-section="appendix-A-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Agent Platforms Compared</span></a>
+          <a href="#appendix-A-2" data-section="appendix-A-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Canvas Tools Compared</span></a>
+          <a href="#appendix-A-3" data-section="appendix-A-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Skill Frameworks Compared</span></a>
+          <a href="#appendix-A-4" data-section="appendix-A-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Motion and Video Tools Compared</span></a>
+          <a href="#appendix-A-5" data-section="appendix-A-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MCP-Connected Tools Compared</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#appendix-A-1" data-section="appendix-A-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Agent Platforms Compared</span></a>
+          <a href="#appendix-A-2" data-section="appendix-A-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Canvas Tools Compared</span></a>
+          <a href="#appendix-A-3" data-section="appendix-A-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Skill Frameworks Compared</span></a>
+          <a href="#appendix-A-4" data-section="appendix-A-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Motion and Video Tools Compared</span></a>
+          <a href="#appendix-A-5" data-section="appendix-A-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MCP-Connected Tools Compared</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<div class="callout disclaimer">
+    <p><strong>Note:</strong> Pricing and feature details reflect publicly listed rates as of May 2026. Verify current pricing on each tool's website before making purchasing decisions.</p>
+  </div>
+
+  <h3 id="appendix-A-1">Agent Platforms Compared</h3>
+
+  <p>Four agent platforms dominate agentic design workflows as of May 2026. Each supports MCP, each has a different strength, and each takes a fundamentally different approach to skill management, permissions, and model access. The table below compares them across the dimensions that matter most for design work: how they connect to design tools, how they handle permissions, and what the real cost looks like when you use them daily.</p>
+<figure class="figure--full" id="chA-fig-01">
+  <img src="../images/chA-fig-01--web.webp" alt="Feature comparison grid for four agent platforms showing license type, model access, configuration files, skill system support, MCP compatibility, subagent capabilities, plan mode, and free tier availability with green for supported, yellow for partial, and red for not available" loading="eager" />
+  <figcaption>Agent platform feature comparison across 15 dimensions with color-coded availability indicators</figcaption>
+</figure>
+
+
+  <p>The comparison criteria here focus on practical concerns, not marketing claims. "Design skill ecosystem" measures the availability of pre-built skills and plugins for design tasks --- reading canvas files, generating JSX, exporting assets. "Model access" matters because some agents lock you into one provider while others let you bring any API key.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Claude Code</th>
+        <th>Codex CLI</th>
+        <th>OpenCode</th>
+        <th>Gemini CLI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vendor</td>
+        <td>Anthropic</td>
+        <td>OpenAI</td>
+        <td>Open-source community</td>
+        <td>Google</td>
+      </tr>
+      <tr>
+        <td>License</td>
+        <td>Proprietary</td>
+        <td>Proprietary</td>
+        <td>MIT</td>
+        <td>Proprietary</td>
+      </tr>
+      <tr>
+        <td>Model access</td>
+        <td>Claude Opus / Sonnet</td>
+        <td>GPT-4o / o3</td>
+        <td>BYOK (any provider)</td>
+        <td>Gemini 2.5 Pro</td>
+      </tr>
+      <tr>
+        <td>MCP support</td>
+        <td>Full (plugin + manual)</td>
+        <td>Full (Streamable HTTP)</td>
+        <td>Full (JSON config)</td>
+        <td>Full</td>
+      </tr>
+      <tr>
+        <td>Skill system</td>
+        <td>SKILL.md, plugins</td>
+        <td>Plugins</td>
+        <td>Skills, agents</td>
+        <td>Skills</td>
+      </tr>
+      <tr>
+        <td>Permission model</td>
+        <td>Per-tool allowlist</td>
+        <td>Per-tool allowlist</td>
+        <td>Configurable</td>
+        <td>Per-tool</td>
+      </tr>
+      <tr>
+        <td>Design skill ecosystem</td>
+        <td>Largest (Paper plugin, custom skills)</td>
+        <td>Growing</td>
+        <td>Extensive (Open Design, Huashu)</td>
+        <td>Emerging</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>$100-200/mo (Max plan)</td>
+        <td>$200/mo (Pro)</td>
+        <td>Free (BYOK API costs)</td>
+        <td>Free (BYOK)</td>
+      </tr>
+      <tr>
+        <td>Best for design</td>
+        <td>Full-stack design-to-code</td>
+        <td>Rapid prototyping</td>
+        <td>Multi-agent design teams</td>
+        <td>Multimodal design input</td>
+      </tr>
+      <tr>
+        <td>Last verified</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Claude Code has the largest design skill ecosystem as of May 2026, driven by Anthropic's plugin marketplace and the Paper plugin specifically. Codex CLI is catching up fast --- OpenAI's plugin infrastructure is maturing, but design-specific skills remain thinner. OpenCode is the interesting outlier: it does not ship its own model, so you bring whatever API key you want. That flexibility comes with more configuration overhead, but it also means you can swap models mid-project without changing agents.</p>
+
+  <p>Gemini CLI's strength is multimodal input. If your design workflow starts with screenshots, photos, or whiteboard captures, Gemini's vision capabilities give it an edge for the initial design-to-prompt translation. Its skill ecosystem is the thinnest of the four, but Google is investing heavily here.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> For design work specifically, Claude Code is the most complete option today. The Paper plugin alone --- read designs, export JSX, write HTML back to canvas --- eliminates half the friction in a design-to-code workflow. But if you work across multiple model providers or need to run parallel agents with different models, OpenCode's BYOK architecture is the right call. In the author's experience, the $200/month price tag on Codex CLI is hard to justify for design work when the skill ecosystem is still growing.</p>
+  </div>
+
+  <p>Chapter 02 covers each platform in depth with installation and configuration details.</p>
+
+  <h3 id="appendix-A-2">Design Canvas Tools Compared</h3>
+
+  <p>The canvas is where design happens. These three tools --- Paper, Pencil, and OpenPencil --- take fundamentally different approaches to rendering, file formats, and agent integration. The comparison below covers the technical dimensions that determine how well each tool fits into an agentic workflow: canvas model (what you're actually manipulating), MCP integration (how agents talk to the canvas), code export quality (what you get out), and collaboration model (who else can work on the same file).</p>
+<figure class="figure--full" id="chA-fig-02">
+  <img src="../images/chA-fig-02--web.webp" alt="Pricing comparison matrix showing tool costs organized by category with free tier, individual or pro pricing, team pricing, and enterprise options for Paper, Pencil, Open Design, OpenPencil, Huashu Design, Remotion, and Hyperframes" loading="eager" />
+  <figcaption>Pricing matrix for all book tools showing free, pro, and enterprise tier costs</figcaption>
+</figure>
+
+
+  <p>I excluded Figma from this table because Figma's MCP integration is read-only as of May 2026. Figma remains the dominant design tool for collaborative work, but agents can only read from it, not write to it. The three tools below all support bidirectional agent communication.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Paper</th>
+        <th>Pencil</th>
+        <th>OpenPencil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Canvas model</td>
+        <td>Real HTML/CSS</td>
+        <td>WebGL (.pen JSON)</td>
+        <td>CanvasKit/Skia (.op JSON)</td>
+      </tr>
+      <tr>
+        <td>License</td>
+        <td>Commercial (freemium)</td>
+        <td>Commercial</td>
+        <td>MIT (open source)</td>
+      </tr>
+      <tr>
+        <td>Pricing</td>
+        <td>Free / $16/mo Pro</td>
+        <td>Free (IDE extension)</td>
+        <td>Free</td>
+      </tr>
+      <tr>
+        <td>Platform</td>
+        <td>Web + Desktop</td>
+        <td>Desktop + IDE</td>
+        <td>Web + Desktop + CLI</td>
+      </tr>
+      <tr>
+        <td>Collaboration</td>
+        <td>Real-time multiplayer</td>
+        <td>Local single-user</td>
+        <td>Planned</td>
+      </tr>
+      <tr>
+        <td>MCP server</td>
+        <td>Yes (22 tools)</td>
+        <td>Yes</td>
+        <td>Yes (built-in)</td>
+      </tr>
+      <tr>
+        <td>Code export</td>
+        <td>JSX + Tailwind via MCP</td>
+        <td>React + Tailwind via CLI</td>
+        <td>10 platforms via MCP</td>
+      </tr>
+      <tr>
+        <td>Color support</td>
+        <td>sRGB + P3 + OkLCH</td>
+        <td>sRGB hex</td>
+        <td>sRGB hex</td>
+      </tr>
+      <tr>
+        <td>Agent compatible</td>
+        <td>Claude Code, Codex, Cursor, Copilot, OpenCode</td>
+        <td>Claude Code, OpenCode</td>
+        <td>Claude Code, Codex, OpenCode, Gemini, Copilot, Kiro</td>
+      </tr>
+      <tr>
+        <td>File format</td>
+        <td>.paper (HTML-based)</td>
+        <td>.pen (JSON)</td>
+        <td>.op (JSON)</td>
+      </tr>
+      <tr>
+        <td>Git integration</td>
+        <td>Via agent</td>
+        <td>Native (.pen in repo)</td>
+        <td>Native (Git panel, merge)</td>
+      </tr>
+      <tr>
+        <td>Last verified</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Paper's canvas model is the most unusual: it renders actual HTML and CSS, not an abstraction layer. When an agent writes to Paper, it writes HTML. When it reads from Paper, it reads HTML. This makes the design-to-code pipeline almost trivially short --- the design artifact is already code. The trade-off is that Paper cannot render vector shapes or complex illustrations the way a tool with a dedicated rendering engine can.</p>
+
+  <p>Pencil's strength is IDE integration. The .pen file format is JSON that lives in your repository alongside your source code. Design changes show up in git diff. Design reviews happen in pull requests. For teams already doing code review, Pencil fits into existing workflows without introducing a separate review tool.</p>
+
+  <p>OpenPencil's Agent Teams feature --- where multiple agents work different regions of the canvas simultaneously --- is the most architecturally interesting approach in the space. Each agent claims a spatial region, works independently, and the canvas merges the results. Chapter 11 covers this pattern in depth.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> Paper wins on collaboration and color fidelity --- sRGB + P3 + OkLCH is, as of this writing, the most complete color support of any design tool in this comparison. Pencil wins on IDE integration and diffability. OpenPencil wins on openness and multi-agent architecture. I use all three depending on the task. For solo design-to-code work, Pencil lives inside my IDE and I never leave my terminal. For team projects with stakeholders who need to see and comment on designs, Paper is the strongest option in the author's experience. OpenPencil's Agent Teams feature is the most interesting architectural experiment in the space right now.</p>
+  </div>
+
+  <h3 id="appendix-A-3">Design Skill Frameworks Compared</h3>
+
+  <p>Skills teach agents how to design. Two frameworks dominate as of May 2026: Open Design and Huashu Design. They take opposite approaches. Open Design is breadth-first --- 31 independent skills, 129 built-in design systems, covering everything from landing pages to dashboards to pitch decks. Huashu Design is depth-first --- one comprehensive skill that embeds 20 design philosophies, a Junior Designer Workflow, and explicit anti-AI-slop rules into a single SKILL.md file.</p>
+
+  <p>The comparison below covers architecture, output capabilities, and the self-critique mechanisms each framework provides. One important clarification: both frameworks implement a "5-dimension critique," but they are different implementations. Open Design's critique is a separate skill in its 31-skill library, focused on scoring output against design system constraints. Huashu Design's critique is built into its single skill, focused on five dimensions of design quality (philosophical consistency, visual hierarchy, detail execution, functionality, and innovation) with explicit scoring and a fix list. Same concept, different execution.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Open Design</th>
+        <th>Huashu Design</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>License</td>
+        <td>Apache-2.0</td>
+        <td>MIT</td>
+      </tr>
+      <tr>
+        <td>GitHub stars</td>
+        <td>43.6k</td>
+        <td>14.1k</td>
+      </tr>
+      <tr>
+        <td>Skills count</td>
+        <td>31</td>
+        <td>1 (comprehensive)</td>
+      </tr>
+      <tr>
+        <td>Design systems</td>
+        <td>129 built-in</td>
+        <td>Brand Asset Protocol</td>
+      </tr>
+      <tr>
+        <td>Agent support</td>
+        <td>16 CLI agents auto-detected</td>
+        <td>Agent-agnostic (any markdown-skill agent)</td>
+      </tr>
+      <tr>
+        <td>Output formats</td>
+        <td>HTML, PDF, PPTX, ZIP, Markdown</td>
+        <td>HTML, MP4, GIF, PPTX, PDF</td>
+      </tr>
+      <tr>
+        <td>Visual directions</td>
+        <td>5 schools (curated palettes)</td>
+        <td>5 schools x 20 philosophies</td>
+      </tr>
+      <tr>
+        <td>Self-critique</td>
+        <td>5-dimension design system critique (separate skill)</td>
+        <td>5-dimension expert critique (built-in, scored with fix list)</td>
+      </tr>
+      <tr>
+        <td>Anti-AI-slop</td>
+        <td>Via design system constraints</td>
+        <td>Explicit anti-slop rules</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>Free (open source)</td>
+        <td>Free (open source)</td>
+      </tr>
+      <tr>
+        <td>Architecture</td>
+        <td>Web + daemon + BYOK proxy</td>
+        <td>Skill file (SKILL.md)</td>
+      </tr>
+      <tr>
+        <td>Last verified</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The architectural difference matters in practice. Open Design runs a local web daemon and proxies API calls through your own keys. It detects which agent CLI you have installed and adjusts its output accordingly. This is powerful but requires a running process. Huashu Design is a single SKILL.md file that you drop into your project. No daemon, no proxy, no running process. The agent reads the file and follows the instructions. Simpler setup, but less infrastructure for managing multi-step workflows.</p>
+
+  <p>For output formats, the key differentiator is video. Huashu Design can export HTML animations to MP4 and GIF with 60fps interpolation and background music mixing. Open Design focuses on static and interactive outputs --- HTML, PDF, PPTX. If your design workflow includes motion, Huashu Design has the edge. If you need 129 pre-built design systems to choose from, Open Design is, in the author's experience, unmatched in this category.</p>
+
+  <p>Chapters 06 and 07 cover Open Design and Huashu Design in depth, respectively.</p>
+
+  <h3 id="appendix-A-4">Motion and Video Tools Compared</h3>
+
+  <p>Programmatic video for agents comes down to two approaches as of May 2026: React components (Remotion) or HTML-native animation (Hyperframes). The licensing difference alone is worth understanding before you commit. Remotion uses a custom source-available license that requires a paid license for companies with certain revenue thresholds. Hyperframes uses Apache-2.0, which is OSI-approved open source with no revenue restrictions.</p>
+
+  <p>The table below compares the authoring model, rendering pipeline, agent integration, and output capabilities. The core architectural difference: Remotion compiles React components into video frames through a bundler. Hyperframes plays HTML + CSS + GSAP animations directly in a browser and captures the output. No build step, no bundler --- the same <code>index.html</code> you preview in a browser is the file that gets rendered to MP4.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Remotion</th>
+        <th>Hyperframes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>License</td>
+        <td>Source-available (custom)</td>
+        <td>Apache-2.0 (OSI open source)</td>
+      </tr>
+      <tr>
+        <td>GitHub stars</td>
+        <td>47.1k</td>
+        <td>19k</td>
+      </tr>
+      <tr>
+        <td>Authoring format</td>
+        <td>React components (TSX)</td>
+        <td>HTML + CSS + GSAP</td>
+      </tr>
+      <tr>
+        <td>Build step</td>
+        <td>Required (bundler)</td>
+        <td>None (index.html plays as-is)</td>
+      </tr>
+      <tr>
+        <td>Animation model</td>
+        <td>Frame-accurate, seekable</td>
+        <td>Library-clock (GSAP, CSS, Lottie, Three.js)</td>
+      </tr>
+      <tr>
+        <td>Distributed rendering</td>
+        <td>Lambda (production-ready)</td>
+        <td>Single-machine today</td>
+      </tr>
+      <tr>
+        <td>Agent skills</td>
+        <td>Via SKILL.md</td>
+        <td>12 skills bundled</td>
+      </tr>
+      <tr>
+        <td>MCP server</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>Agent compatible</td>
+        <td>Claude Code, Cursor</td>
+        <td>Claude Code, Cursor, Codex, Gemini</td>
+      </tr>
+      <tr>
+        <td>Block catalog</td>
+        <td>Community templates</td>
+        <td>50+ ready-to-use blocks</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>Free (companies need license)</td>
+        <td>Free</td>
+      </tr>
+      <tr>
+        <td>Last verified</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Remotion's frame-accurate rendering model is a genuine technical advantage for certain use cases. Because each frame is a React render, you can seek to any frame, scrub the timeline, and get deterministic output. Hyperframes uses GSAP's clock, which means the animation timing depends on the library's internal state. For most design-driven video --- product demos, explainer animations, social content --- this difference does not matter. For broadcast-quality or frame-precise compositing, Remotion has the edge.</p>
+
+  <p>Hyperframes' no-build-step approach is the better fit for agent workflows. An agent generates an HTML file with GSAP animations, and that file is immediately renderable. No <code>npm install</code>, no bundler configuration, no webpack or Vite setup. The 12 bundled skills cover common video patterns --- product demos, feature walkthroughs, social clips, title sequences. Remotion's community template ecosystem is larger, but the templates require more adaptation.</p>
+
+  <p>Distributed rendering is the area where Remotion is clearly ahead. Lambda-based rendering means you can parallelize frame computation across hundreds of instances. Hyperframes renders on a single machine today. For long-form video (10+ minutes) or batch rendering, this is a meaningful gap.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> For agent-driven design work, Hyperframes is, in the author's experience, the more practical choice. The no-build-step model aligns with how agents work --- generate a file, render it, iterate. The Apache-2.0 license removes the compliance question entirely. Remotion is, as of this writing, the stronger tool for production video teams that need distributed rendering and frame-accurate control, but that describes a different workflow than what this book covers.</p>
+  </div>
+
+  <p>Chapter 09 covers both tools in depth, including setup, animation composition, and rendering.</p>
+
+  <h3 id="appendix-A-5">MCP-Connected Tools Compared</h3>
+
+  <p>These tools connect to agents via MCP servers. They extend agent capabilities into existing design platforms --- reading Figma files, generating patterns in MagicPattern, or collaborating on Miro boards. Unlike the canvas tools in section A.2, these are not design surfaces themselves. They are external platforms that expose a subset of their functionality to agents through MCP.</p>
+
+  <p>The comparison below covers access level, authentication method, and key limitations. Access level is the most important dimension: read-only MCP servers (like Figma's) let agents extract information but never modify the source file. Read-write servers (like MagicPattern's) let agents both read and create content. This distinction determines whether you can close the design loop entirely within the agent session or need to switch back to the GUI for write operations.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Figma MCP</th>
+        <th>Miro MCP</th>
+        <th>MagicPattern MCP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>License</td>
+        <td>Proprietary</td>
+        <td>Proprietary</td>
+        <td>Proprietary</td>
+      </tr>
+      <tr>
+        <td>Access level</td>
+        <td>Read-only</td>
+        <td>Read + limited write</td>
+        <td>Read + write</td>
+      </tr>
+      <tr>
+        <td>Primary use</td>
+        <td>Read designs programmatically</td>
+        <td>AI-powered whiteboarding</td>
+        <td>Generative patterns</td>
+      </tr>
+      <tr>
+        <td>Agent compatible</td>
+        <td>Claude Code, Cursor, Codex</td>
+        <td>Claude Code, Cursor</td>
+        <td>Claude Code</td>
+      </tr>
+      <tr>
+        <td>Export formats</td>
+        <td>JSON, SVG, images</td>
+        <td>Board data, images</td>
+        <td>SVG, PNG, CSS backgrounds</td>
+      </tr>
+      <tr>
+        <td>Authentication</td>
+        <td>Figma API key</td>
+        <td>OAuth</td>
+        <td>API key</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>Included with Figma</td>
+        <td>Included with Miro</td>
+        <td>Free / paid tiers</td>
+      </tr>
+      <tr>
+        <td>Key limitation</td>
+        <td>No write access, SVG fills as images</td>
+        <td>Limited write operations</td>
+        <td>Pattern types only</td>
+      </tr>
+      <tr>
+        <td>Last verified</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+        <td>May 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Figma's MCP server is the most widely used of the three, which makes sense given Figma's market position. But the read-only limitation is real. Agents can extract design tokens, read component structures, and download images, but they cannot create or modify frames. If your workflow requires writing back to Figma, you need the GUI or a third-party plugin.</p>
+
+  <p>Miro sits in the middle: agents can create sticky notes, add shapes to boards, and read board content. The write operations are limited to basic elements --- you cannot create complex diagrams or modify existing objects programmatically. For structured whiteboarding workflows where an agent captures meeting notes and organizes them on a board, Miro's MCP is sufficient.</p>
+
+  <p>MagicPattern has the broadest write access of the three. Agents can generate SVG patterns, export them as CSS backgrounds or PNG images, and iterate on pattern parameters. The limitation is scope: MagicPattern does one thing (generative patterns), and it does it well, but it will not help with layout, typography, or component design.</p>
+
+  <div class="callout tip">
+    <p><strong>Tip:</strong> Chain these MCP servers for compound workflows. An agent can read a design system from Figma, extract the color palette, feed it to MagicPattern to generate background patterns, and write the results into a Paper canvas. Chapter 10 covers MCP chaining in detail.</p>
+  </div>
+
+  <p>Chapter 10 covers MCP integrations in depth, including configuration, chaining, and troubleshooting. Appendix B provides a complete reference for every MCP tool available in each server.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="14.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 14</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">The Future of Agentic Design</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 14</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">The Future of Agentic Design</p>
+        </div>
+      </div>
+    </a>
+    <a href="B.html" class="group relative flex-1 overflow-hidden border border-black p-6 text-right">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix B</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">MCP Server Reference</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix B</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">MCP Server Reference</p>
+        </div>
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Chapter CTA -->
+  <section class="chapter-stack bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-[13px] uppercase tracking-wider text-white/30 mb-4">Next Chapter</p>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl lg:text-6xl">MCP Server Reference</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">Every MCP server, every tool, and configuration snippets</p>
+        </div>
+        <a href="B.html" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #b57ab5;">
+          Continue Reading
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>

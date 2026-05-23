@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production UI from Design - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #a9b158;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #a9b158; background-image: url('../assets/gradients/gradient_sage_yellow.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-black/60 hover:text-black transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-black/30 mb-6">CHAPTER 12</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl">Production UI from Design</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-black/50">The design-to-production code pipeline with agents</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">14 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#s-12-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Full Pipeline: Design Artifact to Production Code</a>
+        <a href="#s-12-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Code Export from Paper: JSX and Tailwind</a>
+        <a href="#s-12-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Code Generation from Pencil and OpenPencil</a>
+        <a href="#s-12-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Responsive Breakpoints and Layout Translation</a>
+        <a href="#s-12-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Accessibility: Agents as A11y Enforcers</a>
+        <a href="#s-12-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Performance Optimization in the Agent Loop</a>
+        <a href="#s-12-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Review-and-Iterate Loop</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-12-1" data-section="s-12-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Full Pipeline: Design Artifact to Production Code</span></a>
+          <a href="#s-12-2" data-section="s-12-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Code Export from Paper: JSX and Tailwind</span></a>
+          <a href="#s-12-3" data-section="s-12-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Code Generation from Pencil and OpenPencil</span></a>
+          <a href="#s-12-4" data-section="s-12-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Responsive Breakpoints and Layout Translation</span></a>
+          <a href="#s-12-5" data-section="s-12-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Accessibility: Agents as A11y Enforcers</span></a>
+          <a href="#s-12-6" data-section="s-12-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Performance Optimization in the Agent Loop</span></a>
+          <a href="#s-12-7" data-section="s-12-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Review-and-Iterate Loop</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-12-1" data-section="s-12-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Full Pipeline: Design Artifact to Production Code</span></a>
+          <a href="#s-12-2" data-section="s-12-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Code Export from Paper: JSX and Tailwind</span></a>
+          <a href="#s-12-3" data-section="s-12-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Code Generation from Pencil and OpenPencil</span></a>
+          <a href="#s-12-4" data-section="s-12-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Responsive Breakpoints and Layout Translation</span></a>
+          <a href="#s-12-5" data-section="s-12-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Accessibility: Agents as A11y Enforcers</span></a>
+          <a href="#s-12-6" data-section="s-12-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Performance Optimization in the Agent Loop</span></a>
+          <a href="#s-12-7" data-section="s-12-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Review-and-Iterate Loop</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<h3 id="s-12-1">The Full Pipeline: Design Artifact to Production Code</h3>
+
+  <p>The pipeline from design to production code has five stages. Each stage can be handled by an agent, a human, or a combination of both.</p>
+<figure class="figure--full" id="ch12-fig-04">
+  <img src="../images/ch12-fig-04--web.webp" alt="Pipeline flow diagram showing five stages from design artifact to production: Paper canvas design, JSX and Tailwind export, responsive and accessible adaptation, human visual review, and Vercel deployment with agent responsibilities marked at stages two through four" loading="eager" />
+  <figcaption>The five-stage deploy pipeline from design artifact to production with agent and human roles</figcaption>
+</figure>
+
+
+  <div class="flow">
+    <div class="flow-item">
+      <strong>Design</strong>
+      <p>Canvas artifact in Paper, Pencil, or OpenPencil</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Export</strong>
+      <p>JSX, HTML, or framework-specific code</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Adapt</strong>
+      <p>Responsive, accessible, performant</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Review</strong>
+      <p>Human validates visual output</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">
+      <strong>Ship</strong>
+      <p>Commit, deploy, monitor</p>
+    </div>
+  </div>
+
+  <p>The key insight: stages two and three are where agents add the most value. Exporting code from a design is mechanical. Adding responsive breakpoints is mechanical. Adding accessibility attributes is mechanical. Performance optimization is mostly mechanical. The agent handles these while the human focuses on whether the design looks right, feels right, and solves the right problem.</p>
+
+  <p>The pipeline differs depending on which tool produced the design. Paper exports JSX directly because Paper is HTML/CSS natively. Pencil generates React+Tailwind from its .pen file format. OpenPencil has the widest export surface: React+Tailwind, HTML+CSS, Vue, Svelte, Flutter, SwiftUI, Jetpack Compose, and React Native. Chapter 06 covers OpenPencil in depth.</p>
+
+  <h3 id="s-12-2">Code Export from Paper: JSX and Tailwind</h3>
+
+  <p>Paper's <code>get_jsx</code> MCP tool is the foundation of the export pipeline. It takes a node ID and a format parameter (<code>tailwind</code> or <code>inline-styles</code>) and returns JSX as a string. The output is production-quality because Paper's canvas is real HTML/CSS --- there is no translation layer and no approximation.</p>
+<figure class="figure--full" id="ch12-fig-01">
+  <img src="../images/ch12-fig-01--web.webp" alt="Terminal session showing an AI agent calling the Paper MCP get_jsx tool for a hero section, receiving JSX output with Tailwind CSS classes, and creating a React component file with the generated code" loading="eager" />
+  <figcaption>Agent generating a React component from Paper MCP get_jsx output with Tailwind classes</figcaption>
+</figure>
+
+
+  <pre><code># Paper MCP: Export JSX from a selected frame
+# Agent prompt: "Read the hero section I have selected in Paper
+# and build it with React + Tailwind"
+
+# MCP tool call:
+get_jsx({
+  nodeId: "selected-frame-id",
+  format: "tailwind"
+})
+
+# Returns: JSX string with Tailwind classes
+# &lt;section className="flex flex-col items-center px-6 py-12
+#   bg-gradient-to-b from-slate-900 to-slate-800"&gt;
+#   &lt;h1 className="text-4xl font-bold text-white"&gt;
+#     Build faster with agents
+#   &lt;/h1&gt;
+#   ...
+# &lt;/section&gt;</code></pre>
+
+  <p>The best results come when the design uses flex layouts and container elements. Paper's flex-based layout translates directly to Tailwind flex classes. Designs using absolute positioning require more agent intervention to convert to responsive layouts.</p>
+
+  <p>The standard workflow from Paper's documentation: select the frame you want to build, prompt the agent with "Build a website in this folder using the hero section I have selected in Paper. Use React and Tailwind for the styling." The agent asks for permission to call Paper MCP tools (read-only, safe to always allow). Visual feedback appears in Paper while the agent examines the frame. After examining, the agent scaffolds the project and starts the dev server.</p>
+
+  <p>The agent can also pull computed styles for verification. The <code>get_computed_styles</code> tool returns exact CSS values for one or more nodes in batch. This is useful for verifying that the generated code matches the design.</p>
+
+  <pre><code># Verify generated code matches the design
+# MCP tool call:
+get_computed_styles({
+  nodeIds: ["hero-frame-id", "cta-button-id"]
+})
+
+# Returns: computed CSS for each node
+# Agent compares returned styles against generated JSX
+# Identifies mismatches and fixes them</code></pre>
+
+  <h3 id="s-12-3">Code Generation from Pencil and OpenPencil</h3>
+
+  <p>Pencil's design-to-code pipeline reads .pen files and generates React+Tailwind components via its CLI. The .pen file format is JSON-based (covered in Chapter 04), which makes it diffable and versionable. Design variables in .pen files map directly to CSS custom properties.</p>
+
+  <pre><code># Pencil: Generate React components from .pen file
+$ pencil export --format react-tailwind --input design.pen --output src/
+
+# Generates:
+# src/
+#   components/
+#     Hero.tsx
+#     FeatureGrid.tsx
+#     Footer.tsx
+#   tokens/
+#     colors.css
+#     spacing.css
+#     typography.css</code></pre>
+
+  <p>Pencil supports components with slots and overrides. These translate to React component props. A button component with a text slot and a variant override becomes a React component with <code>text</code> and <code>variant</code> props. The mapping is direct because Pencil's component model was designed with code export in mind.</p>
+
+  <p>OpenPencil uses an incremental codegen pipeline that gives the agent control over each stage. This is more flexible than Pencil's batch export.</p>
+
+  <pre><code># OpenPencil: Incremental codegen pipeline via MCP
+
+# Step 1: Plan the code generation
+codegen_plan({
+  pageId: "landing-page",
+  targetFramework: "react-tailwind"
+})
+# Returns: chunk plan with section assignments
+
+# Step 2: Submit code chunks incrementally
+codegen_submit_chunk({
+  chunk: "hero-section",
+  code: "&lt;section className='hero'&gt;...&lt;/section&gt;"
+})
+codegen_submit_chunk({
+  chunk: "features-grid",
+  code: "&lt;section className='features'&gt;...&lt;/section&gt;"
+})
+
+# Step 3: Assemble into project structure
+codegen_assemble({
+  outputPath: "src/components/"
+})
+
+# Step 4: Clean temporary files
+codegen_clean({ removeTempFiles: true })</code></pre>
+
+  <p>OpenPencil's design variables generate CSS custom properties using the <code>var(--name)</code> pattern. This reduces CSS duplication and makes the design tokens maintainable in code.</p>
+
+  <pre><code># OpenPencil: Design variables → CSS custom properties
+# .op file defines variables:
+# {
+#   "variables": {
+#     "brand-primary": "#3B82F6",
+#     "spacing-unit": "8px",
+#     "font-heading": "Inter"
+#   }
+# }
+
+# Generated CSS:
+:root {
+  --brand-primary: #3B82F6;
+  --spacing-unit: 8px;
+  --font-heading: "Inter", sans-serif;
+}
+
+.hero-title {
+  color: var(--brand-primary);
+  font-family: var(--font-heading);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}</code></pre>
+
+  <p>OpenPencil's codegen supports multiple frameworks through its <code>pen-codegen</code> package. Each framework has a dedicated generator: React, HTML, Vue, Flutter, SwiftUI, Jetpack Compose, and React Native. The generator handles framework-specific patterns --- JSX for React, SwiftUI's declarative syntax, Compose's composable functions.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Export Formats</th>
+        <th>Variable Mapping</th>
+        <th>Component Support</th>
+        <th>Incremental Gen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Paper</td>
+        <td>JSX (Tailwind or inline)</td>
+        <td>Computed CSS → Tailwind classes</td>
+        <td>HTML elements only</td>
+        <td>No (single export)</td>
+      </tr>
+      <tr>
+        <td>Pencil</td>
+        <td>React+Tailwind</td>
+        <td>.pen variables → CSS custom properties</td>
+        <td>Slots → React props</td>
+        <td>No (CLI batch export)</td>
+      </tr>
+      <tr>
+        <td>OpenPencil</td>
+        <td>React, Vue, Svelte, Flutter, SwiftUI, Compose, RN</td>
+        <td>.op variables → CSS custom properties</td>
+        <td>Slots → framework-specific props</td>
+        <td>Yes (plan → submit → assemble)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-12-4">Responsive Breakpoints and Layout Translation</h3>
+
+  <p>Responsive design is where agent-driven workflows save the most time. Translating a desktop design to mobile, tablet, and wide-screen variants is tedious, mechanical work. Agents excel at it.</p>
+<figure class="figure--grid-3" id="ch12-fig-02">
+  <img src="../images/ch12-fig-02--web.webp" alt="Three-column responsive preview showing the same navigation component at three breakpoints: 375px mobile with hamburger menu, 768px tablet with condensed links, and 1280px desktop with full navigation and search bar" loading="eager" />
+  <figcaption>Same component at mobile (375px), tablet (768px), and desktop (1280px) responsive breakpoints</figcaption>
+</figure>
+
+
+  <p>Paper's approach is elegant. You create multiple frames in Paper, each sized to a breakpoint: 375px for mobile, 768px for tablet, 1440px for desktop. Then you prompt: "Add responsive breakpoints based on the frames I have selected. Each frame is a different breakpoint."</p>
+
+  <pre><code># Paper: Responsive breakpoint workflow
+
+# Step 1: Create frames at each breakpoint size
+# Frame 1: 375×812 (mobile)
+# Frame 2: 768×1024 (tablet)
+# Frame 3: 1440×900 (desktop)
+
+# Step 2: Select all three frames
+# Step 3: Agent prompt:
+"Add responsive breakpoints to the website based on
+the frames I have selected in Paper. Each frame
+represents a different breakpoint."
+
+# Agent reads each frame via get_jsx:
+get_jsx({ nodeId: "mobile-frame", format: "tailwind" })
+get_jsx({ nodeId: "tablet-frame", format: "tailwind" })
+get_jsx({ nodeId: "desktop-frame", format: "tailwind" })
+
+# Agent generates responsive Tailwind classes:
+# &lt;div className="grid grid-cols-1 md:grid-cols-2
+#   lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"&gt;
+#   ...
+# &lt;/div&gt;</code></pre>
+
+  <p>Paper uses real CSS flexbox in its canvas. This means the agent can understand the layout structure natively. It reads flex direction, gap, padding, justify-content, and align-items from the design and maps them to Tailwind classes. No guesswork about layout intent.</p>
+
+  <p>For designs without multiple breakpoint frames, the agent infers responsive behavior from a single desktop frame. This is less precise but still effective. The agent applies standard responsive patterns: stack columns vertically on mobile, reduce font sizes, hide secondary content, adjust spacing.</p>
+
+  <pre><code># Agent: Responsive inference from single desktop frame
+# Agent prompt: "Make the hero section responsive for
+# mobile (375px), tablet (768px), and desktop (1440px)"
+
+# Agent output:
+# Desktop: &lt;h1 className="text-5xl"&gt;
+# Tablet:  &lt;h1 className="md:text-4xl"&gt;
+# Mobile:  &lt;h1 className="text-3xl"&gt;
+
+# Desktop: &lt;div className="grid grid-cols-3 gap-8"&gt;
+# Tablet:  &lt;div className="md:grid-cols-2"&gt;
+# Mobile:  &lt;div className="grid-cols-1"&gt;</code></pre>
+
+  <h3 id="s-12-5">Accessibility: Agents as A11y Enforcers</h3>
+
+  <p>Accessibility is the area where agent-driven code generation has the biggest quality advantage over manual implementation. Agents do not skip alt text. Agents do not forget form labels. Agents do not overlook keyboard navigation. Every accessibility attribute is applied consistently, every time.</p>
+<figure class="figure--full" id="ch12-fig-03">
+  <img src="../images/ch12-fig-03--web.webp" alt="Terminal output from an automated accessibility audit showing 18 passed WCAG 2.1 AA criteria and 3 failed criteria including missing alt text on images and insufficient color contrast, each with specific element selectors and suggested fixes" loading="eager" />
+  <figcaption>Agent accessibility audit showing WCAG 2.1 AA pass/fail results with automated fix suggestions</figcaption>
+</figure>
+
+
+  <p>Paper's HTML-native canvas gives agents a head start. Paper designs already use semantic HTML elements: <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;button&gt;</code>. These elements flow naturally into the generated JSX. The agent does not need to convert <code>&lt;div&gt;</code> spaghetti into semantic HTML because Paper never produces <code>&lt;div&gt;</code> spaghetti.</p>
+
+  <p>The agent accessibility audit follows a standard pattern.</p>
+
+  <pre><code># Agent accessibility audit prompt pattern
+
+"Generate the JSX from the selected frame in Paper.
+Then run an accessibility audit:
+1. All images must have alt text
+2. All form inputs must have labels
+3. Color contrast ratio >= 4.5:1 for body text
+4. Interactive elements must be keyboard accessible
+5. Use semantic HTML elements (nav, main, section, article)
+Fix any issues you find before showing me the code."
+
+# Agent workflow:
+# 1. get_jsx() → raw JSX from Paper
+# 2. Audit JSX for a11y issues
+# 3. Add missing alt attributes
+# 4. Add aria-labels where needed
+# 5. Verify contrast ratios via get_computed_styles()
+# 6. Add keyboard handlers (onKeyDown, tabIndex)
+# 7. Present audited JSX to user</code></pre>
+
+  <p>The agent can verify color contrast ratios using <code>get_computed_styles</code>. It reads the foreground and background colors, calculates the contrast ratio, and flags values below 4.5:1 for body text or 3:1 for large text. This is a mechanical check that is easy to automate and hard to do consistently by hand.</p>
+
+  <p>For more thorough audits, the agent can run axe-core or similar tools against the generated code as a verification step. The pattern is: agent generates code, agent runs accessibility audit, agent auto-fixes issues, human reviews the final output.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> Agents as a11y enforcers is one of the highest-value applications of agentic design. Accessibility is always the first thing cut when deadlines loom. An agent that applies every aria attribute, checks every contrast ratio, and ensures keyboard navigation works is worth the token cost. I would rather have an agent-generated accessibility audit than a manual audit that was rushed or skipped.</p>
+  </div>
+
+  <h3 id="s-12-6">Performance Optimization in the Agent Loop</h3>
+
+  <p>Performance optimization is another area where agents handle mechanical work well. The agent generates the initial code, then optimizes it as a post-processing step.</p>
+
+  <p>Paper's <code>export</code> tool supports format and scale overrides. The agent can generate responsive image sets with proper srcset attributes directly from the canvas.</p>
+
+  <pre><code># Paper: Optimized asset export via MCP
+export({
+  nodeId: "hero-image",
+  format: "png",
+  scales: [1, 2]
+})
+# Returns: hero-image-1x.png, hero-image-2x.png
+
+# Agent generates responsive img tag:
+# &lt;img
+#   srcset="hero-image-1x.png 1x, hero-image-2x.png 2x"
+#   src="hero-image-1x.png"
+#   alt="Product dashboard showing analytics"
+#   loading="eager"
+# /&gt;</code></pre>
+
+  <p>Paper's real CSS (no abstraction layer) means there is no design-to-code translation bloat. The generated code is as performant as the design. OpenPencil's design variables mapped to CSS custom properties reduce CSS duplication. Agents can lazy-load below-fold sections, optimize font loading, and minify CSS as post-processing steps.</p>
+
+  <p>The agent can also target specific Core Web Vitals metrics. A prompt like "Optimize for LCP under 2.5s and CLS under 0.1" gives the agent concrete targets to work toward. The agent measures, optimizes, and re-measures until the targets are met.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Optimization</th>
+        <th>Agent Capability</th>
+        <th>Human Review Needed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Responsive images (srcset)</td>
+        <td>Fully automated via Paper export tool</td>
+        <td>Visual check only</td>
+      </tr>
+      <tr>
+        <td>Font loading optimization</td>
+        <td>Agent adds font-display: swap, preloads critical fonts</td>
+        <td>Verify render behavior</td>
+      </tr>
+      <tr>
+        <td>Lazy loading below fold</td>
+        <td>Agent adds loading="eager" to below-fold images and sections</td>
+        <td>Verify no layout shift</td>
+      </tr>
+      <tr>
+        <td>CSS deduplication</td>
+        <td>Agent merges duplicate styles, uses CSS custom properties</td>
+        <td>Visual regression check</td>
+      </tr>
+      <tr>
+        <td>Core Web Vitals targeting</td>
+        <td>Agent measures, optimizes, re-measures against targets</td>
+        <td>Final metrics review</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-12-7">The Review-and-Iterate Loop</h3>
+
+  <p>The pipeline is not one-shot. It is a loop: generate, review, iterate. The agent produces code. The human reviews the output in a browser. The human gives feedback. The agent adjusts. Repeat until the output meets the design intent.</p>
+<figure class="figure--grid-2" id="ch12-fig-05">
+  <img src="../images/ch12-fig-05--web.webp" alt="Side-by-side comparison of a hero section as designed in Paper canvas on the left and as rendered on the deployed production website on the right, demonstrating high visual fidelity between design and live output" loading="eager" />
+  <figcaption>Paper canvas design (left) compared with the deployed production website (right) showing visual fidelity</figcaption>
+</figure>
+
+
+  <p>Paper's documentation recommends git checkpoints during this loop. "Can you add git to this folder and commit the changes made so far?" This creates a rollback point before each iteration. If the agent's changes make things worse, you can revert cleanly.</p>
+
+  <pre><code># Review-and-iterate loop workflow
+
+# Iteration 1: Generate hero section
+"Build the hero section from my Paper selection using React + Tailwind"
+
+# Agent: get_jsx() → scaffold → commit
+$ git add . && git commit -m "hero: initial generation from Paper design"
+
+# Human reviews in browser, finds issues:
+"The CTA button is too small and the heading font weight is wrong"
+
+# Iteration 2: Agent fixes based on feedback
+Agent adjusts button size, fixes heading weight
+$ git add . && git commit -m "hero: fix CTA size and heading weight"
+
+# Human approves hero, moves to next section
+"Build the features grid from the next frame in Paper"
+
+# Iteration 3: Agent generates features grid
+Agent reads next frame, generates responsive grid
+$ git add . && git commit -m "features: grid from Paper design"
+
+# Signal completion of section
+finish_working_on_nodes({ nodeIds: ["hero-frame", "features-frame"] })</code></pre>
+
+  <p>The <code>finish_working_on_nodes</code> tool clears the visual working indicator from artboards in Paper. This signals to the human that the agent has finished working on those elements. It is a small but important UX detail in the agent-human collaboration.</p>
+
+  <p>The bi-directional workflow is where Paper's connected canvas shines. You can pull from the codebase to the canvas, iterate visually, and push back. The agent becomes an extension of your hands for the mechanical parts, while you handle the parts that require human judgment: "Does this look right? Does this feel right? Does this solve the right problem?"</p>
+
+  <p>This pattern --- agent generates, human reviews, agent iterates --- is the same one used by Huashu Design's Junior Designer Workflow (Chapter 07) and Open Design's interactive preview. The common thread: agents are good at generating and iterating. Humans are good at evaluating and directing. The loop combines both strengths.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The review-and-iterate loop is where agentic design delivers real value. The agent handles the tedious parts --- responsive variants, token mapping, accessibility attributes, performance optimization. The human handles the creative parts --- does this look right, does this match the brand, does this solve the user's problem. This division of labor works because it plays to the strengths of both parties.</p>
+  </div>
+
+  <div class="callout tip">
+    <p><strong>Next:</strong> The tools and patterns covered in this book are not theoretical. Chapter 13 presents four detailed case studies of agentic design workflows used by real teams, with honest assessments of what worked, what did not, and how long each workflow took from start to finish.</p>
+  </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="11.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 11</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Multi-Agent Design Teams</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 11</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Multi-Agent Design Teams</p>
+        </div>
+      </div>
+    </a>
+    <a href="13.html" class="group relative flex-1 overflow-hidden border border-black p-6 text-right">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 13</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Real-World Case Studies</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 13</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Real-World Case Studies</p>
+        </div>
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Chapter CTA -->
+  <section class="chapter-stack bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-[13px] uppercase tracking-wider text-white/30 mb-4">Next Chapter</p>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl lg:text-6xl">Real-World Case Studies</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">Four detailed examples of agentic design workflows in production</p>
+        </div>
+        <a href="13.html" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #c29a50;">
+          Continue Reading
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>

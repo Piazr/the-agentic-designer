@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Future of Agentic Design - The Agentic Designer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2728;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Beausite Classic Medium', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Fragment Mono"', 'monospace'],
+          },
+          colors: {
+            coral: '#fe7141',
+            lavender: '#cdabfe',
+            sage: '#597e87',
+            'sage-light': '#d1ddd3',
+            'blue-light': '#f5f9fc',
+            'blue-dark': '#153250',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: 'Beausite Classic Medium'; src: url('../assets/fonts/beausite-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Regular'; src: url('../assets/fonts/beausite-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Beausite Classic Bold'; src: url('../assets/fonts/beausite-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .book-content {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 680px;
+      margin-left: auto;
+    }
+    .book-content h3 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #000;
+      margin-top: 64px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+    .book-content h3:first-child {
+      border-top: 1px solid #000;
+    }
+    .book-content h3:not(:first-child) {
+      border-bottom: 1px solid #000;
+    }
+    .book-content h4 {
+      font-family: 'Beausite Classic Regular', Inter, system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    .book-content p { margin-bottom: 18px; color: rgba(0,0,0,0.75); }
+    .book-content em { font-style: italic; color: rgba(0,0,0,0.6); }
+    .book-content strong { font-weight: 700; color: #000; }
+    .book-content a { color: #fe7141; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(254,113,65,0.4); }
+    .book-content a:hover { text-decoration-color: #fe7141; }
+    .book-content pre {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 24px 0;
+    }
+    .book-content code {
+      font-family: "Geist Mono", "Fragment Mono", monospace;
+      font-size: 13px;
+      background: #f7f7f5;
+      padding: 2px 6px;
+      border-radius: 0;
+    }
+    .book-content pre code { background: none; padding: 0; }
+    .book-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .book-content thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid #000;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      font-family: "Geist Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .book-content td { padding: 12px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .book-content tbody tr:hover { background: #fafaf8; }
+    .book-content .callout {
+      background: #f5f9fc;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    .book-content .callout strong { color: #153250; }
+    .book-content .tip {
+      background: #f5f9fc;
+      border-left: 3px solid #597e87;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .warning {
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 20px 24px;
+      margin: 28px 0;
+      border-radius: 0;
+      font-size: 15px;
+    }
+    .book-content .compare-good {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .compare-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 0;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+    .book-content .file-tree {
+      background: #f7f7f5;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 0;
+      padding: 20px 24px;
+      font-family: "Geist Mono", monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.7);
+    }
+    .book-content .flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .book-content .flow > .flow-item {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 0;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #000;
+      font-family: "Geist Mono", monospace;
+    }
+    .book-content .flow-arrow { color: rgba(0,0,0,0.2); font-size: 18px; }
+    .book-content .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .book-content .step > .step-num {
+      width: 28px; height: 28px;
+      background: #fe7141;
+      color: white;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: "Geist Mono", monospace;
+      flex-shrink: 0;
+    }
+    .book-content .diagram {
+      background: #f7f7f5;
+      border: 2px dashed rgba(0,0,0,0.08);
+      border-radius: 0;
+      padding: 36px;
+      margin: 28px 0;
+      text-align: center;
+      color: rgba(0,0,0,0.35);
+      font-size: 14px;
+    }
+    .book-content figure { margin: 32px 0; }
+    .book-content figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .book-content figcaption { margin-top: 10px; font-size: 13px; color: rgba(0,0,0,0.4); line-height: 1.4; }
+    .book-content .figure__number {
+      font-weight: 700;
+      color: #fe7141;
+      margin-right: 6px;
+      font-family: "Geist Mono", monospace;
+      font-size: 11px;
+    }
+    .book-content ul, .book-content ol { margin: 12px 0 20px 24px; }
+    .book-content li { margin-bottom: 6px; }
+    .book-content li::marker { color: rgba(0,0,0,0.25); }
+
+
+
+    .chapter-hero {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-stack {
+      position: relative;
+      z-index: 2;
+    }
+    .chapter-body {
+      width: 100%;
+      padding: 64px clamp(24px, 4vw, 80px) 96px;
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+    }
+    .chapter-grid {
+      display: grid;
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 32px;
+      align-items: start;
+    }
+    .chapter-sidebar-rail {
+      --page-padding: clamp(24px, 4vw, 80px);
+      --site-header-height: 3.5rem;
+      --section-nav-height: 2.75rem;
+      --sidebar-top: calc(var(--site-header-height) + var(--section-nav-height));
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 1920px);
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      padding: 0 var(--page-padding);
+      box-sizing: border-box;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: var(--sidebar-top);
+      left: var(--page-padding);
+      width: 160px;
+      pointer-events: auto;
+      will-change: transform;
+    }
+    .sidebar-nav {
+      background: #fff;
+      padding: 1rem 0;
+      max-height: calc(100vh - var(--sidebar-top) - 1rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .chapter-nav-spacer {
+      grid-column: 1 / span 2;
+    }
+    .chapter-main {
+      grid-column: 4 / -1;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+    }
+    @media (max-width: 1023px) {
+      .chapter-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .chapter-nav-spacer {
+        grid-column: 1 / span 2;
+      }
+      .chapter-main {
+        grid-column: 3 / span 4;
+      }
+    }
+    @media (max-width: 767px) {
+      .chapter-sidebar-rail {
+        display: none;
+      }
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+      .chapter-nav-spacer {
+        display: none;
+      }
+      .chapter-main {
+        grid-column: 1 / -1;
+      }
+      .chapter-mobile-nav {
+        display: block;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      .chapter-mobile-nav {
+        display: none;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-left: clamp(24px, 4vw, 80px);
+      padding-right: clamp(24px, 4vw, 80px);
+    }
+
+        .nav-hover-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+      color: #000;
+      font-family: 'Beausite Classic Medium', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      width: 200%;
+      height: 100%;
+      z-index: 0;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .bg-slide-primary {
+      width: 50%;
+      height: 100%;
+      background-color: #cc8252;
+    }
+    .bg-slide-secondary {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+    .nav-hover-link:hover .bg-slide {
+      transform: translateX(-50%);
+    }
+    .nav-hover-link .nav-text-wrapper {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 1.4em;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-hover-link .nav-text {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link .nav-text-clone {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+    }
+    .nav-hover-link:hover .nav-text {
+      transform: translateY(-100%);
+    }
+    .nav-hover-link:hover .nav-text-clone {
+      transform: translateY(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black">
+
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Header -->
+  <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
+    <div class="flex h-full items-center">
+      <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
+        <span class="font-sans text-sm font-bold tracking-tight">AD</span>
+        <span class="ml-0.5 font-mono text-[10px] font-medium leading-none">'26</span>
+      </a>
+      <div id="menu-placeholder" class="h-full border-r border-black shrink-0 w-[120px] sm:w-[550px]"></div>
+    </div>
+    <div class="flex h-full items-center">
+      <a href="https://github.com/imehr/the-agentic-designer" target="_blank" rel="noopener" class="hidden items-center gap-1 border border-black px-4 py-2 text-sm font-medium text-black md:flex font-mono mr-4 hover:bg-black hover:text-white transition-colors duration-200">
+        View on GitHub
+      </a>
+      <nav class="flex h-full items-center text-sm font-sans text-black">
+        <a href="../about.html" class="nav-hover-link">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">About</span>
+            <span class="nav-text-clone">About</span>
+          </span>
+        </a>
+        <a href="../index.html#chapters" class="nav-hover-link border-r border-black">
+          <span class="bg-slide">
+            <span class="bg-slide-secondary bg-white"></span>
+            <span class="bg-slide-primary"></span>
+          </span>
+          <span class="nav-text-wrapper">
+            <span class="nav-text">Chapters</span>
+            <span class="nav-text-clone">Chapters</span>
+          </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="chapter-hero" style="background-color: #cc8252; background-image: url('../assets/gradients/gradient_coral_peach.png'); background-size: cover; background-position: center;">
+    <div class="page-shell py-16 md:py-24 lg:py-32">
+      <div class="flex flex-col justify-between md:flex-row md:items-end">
+        <div class="max-w-3xl">
+          <a href="../index.html#chapters" class="mb-8 inline-flex items-center gap-2 font-sans text-sm text-white/60 hover:text-white transition-colors">
+            <i data-lucide="arrow-left" class="size-4"></i>
+            All Chapters
+          </a>
+          <p class="font-mono text-[13px] font-medium uppercase tracking-wider text-white/30 mb-6">CHAPTER 14</p>
+          <h1 class="font-sans text-4xl font-bold leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl text-white">The Future of Agentic Design</h1>
+          <p class="mt-6 max-w-lg font-sans text-lg leading-relaxed text-white/50">Trends, predictions, and what comes after the current tools</p>
+        </div>
+        <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
+          <p class="font-mono text-[13px] font-medium text-white/25">Reading time</p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-white/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <nav class="sticky top-14 z-40 border-b border-black bg-white/95 backdrop-blur-sm">
+    <div class="page-shell">
+      <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
+        <a href="#s-14-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Where We Are: The State of Agentic Design in May 2026</a>
+        <a href="#s-14-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Trend 1: Autonomous Design Systems</a>
+        <a href="#s-14-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Trend 2: Real-Time Collaborative Agents</a>
+        <a href="#s-14-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Trend 3: Design and Code as a Single Artifact</a>
+        <a href="#s-14-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Trend 4: The Rise of Agent-Native Design Tools</a>
+        <a href="#s-14-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Predictions for 2027-2028</a>
+        <a href="#s-14-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Risks: Homogenization, Over-Reliance, and the Designer&#x27;s Role</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar rail -->
+  <div class="chapter-sidebar-rail" id="chapter-sidebar-rail">
+    <aside class="chapter-nav" id="chapter-sidebar-nav-wrap" aria-label="In this chapter">
+      <nav class="sidebar-nav" id="chapter-sidebar-nav">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-14-1" data-section="s-14-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Where We Are: The State of Agentic Design in May 2026</span></a>
+          <a href="#s-14-2" data-section="s-14-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 1: Autonomous Design Systems</span></a>
+          <a href="#s-14-3" data-section="s-14-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 2: Real-Time Collaborative Agents</span></a>
+          <a href="#s-14-4" data-section="s-14-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 3: Design and Code as a Single Artifact</span></a>
+          <a href="#s-14-5" data-section="s-14-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 4: The Rise of Agent-Native Design Tools</span></a>
+          <a href="#s-14-6" data-section="s-14-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Predictions for 2027-2028</span></a>
+          <a href="#s-14-7" data-section="s-14-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Risks: Homogenization, Over-Reliance, and the Designer&amp;#x27;s Role</span></a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Content -->
+  <div class="chapter-body" id="chapter-body">
+    <div class="chapter-grid">
+      <div class="chapter-nav-spacer" aria-hidden="true"></div>
+      <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
+          <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
+          <a href="#s-14-1" data-section="s-14-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Where We Are: The State of Agentic Design in May 2026</span></a>
+          <a href="#s-14-2" data-section="s-14-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 1: Autonomous Design Systems</span></a>
+          <a href="#s-14-3" data-section="s-14-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 2: Real-Time Collaborative Agents</span></a>
+          <a href="#s-14-4" data-section="s-14-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 3: Design and Code as a Single Artifact</span></a>
+          <a href="#s-14-5" data-section="s-14-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Trend 4: The Rise of Agent-Native Design Tools</span></a>
+          <a href="#s-14-6" data-section="s-14-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Predictions for 2027-2028</span></a>
+          <a href="#s-14-7" data-section="s-14-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Risks: Homogenization, Over-Reliance, and the Designer&amp;#x27;s Role</span></a>
+      </nav>
+      <main class="chapter-main">
+        <div class="book-content">
+<h3 id="s-14-1">Where We Are: The State of Agentic Design in May 2026</h3>
+
+  <p>A snapshot of the ecosystem at the time of writing.</p>
+<figure class="figure--full" id="ch14-fig-01">
+  <img src="../images/ch14-fig-01--web.webp" alt="Timeline diagram showing three phases of design tool evolution: 2024 with GUI-only tools like Figma and Sketch requiring manual handoff, 2026 with agent-assisted design using MCP and skills, and projected 2028 with autonomous self-maintaining design systems" loading="eager" />
+  <figcaption>Ecosystem evolution from GUI-only design (2024) through agentic emergence (2026) to autonomous systems (2028)</figcaption>
+</figure>
+
+
+  <p>Paper launched its Desktop app in February 2026, becoming the first connected design canvas with an MCP server that works with any agent: Claude Code, Codex CLI, Cursor, GitHub Copilot, OpenCode, Windsurf, Cline, and Continue. According to Paper's published case studies and marketing materials, production users include Vercel, Perplexity, PostHog, Tailwind CSS, Dub, Replicate, Zed, and Attio.</p>
+
+  <p>Open Design hit 43.6k GitHub stars in under two weeks after launch, according to public GitHub data --- reportedly the fastest growth for an open-source design tool. It supports 16 CLI agents and ships 129 design systems as portable Markdown files.</p>
+
+  <p>OpenPencil shipped Concurrent Agent Teams: multiple AI agents working on different sections of the same canvas simultaneously. It is the first open-source vector design tool built around the agent as the primary user. At 3.1k stars as of May 2026, it is smaller but evolving fast.</p>
+
+  <p>Huashu Design relicensed to MIT on May 14, 2026, signaling that the open-source design skill ecosystem is maturing. At 14.1k stars as of May 2026 (according to public GitHub data), it remains the most specialized tool in the stack --- an HTML-native design skill with anti-AI-slop enforcement and a 5-dimension self-critique system.</p>
+
+  <p>Hyperframes (19k stars as of May 2026, by HeyGen) and Remotion (47.1k stars according to public GitHub data) represent the two poles of agent-driven video production. Hyperframes is HTML-native and agent-first. Remotion is React-based and mature.</p>
+
+  <p>Four major agent platforms compete: Claude Code, Codex CLI, OpenCode, and Gemini CLI. All four support MCP. MCP itself has become the universal connector between agents and design tools --- Paper, Pencil, OpenPencil, Figma, Miro, and MagicPattern all ship MCP servers as of May 2026.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Stars (May 2026, per public GitHub data)</th>
+        <th>Key Milestone</th>
+        <th>Agent-Native?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Remotion</td>
+        <td>47.1k</td>
+        <td>v4.0.462, mature framework</td>
+        <td>No (React-based)</td>
+      </tr>
+      <tr>
+        <td>Open Design</td>
+        <td>43.6k</td>
+        <td>Fastest-growing open-source design tool</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Hyperframes</td>
+        <td>19k</td>
+        <td>137 releases, 50+ catalog blocks</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Huashu Design</td>
+        <td>14.1k</td>
+        <td>MIT relicensed May 2026</td>
+        <td>Agent-agnostic skill</td>
+      </tr>
+      <tr>
+        <td>OpenPencil</td>
+        <td>3.1k</td>
+        <td>Concurrent Agent Teams shipped</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Paper</td>
+        <td>Commercial</td>
+        <td>Desktop launched Feb 2026</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Pencil</td>
+        <td>Commercial</td>
+        <td>.pen format, IDE integration</td>
+        <td>Partial (MCP server)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-14-2">Trend 1: Autonomous Design Systems</h3>
+
+  <p>Design systems are becoming self-maintaining. This is the most consequential trend in the ecosystem, and it is happening faster than I expected.</p>
+
+  <p>Consider the current state. Open Design's library contains 129 design systems, each expressed as a DESIGN.md file --- a portable Markdown specification that any agent can read and apply. These are not static theme JSON files. They are living documents that agents interpret, enforce, and update. When a token changes in the DESIGN.md, the agent applies the change across every artifact it generates.</p>
+
+  <p>OpenPencil's Design System Kit takes this further. It manages reusable UIKits with style switching and component composition. A team can define Light, Dark, and High Contrast themes as variable sets inside a single .op file. Switching themes is a variable swap, not a redesign.</p>
+
+  <p>Paper's bi-directional workflow closes the loop. A designer changes a token value in Paper. The agent reads the change via MCP and updates the CSS custom properties in the codebase. A developer changes a spacing value in Tailwind config. The agent reads the change in Git and updates the Paper design. No manual sync. No drift.</p>
+
+  <p>The trajectory is clear. Based on publicly available information, GitHub's design team has reportedly signaled a shift away from maintaining separate component libraries, moving toward treating the codebase as the single source of truth. The direction is unambiguous: translating code components to design is becoming a single-prompt operation.</p>
+
+  <p>The vision for 2027: design systems that auto-detect token drift between design and code, flag the discrepancy, and offer to auto-fix. The human approves or rejects. The agent handles the mechanical synchronization that currently eats hours of design systems team time every sprint.</p>
+
+  <h3 id="s-14-3">Trend 2: Real-Time Collaborative Agents</h3>
+
+  <p>The second trend: multiple agents and multiple humans working on the same design surface simultaneously. Not asynchronously through Git. In real time.</p>
+
+  <p>Paper already has real-time multiplayer. You share a URL, your team members see changes live. But the multiplayer is human-only today. The agent participates through MCP, which is stateless --- it reads and writes but does not observe live.</p>
+
+  <p>OpenPencil's Concurrent Agent Teams point toward the future. Three agents working on different sections of the same canvas, coordinated by an orchestrator. This is parallel execution, not real-time collaboration. But it proves the spatial decomposition pattern: complex designs can be split into independent sub-tasks, assigned to different agents, and merged.</p>
+
+  <p>Open Design takes a different approach to the same problem. It auto-detects 16 CLI agents on your PATH and lets you swap between them with one click. This is agent portability, not agent collaboration. But it establishes the principle that the design tool should be agent-agnostic --- it should not care which agent you use.</p>
+
+  <p>The convergence point, likely in late 2027: a design canvas where one human and two agents are working on different sections at the same time, with live cursors showing where each participant is active. The human designs the hero section. Agent A generates responsive variants. Agent B synchronizes tokens with the codebase. All three changes appear in real time.</p>
+
+  <p>The orchestrator pattern from <a href="11.html#s-11-2">Chapter 11</a> becomes the standard architecture for this. An orchestrator agent decomposes the design task, assigns spatial sub-tasks to worker agents, and merges the results. The human acts as creative director, intervening when the agents produce something off-brand.</p>
+
+  <h3 id="s-14-4">Trend 3: Design and Code as a Single Artifact</h3>
+
+  <p>The third trend is the most fundamental. Design and code are converging into a single artifact. Not "design that exports to code." Not "code that renders a preview." A single artifact that IS both design and code simultaneously.</p>
+
+  <p>Paper is the clearest example. Paper's canvas is built on real HTML and CSS. When you design in Paper, you are writing HTML and CSS. There is no translation layer. The <code>get_jsx</code> tool does not convert a proprietary format into JSX --- it extracts JSX from a surface that is already HTML. The <code>write_html</code> tool goes the other direction, but it is writing to the same format.</p>
+
+  <p>This is different from Figma's model. Figma stores designs in a proprietary WebGL format. Developers and agents need to translate that format into production code. Paper's approach is the inverse: its native format is already close to production code, making it inherently agent-friendly. There is no translation step because the design surface speaks the same language as the output.</p>
+
+  <p>Pencil's .pen files and OpenPencil's .op files are intermediate steps on the same path. They are code artifacts --- plain text, diffable, version-controllable. A pull request can include changes to a .pen file alongside changes to a .tsx file. The reviewer sees both the design change and the code change in the same diff. But .pen and .op files are still separate formats that need translation to production code.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Tool</th>
+        <th>Format</th>
+        <th>Translation Layer</th>
+        <th>Diffable?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Design IS code</td>
+        <td>Paper</td>
+        <td>HTML/CSS</td>
+        <td>None</td>
+        <td>Yes (native HTML)</td>
+      </tr>
+      <tr>
+        <td>Design-as-code artifact</td>
+        <td>Pencil</td>
+        <td>.pen (JSON)</td>
+        <td>Required (pen → JSX)</td>
+        <td>Yes (plain text)</td>
+      </tr>
+      <tr>
+        <td>Design-as-code artifact</td>
+        <td>OpenPencil</td>
+        <td>.op (JSON)</td>
+        <td>Required (op → multi-platform)</td>
+        <td>Yes (plain text)</td>
+      </tr>
+      <tr>
+        <td>Proprietary canvas</td>
+        <td>Figma</td>
+        <td>WebGL binary</td>
+        <td>Required (fig → anything)</td>
+        <td>No</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The end state: a world where there is no "design file" and "code file." There is one file. It renders visually in a canvas tool and compiles to production code. The distinction between designer and developer roles blurs because the artifact is the same.</p>
+
+  <p>Multiple voices in the ecosystem are converging on this idea. The future of code is design, and the best design work emerges from a canvas --- not a code editor. At the same time, code is a poor interface for spatial problems, and chat is a poor interface for systemic decisions. The canvas --- not the code editor, not the chat window --- is the correct interface for design work. But the canvas must produce code, not pixels.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The design-code convergence is inevitable, but the timeline is uncertain. Paper's HTML-native approach is the most pragmatic path I see. Proprietary canvas formats (Figma, Sketch) will either open up or become liabilities. The .pen and .op formats are stepping stones --- useful now, but ultimately unnecessary if the design surface speaks the same language as production code.</p>
+  </div>
+
+  <h3 id="s-14-5">Trend 4: The Rise of Agent-Native Design Tools</h3>
+
+  <p>The fourth trend is the emergence of design tools built from the ground up for agent collaboration. Not legacy tools with AI features bolted on. Tools where the agent is the primary user and the human is the creative director.</p>
+
+  <p>Paper was the first tool built from scratch for agent collaboration via MCP. Every tool in Paper's MCP server --- <code>get_selection</code>, <code>get_jsx</code>, <code>get_computed_styles</code>, <code>write_html</code> --- was designed for agent consumption, not human clicking. The human uses the visual canvas. The agent uses the MCP API. Both work on the same artifact.</p>
+
+  <p>OpenPencil calls itself "the world's first open-source AI-native vector design tool." The agent can create shapes, apply styles, manage components, and export to code --- all through MCP tools, without a human touching the canvas. The Agent Teams feature extends this: the canvas is partitioned into spatial regions, and each agent works independently.</p>
+
+  <p>Open Design is agent-native in a different sense. There is no canvas. The agent IS the design engine. You give it a prompt, it asks clarifying questions, picks a visual direction, and builds the artifact. The output is the design. There is no intermediate visual surface.</p>
+
+  <p>Hyperframes is explicit about its positioning: "Built for agents." Its HTML-native authoring format and non-interactive CLI are designed for agent consumption, not human editing. The 50+ catalog blocks are pre-built agent actions --- composable units that an agent can assemble without understanding animation principles.</p>
+
+  <p>The key differentiator across all these tools: the format. Tools where agents read and write the same format as production (HTML, CSS, JSX) have a structural advantage over tools where agents must translate between formats. Paper's <code>get_jsx</code> works because the canvas IS HTML. Figma's MCP server works, but every read requires format translation.</p>
+
+  <p>Legacy tools are responding. Figma shipped an MCP server in early 2026. It works. But retrofitting agent support onto a proprietary canvas format is fundamentally different from building for agents from the start. The MCP server can read designs and export code, but the format translation introduces information loss and complexity that agent-native tools avoid.</p>
+
+  <h3 id="s-14-6">Predictions for 2027-2028</h3>
+
+  <p>Specifying predictions with timestamps so you can hold me accountable.</p>
+<figure class="figure--full" id="ch14-fig-02">
+  <img src="../images/ch14-fig-02--web.webp" alt="Horizontal spectrum diagram showing design tasks plotted from fully human-driven on the left to fully agent-driven on the right, with current 2026 positions marked and projected 2028 positions showing tasks like component generation and accessibility moving further right toward automation" loading="eager" />
+  <figcaption>Design task spectrum from human-driven to agent-driven with 2026 current state and 2028 projections</figcaption>
+</figure>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Prediction</th>
+        <th>Timeline</th>
+        <th>Confidence</th>
+        <th>Signal Today</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MCP servers ship as table stakes for every design tool</td>
+        <td>By Q4 2026</td>
+        <td>High</td>
+        <td>6 tools already have MCP; Figma added one in early 2026</td>
+      </tr>
+      <tr>
+        <td>Design files disappear as a concept --- .pen and .op become code artifacts reviewed in PRs</td>
+        <td>By mid 2027</td>
+        <td>Medium</td>
+        <td>Pencil and OpenPencil already Git-integrated; Paper is HTML-native</td>
+      </tr>
+      <tr>
+        <td>Agent Teams are standard for complex design tasks</td>
+        <td>By late 2027</td>
+        <td>Medium-High</td>
+        <td>OpenPencil already ships Concurrent Agent Teams</td>
+      </tr>
+      <tr>
+        <td>The "design handoff" dies --- design IS code</td>
+        <td>By 2028</td>
+        <td>Medium</td>
+        <td>Paper's bi-directional workflow, GitHub treating codebase as source of truth</td>
+      </tr>
+      <tr>
+        <td>Design systems auto-detect and auto-fix token drift</td>
+        <td>By late 2027</td>
+        <td>Medium</td>
+        <td>Paper's token sync, Open Design's DESIGN.md schema</td>
+      </tr>
+      <tr>
+        <td>Figma either opens its format or loses market share to agent-native alternatives</td>
+        <td>By 2028</td>
+        <td>Low-Medium</td>
+        <td>Community reportedly switching to Paper; Paper's case studies list Vercel/Perplexity/PostHog</td>
+      </tr>
+      <tr>
+        <td>Video production becomes a standard design skill, not a specialist discipline</td>
+        <td>By mid 2027</td>
+        <td>High</td>
+        <td>Hyperframes 50+ blocks, Huashu Design MP4 export, Remotion Lambda</td>
+      </tr>
+      <tr>
+        <td>The designer role shifts from pixel-pusher to agent director and design system architect</td>
+        <td>Ongoing through 2028</td>
+        <td>High</td>
+        <td>Reportedly already happening in teams using Paper and Open Design</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The prediction I am most confident about: MCP becomes universal by late 2026. Every design tool that wants to remain relevant will ship an MCP server. The ones that do not will become niche. This is not a bold prediction --- it is an observation of a trend that is already well underway at the time of writing.</p>
+
+  <p>The prediction I am least confident about: Figma's trajectory. Figma has enormous institutional momentum, deep enterprise contracts, and a generation of designers trained on its interface. Its MCP server, shipped in early 2026, shows awareness of the agent trend. But its proprietary canvas format is a growing liability in an agent-native world. Whether Figma opens its format or doubles down on proprietary lock-in will determine its trajectory.</p>
+
+  <h3 id="s-14-7">Risks: Homogenization, Over-Reliance, and the Designer's Role</h3>
+
+  <p>The trends are real. The predictions are grounded in observable signals. But the trajectory is not guaranteed. Several risks could undermine the whole ecosystem.</p>
+
+  <p><strong>Quality homogenization.</strong> This is the risk I hear about most from design leaders. A prominent design executive puts it bluntly: the more companies talk about coding with agents and designing in code, the worse their UX tends to be. A design tool founder agrees: if you are building software meant to be consumed by humans, take the time to actually design it. AI has a design smell because it is "designing" via code, not through spatial reasoning.</p>
+
+  <p>The "AI design smell" is real. Huashu Design's anti-slop rules list the specific patterns: purple gradients, emoji icons, rounded-corner-plus-left-border-accent, SVG humans, Inter-as-display-font. When every agent generates from the same model weights without constraint, the output converges. Every startup's landing page starts to look the same.</p>
+
+  <p>The mitigation is clear but not easy. Strong design systems with custom tokens. Agent skills with anti-slop enforcement. Human creative direction at every step. The tools that bake these constraints into the workflow --- Huashu Design, Open Design --- will matter more than the tools that leave output quality to the model.</p>
+
+  <p><strong>Over-reliance on agents.</strong> The warning from experienced practitioners is consistent: no agent replaces design judgment. Tools can accelerate execution, but the craft of design --- the spatial reasoning, the taste, the ability to hold ambiguity --- remains human. When designers treat agents as creative substitutes rather than execution engines, the quality drops.</p>
+
+  <p>Agents cannot read between the lines. They cannot hold ambiguity. They cannot make judgment calls about what matters and what does not. They execute instructions. When the instructions are clear and specific, the output is good. When the instructions are vague or absent, the output is generic.</p>
+
+  <p>The risk is not that agents replace designers. The risk is that designers lose craft skills as agents handle more execution. When execution becomes cheap, the temptation is to skip the spatial phase of thinking entirely. The bottleneck moves upstream --- it becomes a question of mind, not mechanics. The designer's value shifts from execution to spatial thinking, creative direction, and taste. But if designers stop practicing spatial thinking because agents handle the rendering, the taste atrophies.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> The homogenization risk is the one I worry about most. I have seen agent-generated designs that are technically correct and aesthetically empty. The tools will get better at avoiding AI slop, but the underlying problem is cultural: when execution becomes free, the temptation to skip thinking is overwhelming. The designers who thrive in this new landscape will be the ones who treat agents as execution engines, not creative partners. The creative work stays human.</p>
+  </div>
+
+  <p><strong>The designer's changing role.</strong> A creative tool founder frames it directly: designers should be racing to get as close to the product as possible. The role is shifting from pixel-pusher to agent director, design system architect, and quality curator.</p>
+
+  <p>This shift creates opportunity and anxiety in equal measure. The designers who embrace agentic workflows gain leverage --- they produce more output, iterate faster, and ship with higher consistency. The designers who resist or ignore the shift find their skills depreciating as the industry moves to agent-native tools.</p>
+
+  <p>A design engineer captures the human advantage: if AI can think better and software can scale wider, then the scarce thing is the particular, messy way a human mind cares about something. Agents do not care. They execute. The caring --- the judgment about what is good, what is worth building, what matters to users --- stays human.</p>
+
+  <p><strong>Other risks worth watching.</strong> Vendor lock-in: tools that require specific agents or models create dependency. Cost: API token usage for agent-driven workflows adds up, especially for video generation and multi-agent teams. Reliability: agents hallucinate tool calls, lose MCP connections on long sessions, and degrade on large tasks. Security: agents with write access to design files and code repositories need permission models, and those models are still immature. Accessibility: if agents generate code without a11y enforcement, digital exclusion worsens.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Risk</th>
+        <th>Severity</th>
+        <th>Current Signal</th>
+        <th>Likely Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Quality homogenization</td>
+        <td>High</td>
+        <td>AI design smell in agent-generated output</td>
+        <td>Anti-slop rules, custom design systems, human curation</td>
+      </tr>
+      <tr>
+        <td>Craft skill atrophy</td>
+        <td>Medium-High</td>
+        <td>Designers skipping spatial thinking phase</td>
+        <td>Education, deliberate practice, canvas-first workflows</td>
+      </tr>
+      <tr>
+        <td>Vendor lock-in</td>
+        <td>Medium</td>
+        <td>Tools requiring specific agents or models</td>
+        <td>Open-source alternatives, MCP standardization</td>
+      </tr>
+      <tr>
+        <td>API cost at scale</td>
+        <td>Medium</td>
+        <td>Token costs for video and multi-agent teams</td>
+        <td>Model efficiency improvements, local models</td>
+      </tr>
+      <tr>
+        <td>Agent reliability</td>
+        <td>Medium</td>
+        <td>Hallucinated tool calls, dropped MCP connections</td>
+        <td>Better tool validation, session recovery protocols</td>
+      </tr>
+      <tr>
+        <td>Security surface area</td>
+        <td>Medium</td>
+        <td>Agents with write access to design and code</td>
+        <td>Permission models, sandboxed execution, audit logs</td>
+      </tr>
+      <tr>
+        <td>Accessibility regression</td>
+        <td>High</td>
+        <td>Agents generating code without a11y enforcement</td>
+        <td>Automated a11y testing in agent loop (covered in <a href="12.html">Chapter 12</a>)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>These risks are not theoretical. I encountered agent hallucination, MCP connection drops, and security permission issues in the case studies covered in <a href="13.html">Chapter 13</a>. The ecosystem will address some of these. Others will persist.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> I am optimistic about the trajectory but realistic about the timeline. The tools covered in this book are version 1.0 of agentic design. The MCP protocol is young. The skill ecosystem is nascent. The permission models are thin. But the direction is clear: design and code are converging, agents are becoming collaborative, and the canvas is returning as the primary interface for creative work. The designers who learn to direct agents --- not just use them --- will define the next decade of product design.</p>
+  </div>
+
+  <div class="callout tip">
+    <p><strong>Next:</strong> This chapter concludes the main content of the book. <a href="A.html">Appendix A</a> provides a comprehensive tool comparison matrix for quick reference. <a href="B.html">Appendix B</a> contains the full MCP server reference. <a href="C.html">Appendix C</a> offers a prompt library organized by design task.</p>
+  </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col gap-4 sm:flex-row">
+    <a href="13.html" class="group relative flex-1 overflow-hidden border border-black p-6">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 13</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Real-World Case Studies</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Chapter 13</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Real-World Case Studies</p>
+        </div>
+      </div>
+    </a>
+    <a href="A.html" class="group relative flex-1 overflow-hidden border border-black p-6 text-right">
+      <span class="bg-slide pointer-events-none group-hover:-translate-x-1/2">
+        <span class="bg-slide-secondary bg-white"></span>
+        <span class="bg-slide-primary"></span>
+      </span>
+      <div class="relative z-10 overflow-hidden">
+        <div class="transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix A</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Tool Comparison Matrix</p>
+        </div>
+        <div class="absolute top-full left-0 w-full transition-transform duration-400 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-full">
+          <p class="font-mono text-[13px] uppercase tracking-wider text-black/30 mb-3 transition-colors">Appendix A</p>
+          <p class="font-sans text-xl font-semibold tracking-tight transition-colors">Tool Comparison Matrix</p>
+        </div>
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Chapter CTA -->
+  <section class="chapter-stack bg-black text-white">
+    <div class="page-shell py-16 md:py-24">
+      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <div>
+          <p class="font-mono text-[13px] uppercase tracking-wider text-white/30 mb-4">Next Chapter</p>
+          <h2 class="font-sans text-4xl font-bold leading-[0.95] tracking-tight md:text-5xl lg:text-6xl">Tool Comparison Matrix</h2>
+          <p class="mt-4 max-w-md font-sans text-base text-white/40">Side-by-side feature comparisons for every tool covered in this book</p>
+        </div>
+        <a href="A.html" class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-black font-mono" style="background-color: #cc7373;">
+          Continue Reading
+          <i data-lucide="arrow-right" class="size-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter Index -->
+  <div class="chapter-stack border-t border-black">
+    <div class="page-shell py-16">
+      <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex h-10 items-center bg-black px-3">
+              <span class="font-sans text-base font-bold tracking-tight text-white">AD</span>
+              <span class="ml-0.5 font-mono text-xs font-medium leading-none text-white">'26</span>
+            </div>
+          </div>
+          <p class="text-2xl font-bold leading-[0.95] tracking-tight" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic Designer</p>
+          <p class="mt-3 font-sans text-sm text-black/40">How AI agents, design tools, and the new ecosystem are transforming product design. By Mehran Mozaffari. First Edition, May 2026.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 flex-1">
+          <a href="preface.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Preface</h3>
+          </a>
+          <a href="copyright.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+          </a>
+          <a href="01.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Agentic Design Paradigm</h3>
+          </a>
+          <a href="02.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 02</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Your Agent Toolkit</h3>
+          </a>
+          <a href="03.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 03</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Teaching Agents to Design</h3>
+          </a>
+          <a href="04.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 04</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design-as-Code</h3>
+          </a>
+          <a href="05.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 05</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Paper and Pencil</h3>
+          </a>
+          <a href="06.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 06</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Open Design and OpenPencil</h3>
+          </a>
+          <a href="07.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 07</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Huashu Design</h3>
+          </a>
+          <a href="08.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 08</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Design Systems and Tokens</h3>
+          </a>
+          <a href="09.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 09</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Motion and Video</h3>
+          </a>
+          <a href="10.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 10</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Integrations</h3>
+          </a>
+          <a href="11.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 11</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Multi-Agent Design Teams</h3>
+          </a>
+          <a href="12.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 12</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Production UI from Design</h3>
+          </a>
+          <a href="13.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 13</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Real-World Case Studies</h3>
+          </a>
+          <a href="14.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 14</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">The Future of Agentic Design</h3>
+          </a>
+          <a href="A.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix A</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Tool Comparison Matrix</h3>
+          </a>
+          <a href="B.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix B</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">MCP Server Reference</h3>
+          </a>
+          <a href="C.html" class="group border-b border-black pb-4">
+            <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+          </a>
+        </div>
+      </div>
+      </div>
+      <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
+        <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="../" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Home</a>
+          <a href="../about.html" class="font-mono text-xs text-black/30 hover:text-black transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-xs text-black/30 hover:text-black transition-colors">Chapters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-40 bg-black text-white">
+    <div class="w-full px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <h2 class="font-bold leading-[0.85] tracking-[-0.03em] text-[18vw] md:text-[13vw]" style="font-family: 'Beausite Classic Medium', Inter, sans-serif">The Agentic<br>Designer</h2>
+      <div class="mt-8 flex flex-col gap-2 md:flex-row md:items-center md:gap-8">
+        <p class="font-sans text-lg md:text-xl text-white">How AI agents, design tools, and the new ecosystem are transforming product design</p>
+        <p class="font-mono text-[13px] text-white/70">By Mehran Mozaffari</p>
+      </div>
+    </div>
+    <div class="border-t border-white">
+      <div class="w-full px-6 md:px-12 lg:px-20 py-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <div class="font-mono text-[11px] text-white/60 leading-relaxed">
+          <p>&copy;2026 Mehran Mozaffari. All rights reserved.</p>
+          <p class="mt-1">First Edition. Published May 2026. All content, code examples, and illustrations are the original work of the author unless otherwise noted.</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../about.html" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">About</a>
+          <a href="../index.html#chapters" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">Chapters</a>
+          <a href="https://github.com/imehr/the-agentic-designer" class="font-mono text-[11px] text-white/40 hover:text-white transition-colors">GitHub</a>
+          <span class="font-mono text-[11px] text-white/40">mehranmozaffari.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/chapter-sidebar.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src="../assets/menu.js"></script>
+</body>
+</html>
