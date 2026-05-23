@@ -10,9 +10,16 @@ Since this is a static site, you can launch a local HTTP server using:
 * Node (http-server): `npx -y http-server -p 8000`
 
 ### 1.2 Git & Deployment
-Deploying to GitHub Pages (hosted under `piazr.github.io/the-agentic-designer/`):
+Deploying to GitHub Pages (hosted under `piazr.github.io/<repository-name>/`):
 * Make commits to `main`: `git add . && git commit -m "..." && git push origin main`
 * GitHub Actions automatically builds and deploys the static files upon push.
+
+### 1.3 Repository & Website Naming Conventions
+Each book has its own distinct GitHub repository and matching GitHub Pages URL under the `Piazr` account.
+* **Format**:
+  * GitHub Repo: `https://github.com/Piazr/<book-repo-name>`
+  * GitHub Pages Website: `https://piazr.github.io/<book-repo-name>/`
+* **Template Setup**: When copying this template to launch a new book website (e.g. `claude-code-for-designers`), search and replace all references to `the-agentic-designer` and the owner `imehr` with the new repository name and target owner (`Piazr`). Every page's header navigation, footer link, and cover page link must resolve to the current book's repo/site.
 
 ---
 

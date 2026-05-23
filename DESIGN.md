@@ -163,3 +163,20 @@ Each segment of the book site uses distinct gradient image files as backgrounds 
 * **Part II (Tools & Workflows)**: Lavender/Violet scheme (`/assets/gradients/gradient_lavender_violet.png`)
 * **Part III (Advanced Topics)**: Sage/Yellow scheme (`/assets/gradients/gradient_sage_yellow.png`)
 * **Menu Drawer**: Yellow Gradient scheme (`/assets/gradients/gradient_menu_yellow.png`)
+
+---
+
+## 5. Repository & URL Architecture
+
+Every book website corresponds to a distinct repository hosted on GitHub, with the built site served via GitHub Pages.
+
+### 5.1 Link Consistency Rules
+To maintain correct user navigation, ensure all hardcoded repository and live website URLs point specifically to the matching book's resources:
+* **GitHub Repository Links**:
+  * Top navigation "View on GitHub" button link: `https://github.com/Piazr/<book-repo-name>`
+  * Book cover anchor link (initiates repository redirect): `https://github.com/Piazr/<book-repo-name>`
+  * Footer "GitHub" text link: `https://github.com/Piazr/<book-repo-name>`
+* **Cross-linking Rule**: If books reference each other, use explicit absolute URLs to avoid breaking paths within subdirectories. For example:
+  * Reference to *The Agentic Designer*: `https://piazr.github.io/the-agentic-designer/`
+  * Reference to *Claude Code for Designers*: `https://piazr.github.io/claude-code-for-designers/`
+

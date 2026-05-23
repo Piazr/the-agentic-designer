@@ -208,7 +208,23 @@ Copy-paste this template when creating a new chapter. Ensure all links are **rel
 
 ---
 
-## 3. Mandatory Implementation Checklist
+## 3. Repository-Specific Configuration Steps
+
+When scaffolding a new book website from this template (e.g., creating `claude-code-for-designers`), you must customize the repository links in both the codebase and the documentation:
+1. **GitHub Repository URL**: Set the repository target under the `Piazr` account:
+   * Format: `https://github.com/Piazr/<book-repo-name>`
+   * Replace all occurrences in HTML pages (`index.html`, `about.html`, and `chapters/*.html`) in:
+     * Nav bar "View on GitHub" button.
+     * Clickable book cover 3D card wrapper.
+     * Footer navigation repository link.
+2. **GitHub Pages URL**: Each book features a distinct live website URL:
+   * Format: `https://piazr.github.io/<book-repo-name>/`
+   * Relative linking allows the site to work automatically in this subpath.
+   * Update metadata fields, `DESIGN.md` references, and deployment scripts to point to this new live path.
+
+---
+
+## 4. Mandatory Implementation Checklist
 
 Before checking in your work, verify that:
 1. **Rounded corners check**: Run a search for `rounded` in Tailwind classes and ensure they only specify `rounded-none`. In custom styles, confirm there are no `border-radius` values greater than `0`.
@@ -216,3 +232,5 @@ Before checking in your work, verify that:
 3. **Relative links check**: Verify that assets inside the `/chapters/` folder are referenced with relative routes (`../assets/...`) and those at root `/index.html` are referenced with root-level relative paths (`assets/...`).
 4. **Pushed-logo drawer effect check**: Verify that opening the navigation drawer pushes the logo container fully to the left with easing, rather than just overlaying it.
 5. **No gaps check**: Ensure stat lists and Part grids contain a `gap-0` style with a solid border separation.
+6. **Repository link customization check**: Confirm that all GitHub repository buttons, links, and cover redirects point to the specific repository (`https://github.com/Piazr/<book-repo-name>`) and its corresponding Pages URL.
+
