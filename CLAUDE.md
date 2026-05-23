@@ -41,6 +41,7 @@ Refer to [DESIGN.md](DESIGN.md) for full descriptions. Below are the critical in
 ## 3. Directory Structure
 * `/index.html` - Homepage
 * `/about.html` - About Page
+* `/llms.txt` - LLM / Agent indexing metadata file
 * `/chapters/` - Book Chapters (`01.html`, `02.html` etc. and front/back matter `preface.html`, `copyright.html`)
 * `/assets/` - Global CSS/JS and gradients
   * `/assets/menu.js` - JS logic for drawer animations

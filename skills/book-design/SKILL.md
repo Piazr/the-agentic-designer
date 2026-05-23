@@ -15,6 +15,7 @@ When initializing a new book repository, establish this structure:
 ```text
 ├── index.html                   # Book home page
 ├── about.html                   # About author and book context
+├── llms.txt                     # LLM / Agent website indexing map
 ├── DESIGN.md                    # Visual design specification
 ├── CLAUDE.md                    # Developer guidelines
 ├── assets/
@@ -222,6 +223,7 @@ When scaffolding a new book website from this template (e.g., creating `claude-c
    * Format: `https://piazr.github.io/<book-repo-name>/`
    * Relative linking allows the site to work automatically in this subpath.
    * Update metadata fields, `DESIGN.md` references, and deployment scripts to point to this new live path.
+3. **LLM Indexing Map (llms.txt)**: Update the `/llms.txt` file at the root to contain the name, summary, and links matching the new book's chapters and resources.
 
 ---
 
@@ -234,4 +236,4 @@ Before checking in your work, verify that:
 4. **Pushed-logo drawer effect check**: Verify that opening the navigation drawer pushes the logo container fully to the left with easing, rather than just overlaying it.
 5. **No gaps check**: Ensure stat lists and Part grids contain a `gap-0` style with a solid border separation.
 6. **Repository link customization check**: Confirm that all GitHub repository buttons, links, and cover redirects point to the specific repository (`https://github.com/Piazr/<book-repo-name>`) and its corresponding Pages URL.
-
+7. **llms.txt check**: Confirm `/llms.txt` exists at the root of the repository, follows the llmstxt.org markdown standard, and lists fully resolved absolute URLs for the book's contents.

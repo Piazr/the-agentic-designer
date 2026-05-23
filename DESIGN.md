@@ -181,3 +181,12 @@ To maintain correct user navigation, ensure all hardcoded repository and live we
   * Reference to *The Agentic Designer*: `https://piazr.github.io/the-agentic-designer/`
   * Reference to *Claude Code for Designers*: `https://piazr.github.io/claude-code-for-designers/`
 
+### 5.2 AI-Friendly Indexing (llms.txt)
+To enable AI agents to easily read, navigate, and index the entire contents of a book website:
+* **File Location**: Place a file named `llms.txt` directly at the root of the repository (`/llms.txt`).
+* **Format**:
+  * **H1 Title**: The name of the book.
+  * **Blockquote Summary**: Brief metadata containing the author's details (Mehran Mozaffari) and the CC BY-NC-SA 4.0 license.
+  * **Core Resources**: Dedicated links to the live Pages website, the Book repository (for downloading PDF/EPUB/source HTML), and the Website repository.
+  * **Content Sections**: Organized list of links (preface, copyright, chapters, appendices) accompanied by one-sentence summaries of their specific topics. All links must be fully resolved absolute URLs pointing to the live site.
+
