@@ -213,6 +213,7 @@ Copy-paste this template when creating a new chapter. Ensure all links are **rel
 When scaffolding a new book website from this template (e.g., creating `claude-code-for-designers`), you must customize the repository links in both the codebase and the documentation:
 1. **GitHub Repository URL**: Set the repository target under the `Piazr` account:
    * Format: `https://github.com/Piazr/<book-repo-name>`
+   * **Important**: This link targets the **Book Repository** containing the book source files, HTML, PDF, and EPUB files for download, **NOT** the website repository.
    * Replace all occurrences in HTML pages (`index.html`, `about.html`, and `chapters/*.html`) in:
      * Nav bar "View on GitHub" button.
      * Clickable book cover 3D card wrapper.

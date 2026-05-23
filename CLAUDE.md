@@ -17,9 +17,10 @@ Deploying to GitHub Pages (hosted under `piazr.github.io/<repository-name>/`):
 ### 1.3 Repository & Website Naming Conventions
 Each book has its own distinct GitHub repository and matching GitHub Pages URL under the `Piazr` account.
 * **Format**:
-  * GitHub Repo: `https://github.com/Piazr/<book-repo-name>`
+  * GitHub Book Repo: `https://github.com/Piazr/<book-repo-name>`
   * GitHub Pages Website: `https://piazr.github.io/<book-repo-name>/`
 * **Template Setup**: When copying this template to launch a new book website (e.g. `claude-code-for-designers`), search and replace all references to `the-agentic-designer` and the owner `imehr` with the new repository name and target owner (`Piazr`). Every page's header navigation, footer link, and cover page link must resolve to the current book's repo/site.
+* **CRITICAL LINK DIRECTION**: The "View on GitHub" button, footer "GitHub" links, and clickable book cover redirects must target the **Book Repository** where the downloadable book sources (HTML, PDF, EPUB files) are hosted, **NOT** the website repository (which contains the code hosting the preview web pages).
 
 ---
 
