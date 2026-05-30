@@ -468,7 +468,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">23 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">20 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -610,7 +610,7 @@
 
   <p>Claude Code is Anthropic's agentic coding tool. It reads codebases, edits files, runs commands, and connects to external tools via MCP. Available in terminal, VS Code, JetBrains, desktop app, web, and browser (source: <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Claude Code Overview</a>, retrieved 2026-05-18).</p>
 <figure class="figure--full" id="ch02-fig-01">
-  <img src="../images/ch02-fig-01--web.webp" alt="Terminal session showing Claude Code receiving a design prompt, calling Paper MCP tools, and outputting a React component with Tailwind classes" loading="eager" />
+  <img src="../images/ch02-fig-01--web.webp" alt="Terminal session showing Claude Code receiving a design prompt, calling Paper MCP tools, and outputting a React component with Tailwind classes" loading="lazy" />
   <figcaption>Claude Code session reading a Paper design and generating JSX via MCP</figcaption>
 </figure>
 
@@ -621,7 +621,7 @@
 
   <p>Another advantage: Claude Code's auto memory system accumulates corrections over time. Tell it once that your brand uses 4px spacing units, and it remembers. Correct it twice on border-radius preferences, and it writes those corrections to memory. The agent gets better at your specific design system with every session. No other agent has this feature as of May 2026.</p>
 
-  <h4 id="s-02-2-1">Installation</h4>
+  <h4 id="02.2.1">Installation</h4>
 
   <pre><code># Native install (macOS, Linux)
 $ curl -fsSL https://claude.ai/install.sh | bash
@@ -634,7 +634,7 @@ $ winget install Anthropic.ClaudeCode</code></pre>
 
   <p>The native install auto-updates in the background. No manual version management. The first launch walks through authentication.</p>
 
-  <h4 id="s-02-2-2">Authentication</h4>
+  <h4 id="02.2.2">Authentication</h4>
 
   <p>Claude Code requires a Claude subscription (Pro, Max, Team, or Enterprise) or an Anthropic Console account with API access. Third-party providers are supported via API keys.</p>
 
@@ -648,7 +648,7 @@ $ claude</code></pre>
 
   <p>The VS Code extension is available on the Marketplace as <code>anthropic.claude-code</code>. JetBrains has a plugin. Desktop apps exist for macOS and Windows. Web access lives at <code>claude.ai/code</code>.</p>
 
-  <h4 id="s-02-2-3">Key Features for Design Work</h4>
+  <h4 id="02.2.3">Key Features for Design Work</h4>
 
   <p><strong>CLAUDE.md for persistent instructions.</strong> Project-level, user-level, and organization-level files loaded at session start. Supports <code>@path/to/file</code> imports and path-scoped rules in <code>.claude/rules/</code>. The <code>/init</code> command auto-generates CLAUDE.md by analyzing the codebase (source: <a href="https://docs.anthropic.com/en/docs/claude-code/memory">Claude Code Memory</a>, retrieved 2026-05-18). This is where you put brand guidelines and design system references.</p>
 
@@ -692,7 +692,7 @@ $ git diff main --name-only | claude -p "review these changed files"
 # Generate a component from a design spec
 $ cat design-spec.md | claude -p "implement this as a React component"</code></pre>
 
-  <h4 id="s-02-2-4">Model Access</h4>
+  <h4 id="02.2.4">Model Access</h4>
 
   <p>Claude Code uses Claude models exclusively: Sonnet, Haiku, and Opus. Switch models with <code>/model</code> during a session. For design work, Sonnet provides the best balance of quality and speed. Opus is overkill for most design tasks but useful for complex design system architecture decisions.</p>
 
@@ -706,20 +706,20 @@ $ claude --model claude-haiku-3-20250414</code></pre>
 
   <p>Codex CLI is OpenAI's lightweight terminal agent. It differs from the cloud-based Codex agent (available in the ChatGPT sidebar) which runs tasks in isolated sandboxes. The CLI version runs locally on your machine.</p>
 <figure class="figure--full" id="ch02-fig-02">
-  <img src="../images/ch02-fig-02--web.webp" alt="Terminal output from Codex CLI showing three parallel sandbox tasks executing design generation with citation references for each decision" loading="eager" />
+  <img src="../images/ch02-fig-02--web.webp" alt="Terminal output from Codex CLI showing three parallel sandbox tasks executing design generation with citation references for each decision" loading="lazy" />
   <figcaption>Codex CLI running design tasks in isolated sandboxes with parallel execution</figcaption>
 </figure>
 
 
   <p>The two Codex variants serve different design workflows. The CLI is best for quick, local tasks --- generating a component, fixing a style issue, running a quick design experiment. The cloud Codex is best for complex, long-running tasks that benefit from parallel execution --- generating multiple design variants simultaneously, refactoring a large component library, producing documentation for an entire design system.</p>
 
-  <h4 id="s-02-3-1">Installation</h4>
+  <h4 id="02.3.1">Installation</h4>
 
   <pre><code>$ npm install -g @openai/codex</code></pre>
 
   <p>That is the entire installation. No native binary. No desktop app. Just an npm package.</p>
 
-  <h4 id="s-02-3-2">Authentication</h4>
+  <h4 id="02.3.2">Authentication</h4>
 
   <p>Sign in with a ChatGPT account. This simplifies the setup --- no API key management. Plus users get $5 in free API credits per month (as of May 2026). Pro users get $50 (as of May 2026). Direct API keys also work (source: <a href="https://openai.com/index/introducing-codex/">Introducing Codex</a>, retrieved 2026-05-18).</p>
 
@@ -732,7 +732,7 @@ $ codex
 $ export OPENAI_API_KEY=sk-...
 $ codex "fix the auth bug"</code></pre>
 
-  <h4 id="s-02-3-3">Key Features for Design Work</h4>
+  <h4 id="02.3.3">Key Features for Design Work</h4>
 
   <p><strong>AGENTS.md support.</strong> Codex reads AGENTS.md files throughout the codebase. From the Codex system message: "These files are a way for humans to give you (the agent) instructions or tips for working within the container" (source: <a href="https://openai.com/index/introducing-codex/">Introducing Codex</a>, retrieved 2026-05-18). Scope follows directory hierarchy. More deeply nested files take precedence in case of conflicts.</p>
 
@@ -759,7 +759,7 @@ $ codex "fix the auth bug"</code></pre>
 
   <p><strong>Parallel execution.</strong> Cloud Codex supports "many tasks in parallel." Assign multiple design tasks and review each independently. Generate three landing page variants in three parallel sandboxes. Compare. Pick the best one. This parallel approach is unique to cloud Codex as of May 2026.</p>
 
-  <h4 id="s-02-3-4">Model Access</h4>
+  <h4 id="02.3.4">Model Access</h4>
 
   <table>
     <thead>
@@ -800,7 +800,7 @@ $ codex --model o3 "refactor the entire auth module"</code></pre>
 
   <p>OpenCode is the open-source AI coding agent. 160K GitHub stars, 900 contributors, 7.5M monthly developers (as of May 2026; source: <a href="https://opencode.ai">OpenCode</a>, retrieved 2026-05-18). It supports 75+ LLM providers through Models.dev and is cross-compatible with Claude Code conventions.</p>
 <figure class="figure--full" id="ch02-fig-03">
-  <img src="../images/ch02-fig-03--web.webp" alt="OpenCode terminal session demonstrating the plan mode with a detailed multi-step design generation plan awaiting user approval before execution" loading="eager" />
+  <img src="../images/ch02-fig-03--web.webp" alt="OpenCode terminal session demonstrating the plan mode with a detailed multi-step design generation plan awaiting user approval before execution" loading="lazy" />
   <figcaption>OpenCode plan mode showing a step-by-step design plan before execution</figcaption>
 </figure>
 
@@ -809,7 +809,7 @@ $ codex --model o3 "refactor the entire auth module"</code></pre>
 
   <p>The scale of OpenCode's community is worth noting. 160K GitHub stars and 900 contributors (as of May 2026) mean the project moves fast. Bugs get fixed quickly. New features land regularly. The skill ecosystem grows with each release. As of May 2026, OpenCode's momentum shows no sign of slowing. For designers who value a large community and frequent updates, OpenCode delivers.</p>
 
-  <h4 id="s-02-4-1">Installation</h4>
+  <h4 id="02.4.1">Installation</h4>
 
   <pre><code># Curl (macOS, Linux)
 $ curl -fsSL https://opencode.ai/install | bash
@@ -828,7 +828,7 @@ $ choco install opencode</code></pre>
 
   <p>OpenCode also supports scoop, Docker, and direct binary downloads from GitHub releases. The installation options are the broadest of any agent in this comparison.</p>
 
-  <h4 id="s-02-4-2">Authentication</h4>
+  <h4 id="02.4.2">Authentication</h4>
 
   <p>Run <code>/connect</code> in the TUI. This opens <code>opencode.ai/auth</code> in your browser. Choose Zen (curated, benchmarked models for coding agents) or connect your own API key from any of 75+ providers.</p>
 
@@ -846,7 +846,7 @@ $ opencode
 
   <p>OpenCode supports GitHub Copilot login and ChatGPT Plus/Pro login. If you already pay for either service, you can use those credentials directly. No additional cost.</p>
 
-  <h4 id="s-02-4-3">Key Features for Design Work</h4>
+  <h4 id="02.4.3">Key Features for Design Work</h4>
 
   <p><strong>Claude Code compatibility.</strong> OpenCode reads CLAUDE.md as a fallback when no AGENTS.md exists. It discovers skills from <code>.claude/skills/</code> in addition to <code>.opencode/skills/</code> and <code>.agents/skills/</code>. Design skills written for Claude Code work in OpenCode without modification (source: <a href="https://opencode.ai/docs/rules/">OpenCode Rules</a>, retrieved 2026-05-18). This is the strongest cross-compatibility story in the ecosystem.</p>
 
@@ -944,7 +944,7 @@ Tab            # Toggle between Plan and Build modes
 
   <p>Notice the OAuth support for remote MCP servers. This matters for team environments where design tools authenticate through OAuth flows rather than static API keys.</p>
 
-  <h4 id="s-02-4-4">Model Access</h4>
+  <h4 id="02.4.4">Model Access</h4>
 
   <p>75+ LLM providers via Models.dev. Zen provides curated models benchmarked for coding agent tasks. Per-agent model overrides let different agents use different models --- a design generation agent could use Sonnet while a design review agent uses Haiku for faster feedback.</p>
 
@@ -964,7 +964,7 @@ Tab            # Toggle between Plan and Build modes
 
   <p>Gemini CLI is Google's open-source terminal agent. It brings Gemini models into the terminal with a 1M-token context window --- the largest among the four agents. Gemini Code Assist provides IDE extensions for VS Code, JetBrains, and Android Studio (source: <a href="https://developers.google.com/gemini-code-assist">Gemini Code Assist</a>, retrieved 2026-05-18).</p>
 <figure class="figure--half-right" id="ch02-fig-04">
-  <img src="../images/ch02-fig-04--web.webp" alt="Gemini CLI terminal session showing a design generation prompt with context window utilization indicator and free-tier output" loading="eager" />
+  <img src="../images/ch02-fig-04--web.webp" alt="Gemini CLI terminal session showing a design generation prompt with context window utilization indicator and free-tier output" loading="lazy" />
   <figcaption>Gemini CLI processing a design task with 1M-token context on the free tier</figcaption>
 </figure>
 
@@ -973,7 +973,7 @@ Tab            # Toggle between Plan and Build modes
 
   <p>Gemini CLI occupies an interesting position in the market. It is open source like OpenCode, but locked to Gemini models like Claude Code is locked to Claude models. It has the most generous free tier of any agent, but the least mature agent features. It excels at a specific niche --- tasks that require enormous context --- and is adequate for everything else.</p>
 
-  <h4 id="s-02-5-1">Installation</h4>
+  <h4 id="02.5.1">Installation</h4>
 
   <pre><code># Gemini CLI is open source
 # Install from https://github.com/google-gemini/gemini-cli
@@ -981,7 +981,7 @@ Tab            # Toggle between Plan and Build modes
 # IDE extensions: VS Code, JetBrains, Android Studio
 # Cloud Shell Editor: pre-installed (free)</code></pre>
 
-  <h4 id="s-02-5-2">Authentication</h4>
+  <h4 id="02.5.2">Authentication</h4>
 
   <pre><code># Sign in with Google account (free tier)
 $ gemini auth login
@@ -989,7 +989,7 @@ $ gemini auth login
 # Google Cloud account for Standard/Enterprise tiers
 $ gcloud auth application-default login</code></pre>
 
-  <h4 id="s-02-5-3">Key Features for Design Work</h4>
+  <h4 id="02.5.3">Key Features for Design Work</h4>
 
   <p><strong>1M-token context window.</strong> This is the largest context window among the four agents. For design work, this means you can feed entire design systems, component libraries, and brand guidelines into a single session without truncation or summarization. The other agents handle large contexts well too, but Gemini CLI has a hard advantage in raw capacity.</p>
 
@@ -1005,7 +1005,7 @@ $ gcloud auth application-default login</code></pre>
 # - Agent Mode for autonomous task execution
 # - 1M token context for large design systems</code></pre>
 
-  <h4 id="s-02-5-4">Pricing</h4>
+  <h4 id="02.5.4">Pricing</h4>
 
   <p><em>All prices and usage limits below are as of May 2026 and may change.</em></p>
 
@@ -1054,7 +1054,7 @@ $ gcloud auth application-default login</code></pre>
 
   <p>No single agent is best for every design task. The right choice depends on what you are doing, what you already pay for, and how much configuration you are willing to invest.</p>
 <figure class="figure--full" id="ch02-fig-05">
-  <img src="../images/ch02-fig-05--web.webp" alt="Flowchart showing how to choose between Claude Code, Codex CLI, OpenCode, and Gemini CLI based on budget, skill requirements, and sandbox preferences" loading="eager" />
+  <img src="../images/ch02-fig-05--web.webp" alt="Flowchart showing how to choose between Claude Code, Codex CLI, OpenCode, and Gemini CLI based on budget, skill requirements, and sandbox preferences" loading="lazy" />
   <figcaption>Decision framework for choosing the right agent platform for design workflows</figcaption>
 </figure>
 
@@ -1163,8 +1163,20 @@ $ gcloud auth application-default login</code></pre>
   </table>
 
   <p>Agent choice matters less than agent configuration. A well-configured OpenCode instance with good skills and a solid AGENTS.md will outperform a bare Claude Code installation every time. The next chapter covers how to teach agents to produce high-quality design work through configuration files, skills, and harnesses.</p>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:start -->
+  <div id="02.claude-settings-as-design-environment" class="callout bookmark">
+    <p><strong>Bookmark:</strong> Claude settings as design environment</p>
+    <p>Anthropic's Claude Code settings documentation is the right reference here because it describes the official configuration surface: user settings, project settings, local overrides, permissions, hooks, environment variables, model overrides, and MCP server controls.</p>
+    <p>In agentic design, the model is only one part of the working environment. The settings around it decide what context is remembered, what tools are available, and how much control I have before the first artifact is generated.</p>
+    <p>Claude Code has a real configuration layer, and I treat that layer as part of the design environment. The important files are ~/.claude/settings.json for user-level defaults, .claude/settings.json for shared project settings, and .claude/settings.local.json for local experiments that should not be committed.</p>
+    <p>Those files decide more than preferences. They control which model opens by default, which environment variables exist in the session, which files and commands are allowed or denied, which hooks run around tool use, how long transcripts are retained, and which MCP servers become part of the agent&#39;s working context.</p>
+    <p>For design work, I want a configuration audit before I judge the agent. I check permissions.deny for sensitive files and destructive commands, review hooks for hidden automation, inspect model overrides so routine design editing is not always running on the most expensive model, and disable unused MCP servers so the context window is not filled with tools the task does not need.</p>
+    <p>The experiment is straightforward: run the same design task before and after the settings audit. If the second run is faster, safer, or easier to critique, the model did not suddenly become better. The working environment became cleaner. That is the lesson I want in the book: agentic design quality depends on the configuration layer as much as the prompt layer.</p>
+    <p class="bookmark-footer"><strong>Link:</strong> <a href="https://docs.anthropic.com/en/docs/claude-code/settings">Claude settings as design environment</a></p>
+  </div>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:end -->
 
-  <div class="callout tip">
+<div class="callout tip">
     <p><strong>Next:</strong> Chapter 03 covers the configuration layer --- CLAUDE.md, AGENTS.md, SKILL.md, and custom design harnesses. This is where the quality of your agent's design output gets decided.</p>
   </div>
         </div>

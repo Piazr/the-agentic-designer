@@ -469,7 +469,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">12 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">23 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -484,7 +484,8 @@
         <a href="#s-11-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">OpenPencil&#x27;s Concurrent Agent Teams in Practice</a>
         <a href="#s-11-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Subagent-Driven Development for Design Tasks</a>
         <a href="#s-11-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Orchestration Strategies: When to Parallelize</a>
-        <a href="#s-11-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Complexity Tax: When Single Agent Wins</a>
+        <a href="#s-11-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Dynamic Workflows: Orchestration as a Design Artifact</a>
+        <a href="#s-11-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Complexity Tax: When Single Agent Wins</a>
       </div>
     </div>
   </nav>
@@ -499,10 +500,11 @@
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-11-1" data-section="s-11-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Single Agent to Design Team</span></a>
           <a href="#s-11-2" data-section="s-11-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Orchestrator Pattern: Decompose, Delegate, Merge</span></a>
-          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil&amp;#x27;s Concurrent Agent Teams in Practice</span></a>
+          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil&#x27;s Concurrent Agent Teams in Practice</span></a>
           <a href="#s-11-4" data-section="s-11-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Subagent-Driven Development for Design Tasks</span></a>
           <a href="#s-11-5" data-section="s-11-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Orchestration Strategies: When to Parallelize</span></a>
-          <a href="#s-11-6" data-section="s-11-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Complexity Tax: When Single Agent Wins</span></a>
+          <a href="#s-11-6" data-section="s-11-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Dynamic Workflows: Orchestration as a Design Artifact</span></a>
+          <a href="#s-11-7" data-section="s-11-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Complexity Tax: When Single Agent Wins</span></a>
       </nav>
     </aside>
   </div>
@@ -518,10 +520,11 @@
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-11-1" data-section="s-11-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Single Agent to Design Team</span></a>
           <a href="#s-11-2" data-section="s-11-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Orchestrator Pattern: Decompose, Delegate, Merge</span></a>
-          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil&amp;#x27;s Concurrent Agent Teams in Practice</span></a>
+          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil&#x27;s Concurrent Agent Teams in Practice</span></a>
           <a href="#s-11-4" data-section="s-11-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Subagent-Driven Development for Design Tasks</span></a>
           <a href="#s-11-5" data-section="s-11-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Orchestration Strategies: When to Parallelize</span></a>
-          <a href="#s-11-6" data-section="s-11-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Complexity Tax: When Single Agent Wins</span></a>
+          <a href="#s-11-6" data-section="s-11-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Dynamic Workflows: Orchestration as a Design Artifact</span></a>
+          <a href="#s-11-7" data-section="s-11-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Complexity Tax: When Single Agent Wins</span></a>
       </nav>
       <main class="chapter-main">
         <div class="book-content">
@@ -580,12 +583,12 @@
 
   <p>The orchestrator pattern is the backbone of multi-agent design. A single agent --- the orchestrator --- takes the design brief, breaks it into sub-tasks, assigns each sub-task to a worker agent, and merges the results.</p>
 <figure class="figure--full" id="ch11-fig-04">
-  <img src="../images/ch11-fig-04--web.webp" alt="Orchestration flow diagram showing the Decompose-Delegate-Merge pattern: a design brief enters the orchestrator which splits into three parallel worker agents, their outputs merge with conflict resolution for spacing and style consistency, producing the final unified design" loading="eager" />
+  <img src="../images/ch11-fig-04--web.webp" alt="Orchestration flow diagram showing the Decompose-Delegate-Merge pattern: a design brief enters the orchestrator which splits into three parallel worker agents, their outputs merge with conflict resolution for spacing and style consistency, producing the final unified design" loading="lazy" />
   <figcaption>Decompose-Delegate-Merge orchestration pattern with conflict resolution in the merge step</figcaption>
 </figure>
 
 <figure class="figure--full" id="ch11-fig-01">
-  <img src="../images/ch11-fig-01--web.webp" alt="Terminal output showing an orchestrator agent decomposing a dashboard design into three spatial sub-tasks: header region assigned to worker-1, sidebar to worker-2, and main content to worker-3 for parallel execution" loading="eager" />
+  <img src="../images/ch11-fig-01--web.webp" alt="Terminal output showing an orchestrator agent decomposing a dashboard design into three spatial sub-tasks: header region assigned to worker-1, sidebar to worker-2, and main content to worker-3 for parallel execution" loading="lazy" />
   <figcaption>Orchestrator agent decomposing a dashboard design into spatial sub-tasks for parallel workers</figcaption>
 </figure>
 
@@ -612,7 +615,7 @@
 
   <p>OpenPencil (3k+ GitHub stars as of May 2026) is the first open-source AI-native vector design tool with built-in concurrent Agent Teams. Multiple agents can work on different regions of the same canvas simultaneously.</p>
 <figure class="figure--full" id="ch11-fig-02">
-  <img src="../images/ch11-fig-02--web.webp" alt="OpenPencil editor showing a completed dashboard design with three color-coded regions indicating where concurrent agent teams worked: header agent, sidebar agent, and main content agent results merged into a unified layout" loading="eager" />
+  <img src="../images/ch11-fig-02--web.webp" alt="OpenPencil editor showing a completed dashboard design with three color-coded regions indicating where concurrent agent teams worked: header agent, sidebar agent, and main content agent results merged into a unified layout" loading="lazy" />
   <figcaption>OpenPencil canvas showing merged output from three concurrent agent teams on one dashboard</figcaption>
 </figure>
 
@@ -635,7 +638,7 @@
 
   <p>Subagent-driven development is the pattern where a parent agent spawns child agents to handle independent tasks in parallel. Applied to design, the parent receives the brief (for example, "build a marketing site"), decomposes it into sections (hero, features, testimonials, footer), and assigns each section to a subagent.</p>
 <figure class="figure--full" id="ch11-fig-03">
-  <img src="../images/ch11-fig-03--web.webp" alt="Terminal output showing an agent performing automated design review, checking generated components against design token specifications, and flagging two violations: incorrect border radius and non-standard color usage with suggested corrections" loading="eager" />
+  <img src="../images/ch11-fig-03--web.webp" alt="Terminal output showing an agent performing automated design review, checking generated components against design token specifications, and flagging two violations: incorrect border radius and non-standard color usage with suggested corrections" loading="lazy" />
   <figcaption>Agent design review workflow checking output against design system constraints and flagging issues</figcaption>
 </figure>
 
@@ -721,9 +724,448 @@
 
   <p><strong>Pipeline.</strong> Agents in sequence, each specializing in one stage. Wireframe to visual to code. Each stage's output is the next stage's input. Not parallel, but allows deep specialization at each stage.</p>
 
-  <p>Context management is the critical challenge across all strategies. Each subagent needs design system context: brand colors, typography, spacing. This context must be communicated without duplication. Shared CLAUDE.md or AGENTS.md files (covered in Chapter 03) solve this by providing a single source of truth that all agents read from.</p>
+  <h3 id="s-11-6">Dynamic Workflows: Orchestration as a Design Artifact</h3>
+<p>Dynamic Workflows matter in agentic design because they move the operating model out of a single conversation. The designer no longer has to manually coordinate every research pass, audit, verifier, and synthesis step. The workflow carries the process.</p>
 
-  <h3 id="s-11-6">The Complexity Tax: When Single Agent Wins</h3>
+
+<figure class="figure--full" id="ch11-fig-05">
+  <div style="border:2px solid var(--primary); border-radius:16px; padding:28px; background:#fff;">
+    <div style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:16px; align-items:center; text-align:center;">
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:18px;"><strong>Design Process</strong><br><span>the phases worth repeating</span></div>
+      <div style="color:var(--primary); font-size:32px; font-weight:700;">&rarr;</div>
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:18px;"><strong>Workflow Runtime</strong><br><span>agents, checks, synthesis</span></div>
+      <div style="color:var(--primary); font-size:32px; font-weight:700;">&rarr;</div>
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:18px;"><strong>Design Judgment</strong><br><span>what to fix, ship, or defer</span></div>
+    </div>
+  </div>
+  <figcaption>A Dynamic Workflow turns a design operating pattern into a repeatable artifact.</figcaption>
+</figure>
+
+<p>A Dynamic Workflow is Claude Code moving the plan out of the chat and into a script.</p>
+
+<p>In a normal Claude Code session, Claude decides what to do next turn by turn. It reads files, edits code, runs checks, and brings the results back into the conversation. That is useful when you want to steer the work live.</p>
+
+<p>In a Dynamic Workflow, Claude writes a JavaScript orchestration script for the task. A separate workflow runtime executes that script in the background. The script decides which agents run, what each agent investigates, how results are grouped, what gets verified, and what final answer comes back to you.</p>
+
+<p>For designers, the simplest mental model is this:</p>
+
+<blockquote>
+  <p>A subagent is like asking one specialist to help. A Dynamic Workflow is like giving a production checklist to an entire temporary design team, then asking them to return only the reviewed result.</p>
+</blockquote>
+
+<p>The important part is not only scale. The important part is where the plan lives. With subagents, the plan lives in Claude's conversation. With workflows, the plan lives in code. That makes the workflow repeatable, inspectable, resumable inside the same session, and much better suited to design audits, research sweeps, large migrations, and review pipelines.</p>
+
+<h4 id="why-this-matters-for-design-work">Why This Matters for Design Work</h4>
+
+<p>Most design work is not a single prompt. It is a loop:</p>
+
+<ol>
+  <li>Understand the existing context.</li>
+  <li>Compare options.</li>
+  <li>Generate an artifact.</li>
+  <li>Review it against brand, usability, accessibility, and implementation constraints.</li>
+  <li>Fix what failed.</li>
+  <li>Produce a clean handoff.</li>
+</ol>
+
+<p>Claude Code can already do that in a normal session. The limitation is that every intermediate result competes for the same context window. If ten agents inspect ten parts of a design system, all ten reports come back into the conversation. That can get noisy fast.</p>
+
+<p>Dynamic Workflows change the operating model. The workflow script can fan out work across many subagents, keep intermediate findings in script variables, cross-check the results, filter weak claims, and return a final report. The designer sees the synthesized output instead of every scratch note.</p>
+
+<p>That makes workflows especially useful when the task is:</p>
+
+<ul>
+  <li>too broad for one conversation to coordinate cleanly;</li>
+  <li>repeatable enough to save as a command;</li>
+  <li>risky enough to need independent verification;</li>
+  <li>large enough that many files, screens, or components need checking;</li>
+  <li>structured enough that you can describe the phases before the run begins.</li>
+</ul>
+
+<p>It is less useful when you want live creative back-and-forth. If you are exploring a hero layout and want to make subjective decisions every few minutes, stay in a normal Claude Code session. Workflows do not support mid-run user input except permission prompts. Use them when the process can run as a pipeline.</p>
+
+<h4 id="what-claude-code-gives-you">What Claude Code Gives You</h4>
+
+<p>As of May 2026, Dynamic Workflows are in research preview and require Claude Code v2.1.154 or later. They are available across paid Claude Code access paths, with provider availability depending on plan and environment.</p>
+
+<p>You can use them in three main ways:</p>
+
+<ol>
+  <li>Run the bundled deep research workflow:</li>
+</ol>
+
+<pre><code class="language-bash">/deep-research What are the strongest current patterns for AI-assisted design QA?</code></pre>
+
+<ol start="2">
+  <li>Ask Claude to create a workflow by including the word <code>workflow</code> in your prompt:</li>
+</ol>
+
+<pre><code class="language-text">Run a workflow to audit every component in this design system for token drift, accessibility gaps, and inconsistent responsive behavior.</code></pre>
+
+<ol start="3">
+  <li>Use ultracode mode so Claude decides when a substantial task should become a workflow:</li>
+</ol>
+
+<pre><code class="language-bash">/effort ultracode</code></pre>
+
+<p>For most designers, the second option is the best starting point. Say the word <code>workflow</code> only when you mean it. Claude Code highlights the word because it is a trigger. If you accidentally type it and do not want a workflow, ignore the trigger for that prompt.</p>
+
+<p>You manage workflow runs with:</p>
+
+<pre><code class="language-bash">/workflows</code></pre>
+
+<p>That view shows running and completed workflows, phases, agent counts, token usage, elapsed time, and individual agent results. A successful workflow can be saved as a reusable slash command. Project workflows live in:</p>
+
+<pre><code class="language-text">.claude/workflows/</code></pre>
+
+<p>Personal workflows live in:</p>
+
+<pre><code class="language-text">~/.claude/workflows/</code></pre>
+
+<p>For a design team, the project folder is the important one. It lets the team share the same audit or review workflow across a repository.</p>
+
+<h4 id="subagents-skills-and-workflows">Subagents, Skills, and Workflows</h4>
+
+<p>Designers will encounter all three terms. They solve different problems.</p>
+
+<table>
+  <thead>
+    <tr><th>Mechanism</th><th>What it is</th><th>Where the plan lives</th><th>Best design use</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Skill</td><td>Reusable instructions Claude reads</td><td>Claude's context</td><td>Teaching Claude your design rules, visual standards, or tool-specific process</td></tr>
+    <tr><td>Subagent</td><td>A worker Claude delegates to</td><td>Claude's context</td><td>Small parallel tasks, like reviewing one page while another checks CSS</td></tr>
+    <tr><td>Workflow</td><td>A script the runtime executes</td><td>Script variables</td><td>Large repeatable pipelines, audits, migrations, cross-checked research</td></tr>
+  </tbody>
+</table>
+
+<p>Use a skill when Claude needs to know how your design system works.</p>
+
+<p>Use subagents when you need a few independent helpers in a live session.</p>
+
+<p>Use a Dynamic Workflow when the whole process should be codified: fan out, inspect, verify, synthesize, and return a final answer.</p>
+
+<h4 id="design-example-the-component-library-audit-workflow">Design Example: The Component Library Audit Workflow</h4>
+
+<p>Imagine you maintain a design system with 120 React components. Designers complain that the shipped components no longer match Figma. Engineers say the tokens are correct. Product managers see inconsistent UI in production.</p>
+
+<p>This is a poor fit for a single chat turn. Claude would need to inspect many files, compare token usage, check accessibility, summarize exceptions, and avoid drowning you in raw findings.</p>
+
+<p>This is a good Dynamic Workflow.</p>
+
+<h5 id="prompt">Prompt</h5>
+
+<pre><code class="language-text">Run a workflow to audit the component library under src/components against our design system rules.
+
+Use CLAUDE.md, DESIGN.md, tokens.css, and the Storybook stories as source material.
+
+Phases:
+1. Inventory all components and group them by category.
+2. Check token usage: color, typography, spacing, radius, shadows, and motion.
+3. Check accessibility: keyboard behavior, labels, contrast, focus states, and semantic HTML.
+4. Check responsive behavior in component stories where viewport variants exist.
+5. Have a separate verifier agent review each high-severity finding.
+6. Return a prioritized report with exact file paths, issue type, severity, evidence, and suggested fix.
+
+Do not edit files. This is an audit only.</code></pre>
+
+<h5 id="what-the-workflow-does">What the Workflow Does</h5>
+
+<p>Phase 1 creates the map. It identifies every component, story, token file, and documentation file.</p>
+
+<p>Phase 2 fans out token checks. One group of agents checks colors. Another checks typography. Another checks spacing and radius. Another checks motion and transitions.</p>
+
+<p>Phase 3 fans out accessibility checks. Agents inspect focus handling, labels, ARIA usage, keyboard paths, and contrast.</p>
+
+<p>Phase 4 checks responsive behavior. Agents compare mobile, tablet, and desktop stories where available.</p>
+
+<p>Phase 5 verifies findings. This is the important part. A workflow can force one agent's finding to be checked by another agent before it reaches the designer. That reduces false positives.</p>
+
+<p>Phase 6 returns only the useful result: a ranked report.</p>
+
+<h5 id="output-shape">Output Shape</h5>
+
+<pre><code class="language-markdown"># Component Library Audit
+
+## Summary
+- 120 components scanned.
+- 18 confirmed issues.
+- 6 high severity, 9 medium, 3 low.
+- 11 suspected issues rejected by verifier agents.
+
+## High Severity
+
+### Button: focus ring invisible on dark backgrounds
+- File: src/components/Button.tsx
+- Evidence: focus state uses --color-focus-default, which has insufficient contrast against --color-surface-inverse.
+- Verification: confirmed by independent accessibility verifier.
+- Suggested fix: map inverse surfaces to --color-focus-inverse.
+
+### Modal: escape key behavior inconsistent
+- File: src/components/Modal.tsx
+- Evidence: escape closes simple modal but not confirmation modal.
+- Verification: confirmed in story interaction tests.
+- Suggested fix: standardize close handler and document exception for destructive confirmation flows.</code></pre>
+
+<p>For a design system team, this is a better artifact than a chat transcript. It is closer to a design QA report.</p>
+
+<h4 id="example-reusable-workflows-for-design-teams">Example Reusable Workflows for Design Teams</h4>
+
+<h5 id="1-design-system-drift-audit">1. Design System Drift Audit</h5>
+
+<p>Purpose: Find where code has drifted away from the design system.</p>
+
+<p>Best for: mature product teams with a component library, CSS variables, Tailwind config, or design token package.</p>
+
+<p>Prompt:</p>
+
+<pre><code class="language-text">Create and run a workflow called design-system-drift-audit.
+
+Audit this repository for drift from our design system. Read CLAUDE.md, DESIGN.md, tokens, theme files, component stories, and production components.
+
+Phases:
+1. Build an inventory of tokens and components.
+2. Find hard-coded colors, spacing, font sizes, shadows, radii, and z-index values.
+3. Compare component variants against documented component rules.
+4. Verify every drift finding with a second agent.
+5. Rank issues by user-visible impact and migration effort.
+
+Return a report with file paths, issue category, evidence, recommended token replacement, and confidence.
+Do not make changes.</code></pre>
+
+<p>What makes it dynamic: the workflow adapts to the repository inventory. It does not need you to list every component manually. It discovers the system, fans out checks, then verifies findings.</p>
+
+<p>Book angle: This belongs in a section about design systems at scale. It shows the designer moving from one-off prompting to an operational quality gate.</p>
+
+<h5 id="2-competitive-ux-research-workflow">2. Competitive UX Research Workflow</h5>
+
+<p>Purpose: Research competing products and convert findings into design opportunities.</p>
+
+<p>Best for: product designers planning a redesign, onboarding flow, pricing page, dashboard, or conversion funnel.</p>
+
+<p>Prompt:</p>
+
+<pre><code class="language-text">Run a workflow to research competitor onboarding patterns for B2B analytics tools.
+
+Research five current competitors. For each one, gather evidence from public pages, docs, screenshots, changelogs, and credible reviews.
+
+Phases:
+1. Identify competitors and source types.
+2. Extract onboarding patterns: signup, activation, empty states, template selection, data import, collaboration invite, and upgrade prompts.
+3. Cross-check claims against at least two sources where possible.
+4. Convert verified patterns into design opportunities for our product.
+5. Return a cited research brief with confirmed patterns, weak signals, and recommendations.</code></pre>
+
+<p>What makes it dynamic: the workflow can split research by competitor, then synthesize by pattern. It can reject claims that only appear in one weak source.</p>
+
+<p>Book angle: This is not "Claude browses the web." It is a research desk with source checking. That makes it appropriate for design strategy, not just UI production.</p>
+
+<h5 id="3-multi-screen-prototype-critique-workflow">3. Multi-Screen Prototype Critique Workflow</h5>
+
+<p>Purpose: Critique a prototype across information architecture, visual hierarchy, interaction quality, accessibility, and implementation feasibility.</p>
+
+<p>Best for: designers preparing a prototype review before showing stakeholders.</p>
+
+<p>Prompt:</p>
+
+<pre><code class="language-text">Run a workflow to critique the prototype in prototypes/new-dashboard.
+
+Use these review lenses:
+1. Information architecture and task flow.
+2. Visual hierarchy and spacing.
+3. Interaction states and empty/error/loading states.
+4. Accessibility and keyboard usability.
+5. Engineering feasibility and component reuse.
+
+Assign independent agents to each lens. Then have a synthesis agent merge findings into:
+- top 5 issues to fix before stakeholder review;
+- top 5 strengths to preserve;
+- unclear decisions that need human judgment;
+- recommended next iteration plan.
+
+Do not edit files.</code></pre>
+
+<p>What makes it dynamic: each lens runs independently, then the workflow merges them. This avoids one generic critique that misses the details.</p>
+
+<p>Book angle: This fits the design review chapter. It teaches designers to turn critique into a repeatable operating model.</p>
+
+<h5 id="4-figma-to-code-migration-planning-workflow">4. Figma-to-Code Migration Planning Workflow</h5>
+
+<p>Purpose: Plan a migration from design files or static mockups into production components.</p>
+
+<p>Best for: teams moving a legacy design system into code, or replacing static handoff with component-driven design.</p>
+
+<p>Prompt:</p>
+
+<pre><code class="language-text">Run a workflow to plan a Figma-to-code migration for the checkout redesign.
+
+Inputs:
+- Existing Figma export in design/checkout-export
+- Current React components in src/components
+- Design tokens in packages/tokens
+- Product requirements in docs/checkout-redesign.md
+
+Phases:
+1. Inventory screens, components, states, and repeated patterns.
+2. Match Figma elements to existing production components.
+3. Identify missing components or variants.
+4. Estimate migration sequence by dependency and risk.
+5. Verify the plan against accessibility and responsive requirements.
+6. Return a migration plan with milestones, component gaps, risks, and first implementation slice.
+
+Do not implement. Planning only.</code></pre>
+
+<p>What makes it dynamic: the workflow can compare multiple sources, split the mapping work screen by screen, and produce a plan that accounts for component dependencies.</p>
+
+<p>Book angle: This belongs in design-to-production. It reframes migration as structured analysis before code generation.</p>
+
+<h5 id="5-visual-qa-release-gate-workflow">5. Visual QA Release Gate Workflow</h5>
+
+<p>Purpose: Run a pre-release design QA sweep before a product launch.</p>
+
+<p>Best for: landing pages, onboarding flows, dashboards, product launches, and marketing sites.</p>
+
+<p>Prompt:</p>
+
+<pre><code class="language-text">Run a workflow as a visual QA release gate for the pages under app/(marketing).
+
+Phases:
+1. Inventory user-facing pages and key responsive breakpoints.
+2. Run or inspect available screenshots, tests, Storybook stories, and Playwright results.
+3. Check layout stability, text overflow, spacing consistency, image loading, dark/light mode behavior, accessibility, and brand token usage.
+4. Have verifier agents confirm high-severity issues.
+5. Return a launch readiness report: blockers, important fixes, acceptable risks, and recommended follow-up tasks.
+
+Only edit files if I explicitly approve after the report.</code></pre>
+
+<p>What makes it dynamic: release QA has many small checks. A workflow can parallelize them, keep noise out of the main context, and return a launch-focused decision artifact.</p>
+
+<p>Book angle: This is the bridge between design quality and shipping discipline.</p>
+
+<h5 id="use-case-1-design-system-governance">Use Case 1: Design System Governance</h5>
+
+<p>Dynamic Workflows can become a recurring governance mechanism. Instead of asking Claude once to "check the buttons," the team saves a workflow that checks token usage, component variants, accessibility states, responsive behavior, and documentation drift every time the design system changes.</p>
+
+<p>Designer value: fewer regressions and less manual inspection.</p>
+
+<p>Best output: a ranked design system drift report.</p>
+
+<p>When to run it: before merging component library changes, before quarterly design system reviews, or after major token updates.</p>
+
+<h5 id="use-case-2-evidence-based-design-research">Use Case 2: Evidence-Based Design Research</h5>
+
+<p>Design research often suffers from weak evidence. A workflow can split research across sources, compare claims, and return only findings that survive verification.</p>
+
+<p>Designer value: stronger research briefs with fewer hallucinated claims.</p>
+
+<p>Best output: a cited competitor or pattern research report.</p>
+
+<p>When to run it: before redesigning onboarding, pricing, search, dashboards, account setup, or any flow with mature competitors.</p>
+
+<h5 id="use-case-3-prototype-review-from-multiple-lenses">Use Case 3: Prototype Review from Multiple Lenses</h5>
+
+<p>A single critique often overweights one perspective. A workflow can assign separate agents to UX flow, visual hierarchy, accessibility, engineering feasibility, and brand consistency, then merge the results.</p>
+
+<p>Designer value: more balanced critique before stakeholder review.</p>
+
+<p>Best output: top fixes, strengths to preserve, and a prioritized iteration plan.</p>
+
+<p>When to run it: before presenting a prototype, before handing work to engineering, or after generating a first-pass AI prototype.</p>
+
+<h5 id="use-case-4-large-scale-ui-migration">Use Case 4: Large-Scale UI Migration</h5>
+
+<p>When moving static designs into production code, the hard part is not generating one component. The hard part is mapping screens, states, existing components, missing variants, dependencies, and risks.</p>
+
+<p>Designer value: a migration plan that avoids rebuilding everything blindly.</p>
+
+<p>Best output: component mapping, missing variant list, implementation slices, and risk register.</p>
+
+<p>When to run it: during redesigns, design system adoption, framework upgrades, or Figma-to-code transitions.</p>
+
+<h5 id="use-case-5-launch-ready-visual-qa">Use Case 5: Launch-Ready Visual QA</h5>
+
+<p>A launch surface can fail in small ways: text overflows, focus states disappear, a mobile breakpoint collapses, a marketing image fails, or a component uses a stale color token. A workflow can check these systematically.</p>
+
+<p>Designer value: a repeatable release gate that protects visual quality.</p>
+
+<p>Best output: launch readiness report with blockers, important fixes, and acceptable risks.</p>
+
+<p>When to run it: before publishing a landing page, product dashboard, onboarding flow, documentation site, or campaign page.</p>
+
+<h4 id="practical-rules-for-designers">Practical Rules for Designers</h4>
+
+<p>Use a Dynamic Workflow when:</p>
+
+<ul>
+  <li>the task has clear phases;</li>
+  <li>the same process will be repeated;</li>
+  <li>many files, pages, components, or sources need checking;</li>
+  <li>independent verification matters;</li>
+  <li>the output should be a report, plan, or prioritized backlog.</li>
+</ul>
+
+<p>Do not use a Dynamic Workflow when:</p>
+
+<ul>
+  <li>you need live creative conversation;</li>
+  <li>the task is small enough for one Claude turn;</li>
+  <li>you are still deciding the direction;</li>
+  <li>you cannot afford the token cost;</li>
+  <li>you need approval between every stage.</li>
+</ul>
+
+<p>Start small. Run one workflow as an audit before letting workflows edit files. Once the report shape is useful, save it as a reusable command.</p>
+
+<h4 id="cost-and-safety-notes">Cost and Safety Notes</h4>
+
+<p>Dynamic Workflows can be expensive because they spawn many agents. Each agent uses the session model unless the workflow routes a stage to a different model. Before a large run, check:</p>
+
+<pre><code class="language-bash">/model</code></pre>
+
+<p>For design tasks, ask Claude to use cheaper models for broad inventory work and stronger models for synthesis or final judgment:</p>
+
+<pre><code class="language-text">Use a smaller model for inventory and extraction phases. Use the strongest model only for final synthesis and high-severity verification.</code></pre>
+
+<p>Also remember:</p>
+
+<ul>
+  <li>workflow scripts do not directly read files or run shell commands; the agents do that work;</li>
+  <li>workflow agents inherit your tool allowlist;</li>
+  <li>file edits inside workflow agents are auto-approved;</li>
+  <li>shell, web, and MCP calls outside the allowlist can still prompt;</li>
+  <li>stopping a workflow does not necessarily lose completed work inside the same session;</li>
+  <li>resuming works inside the same Claude Code session, not after exiting and starting fresh.</li>
+</ul>
+
+<p>For designers, the safest default is audit first, edit second.</p>
+
+<h4 id="my-take">My Take</h4>
+
+<p>Dynamic Workflows are not just "more subagents." They are a different contract. A subagent helps you in the current conversation. A workflow turns a process into a repeatable machine.</p>
+
+<p>That matters for design because the hardest design work is often not producing the first artifact. It is checking the artifact from enough angles that you trust it: brand, layout, accessibility, responsiveness, implementation, and user flow. A workflow can encode that review pattern so you do not have to remember it every time.</p>
+
+<p>The tradeoff is cost and flexibility. If you are sketching direction, stay conversational. If you are auditing a design system, preparing a launch, or researching a market, use a workflow.</p>
+
+
+<figure class="figure--full" id="ch11-fig-06">
+  <div style="border:2px solid var(--primary); border-radius:16px; padding:28px; background:#fff;">
+    <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:14px;">
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:16px; min-height:112px;"><strong>Governance</strong><br><span>design system drift</span></div>
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:16px; min-height:112px;"><strong>Research</strong><br><span>evidence-backed patterns</span></div>
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:16px; min-height:112px;"><strong>Critique</strong><br><span>multi-lens review</span></div>
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:16px; min-height:112px;"><strong>Migration</strong><br><span>screen-to-component plan</span></div>
+      <div style="border:2px solid var(--primary); border-radius:12px; padding:16px; min-height:112px;"><strong>Release QA</strong><br><span>launch readiness gate</span></div>
+    </div>
+  </div>
+  <figcaption>The strongest design workflow outputs are reports, plans, gates, and backlog decisions.</figcaption>
+</figure>
+
+<p><strong>Resource:</strong> See <a href="https://code.claude.com/docs/en/workflows">Claude Code Dynamic Workflows</a> for the official workflow commands, runtime behavior, saved workflow locations, permissions, token cost, and current availability.</p>
+
+<p>Context management is the critical challenge across all strategies. Each subagent needs design system context: brand colors, typography, spacing. This context must be communicated without duplication. Shared CLAUDE.md or AGENTS.md files (covered in Chapter 03) solve this by providing a single source of truth that all agents read from.</p>
+
+  <h3 id="s-11-7">The Complexity Tax: When Single Agent Wins</h3>
 
   <p>Multi-agent introduces overhead that is easy to underestimate. I call this the complexity tax, and it has five components.</p>
 

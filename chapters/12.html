@@ -469,7 +469,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">14 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">11 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -532,7 +532,7 @@
 
   <p>The pipeline from design to production code has five stages. Each stage can be handled by an agent, a human, or a combination of both.</p>
 <figure class="figure--full" id="ch12-fig-04">
-  <img src="../images/ch12-fig-04--web.webp" alt="Pipeline flow diagram showing five stages from design artifact to production: Paper canvas design, JSX and Tailwind export, responsive and accessible adaptation, human visual review, and Vercel deployment with agent responsibilities marked at stages two through four" loading="eager" />
+  <img src="../images/ch12-fig-04--web.webp" alt="Pipeline flow diagram showing five stages from design artifact to production: Paper canvas design, JSX and Tailwind export, responsive and accessible adaptation, human visual review, and Vercel deployment with agent responsibilities marked at stages two through four" loading="lazy" />
   <figcaption>The five-stage deploy pipeline from design artifact to production with agent and human roles</figcaption>
 </figure>
 
@@ -572,7 +572,7 @@
 
   <p>Paper's <code>get_jsx</code> MCP tool is the foundation of the export pipeline. It takes a node ID and a format parameter (<code>tailwind</code> or <code>inline-styles</code>) and returns JSX as a string. The output is production-quality because Paper's canvas is real HTML/CSS --- there is no translation layer and no approximation.</p>
 <figure class="figure--full" id="ch12-fig-01">
-  <img src="../images/ch12-fig-01--web.webp" alt="Terminal session showing an AI agent calling the Paper MCP get_jsx tool for a hero section, receiving JSX output with Tailwind CSS classes, and creating a React component file with the generated code" loading="eager" />
+  <img src="../images/ch12-fig-01--web.webp" alt="Terminal session showing an AI agent calling the Paper MCP get_jsx tool for a hero section, receiving JSX output with Tailwind CSS classes, and creating a React component file with the generated code" loading="lazy" />
   <figcaption>Agent generating a React component from Paper MCP get_jsx output with Tailwind classes</figcaption>
 </figure>
 
@@ -727,7 +727,7 @@ codegen_clean({ removeTempFiles: true })</code></pre>
 
   <p>Responsive design is where agent-driven workflows save the most time. Translating a desktop design to mobile, tablet, and wide-screen variants is tedious, mechanical work. Agents excel at it.</p>
 <figure class="figure--grid-3" id="ch12-fig-02">
-  <img src="../images/ch12-fig-02--web.webp" alt="Three-column responsive preview showing the same navigation component at three breakpoints: 375px mobile with hamburger menu, 768px tablet with condensed links, and 1280px desktop with full navigation and search bar" loading="eager" />
+  <img src="../images/ch12-fig-02--web.webp" alt="Three-column responsive preview showing the same navigation component at three breakpoints: 375px mobile with hamburger menu, 768px tablet with condensed links, and 1280px desktop with full navigation and search bar" loading="lazy" />
   <figcaption>Same component at mobile (375px), tablet (768px), and desktop (1280px) responsive breakpoints</figcaption>
 </figure>
 
@@ -779,7 +779,7 @@ get_jsx({ nodeId: "desktop-frame", format: "tailwind" })
 
   <p>Accessibility is the area where agent-driven code generation has the biggest quality advantage over manual implementation. Agents do not skip alt text. Agents do not forget form labels. Agents do not overlook keyboard navigation. Every accessibility attribute is applied consistently, every time.</p>
 <figure class="figure--full" id="ch12-fig-03">
-  <img src="../images/ch12-fig-03--web.webp" alt="Terminal output from an automated accessibility audit showing 18 passed WCAG 2.1 AA criteria and 3 failed criteria including missing alt text on images and insufficient color contrast, each with specific element selectors and suggested fixes" loading="eager" />
+  <img src="../images/ch12-fig-03--web.webp" alt="Terminal output from an automated accessibility audit showing 18 passed WCAG 2.1 AA criteria and 3 failed criteria including missing alt text on images and insufficient color contrast, each with specific element selectors and suggested fixes" loading="lazy" />
   <figcaption>Agent accessibility audit showing WCAG 2.1 AA pass/fail results with automated fix suggestions</figcaption>
 </figure>
 
@@ -832,10 +832,10 @@ export({
 
 # Agent generates responsive img tag:
 # &lt;img
-#   srcset="hero-image-1x.png 1x, hero-image-2x.png 2x"
+#   srcSet="hero-image-1x.png 1x, hero-image-2x.png 2x"
 #   src="hero-image-1x.png"
 #   alt="Product dashboard showing analytics"
-#   loading="eager"
+#   loading="lazy"
 # /&gt;</code></pre>
 
   <p>Paper's real CSS (no abstraction layer) means there is no design-to-code translation bloat. The generated code is as performant as the design. OpenPencil's design variables mapped to CSS custom properties reduce CSS duplication. Agents can lazy-load below-fold sections, optimize font loading, and minify CSS as post-processing steps.</p>
@@ -863,7 +863,7 @@ export({
       </tr>
       <tr>
         <td>Lazy loading below fold</td>
-        <td>Agent adds loading="eager" to below-fold images and sections</td>
+        <td>Agent adds loading="lazy" to below-fold images and sections</td>
         <td>Verify no layout shift</td>
       </tr>
       <tr>
@@ -883,7 +883,7 @@ export({
 
   <p>The pipeline is not one-shot. It is a loop: generate, review, iterate. The agent produces code. The human reviews the output in a browser. The human gives feedback. The agent adjusts. Repeat until the output meets the design intent.</p>
 <figure class="figure--grid-2" id="ch12-fig-05">
-  <img src="../images/ch12-fig-05--web.webp" alt="Side-by-side comparison of a hero section as designed in Paper canvas on the left and as rendered on the deployed production website on the right, demonstrating high visual fidelity between design and live output" loading="eager" />
+  <img src="../images/ch12-fig-05--web.webp" alt="Side-by-side comparison of a hero section as designed in Paper canvas on the left and as rendered on the deployed production website on the right, demonstrating high visual fidelity between design and live output" loading="lazy" />
   <figcaption>Paper canvas design (left) compared with the deployed production website (right) showing visual fidelity</figcaption>
 </figure>
 

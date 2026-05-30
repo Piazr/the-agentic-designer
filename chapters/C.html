@@ -469,7 +469,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">9 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">7 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -525,11 +525,15 @@
       </nav>
       <main class="chapter-main">
         <div class="book-content">
-<h3 id="appendix-C-1">Prototyping Prompts</h3>
+<section class="content appendix" id="appendix-C">
+  <h2 class="section-title"><span class="num">Appendix C</span> Prompt Library for Design Tasks</h2>
+  <p class="section-intro">Battle-tested prompts for common agentic design tasks. Copy them into your agent session, swap the bracketed values, and ship. Verified as of May 2026.</p>
+
+  <h3 id="appendix-C-1">Prototyping Prompts</h3>
 
   <p>Quick wireframes, interactive prototypes, and dashboard layouts. These prompts work across tools --- adjust the tool reference for your setup.</p>
 <figure class="figure--full" id="chC-fig-01">
-  <img src="../images/chC-fig-01--web.webp" alt="Card grid showing prompt templates for design tasks: Quick Wireframe for any tool, Interactive iOS Prototype for Huashu Design, Web Prototype for Open Design, and Dashboard Prototype with their target tools and expected output descriptions" loading="eager" />
+  <img src="../images/chC-fig-01--web.webp" alt="Card grid showing prompt templates for design tasks: Quick Wireframe for any tool, Interactive iOS Prototype for Huashu Design, Web Prototype for Open Design, and Dashboard Prototype with their target tools and expected output descriptions" loading="lazy" />
   <figcaption>Prompt template gallery organized by task category with target tools and expected outputs</figcaption>
 </figure>
 
@@ -733,7 +737,7 @@ of truth.</code></pre>
 
   <p>Design artifacts to production code. These prompts enforce accessibility, performance, and responsive design standards.</p>
 <figure class="figure--full" id="chC-fig-02">
-  <img src="../images/chC-fig-02--web.webp" alt="Comparison grid showing the same design prompt executed in Paper producing JSX output, in Open Design producing an HTML artifact, and in Huashu Design producing an HTML prototype, with quality and format annotations for each tool variant" loading="eager" />
+  <img src="../images/chC-fig-02--web.webp" alt="Comparison grid showing the same design prompt executed in Paper producing JSX output, in Open Design producing an HTML artifact, and in Huashu Design producing an HTML prototype, with quality and format annotations for each tool variant" loading="lazy" />
   <figcaption>Same prompts run through Paper, Open Design, and Huashu Design showing output format differences</figcaption>
 </figure>
 
@@ -803,7 +807,7 @@ Fix all issues found. Show me what you changed.</code></pre>
   <p>Performance optimization:</p>
   <pre><code>Optimize the generated code for Core Web Vitals:
 1. Add width/height to all images to prevent CLS
-2. Lazy-load below-fold images with loading="eager"
+2. Lazy-load below-fold images with loading="lazy"
 3. Preload critical fonts
 4. Minimize CSS by removing unused Tailwind classes
 5. Add proper srcset for responsive images
@@ -864,6 +868,7 @@ Step 3: "Create a Storybook story for each component showing
 all variants. Include accessibility testing in each story."</code></pre>
 
   <p>Each prompt in this appendix is designed to be copied directly into an agent session. Swap bracketed values for your project specifics. The prompts that work best are specific about output format, tool selection, and quality constraints. Vague prompts produce vague output.</p>
+</section>
         </div>
       </main>
     </div>

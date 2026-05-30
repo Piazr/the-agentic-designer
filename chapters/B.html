@@ -469,7 +469,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">9 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">6 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -531,23 +531,26 @@
       </nav>
       <main class="chapter-main">
         <div class="book-content">
-<div class="callout"><p><strong>Note:</strong> Configuration snippets are illustrative examples. Refer to each tool's official documentation for current setup instructions.</p></div>
+<section class="content appendix" id="appendix-B">
+  <h2 class="section-title"><span class="num">Appendix B</span> MCP Server Reference</h2>
+  <p class="section-intro">Every MCP server covered in this book, every tool it exposes, and the configuration snippets to connect it to your agent. Verified as of May 2026.</p>
+  <div class="callout"><p><strong>Note:</strong> Configuration snippets are illustrative examples. Refer to each tool's official documentation for current setup instructions.</p></div>
 
   <h3 id="appendix-B-1">Paper MCP Server Tools</h3>
 
   <p>Paper's MCP server runs locally when Paper Desktop is open. It listens on <code>http://127.0.0.1:29979/mcp</code> and exposes 22 tools split into read, write, and export categories. This is the most polished MCP server in the design tool ecosystem as of May 2026.</p>
 <figure class="figure--full" id="chB-fig-02">
-  <img src="../images/chB-fig-02--web.webp" alt="Reference grid listing all MCP tools per server: Paper with 22 tools including get_jsx, write_html, and export; Figma with design reading tools; Miro with whiteboard tools; and MagicPattern with generative pattern tools, each with parameter summaries" loading="eager" />
+  <img src="../images/chB-fig-02--web.webp" alt="Reference grid listing all MCP tools per server: Paper with 22 tools including get_jsx, write_html, and export; Figma with design reading tools; Miro with whiteboard tools; and MagicPattern with generative pattern tools, each with parameter summaries" loading="lazy" />
   <figcaption>MCP server tool reference showing Paper, Figma, Miro, and MagicPattern tool inventories</figcaption>
 </figure>
 
 <figure class="figure--full" id="chB-fig-01">
-  <img src="../images/chB-fig-01--web.webp" alt="VS Code editor displaying MCP server configuration snippets for Paper at localhost port 29979, Figma at mcp dot figma dot com, and OpenPencil with their respective transport types and authentication methods" loading="eager" />
+  <img src="../images/chB-fig-01--web.webp" alt="VS Code editor displaying MCP server configuration snippets for Paper at localhost port 29979, Figma at mcp dot figma dot com, and OpenPencil with their respective transport types and authentication methods" loading="lazy" />
   <figcaption>MCP server configuration reference showing Paper, Figma, and OpenPencil connection settings</figcaption>
 </figure>
 
 
-  <h4 id="appendix-B-1-1">Read Tools</h4>
+  <h4 id="appendix-B.1.1">Read Tools</h4>
 
   <table>
     <thead>
@@ -628,7 +631,7 @@
     </tbody>
   </table>
 
-  <h4 id="appendix-B-1-2">Write Tools</h4>
+  <h4 id="appendix-B.1.2">Write Tools</h4>
 
   <table>
     <thead>
@@ -697,7 +700,7 @@
     </tbody>
   </table>
 
-  <h4 id="appendix-B-1-3">Export Tool</h4>
+  <h4 id="appendix-B.1.3">Export Tool</h4>
 
   <table>
     <thead>
@@ -785,7 +788,7 @@
 
   <p>OpenPencil's built-in MCP server ships as the <code>pen-mcp</code> package. It provides a layered design workflow and code generation pipeline.</p>
 
-  <h4 id="appendix-B-3-1">Document and Design Tools</h4>
+  <h4 id="appendix-B.3.1">Document and Design Tools</h4>
 
   <table>
     <thead>
@@ -818,7 +821,7 @@
     </tbody>
   </table>
 
-  <h4 id="appendix-B-3-2">Codegen Tools</h4>
+  <h4 id="appendix-B.3.2">Codegen Tools</h4>
 
   <pre><code>// Codegen pipeline
 codegen_plan        → plan the code generation
@@ -1050,6 +1053,7 @@ URL: http://127.0.0.1:29979/mcp</code></pre>
       </tr>
     </tbody>
   </table>
+</section>
         </div>
       </main>
     </div>

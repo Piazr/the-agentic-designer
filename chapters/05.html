@@ -468,7 +468,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">20 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -531,7 +531,7 @@
 
   <p>Paper (paper.design) is a connected HTML/CSS canvas for teams shipping with AI agents. Built by the Paper team, it exposes a rich MCP server that lets agents read designs, export JSX, and write HTML back to the canvas. The key differentiator: design-to-code and code-to-design in the same loop.</p>
 <figure class="figure--full" id="ch05-fig-01">
-  <img src="../images/ch05-fig-01--web.webp" alt="Paper design editor showing an HTML CSS canvas with design elements, a layers panel on the left, and toolbar options demonstrating the connected canvas workflow" loading="eager" />
+  <img src="../images/ch05-fig-01--web.webp" alt="Paper design editor showing an HTML CSS canvas with design elements, a layers panel on the left, and toolbar options demonstrating the connected canvas workflow" loading="lazy" />
   <figcaption>Paper editor canvas with HTML/CSS design surface, layers panel, and connected tools</figcaption>
 </figure>
 
@@ -548,7 +548,7 @@
 
   <p>The Paper MCP server runs locally at <code>http://127.0.0.1:29979/mcp</code>. It starts automatically when Paper Desktop is open and a file is loaded. The setup differs by agent platform.</p>
 <figure class="figure--full" id="ch05-fig-02">
-  <img src="../images/ch05-fig-02--web.webp" alt="Terminal output showing the Paper MCP server configuration commands for Claude Code and OpenCode with successful connection verification at port 29979" loading="eager" />
+  <img src="../images/ch05-fig-02--web.webp" alt="Terminal output showing the Paper MCP server configuration commands for Claude Code and OpenCode with successful connection verification at port 29979" loading="lazy" />
   <figcaption>Paper MCP server setup showing configuration for Claude Code and OpenCode</figcaption>
 </figure>
 
@@ -822,7 +822,7 @@ frames I have selected in Paper? Each frame is a different breakpoint.</code></p
 
   <p>Pencil (pencil.dev) takes a different approach. It's a vector design tool that integrates directly into your IDE. The tagline: "Design on canvas. Land in code." Unlike Paper's HTML/CSS canvas, Pencil provides a native vector design experience — layers, paths, boolean operations, the works — but it lives inside the development environment, not in a separate browser tab.</p>
 <figure class="figure--full" id="ch05-fig-03">
-  <img src="../images/ch05-fig-03--web.webp" alt="VS Code with Pencil extension showing a vector design canvas with editable elements, a hierarchical design tree panel, and a properties inspector for the selected component" loading="eager" />
+  <img src="../images/ch05-fig-03--web.webp" alt="VS Code with Pencil extension showing a vector design canvas with editable elements, a hierarchical design tree panel, and a properties inspector for the selected component" loading="lazy" />
   <figcaption>Pencil vector design canvas inside VS Code with the design tree and component inspector</figcaption>
 </figure>
 
@@ -885,7 +885,7 @@ frames I have selected in Paper? Each frame is a different breakpoint.</code></p
 
   <p>The <code>.pen</code> file format is Pencil's native design-as-code format. It's structured, parseable, and designed for git. The format supports all of Pencil's core concepts: nodes, styles, components, variables, and layout rules.</p>
 <figure class="figure--half-right" id="ch05-fig-04">
-  <img src="../images/ch05-fig-04--web.webp" alt="Pencil inspector panel showing a selected component with its child nodes, layout properties, and design token references for colors and typography" loading="eager" />
+  <img src="../images/ch05-fig-04--web.webp" alt="Pencil inspector panel showing a selected component with its child nodes, layout properties, and design token references for colors and typography" loading="lazy" />
   <figcaption>Pencil node tree inspector showing component structure and design token bindings</figcaption>
 </figure>
 
@@ -990,7 +990,7 @@ corner radius (12px instead of 8px) and add a hover state.</code></pre>
 
   <p>This section walks through a complete workflow: designing in Paper, generating code with an agent, and deploying to production.</p>
 <figure class="figure--grid-2" id="ch05-fig-05">
-  <img src="../images/ch05-fig-05--web.webp" alt="Side-by-side comparison of Paper HTML CSS canvas and Pencil vector canvas showing identical button components rendered in each tool with different design approaches" loading="eager" />
+  <img src="../images/ch05-fig-05--web.webp" alt="Side-by-side comparison of Paper HTML CSS canvas and Pencil vector canvas showing identical button components rendered in each tool with different design approaches" loading="lazy" />
   <figcaption>Paper and Pencil side-by-side showing the same component in each design format</figcaption>
 </figure>
 
@@ -1137,8 +1137,30 @@ page component with responsive breakpoints.</code></pre>
   <div class="callout">
     <p><strong>My take:</strong> The Paper-to-production workflow is the most practical agentic design workflow I've used. It's not perfect — the agent sometimes misinterprets complex layouts, and you need to review the generated code carefully. But it eliminates the most tedious part of front-end development: translating a finished design into working code. Start with a small section, validate the output, then scale up.</p>
   </div>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:start -->
+  <div id="05.anti-slop-skills-as-design-guardrails" class="callout bookmark">
+    <p><strong>Bookmark:</strong> Anti-slop skills as design guardrails</p>
+    <p>The repository contains a Gemini-focused SKILL.md for custom HTML website design. The useful idea is explicit negative direction: avoid template habits such as glass panels, cyber-neon palettes, predictable section stacks, and generic AI layout patterns while pushing for image-led composition, richer typography, intentional motion, and crafted micro-interactions.</p>
+    <p>Anti-template design is not a style preference. It is a quality-control problem that appears whenever an agent is asked to produce a website without enough taste, structure, and negative constraints.</p>
+    <p>I read an anti-slop skill as a compact design review protocol. It does not make the agent tasteful by itself; it names the failure modes I want the agent to avoid before the first screen is generated.</p>
+    <p>For website work, those failure modes are easy to recognize: repeated card grids, vague SaaS gradients, decorative glass panels, weak hero sections, empty stock-like composition, and motion that exists only because the tool can animate. A useful skill turns those patterns into explicit constraints the agent must work around.</p>
+    <p>The value of a SKILL.md file is that it makes this critique reusable. Instead of writing &quot;make it less generic&quot; after every first draft, I can ask the agent to begin with stronger art direction: image-led composition, deliberate typography, custom section rhythm, purposeful GSAP or Lottie motion, and micro-interactions that support the product story.</p>
+    <p>I would still test the skill against a real brief before trusting it. The comparison is simple: run the same landing-page task with the default prompt and then with the anti-slop skill loaded. Keep it only if the second version gives me a more specific visual direction and fewer generic AI layout habits to correct.</p>
+    <p class="bookmark-footer"><strong>Link:</strong> <a href="https://github.com/AryanAliPro/antislop">Anti-slop skills as design guardrails</a></p>
+  </div>
 
-  <div class="callout tip">
+  <div id="05.figma-export-as-agent-context" class="callout bookmark">
+    <p><strong>Bookmark:</strong> Figma export as agent context</p>
+    <p>MagicPath Figma Connect is the relevant MagicPath documentation for moving Figma context into an agent workflow.</p>
+    <p>The gap between design tools and agent tools is still one of the weak points in the workflow. A useful export flow should move structure, naming, layout, and intent into the agent&#39;s context without forcing the designer to describe the same artifact again in prose.</p>
+    <p>I only care about a Figma export workflow if it gives me more control over the agent&#39;s working context. A tool belongs in the stack when it helps me carry intent, examples, constraints, and critique through the work with less translation.</p>
+    <p>The operating experiment is small: choose one artifact, give the agent the same brief through the current workflow and the new workflow, then inspect what changed in the output and the review loop.</p>
+    <p>The habit is simple: do not adopt the tool because it is visible in the market; adopt it only when it makes the design loop easier to direct.</p>
+    <p class="bookmark-footer"><strong>Link:</strong> <a href="https://magicpath.ai/documentation/features/figma-connect">Figma export as agent context</a></p>
+  </div>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:end -->
+
+<div class="callout tip">
     <p><strong>Next:</strong> Chapter 06 covers the open-source alternatives: Open Design (43k+ stars, 31 skills) and OpenPencil (3k+ stars, concurrent Agent Teams). If Paper and Pencil are the commercial options, Open Design and OpenPencil are the community-driven counterparts — with different trade-offs and capabilities.</p>
   </div>
         </div>

@@ -468,7 +468,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">19 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -528,7 +528,7 @@
 
   <p>Agents learn through three mechanisms, each with different loading behavior and context cost. Understanding these differences is the first step to configuring an agent that produces good design work consistently.</p>
 <figure class="figure--half-right" id="ch03-fig-04">
-  <img src="../images/ch03-fig-04--web.webp" alt="Pyramid diagram showing three agent instruction mechanisms: configuration files loaded always at full context cost, skill files loaded on demand at near-zero cost, and auto memory loaded at session start" loading="eager" />
+  <img src="../images/ch03-fig-04--web.webp" alt="Pyramid diagram showing three agent instruction mechanisms: configuration files loaded always at full context cost, skill files loaded on demand at near-zero cost, and auto memory loaded at session start" loading="lazy" />
   <figcaption>The three-tier instruction hierarchy showing when each mechanism loads and its context cost</figcaption>
 </figure>
 
@@ -580,14 +580,14 @@
 
   <p>Two configuration file conventions exist. CLAUDE.md is Claude Code's native format. AGENTS.md is used by Codex CLI and OpenCode. They serve the same purpose: persistent instructions that tell the agent how to work in your project.</p>
 <figure class="figure--full" id="ch03-fig-01">
-  <img src="../images/ch03-fig-01--web.webp" alt="VS Code editor displaying a CLAUDE.md configuration file with the project file tree showing the .claude directory and rules subdirectory for path-scoped configuration" loading="eager" />
+  <img src="../images/ch03-fig-01--web.webp" alt="VS Code editor displaying a CLAUDE.md configuration file with the project file tree showing the .claude directory and rules subdirectory for path-scoped configuration" loading="lazy" />
   <figcaption>CLAUDE.md configuration hierarchy in VS Code showing project-level and user-level files</figcaption>
 </figure>
 
 
   <p>The good news: they are cross-compatible. OpenCode reads CLAUDE.md as a fallback. Claude Code can import AGENTS.md with the <code>@AGENTS.md</code> syntax. You do not need to choose one or the other.</p>
 
-  <h4 id="s-03-2-1">CLAUDE.md Hierarchy</h4>
+  <h4 id="03.2.1">CLAUDE.md Hierarchy</h4>
 
   <p>Claude Code loads CLAUDE.md files from multiple locations, broadest to most specific (source: <a href="https://docs.anthropic.com/en/docs/claude-code/memory">Claude Code Memory</a>, retrieved 2026-05-18):</p>
 
@@ -616,7 +616,7 @@ paths:
 
   <p>Path-scoped rules load only when the agent touches matching files. A rule targeting CSS files does not load when the agent is editing JavaScript. This keeps the context clean and focused.</p>
 
-  <h4 id="s-03-2-2">AGENTS.md for Codex and OpenCode</h4>
+  <h4 id="03.2.2">AGENTS.md for Codex and OpenCode</h4>
 
   <p>AGENTS.md follows a simpler model than CLAUDE.md. From the Codex system message: "The scope of an AGENTS.md file is the entire directory tree rooted at the folder that contains it. More-deeply-nested AGENTS.md files take precedence in the case of conflicting instructions" (source: <a href="https://openai.com/index/introducing-codex/">Introducing Codex</a>, retrieved 2026-05-18).</p>
 
@@ -651,7 +651,7 @@ This is an SST v3 monorepo with TypeScript. The project uses bun workspaces.
 
   <p>Another principle: verifiability. Codex's AGENTS.md spec includes a powerful feature --- programmatic checks. If the configuration file says "run <code>npm run lint</code> after every change," the agent runs it. If the check fails, the agent fixes the issue. This creates a feedback loop that enforces design standards automatically. Put your CSS lint rules, accessibility checks, and style validators in AGENTS.md, and the agent enforces them without being asked.</p>
 
-  <h4 id="s-03-2-3">Cross-Compatibility</h4>
+  <h4 id="03.2.3">Cross-Compatibility</h4>
 
   <p>CLAUDE.md and AGENTS.md can coexist in the same project. Two approaches work well.</p>
 
@@ -671,7 +671,7 @@ Use plan mode for changes under `src/billing/`.</code></pre>
 
   <p>For teams, I recommend the import pattern. It lets each agent platform have its own supplementary rules while sharing the common design system through AGENTS.md. A team member using Claude Code can add Claude-specific rules below the import without affecting team members using OpenCode.</p>
 
-  <h4 id="s-03-2-4">Auto Memory</h4>
+  <h4 id="03.2.4">Auto Memory</h4>
 
   <p>Claude Code writes its own notes across sessions. These accumulate in <code>~/.claude/projects/&lt;project&gt;/memory/</code>:</p>
 
@@ -688,12 +688,12 @@ Use plan mode for changes under `src/billing/`.</code></pre>
 
   <p>SKILL.md is the Agent Skills open standard (agentskills.io). It works across Claude Code and OpenCode. A skill is a directory containing a SKILL.md file with optional supporting files --- templates, examples, scripts.</p>
 <figure class="figure--grid-2" id="ch03-fig-05">
-  <img src="../images/ch03-fig-05--web.webp" alt="Side-by-side comparison of CLAUDE.md hierarchy in Claude Code and AGENTS.md in OpenCode showing file locations, loading behavior, and cross-compatibility" loading="eager" />
+  <img src="../images/ch03-fig-05--web.webp" alt="Side-by-side comparison of CLAUDE.md hierarchy in Claude Code and AGENTS.md in OpenCode showing file locations, loading behavior, and cross-compatibility" loading="lazy" />
   <figcaption>CLAUDE.md and AGENTS.md file structures compared with cross-compatibility notes</figcaption>
 </figure>
 
 <figure class="figure--full" id="ch03-fig-02">
-  <img src="../images/ch03-fig-02--web.webp" alt="VS Code editor displaying a SKILL.md file with YAML frontmatter containing name, description, and trigger fields followed by markdown-formatted skill instructions" loading="eager" />
+  <img src="../images/ch03-fig-02--web.webp" alt="VS Code editor displaying a SKILL.md file with YAML frontmatter containing name, description, and trigger fields followed by markdown-formatted skill instructions" loading="lazy" />
   <figcaption>A SKILL.md file showing the metadata frontmatter and instruction body convention</figcaption>
 </figure>
 
@@ -702,7 +702,7 @@ Use plan mode for changes under `src/billing/`.</code></pre>
 
   <p>The skill system also solves a distribution problem. Skills can be shared. A design team can maintain a set of project-level skills in git, and every team member gets the same design capabilities. A community can publish skills that others install. The agentskills.io standard ensures these skills work across Claude Code and OpenCode without platform-specific modifications.</p>
 
-  <h4 id="s-03-3-1">Skill Discovery Paths</h4>
+  <h4 id="03.3.1">Skill Discovery Paths</h4>
 
   <p>Agents search for skills in multiple locations (source: <a href="https://opencode.ai/docs/skills/">OpenCode Skills</a>, retrieved 2026-05-18):</p>
 
@@ -745,7 +745,7 @@ Use plan mode for changes under `src/billing/`.</code></pre>
 
   <p>OpenCode searches all five paths. Claude Code searches <code>.claude/skills/</code> and <code>~/.claude/skills/</code>. Project-level skills can be committed to git and shared with the team. User-level skills are personal and available across all projects.</p>
 
-  <h4 id="s-03-3-2">SKILL.md Structure</h4>
+  <h4 id="03.3.2">SKILL.md Structure</h4>
 
   <p>A skill file has two parts: YAML frontmatter that controls behavior, and a Markdown body that provides instructions to the agent.</p>
 
@@ -785,7 +785,7 @@ Output a single HTML file.
     <li><strong>paths</strong> --- Glob patterns. The skill only activates when the agent touches matching files.</li>
   </ul>
 
-  <h4 id="s-03-3-3">Dynamic Context Injection</h4>
+  <h4 id="03.3.3">Dynamic Context Injection</h4>
 
   <p>Skills can execute commands before the agent sees the content. The <code>!`command`</code> syntax runs a command and injects the output into the skill body. This keeps the skill current without manual updates.</p>
 
@@ -826,7 +826,7 @@ Output a single HTML file.
 
   <p>A design harness is a configuration stack that constrains agent output quality. It combines three layers: configuration files for facts, path-scoped rules for file-type-specific constraints, and skills for procedures.</p>
 <figure class="figure--full" id="ch03-fig-03">
-  <img src="../images/ch03-fig-03--web.webp" alt="VS Code file explorer showing a design harness project structure with .claude/rules directory, skills directory containing SKILL.md files, and a design-tokens directory" loading="eager" />
+  <img src="../images/ch03-fig-03--web.webp" alt="VS Code file explorer showing a design harness project structure with .claude/rules directory, skills directory containing SKILL.md files, and a design-tokens directory" loading="lazy" />
   <figcaption>A design harness directory structure with scoped rules, skills, and token files</figcaption>
 </figure>
 
@@ -1014,8 +1014,20 @@ Output a single HTML file with embedded CSS.
   <div class="callout">
     <p><strong>My take:</strong> I resisted building custom design harnesses for months. I thought the agent would figure out my preferences through iteration. It does not. Auto memory helps, but it captures corrections after the fact. A harness prevents the errors before they happen. The upfront investment is 30-60 minutes of writing AGENTS.md and a skill file. The payoff is consistent output across every session, every project, every team member. This is the highest-return investment in the entire book.</p>
   </div>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:start -->
+  <div id="03.taste-skills-from-design-references" class="callout bookmark">
+    <p><strong>Bookmark:</strong> Taste skills from design references</p>
+    <p>This is a taste-skill pipeline for turning design references into concrete skill instructions an agent can reuse. I treat it as a way to study how visual examples become operating constraints, not as a shortcut that replaces design judgment.</p>
+    <p>Before a skill can preserve taste, it needs material to learn from. In design work, that material is usually a set of references: examples that show spacing, hierarchy, rhythm, density, composition, and the kinds of mistakes the agent should avoid.</p>
+    <p>I do not want a taste skill to describe taste in vague adjectives. I want it to convert references into operational rules the agent can actually follow: spacing, hierarchy, rhythm, typography, composition, density, and the failure modes that make the work feel generic.</p>
+    <p>The strongest part of this workflow is the emphasis on references. Good references give the agent a visual standard. Cropped, high-resolution details are especially useful because they force the analysis to focus on the design decisions inside the artifact rather than the product category around it.</p>
+    <p>A useful taste-building pipeline should analyze each reference for why it works, compare multiple model readings to reduce blind spots, fuse the observations into smaller rule sets, and then write a concrete skill from those rules. The final skill should use imperative instructions and constraints, not soft words like &quot;premium&quot; or &quot;clean.&quot;</p>
+    <p>Skill files are not just prompts. They are a way to preserve design judgment. The better the reference analysis, the more the agent can carry my taste into the next artifact without me re-explaining it from scratch.</p>
+    <p class="bookmark-footer"><strong>Link:</strong> <a href="https://taste.jaytel.com">Taste skills from design references</a></p>
+  </div>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:end -->
 
-  <div class="callout tip">
+<div class="callout tip">
     <p><strong>Next:</strong> Chapter 04 covers design-as-code --- the foundational formats (.pen files, .op files, HTML canvas, design tokens) that make agentic design possible. Understanding these formats is essential for everything that follows.</p>
   </div>
         </div>

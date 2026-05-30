@@ -469,7 +469,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">19 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">16 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -522,11 +522,57 @@
       </nav>
       <main class="chapter-main">
         <div class="book-content">
-<h3 id="s-13-1">Case Study 1: Startup Marketing Site with Paper and Claude Code</h3>
+<p>The four cases span the full spectrum of agentic design work: a marketing website, a pitch deck, a product launch video, and a cross-platform component library. I chose these deliberately. They represent the four most common categories of design work that teams are handing to agents right now, in May 2026.</p>
+
+  <p>Each case follows the same structure: the context and goal, the tool chain, the step-by-step workflow, a timeline table, and a no-bullshit assessment. I participated in or closely observed all four workflows. Where I lack direct experience, I say so.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Case</th>
+        <th>Output</th>
+        <th>Primary Tools</th>
+        <th>Agent</th>
+        <th>Time Spent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Startup marketing site</td>
+        <td>Deployed website</td>
+        <td>Paper, Claude Code</td>
+        <td>Claude Code</td>
+        <td>~4 hours</td>
+      </tr>
+      <tr>
+        <td>Brand pitch deck</td>
+        <td>Pitch deck (PDF/PPTX)</td>
+        <td>Open Design</td>
+        <td>Claude Code</td>
+        <td>~2 hours</td>
+      </tr>
+      <tr>
+        <td>Product launch video</td>
+        <td>MP4 + GIF</td>
+        <td>Huashu Design, Hyperframes</td>
+        <td>Claude Code</td>
+        <td>~3 hours</td>
+      </tr>
+      <tr>
+        <td>Component library</td>
+        <td>Multi-platform components</td>
+        <td>Pencil, OpenPencil</td>
+        <td>Claude Code + OpenCode</td>
+        <td>~8 hours (over 3 days)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="s-13-1">Case Study 1: Startup Marketing Site with Paper and Claude Code</h3>
 
   <p>The setup: a designer at a small SaaS startup needs to ship a marketing site. The company has a Figma file with brand tokens, a Notion database with customer testimonials, and a tight deadline. The old approach would be: export designs from Figma, hand off to a developer, wait days for a first build, iterate via Slack. The new approach: Paper as the design surface, Claude Code as the builder, MCP as the glue.</p>
 <figure class="figure--full" id="ch13-fig-01">
-  <img src="../images/ch13-fig-01--web.webp" alt="Architecture diagram for the startup marketing site case study showing Figma brand tokens flowing into Paper design canvas, Claude Code agent building via MCP connection, and final deployment to Vercel with a four-hour timeline" loading="eager" />
+  <img src="../images/ch13-fig-01--web.webp" alt="Architecture diagram for the startup marketing site case study showing Figma brand tokens flowing into Paper design canvas, Claude Code agent building via MCP connection, and final deployment to Vercel with a four-hour timeline" loading="lazy" />
   <figcaption>Case Study 1 architecture: Paper + Claude Code + MCP pipeline from Figma tokens to deployed site</figcaption>
 </figure>
 
@@ -824,12 +870,12 @@
 
   <p>Four different workflows, four different tool combinations, four different output types. The patterns that emerge are consistent.</p>
 <figure class="figure--full" id="ch13-fig-03">
-  <img src="../images/ch13-fig-03--web.webp" alt="Gantt-style timeline showing four case study workflows as parallel tracks with design, build, iterate, and ship phases: marketing site in 4 hours, pitch deck in 2 hours, launch video in 3 hours, and component library over 8 hours across three days" loading="eager" />
+  <img src="../images/ch13-fig-03--web.webp" alt="Gantt-style timeline showing four case study workflows as parallel tracks with design, build, iterate, and ship phases: marketing site in 4 hours, pitch deck in 2 hours, launch video in 3 hours, and component library over 8 hours across three days" loading="lazy" />
   <figcaption>Timeline comparison of four case studies showing design, build, iterate, and ship phases</figcaption>
 </figure>
 
 <figure class="figure--grid-2" id="ch13-fig-02">
-  <img src="../images/ch13-fig-02--web.webp" alt="Side-by-side workflow comparison showing a traditional seven-step manual design process spanning five days on the left and a three-step agent-driven process using Paper and Claude Code completing in four hours on the right" loading="eager" />
+  <img src="../images/ch13-fig-02--web.webp" alt="Side-by-side workflow comparison showing a traditional seven-step manual design process spanning five days on the left and a three-step agent-driven process using Paper and Claude Code completing in four hours on the right" loading="lazy" />
   <figcaption>Before and after: traditional design workflow (5 days) vs agent-driven workflow (4 hours)</figcaption>
 </figure>
 
@@ -905,18 +951,30 @@
   <div class="callout">
     <p><strong>My take:</strong> The biggest surprise across all four cases was how consistent the failure modes are. Agent quality degrades with scope. MCP connections drop on long sessions. Complex layouts break. The teams that succeeded were the ones that anticipated these failures and designed their workflow around them --- small increments, frequent commits, human-directed design decisions. The tool matters less than the workflow pattern.</p>
   </div>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:start -->
+  <div id="13.opening-prompts-set-the-design-ceiling" class="callout bookmark">
+    <p><strong>Bookmark:</strong> Opening prompts set the design ceiling</p>
+    <p>Before an agent designs anything, the session already has a shape. The opening prompt decides how much taste, context, audience, and constraint enter the work before the model starts inventing on my behalf.</p>
+    <p>The first prompt is the ceiling of an agentic design session. It defines the brief, the audience, the visual standard, and the amount of ambiguity I allow the agent to fill in before I see the first artifact.</p>
+    <p>The useful lesson is not that longer prompts are always better. It is that structured openings preserve intent. A strong opening prompt names the product, the audience, the desired emotional register, the visual system, the interaction constraints, and the failure modes to avoid. When those decisions are missing, the agent must invent them, and every later correction is forced to fight the first draft&#39;s assumptions.</p>
+    <p>A useful comparison has three opening moves: a minimal confirmation, a generic task prompt, and a brief-plus-directive prompt. The third one gives the agent a stronger design frame because it constrains the first artifact before the model starts making invisible assumptions.</p>
+    <p>The practical rule is simple: design the session before asking the agent to design the screen. The first prompt should carry enough taste, context, and constraints that the agent&#39;s first artifact lands inside the intended world rather than near it.</p>
+    <p class="bookmark-footer"><strong>Link:</strong> <a href="https://contralabs.com/research">Opening prompts set the design ceiling</a></p>
+  </div>
+<!-- clip-update-run:2026-05-28-agentic-design-clips:end -->
 
-  <div class="callout tip">
+<div class="callout tip">
     <p><strong>Next:</strong> These case studies show where agentic design is today. <a href="14.html">Chapter 14</a> looks at where it is heading --- the trends, predictions, and risks that will shape the next two years.</p>
   </div>
 
-  
+  <section class="footnotes">
     <h3>Notes</h3>
     <ol>
       <li id="fn-ch13-1">Paper documentation, "Working with Agents" guide. Quoted text reflects guidance from the Paper docs on scoping agent tasks. The recommendation to start small and build incrementally is a core principle of the Paper agent workflow.</li>
       <li id="fn-ch13-2">Open Design README, GitHub repository. The quoted text is from the project status section of the Open Design README, describing the project's current development phase.</li>
       <li id="fn-ch13-3">Huashu Design skill documentation (<code>SKILL.md</code>). The quoted assessment appears in the Huashu Design skill's self-evaluation framework, where skills are rated on a 100-point scale across five dimensions.</li>
     </ol>
+  </section>
         </div>
       </main>
     </div>

@@ -468,7 +468,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">13 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -622,12 +622,12 @@
 
   <p>Pencil's <code>.pen</code> format is the clearest embodiment of design-as-code. A <code>.pen</code> file is a structured, parseable artifact that contains all the information a vector design requires: nodes, styles, components, variables, and layout rules. It's designed to be:</p>
 <figure class="figure--half-right" id="ch04-fig-02">
-  <img src="../images/ch04-fig-02--web.webp" alt="VS Code editor showing an OpenPencil .op file with JSON structure containing design nodes, styles, and component definitions in a readable format" loading="eager" />
+  <img src="../images/ch04-fig-02--web.webp" alt="VS Code editor showing an OpenPencil .op file with JSON structure containing design nodes, styles, and component definitions in a readable format" loading="lazy" />
   <figcaption>An .op file in VS Code showing OpenPencil JSON design format alongside the editor</figcaption>
 </figure>
 
 <figure class="figure--full" id="ch04-fig-01">
-  <img src="../images/ch04-fig-01--web.webp" alt="VS Code editor displaying a .pen file with structured JSON content including node definitions, layout properties, and design token references" loading="eager" />
+  <img src="../images/ch04-fig-01--web.webp" alt="VS Code editor displaying a .pen file with structured JSON content including node definitions, layout properties, and design token references" loading="lazy" />
   <figcaption>A .pen file opened in VS Code showing its structured JSON design content</figcaption>
 </figure>
 
@@ -803,7 +803,7 @@ $ pencil tokens design.pen --format css</code></pre>
 
   <p>Design tokens are the connective tissue between design and code. A token is a named value: <code>color-primary</code>, <code>spacing-md</code>, <code>radius-sm</code>. In the old world, tokens lived in Figma's design system panel and were manually synced to CSS custom properties or JSON files. In the design-as-code world, tokens are variables in the same file as the design.</p>
 <figure class="figure--full" id="ch04-fig-03">
-  <img src="../images/ch04-fig-03--web.webp" alt="VS Code editor showing a design tokens JSON file with color palette entries, typography definitions including font families and size scales, and spacing values as structured code variables" loading="eager" />
+  <img src="../images/ch04-fig-03--web.webp" alt="VS Code editor showing a design tokens JSON file with color palette entries, typography definitions including font families and size scales, and spacing values as structured code variables" loading="lazy" />
   <figcaption>Design tokens defined as code variables in a JSON file, ready for agent consumption</figcaption>
 </figure>
 
@@ -897,7 +897,7 @@ $ pencil tokens design.pen --format css</code></pre>
 
   <p>Diffability is the property that unlocks everything else. If a design file is text-based or structured JSON, <code>git diff</code> shows meaningful changes. This single capability transforms how teams work with design.</p>
 <figure class="figure--full" id="ch04-fig-04">
-  <img src="../images/ch04-fig-04--web.webp" alt="Terminal git diff output showing a .pen design file change with colored diff highlighting added and modified lines including color values, layout properties, and spacing changes" loading="eager" />
+  <img src="../images/ch04-fig-04--web.webp" alt="Terminal git diff output showing a .pen design file change with colored diff highlighting added and modified lines including color values, layout properties, and spacing changes" loading="lazy" />
   <figcaption>git diff of a .pen file showing meaningful design changes alongside code changes</figcaption>
 </figure>
 

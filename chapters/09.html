@@ -469,7 +469,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">20 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">16 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -545,7 +545,7 @@
 
   <p>Remotion is the established player. Created by Jonny Burger (Remotion AG), 47.1k GitHub stars, 3.3k forks, 622+ releases as of May 2026. The current version is v4.0.462. It's TypeScript-first (74.5%), with PHP for Lambda rendering and Rust for native components. The ecosystem is substantial: 3M npm installs, 800+ pages of documentation, 35+ templates, 8000+ Discord members, and 300+ contributors. Trusted by GitHub, Musixmatch, Wistia, and SoundCloud.</p>
 <figure class="figure--full" id="ch09-fig-01">
-  <img src="../images/ch09-fig-01--web.webp" alt="Remotion Studio interface showing a React video composition with a preview player on the left, a composition list panel, timeline controls with frame-by-frame scrubbing, and render parameter settings" loading="eager" />
+  <img src="../images/ch09-fig-01--web.webp" alt="Remotion Studio interface showing a React video composition with a preview player on the left, a composition list panel, timeline controls with frame-by-frame scrubbing, and render parameter settings" loading="lazy" />
   <figcaption>Remotion Studio showing a video composition with preview player and timeline controls</figcaption>
 </figure>
 
@@ -769,7 +769,7 @@ export const RemotionRoot = () =&gt; (
 
   <p>Hyperframes takes a fundamentally different approach. Created by HeyGen, 19k GitHub stars, 1.8k forks, Apache 2.0 license. The tagline is direct: "Write HTML. Render video. Built for agents."</p>
 <figure class="figure--full" id="ch09-fig-02">
-  <img src="../images/ch09-fig-02--web.webp" alt="Hyperframes editor showing an HTML timeline with GSAP animation keyframes on multiple layers, a properties panel for the selected keyframe, and a real-time preview of the animated sequence" loading="eager" />
+  <img src="../images/ch09-fig-02--web.webp" alt="Hyperframes editor showing an HTML timeline with GSAP animation keyframes on multiple layers, a properties panel for the selected keyframe, and a real-time preview of the animated sequence" loading="lazy" />
   <figcaption>Hyperframes timeline editor with GSAP keyframes, layer panel, and animation preview</figcaption>
 </figure>
 
@@ -902,7 +902,7 @@ $ claude --plugin-dir .</code></pre>
 
   <p>The animation runtime is the most consequential technical difference between Remotion and Hyperframes. It affects how every library behaves during rendering. Understanding this difference is essential for choosing the right tool.</p>
 <figure class="figure--grid-2" id="ch09-fig-03">
-  <img src="../images/ch09-fig-03--web.webp" alt="Side-by-side comparison showing GSAP JavaScript animation code and CSS keyframe animation code producing identical visual results for an interactive button hover effect" loading="eager" />
+  <img src="../images/ch09-fig-03--web.webp" alt="Side-by-side comparison showing GSAP JavaScript animation code and CSS keyframe animation code producing identical visual results for an interactive button hover effect" loading="lazy" />
   <figcaption>GSAP and CSS animation approaches compared for the same interactive element</figcaption>
 </figure>
 
@@ -971,7 +971,7 @@ tl.from("#title", { opacity: 0, y: 50, duration: 1 })
 
   <p>The development loop differs significantly between the two tools. This affects how fast you can iterate, which matters more in agent workflows than in traditional video production.</p>
 <figure class="figure--full" id="ch09-fig-04">
-  <img src="../images/ch09-fig-04--web.webp" alt="Terminal output from a Remotion render command showing a progress bar rendering frame 120 of 300 at 30fps with estimated completion time and final output file size in megabytes" loading="eager" />
+  <img src="../images/ch09-fig-04--web.webp" alt="Terminal output from a Remotion render command showing a progress bar rendering frame 120 of 300 at 30fps with estimated completion time and final output file size in megabytes" loading="lazy" />
   <figcaption>Remotion render progress showing frame-by-frame video encoding in the terminal</figcaption>
 </figure>
 
@@ -1030,7 +1030,7 @@ $ npx hyperframes render --output final.mp4        # Hyperframes: custom output<
 
   <p>I've used both. Here's where each wins and loses.</p>
 <figure class="figure--full" id="ch09-fig-05">
-  <img src="../images/ch09-fig-05--web.webp" alt="A single frame from an AI-generated course video showing branded educational content with animated text overlays, smooth transitions, and design system-consistent color palette and typography" loading="eager" />
+  <img src="../images/ch09-fig-05--web.webp" alt="A single frame from an AI-generated course video showing branded educational content with animated text overlays, smooth transitions, and design system-consistent color palette and typography" loading="lazy" />
   <figcaption>Course video frame generated by Hyperframes with branded educational animation and text overlays</figcaption>
 </figure>
 
