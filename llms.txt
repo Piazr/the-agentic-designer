@@ -4,7 +4,7 @@
 
 ## Core Resources
 *   **Official Website**: [https://piazr.github.io/the-agentic-designer/](https://piazr.github.io/the-agentic-designer/) - Read the full book online.
-*   **Book Repository**: [https://github.com/Piazr/the-agentic-designer](https://github.com/Piazr/the-agentic-designer) - Download the book's source HTML, PDF, and EPUB files.
+*   **Book Repository**: [https://github.com/imehr/the-agentic-designer](https://github.com/imehr/the-agentic-designer) - Download the book's source HTML, PDF, and EPUB files.
 *   **Website Repository**: [https://github.com/Piazr/the-agentic-designer](https://github.com/Piazr/the-agentic-designer) - Repository for the preview website.
 
 ## Front Matter
