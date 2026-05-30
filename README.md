@@ -2,6 +2,8 @@
 
 > How AI Agents, Claude Design, Open Design, and the New Design Tool Ecosystem Are Transforming Product Design · by Mehran Mozaffari
 
+<img src="images/cover.webp" alt="The Agentic Designer cover" width="360">
+
 ## Read Online
 
 [<img src="website-preview.png" alt="The Agentic Designer website preview" width="720">](https://piazr.github.io/the-agentic-designer/index.html)
