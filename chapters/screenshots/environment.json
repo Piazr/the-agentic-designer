@@ -1,0 +1,109 @@
+{
+  "host": {
+    "platform": "darwin",
+    "machine": "apple-silicon",
+    "os_version": "macOS 15.x"
+  },
+  "apps": [
+    {
+      "name": "Visual Studio Code",
+      "binary": "code",
+      "check_command": "code --version",
+      "installed": true,
+      "version": "1.119.0",
+      "dark_mode": true,
+      "login_required": false,
+      "logged_in": true,
+      "notes": "Has opencode extension installed"
+    },
+    {
+      "name": "Figma",
+      "binary": "Figma",
+      "check_command": "ls /Applications/Figma.app",
+      "installed": true,
+      "version": "",
+      "dark_mode": false,
+      "login_required": true,
+      "logged_in": true,
+      "notes": "Desktop app + web at figma.com"
+    }
+  ],
+  "browsers": [
+    {
+      "name": "Chrome",
+      "binary": "google-chrome",
+      "check_command": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --version",
+      "installed": true,
+      "version": "148.0.7778.168",
+      "profiles": ["Default"]
+    }
+  ],
+  "services": [
+    {
+      "name": "Figma",
+      "login_url": "https://figma.com",
+      "check_url": "https://figma.com/files",
+      "check_selector": "[data-testid='user-avatar']",
+      "logged_in": true,
+      "notes": "Chrome profile logged in"
+    },
+    {
+      "name": "Paper",
+      "login_url": "https://paper.design",
+      "check_url": "https://paper.design",
+      "check_selector": "",
+      "logged_in": true,
+      "notes": "paper.design accessible"
+    },
+    {
+      "name": "Pencil",
+      "login_url": "https://pencil.dev",
+      "check_url": "https://pencil.dev",
+      "check_selector": "",
+      "logged_in": true,
+      "notes": "pencil.dev accessible"
+    },
+    {
+      "name": "GitHub",
+      "login_url": "https://github.com/login",
+      "check_url": "https://github.com",
+      "check_selector": ".Header-link",
+      "logged_in": true,
+      "notes": "Chrome profile logged in"
+    },
+    {
+      "name": "Vercel",
+      "login_url": "https://vercel.com/login",
+      "check_url": "https://vercel.com/dashboard",
+      "check_selector": "[data-testid='projects-list']",
+      "logged_in": true,
+      "notes": "Chrome profile logged in"
+    },
+    {
+      "name": "Miro",
+      "login_url": "https://miro.com/login",
+      "check_url": "https://miro.com/app/dashboard",
+      "check_selector": "",
+      "logged_in": true,
+      "notes": "Chrome profile logged in"
+    }
+  ],
+  "local_servers": [],
+  "capture_tools": {
+    "agent_browser": { "installed": true, "version": "0.27.0", "path": "/Users/mehran/.nvm/versions/node/v22.21.0/bin/agent-browser" },
+    "agent_desktop": { "installed": false, "version": "", "path": "" },
+    "imagemagick": { "installed": false, "version": "" },
+    "cwebp": { "installed": true, "version": "1.6.0" },
+    "sips": { "installed": true, "version": "built-in macOS" },
+    "screencapture": { "installed": true, "version": "built-in macOS" }
+  },
+  "preferences": {
+    "default_viewport": { "width": 1280, "height": 800 },
+    "screenshot_theme": "light",
+    "annotation_style": "none",
+    "annotation_color": "primary",
+    "image_format": "png",
+    "jpeg_quality": 85,
+    "webp_quality": 85
+  }
+}
