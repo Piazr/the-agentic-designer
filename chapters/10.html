@@ -486,7 +486,8 @@
         <a href="#s-10-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">MagicPattern MCP: Generative Design Patterns</a>
         <a href="#s-10-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Paper MCP Server: 22 Tools for Connected Canvas</a>
         <a href="#s-10-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Chaining MCP Servers: Multi-Tool Workflows</a>
-        <a href="#s-10-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Troubleshooting MCP Connections</a>
+        <a href="#s-10-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Web Access: Firecrawl and Exa MCP</a>
+        <a href="#s-10-9" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Troubleshooting MCP Connections</a>
       </div>
     </div>
   </nav>
@@ -506,7 +507,8 @@
           <a href="#s-10-5" data-section="s-10-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MagicPattern MCP: Generative Design Patterns</span></a>
           <a href="#s-10-6" data-section="s-10-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper MCP Server: 22 Tools for Connected Canvas</span></a>
           <a href="#s-10-7" data-section="s-10-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Chaining MCP Servers: Multi-Tool Workflows</span></a>
-          <a href="#s-10-8" data-section="s-10-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
+          <a href="#s-10-8" data-section="s-10-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Web Access: Firecrawl and Exa MCP</span></a>
+          <a href="#s-10-9" data-section="s-10-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
       </nav>
     </aside>
   </div>
@@ -527,7 +529,8 @@
           <a href="#s-10-5" data-section="s-10-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>MagicPattern MCP: Generative Design Patterns</span></a>
           <a href="#s-10-6" data-section="s-10-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper MCP Server: 22 Tools for Connected Canvas</span></a>
           <a href="#s-10-7" data-section="s-10-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Chaining MCP Servers: Multi-Tool Workflows</span></a>
-          <a href="#s-10-8" data-section="s-10-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
+          <a href="#s-10-8" data-section="s-10-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Web Access: Firecrawl and Exa MCP</span></a>
+          <a href="#s-10-9" data-section="s-10-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Troubleshooting MCP Connections</span></a>
       </nav>
       <main class="chapter-main">
         <div class="book-content">
@@ -1077,7 +1080,192 @@ cursor://anysphere.cursor-deeplink/mcp/install?name=Figma&amp;config=...</code><
     <p><strong>Warning:</strong> Long-running agent sessions can cause MCP connection drops. If the agent reports it cannot access a tool that should be available, restart the agent session. LLMs can also hallucinate tool parameters occasionally --- if you see repeated tool call errors, restart the session to reset the agent's tool-use context.</p>
   </div>
 
-  <h3 id="s-10-8">Troubleshooting MCP Connections</h3>
+  <h3 id="s-10-8">Web Access: Firecrawl and Exa MCP</h3>
+
+  <p>Agents without live web access are frozen at their training cutoff. They cannot check current documentation, see what a competitor's site looks like today, or verify that a tool's API has not changed since last month. For design work, this limitation is more than inconvenient. It produces stale output. The agent references deprecated APIs, describes outdated UI patterns, and generates code that does not match the current state of the tools it uses.</p>
+
+  <p>Two MCP servers address this: Firecrawl for structured web extraction at scale, and Exa for quick ad-hoc web searches within a session.</p>
+
+  <h4 id="s-10-8a">Firecrawl: Structured Web Extraction</h4>
+
+  <p>Firecrawl (128k+ GitHub stars) provides search, scrape, crawl, interact, and monitor capabilities via CLI and MCP server. In June 2026, it added installable workflows for repeatable web tasks, including deep research, SEO audits, and website design cloning (source: <a href="https://x.com/firecrawl/status/2062205481028861966">@firecrawl</a>, retrieved 2026-06-04).</p>
+
+  <p>Install the CLI with all capabilities:</p>
+
+  <pre><code>npx -y firecrawl-cli@latest init --all --browser</code></pre>
+
+  <p>Or add the MCP server to your agent configuration:</p>
+
+  <pre><code>{
+  "mcpServers": {
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"]
+    }
+  }
+}</code></pre>
+
+  <p>The five capabilities map to different design workflows:</p>
+
+  <table>
+    <thead>
+      <tr><th>Capability</th><th>What it does</th><th>Design use case</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Search</strong></td><td>Web search with structured results</td><td>Find design references, competitors, and inspiration</td></tr>
+      <tr><td><strong>Scrape</strong></td><td>Extract content from a single URL</td><td>Capture a specific page's layout, copy, and styling</td></tr>
+      <tr><td><strong>Crawl</strong></td><td>Extract content from an entire site</td><td>Map a competitor's full site structure and page patterns</td></tr>
+      <tr><td><strong>Interact</strong></td><td>Scrape then interact with the page using AI or code</td><td>Navigate multi-step flows (onboarding, checkout) to capture all states</td></tr>
+      <tr><td><strong>Monitor</strong></td><td>Schedule recurring scrapes with change detection</td><td>Track when a competitor updates their design or a tool changes its docs</td></tr>
+    </tbody>
+  </table>
+
+  <p>The Interact capability is the most interesting for design workflows. It lets the agent scrape a page, then interact with it: click buttons, navigate flows, fill forms. This means the agent can capture multi-state UIs (empty states, loading states, error states, success states) by actually navigating through the product instead of just scraping a single page.</p>
+
+  <h4 id="s-10-8b">Exa MCP: Quick Web Search Inside Agent Sessions</h4>
+
+  <p>Exa provides live web search directly inside agent sessions. Setup takes about 60 seconds: type <code>/mcp</code> in Claude Code, approve the Exa server, and the agent gains real-time web access (source: <a href="https://x.com/RoundtableSpace/status/2062304571347656959">@RoundtableSpace</a>, retrieved 2026-06-04).</p>
+
+  <p>Exa is for quick, ad-hoc lookups. It does not crawl or monitor. It searches and returns results. The value for design work is immediacy: the agent can verify current state without leaving the session.</p>
+
+  <pre><code>{
+  "mcpServers": {
+    "exa": {
+      "command": "npx",
+      "args": ["-y", "exa-mcp-server"],
+      "env": {
+        "EXA_API_KEY": "your-api-key"
+      }
+    }
+  }
+}</code></pre>
+
+  <h4 id="s-10-8c">When to Use Which</h4>
+
+  <table>
+    <thead>
+      <tr><th>Task</th><th>Use</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>"What does the Stripe landing page look like right now?"</td><td>Exa</td><td>Quick single-page reference check</td></tr>
+      <tr><td>"Crawl this competitor's site and map their page types"</td><td>Firecrawl</td><td>Structured extraction at scale</td></tr>
+      <tr><td>"Check if the Figma REST API v2 endpoint has changed"</td><td>Exa</td><td>Quick documentation verification</td></tr>
+      <tr><td>"Capture all states of this competitor's checkout flow"</td><td>Firecrawl (Interact)</td><td>Multi-step navigation with interaction</td></tr>
+      <tr><td>"Alert me when this site changes its hero section"</td><td>Firecrawl (Monitor)</td><td>Scheduled change detection</td></tr>
+      <tr><td>"Find three examples of SaaS pricing pages with toggle toggles"</td><td>Exa</td><td>Search-based discovery</td></tr>
+    </tbody>
+  </table>
+
+  <h4 id="s-10-8d">Practical Workflows</h4>
+
+  <p><strong>Workflow 1: Competitive design audit.</strong></p>
+
+  <p>You want to understand how five competitors handle their onboarding flows. The agent needs to see every screen, not just the landing page.</p>
+
+  <pre><code>"Use Firecrawl to crawl these five URLs. For each site, extract:
+1. The onboarding flow: every screen from sign-up to first-use
+2. UI patterns used: modals, tooltips, progress bars, empty states
+3. Copy tone: formal, casual, technical
+4. Estimated number of steps in the flow
+
+Summarize the patterns in a comparison table, then suggest which
+patterns would work for our product."</code></pre>
+
+  <p>Firecrawl's crawl capability handles the scale. The agent gets structured data from every page on each site, identifies the onboarding screens, and produces a comparative analysis. Without Firecrawl, you would visit each site manually, screenshot every screen, and type notes into a document.</p>
+
+  <p><strong>Workflow 2: Design cloning from a reference site.</strong></p>
+
+  <p>You want to replicate the visual style of a specific site. Firecrawl's design cloning workflow extracts the styling directly.</p>
+
+  <pre><code>"Scrape https://linear.app and extract:
+1. Color palette (backgrounds, text, accents, borders)
+2. Typography (font families, sizes, weights, line heights)
+3. Spacing patterns (padding, gaps, margins)
+4. Border radius values
+5. Shadow values
+6. Animation and transition patterns
+
+Output as CSS custom properties I can use as a design token base."</code></pre>
+
+  <p>This is faster than manually inspecting elements in DevTools. The agent gets the full styling picture in one call and produces tokens you can drop into your design system.</p>
+
+  <p><strong>Workflow 3: Multi-state UI capture.</strong></p>
+
+  <p>You need to see all states of a competitor's pricing page: monthly vs annual toggle, different plan selections, upgrade modals, and the checkout flow that follows.</p>
+
+  <pre><code>"Use Firecrawl Interact to navigate the pricing page at [URL].
+1. Capture the default monthly view
+2. Click the annual toggle and capture the updated prices
+3. Click the Enterprise plan's 'Contact Sales' button and capture the modal
+4. Click the Pro plan's 'Get Started' button and capture the checkout flow
+5. For each state, extract the layout structure, copy, and visual hierarchy"</code></pre>
+
+  <p>The Interact capability navigates through the product like a real user. The agent captures states that a simple scrape would miss --- the toggle state, the modal state, the multi-step checkout state. This is the closest an agent gets to manual QA without a browser automation tool.</p>
+
+  <p><strong>Workflow 4: Documentation verification before code generation.</strong></p>
+
+  <p>Before the agent writes code that calls an external API, you want to verify the current endpoint structure.</p>
+
+  <pre><code>"Search the web for the current Remotion v4.0 renderMedia() API.
+I need to confirm:
+1. The correct import path
+2. Whether the 'codec' option is still required
+3. The current way to specify output location
+4. Any breaking changes from v3
+
+Then use the confirmed API to write a render script for our
+Hyperframes pipeline."</code></pre>
+
+  <p>Exa handles this in seconds. The agent checks the live documentation, confirms the current API shape, and writes code that matches the current version instead of guessing from training data. This prevents the common failure mode where the agent generates code for a deprecated API that no longer works.</p>
+
+  <p><strong>Workflow 5: Competitor monitoring.</strong></p>
+
+  <p>You want to know when a competitor updates their landing page design.</p>
+
+  <pre><code># Set up a recurring monitor
+firecrawl monitor create \
+  --url "https://competitor.com" \
+  --schedule "daily" \
+  --prompt "Has the hero section, pricing section, or navigation changed since the last check? If yes, describe the changes. If no, respond 'no changes'." \
+  --notify "slack:#design-intel"</code></pre>
+
+  <p>The monitor runs daily. When the competitor updates their design, you get a Slack notification with a description of what changed. This is passive competitive intelligence --- you do not need to check manually, and you never miss a change.</p>
+
+  <p><strong>Workflow 6: Design reference collection.</strong></p>
+
+  <p>You are starting a new project and want to collect visual references for the design direction.</p>
+
+  <pre><code>"Use Exa to find:
+1. Five examples of developer tool landing pages with dark themes
+2. Three examples of SaaS pricing pages with toggle between monthly/annual
+3. Four examples of onboarding flows that use progressive disclosure
+
+For each result, scrape the page with Firecrawl and extract:
+- Screenshot URL
+- Primary color palette
+- Layout pattern (hero + features grid, hero + alternating sections, etc.)
+- Notable design elements (animations, illustrations, 3D elements)
+
+Organize into a reference board I can share with the team."</code></pre>
+
+  <p>Exa finds the sites. Firecrawl extracts the details. The agent produces a structured reference collection that replaces hours of manual browsing and screenshotting.</p>
+
+  <h4 id="s-10-8e">Security Considerations</h4>
+
+  <p>Giving an agent live web access expands its capabilities and its attack surface. A few precautions:</p>
+
+  <ul>
+    <li><strong>Scope Firecrawl to specific domains.</strong> Do not point a crawl at the open web. Target known competitors, reference sites, and documentation URLs. Unscoped crawling can consume credits fast and produce noise.</li>
+    <li><strong>Treat Exa results as unverified input.</strong> The agent trusts web search results. A convincingly-written blog post with wrong information becomes part of the agent's output. Cross-reference critical facts.</li>
+    <li><strong>Monitor queries in CI.</strong> If you use web access in automated workflows, log the queries. You want to know what the agent is searching for and what it finds.</li>
+    <li><strong>Rate-limit monitor jobs.</strong> Daily monitoring of 20 competitors is reasonable. Hourly monitoring is not. Set intervals that match the pace of actual change in your industry.</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>My take:</strong> Live web access should be a default, not an add-on. Every design agent should be able to check current state before generating output. The combination of Exa for quick lookups and Firecrawl for structured extraction covers the full range of web access needs in a design workflow. Install both. Use Exa daily for quick checks ("does this API still work?", "what does the current site look like?"). Use Firecrawl when you need structured data at scale (competitive audits, design cloning, multi-state capture). The five minutes of setup pays for itself the first time the agent catches a breaking API change before you ship broken code.</p>
+  </div>
+
+  <h3 id="s-10-9">Troubleshooting MCP Connections</h3>
 
   <p>MCP connections fail in predictable ways. Here is a troubleshooting reference for the most common issues.</p>
 

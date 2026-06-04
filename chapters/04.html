@@ -482,6 +482,7 @@
         <a href="#s-04-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The .pen File Format: Design as a Code Artifact</a>
         <a href="#s-04-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">HTML as a Design Canvas</a>
         <a href="#s-04-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Design Tokens and Variables as Code</a>
+        <a href="#s-04-4a" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">anydesign: Extracting Design Systems from Visual Sources</a>
         <a href="#s-04-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Why Diffability Matters for Design Teams</a>
         <a href="#s-04-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Old World vs the New World</a>
       </div>
@@ -500,6 +501,7 @@
           <a href="#s-04-2" data-section="s-04-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The .pen File Format: Design as a Code Artifact</span></a>
           <a href="#s-04-3" data-section="s-04-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>HTML as a Design Canvas</span></a>
           <a href="#s-04-4" data-section="s-04-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Tokens and Variables as Code</span></a>
+          <a href="#s-04-4a" data-section="s-04-4a" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>anydesign: Extracting Design Systems</span></a>
           <a href="#s-04-5" data-section="s-04-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Why Diffability Matters for Design Teams</span></a>
           <a href="#s-04-6" data-section="s-04-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Old World vs the New World</span></a>
       </nav>
@@ -519,6 +521,7 @@
           <a href="#s-04-2" data-section="s-04-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The .pen File Format: Design as a Code Artifact</span></a>
           <a href="#s-04-3" data-section="s-04-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>HTML as a Design Canvas</span></a>
           <a href="#s-04-4" data-section="s-04-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Design Tokens and Variables as Code</span></a>
+          <a href="#s-04-4a" data-section="s-04-4a" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>anydesign: Extracting Design Systems</span></a>
           <a href="#s-04-5" data-section="s-04-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Why Diffability Matters for Design Teams</span></a>
           <a href="#s-04-6" data-section="s-04-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Old World vs the New World</span></a>
       </nav>
@@ -892,6 +895,172 @@ $ pencil tokens design.pen --format css</code></pre>
   <p>Tools like Style Dictionary consume this format and output CSS custom properties, iOS Swift color sets, Android XML resources, and more — all from a single source of truth. When an agent modifies a W3C token file, every platform's output updates.</p>
 
   <p>The key insight: when tokens are code variables, they become agent-manipulable. An AI agent can read your design tokens, detect inconsistencies, propose new values, and commit the changes. Chapter 08 covers this in depth with token syncing strategies across tools.</p>
+
+  <h4 id="s-04-4a">anydesign: Extracting Design Systems from Visual Sources</h4>
+
+  <p>The design-as-code workflow starts with a design specification. But what if the design already exists --- as a screenshot, a live website, or a Figma file? The tokens, the typography, the spacing rhythm are all there, embedded in pixels and CSS. You just can't see them as structured data.</p>
+
+  <p>anydesign bridges this gap. It is a Claude skill that analyzes any visual source and generates a structured design specification with a complete design system (source: <a href="https://github.com/uxKero/anydesign">github.com/uxKero/anydesign</a>, MIT license, v0.4.0).</p>
+<figure class="figure--full" id="ch04-fig-new01">
+  <img src="../images/ch04-fig-new01--print.png" alt="Pipeline diagram showing anydesign extracting design systems from three visual sources (live website URL, screenshot/image, Figma file via MCP) through a 5-step analysis pipeline, producing three outputs: design.md with 7-section visual spec, design-tokens.json in W3C DTCG format, and design-a11y.md with WCAG 2.1 contrast report" loading="lazy" />
+  <figcaption>anydesign extracts structured design specifications from existing visual sources: websites, screenshots, or Figma files</figcaption>
+</figure>
+
+
+  <p>The skill accepts three input types: a live website URL, a screenshot or image file, or a Figma file accessed through the Figma MCP server. It runs a 5-step analysis pipeline and produces three outputs:</p>
+
+  <table>
+    <thead>
+      <tr><th>Output</th><th>Format</th><th>What it contains</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>design.md</code></td><td>Markdown</td><td>7 sections: TL;DR, visual identity, full design system (colors, typography, spacing, radii, shadows, borders), component inventory, layout and composition, reconstruction notes, open questions</td></tr>
+      <tr><td><code>design-tokens.json</code></td><td>W3C DTCG JSON</td><td>Structured tokens (<code>$value</code> / <code>$type</code>) consumable by Style Dictionary, Figma Variables, Tokens Studio</td></tr>
+      <tr><td><code>design-a11y.md</code></td><td>Markdown (optional)</td><td>WCAG 2.1 contrast report with AA/AAA pass/fail for every color pair</td></tr>
+    </tbody>
+  </table>
+
+  <p>Every inference carries a confidence level: high, medium, or low. This tells you which parts of the extracted system to trust and which need manual verification. A color extracted from a CSS custom property gets "high" confidence because the source is unambiguous. A spacing rhythm inferred from a screenshot gets "medium" or "low" because the agent is estimating pixel values from a raster image.</p>
+
+  <p>Install:</p>
+
+  <pre><code class="language-bash">git clone https://github.com/uxKero/anydesign.git
+cp -r anydesign ~/.claude/skills/          # personal, all projects
+# or
+cp -r anydesign .claude/skills/            # project-scoped, shared with team</code></pre>
+
+  <p>Optional companion scripts (require Python):</p>
+
+  <pre><code class="language-bash">pip install -r requirements.txt          # optional, for companion scripts
+playwright install chromium              # optional, for capture_site.py</code></pre>
+
+  <h5 id="anydesign-companions">Companion Scripts</h5>
+
+  <p>anydesign ships with standalone CLI scripts that work without Claude. These are useful when you need a quick extraction without starting an agent session:</p>
+
+  <table>
+    <thead>
+      <tr><th>Script</th><th>What it does</th><th>Dependencies</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>extract_css_vars.py</code></td><td>Fetch a URL, extract all CSS custom properties (<code>--*</code> variables)</td><td>None (stdlib only)</td></tr>
+      <tr><td><code>capture_site.py</code></td><td>Multi-viewport Playwright screenshots with automatic cookie banner dismissal</td><td>Playwright</td></tr>
+      <tr><td><code>extract_colors.py</code></td><td>Dominant color extraction from an image file</td><td>Pillow</td></tr>
+      <tr><td><code>check_contrast.py</code></td><td>WCAG 2.1 contrast checker, markdown table output</td><td>None (stdlib only)</td></tr>
+      <tr><td><code>verify_design.py</code></td><td>Audit generated tokens against a live URL to detect drift</td><td>None (stdlib only)</td></tr>
+    </tbody>
+  </table>
+
+  <p>The <code>verify_design.py</code> script is particularly useful for ongoing maintenance. Point it at the generated tokens file and the live site. It compares the extracted values against what the site currently serves and flags any drift. Run this in CI to catch when a site's CSS diverges from the documented design system.</p>
+
+  <h5 id="anydesign-examples">Practical Examples</h5>
+
+  <p><strong>Example 1: Extract a design system from a competitor's site.</strong></p>
+
+  <pre><code class="language-text">Extract the design system from https://linear.app.
+Give me design.md and design-tokens.json.
+Focus on their typography scale, color palette, and spacing rhythm.</code></pre>
+
+  <p>The agent fetches the page, captures the CSS, extracts custom properties, analyzes the visual hierarchy, and produces a structured spec. The output might look like:</p>
+
+  <pre><code class="language-markdown">## Visual Identity
+- Mood: Technical, precise, dark-mode native
+- Tone: Developer tool, minimal decoration
+- Style anchors: Monospace accents, sharp edges, high contrast
+
+## Color Palette
+- Background: #0A0A0A (dark), #FFFFFF (light)
+- Text primary: #E8E8E8
+- Accent purple: #7C6BF0
+- Accent blue: #5E6AD2
+- Border: rgba(255,255,255,0.08)
+
+## Typography
+- Display: Inter, 48-72px, bold
+- Heading: Inter, 24-32px, semibold
+- Body: Inter, 14-16px, regular
+- Mono: JetBrains Mono, 13px, for code and data
+
+## Spacing
+- Base unit: 4px
+- Section padding: 80-120px
+- Component gap: 16-24px
+- Tight gap: 8px</code></pre>
+
+  <p>This spec becomes the starting point for building an agent-compatible design system in your own project. You are not copying the competitor's design. You are extracting the structural patterns --- the spacing rhythm, the type scale, the contrast ratios --- so you can make informed decisions about your own system.</p>
+
+  <p><strong>Example 2: Extract tokens from your own legacy Figma file.</strong></p>
+
+  <pre><code class="language-text">Connect to the Figma MCP server and read our main design file.
+Extract the color palette, typography scale, spacing values,
+and component variants into design.md and design-tokens.json.
+Flag any accessibility issues in design-a11y.md.</code></pre>
+
+  <p>The agent reads the Figma file through the MCP server (covered in Chapter 10), extracts the token values from Figma's design system panel, and produces the W3C DTCG format JSON. The accessibility report flags any color pairs that fail WCAG AA or AAA contrast requirements.</p>
+
+  <p>This solves a common problem: teams with mature Figma design systems that have never been codified into machine-readable tokens. The tokens exist in Figma's internal format, but agents can't read them directly. anydesign translates Figma's visual language into the agent-readable format covered earlier in this chapter.</p>
+
+  <p><strong>Example 3: Extract from a screenshot of a design you admire.</strong></p>
+
+  <pre><code class="language-text">Analyze this screenshot of the Notion dashboard.
+Extract the design system into design.md.
+Focus on the sidebar layout, the content area spacing,
+and the typography hierarchy.</code></pre>
+
+  <p>The agent analyzes the image, estimates colors from pixels, identifies typography patterns from the visual weight of text elements, and infers spacing from the gaps between components. The confidence levels reflect the medium: colors extracted from a screenshot are "medium" confidence because compression and rendering can shift values. Typography is "low" confidence because the agent is guessing fonts from visual appearance.</p>
+
+  <p>For higher confidence, combine the screenshot with the companion <code>extract_css_vars.py</code> script pointed at the live site. The script pulls exact CSS custom properties. The agent's visual analysis fills in the structural patterns the CSS alone doesn't capture: composition rules, component hierarchy, layout logic.</p>
+
+  <p><strong>Example 4: Verify your design system hasn't drifted from the source.</strong></p>
+
+  <pre><code class="language-bash">python verify_design.py --tokens design-tokens.json --url https://your-site.com</code></pre>
+
+  <p>This compares the documented tokens against the live CSS. Output:</p>
+
+  <pre><code>## Design Token Drift Report
+
+| Token | Documented | Live | Status |
+|-------|-----------|------|--------|
+| color-primary | #0066CC | #0066CC | ✓ Match |
+| color-secondary | #FF6600 | #FF7700 | ✗ Drifted |
+| spacing-md | 16px | 16px | ✓ Match |
+| font-body-size | 16px | 15px | ✗ Drifted |
+| radius-md | 8px | 6px | ✗ Drifted |
+
+3 of 24 tokens have drifted from documented values.
+Run `anydesign` again against the live site to update.</code></pre>
+
+  <h5 id="anydesign-claude-design">Claude Design Integration</h5>
+
+  <p>anydesign includes an <code>export_for_claude_design.py</code> script that generates a brand-kit bundle (PPTX, DOCX, CSS, Tailwind config, README) specifically for Claude Design, Anthropic's design tool launched in April 2026. This creates a direct path:</p>
+
+  <div class="flow">
+    <div class="flow-item">
+      <strong>Visual Source</strong>
+      <p>screenshot, website, or Figma</p>
+    </div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-item">
+      <strong>anydesign extraction</strong>
+      <p>design.md + design-tokens.json</p>
+    </div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-item">
+      <strong>Claude Design bundle</strong>
+      <p>brand kit with persistent design system</p>
+    </div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-item">
+      <strong>Agent-driven iteration</strong>
+      <p>iterate on designs inside Claude Design</p>
+    </div>
+  </div>
+
+  <p>For teams adopting agentic design, this is the translation layer between the old world (visual designs locked in GUI tools) and the new world (design-as-code specs that agents can read, reproduce, and iterate on).</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> anydesign solves the cold-start problem better than any other tool I've used. Most teams don't start with a blank DESIGN.md. They start with an existing Figma file, a live production site, or a set of screenshots from a designer who left. anydesign turns that existing visual material into the machine-readable format agents need. The confidence levels are the key innovation --- they tell you exactly where to focus your manual review instead of forcing you to verify everything. Use it as the first step when onboarding any project into agentic design workflows.</p>
+  </div>
 
   <h3 id="s-04-5">Why Diffability Matters for Design Teams</h3>
 
