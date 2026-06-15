@@ -343,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -412,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -468,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">45 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -482,9 +479,13 @@
         <a href="#s-03-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">CLAUDE.md and AGENTS.md Deep Dive</a>
         <a href="#s-03-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The SKILL.md Convention</a>
         <a href="#s-03-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Installing and Composing Design Skills</a>
-        <a href="#s-03-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">SkillSpector: Security Scanning</a>
+        <a href="#s-03-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">SkillSpector: Security Scanning for Agent Skills</a>
         <a href="#s-03-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Building a Custom Design Harness</a>
         <a href="#s-03-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">A Complete Example: Brand-Consistent Prototypes</a>
+        <a href="#s-03-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Prompt-template discipline: role / output / constraints / stop</a>
+        <a href="#s-03-9" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">TypeUI: one markdown file per component</a>
+        <a href="#s-03-10" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Xiaohei illustration skill: a single-character explainer-graphic capability</a>
+        <a href="#s-03-11" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">SkillVault: a marketplace for discovering and distributing agent skills</a>
       </div>
     </div>
   </nav>
@@ -495,17 +496,19 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-03-1" data-section="s-03-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>How Agents Learn: Context Files and Skills</span></a>
           <a href="#s-03-2" data-section="s-03-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>CLAUDE.md and AGENTS.md Deep Dive</span></a>
-          <a href="#03.2.5" data-section="03.2.5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Karpathy's CLAUDE.md</span></a>
           <a href="#s-03-3" data-section="s-03-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The SKILL.md Convention</span></a>
           <a href="#s-03-4" data-section="s-03-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Installing and Composing Design Skills</span></a>
-          <a href="#03-4-feishu" data-section="03-4-feishu" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Beautiful Feishu Whiteboard</span></a>
-          <a href="#s-03-5" data-section="s-03-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>SkillSpector: Security Scanning</span></a>
+          <a href="#s-03-5" data-section="s-03-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>SkillSpector: Security Scanning for Agent Skills</span></a>
           <a href="#s-03-6" data-section="s-03-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Building a Custom Design Harness</span></a>
           <a href="#s-03-7" data-section="s-03-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>A Complete Example: Brand-Consistent Prototypes</span></a>
+          <a href="#s-03-8" data-section="s-03-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Prompt-template discipline: role / output / constraints / stop</span></a>
+          <a href="#s-03-9" data-section="s-03-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>TypeUI: one markdown file per component</span></a>
+          <a href="#s-03-10" data-section="s-03-10" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Xiaohei illustration skill: a single-character explainer-graphic capability</span></a>
+          <a href="#s-03-11" data-section="s-03-11" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>SkillVault: a marketplace for discovering and distributing agent skills</span></a>
       </nav>
     </aside>
   </div>
@@ -517,23 +520,25 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-03-1" data-section="s-03-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>How Agents Learn: Context Files and Skills</span></a>
           <a href="#s-03-2" data-section="s-03-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>CLAUDE.md and AGENTS.md Deep Dive</span></a>
-          <a href="#03.2.5" data-section="03.2.5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Karpathy's CLAUDE.md</span></a>
           <a href="#s-03-3" data-section="s-03-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The SKILL.md Convention</span></a>
           <a href="#s-03-4" data-section="s-03-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Installing and Composing Design Skills</span></a>
-          <a href="#03-4-feishu" data-section="03-4-feishu" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Beautiful Feishu Whiteboard</span></a>
-          <a href="#s-03-5" data-section="s-03-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>SkillSpector: Security Scanning</span></a>
+          <a href="#s-03-5" data-section="s-03-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>SkillSpector: Security Scanning for Agent Skills</span></a>
           <a href="#s-03-6" data-section="s-03-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Building a Custom Design Harness</span></a>
           <a href="#s-03-7" data-section="s-03-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>A Complete Example: Brand-Consistent Prototypes</span></a>
+          <a href="#s-03-8" data-section="s-03-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Prompt-template discipline: role / output / constraints / stop</span></a>
+          <a href="#s-03-9" data-section="s-03-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>TypeUI: one markdown file per component</span></a>
+          <a href="#s-03-10" data-section="s-03-10" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Xiaohei illustration skill: a single-character explainer-graphic capability</span></a>
+          <a href="#s-03-11" data-section="s-03-11" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>SkillVault: a marketplace for discovering and distributing agent skills</span></a>
       </nav>
       <main class="chapter-main">
         <div class="book-content">
 <h3 id="s-03-1">How Agents Learn: Context Files and Skills</h3>
 
-  <p>Agents learn through three mechanisms, each with different loading behavior and context cost. Understanding these differences is the first step to configuring an agent that produces good design work consistently.</p>
+<p>Agents learn through three mechanisms, each with different loading behavior and context cost. Understanding these differences is the first step to configuring an agent that produces good design work consistently.</p>
 <figure class="figure--half-right" id="ch03-fig-04">
   <img src="../images/ch03-fig-04--web.webp" alt="Pyramid diagram showing three agent instruction mechanisms: configuration files loaded always at full context cost, skill files loaded on demand at near-zero cost, and auto memory loaded at session start" loading="lazy" />
   <figcaption>The three-tier instruction hierarchy showing when each mechanism loads and its context cost</figcaption>
@@ -583,9 +588,9 @@
     <p><strong>My take:</strong> The most common mistake I see is cramming everything into CLAUDE.md. Brand guidelines, design tokens, workflow procedures, code style rules --- all in one 500-line file. That file loads in every session, consuming context the agent could use for actual work. Move procedures to skills. Keep CLAUDE.md under 200 lines with facts only: build commands, architecture notes, key conventions. This is not a suggestion. It is a rule Claude Code's own documentation states explicitly.</p>
   </div>
 
-  <h3 id="s-03-2">CLAUDE.md and AGENTS.md Deep Dive</h3>
+<h3 id="s-03-2">CLAUDE.md and AGENTS.md Deep Dive</h3>
 
-  <p>Two configuration file conventions exist. CLAUDE.md is Claude Code's native format. AGENTS.md is used by Codex CLI and OpenCode. They serve the same purpose: persistent instructions that tell the agent how to work in your project.</p>
+<p>Two configuration file conventions exist. CLAUDE.md is Claude Code's native format. AGENTS.md is used by Codex CLI and OpenCode. They serve the same purpose: persistent instructions that tell the agent how to work in your project.</p>
 <figure class="figure--full" id="ch03-fig-01">
   <img src="../images/ch03-fig-01--web.webp" alt="VS Code editor displaying a CLAUDE.md configuration file with the project file tree showing the .claude directory and rules subdirectory for path-scoped configuration" loading="lazy" />
   <figcaption>CLAUDE.md configuration hierarchy in VS Code showing project-level and user-level files</figcaption>
@@ -712,9 +717,9 @@ Use plan mode for changes under `src/billing/`.</code></pre>
 
   <p>I don't use Karpathy's exact file. My CLAUDE.md files are longer because they include design-specific rules about token values, style preferences, and tool configurations. But the principle holds: every line in your harness should earn its place. If a rule does not change agent behavior in a measurable way, remove it.</p>
 
-  <h3 id="s-03-3">The SKILL.md Convention</h3>
+<h3 id="s-03-3">The SKILL.md Convention</h3>
 
-  <p>SKILL.md is the Agent Skills open standard (agentskills.io). It works across Claude Code and OpenCode. A skill is a directory containing a SKILL.md file with optional supporting files --- templates, examples, scripts.</p>
+<p>SKILL.md is the Agent Skills open standard (agentskills.io). It works across Claude Code and OpenCode. A skill is a directory containing a SKILL.md file with optional supporting files --- templates, examples, scripts.</p>
 <figure class="figure--grid-2" id="ch03-fig-05">
   <img src="../images/ch03-fig-05--web.webp" alt="Side-by-side comparison of CLAUDE.md hierarchy in Claude Code and AGENTS.md in OpenCode showing file locations, loading behavior, and cross-compatibility" loading="lazy" />
   <figcaption>CLAUDE.md and AGENTS.md file structures compared with cross-compatibility notes</figcaption>
@@ -827,20 +832,204 @@ Output a single HTML file.
 
   <p>Skills also support argument substitution. The <code>$ARGUMENTS</code> variable captures everything after the skill name. Named arguments use <code>$1</code>, <code>$2</code> syntax. Environment variables like <code>${CLAUDE_SKILL_DIR}</code> reference the skill's own directory.</p>
 
-  <h3 id="s-03-4">Installing and Composing Design Skills</h3>
+<h3 id="s-03-4">Installing and Composing Design Skills</h3>
 
-  <p>Design skills exist at every level of the ecosystem. Some are general-purpose. Others are specialized for specific design outputs. The key insight: skills compose. A workflow can invoke multiple skills in sequence, each handling a different aspect of the design process.</p>
+<p>Design skills exist at every level of the ecosystem. Some are general-purpose. Others are specialized for specific design outputs. The key insight: skills compose. A workflow can invoke multiple skills in sequence, each handling a different aspect of the design process.</p>
 
-  <p>Notable design skills available as of May 2026:</p>
+  <p>Notable design skills available as of June 2026:</p>
 
   <ul>
-    <li><strong>huashu-design</strong> --- HTML-native design with 20 design philosophies and 5-dimension quality review. Produces production-grade prototypes, slide decks, and motion design. Covered in <a href="07.html#s-07-1">Chapter 07</a>.</li>
+    <li><strong>huashu-design</strong> --- HTML-native design with 20 design philosophies and 5-dimension quality review. Produces production-grade prototypes, slide decks, and motion design. Covered in <a href="#07.1">Chapter 07</a>.</li>
     <li><strong>frontend-design</strong> --- Production-grade frontend interfaces with high design quality. Avoids generic AI aesthetics through specific design principles.</li>
     <li><strong>visual-explainer</strong> --- Generates HTML pages that visually explain systems, code changes, and architecture diagrams.</li>
     <li><strong>create-image</strong> --- AI image generation using Gemini, OpenRouter, or VertexAI providers. Supports style references and templates.</li>
-    <li><strong>remotion</strong> --- React-based programmatic video production with animations and voiceover. Covered in <a href="09.html#s-09-1">Chapter 09</a>.</li>
+    <li><strong>remotion</strong> --- React-based programmatic video production with animations and voiceover. Covered in <a href="#09.1">Chapter 09</a>.</li>
     <li><strong>shadcn</strong> --- Component management for shadcn/ui projects. Adds, searches, fixes, and composes UI components.</li>
   </ul>
+
+  <h4 id="03.4-typeui">TypeUI: A Design Skill Marketplace</h4>
+
+  <p>TypeUI takes a different approach to design skill distribution. Instead of building one design tool, it ships a library of 67 design skills and 328 UI prompts that install directly into your coding agent. The platform supports Claude Code, Codex CLI, Cursor, OpenCode, Windsurf, and most other major agents (source: <a href="https://www.typeui.sh/">typeui.sh</a>, retrieved 2026-06-04).</p>
+
+  <p>The install is a single command:</p>
+
+  <pre><code class="language-bash">npx typeui.sh generate</code></pre>
+
+  <p>That gives your agent access to curated design systems, UI prompts, and layout variations. Each design skill defines a visual direction --- Brutalism, Neumorphism, Editorial, Skeumorphism, Glassmorphism --- with specific rules for typography, color, spacing, and composition. The UI prompts generate specific layout types: hero sections (25 variants), pricing tables (20 variants), feature sections (16 variants), navbars, sidebars, application shells.</p>
+
+  <p>The fundamental idea is the same one that powers Hallmark, Open Design, and every other design skill: constrain the agent's output by giving it a defined visual system to work within. TypeUI's contribution is breadth. With 67 skills and 328 prompts, it covers more visual territory than any single alternative. The CLI also includes <code>randomize</code> and <code>update</code> commands, which suggests an iterative workflow: generate with one skill, randomize to explore alternatives, update when the ecosystem adds new skills.</p>
+
+  <p>The pricing is notable. TypeUI charges $30/month or $120/year for Pro access, with a 50% discount for students and nonprofits. This is the first design skill platform I have seen with a commercial model at this scale. The free tier exists but is limited. Whether this model succeeds depends on whether teams find enough value in having a large skill library versus building their own focused skills.</p>
+
+  <p>The fundamentals skill is the one to start with:</p>
+
+  <pre><code class="language-bash">npx skills add https://github.com/bergside/typeui --skill typeui-fundamentals</code></pre>
+
+  <p>This installs the base design rules that every TypeUI skill builds on. After that, you pull individual skills by slug:</p>
+
+  <pre><code class="language-bash">npx typeui.sh pull editorial
+npx typeui.sh pull brutalism
+npx typeui.sh pull glassmorphism</code></pre>
+
+  <p>For the agentic design workflow, TypeUI fits in the skill layer of the stack. It does not replace Paper or Pencil or Figma. It gives your agent a richer vocabulary of visual directions to draw from when generating UI. Whether that vocabulary is worth paying for depends on how much time your team spends exploring visual directions versus refining a single direction.</p>
+
+  <h4 id="03.4-hallmark">Hallmark: Anti-Slop Guardrails as a Design Skill</h4>
+
+  <p>Agent-generated UI has recognizable tells. Purple gradients. Emoji icons. Generic spacing that looks correct but feels empty. Rounded-corner cards with a left-border accent. SVG humans shaking hands. Inter used as a display font. Every team that has worked with AI-generated interfaces recognizes these patterns. They are the "AI design smell."</p>
+
+  <p>Hallmark is a design skill that refuses to look AI-generated. Version 1.1, released in May 2026, ships with 20 named themes and 57 slop-test gates that catch these patterns and force regeneration before the output reaches you (source: <a href="https://github.com/nutlope/hallmark">github.com/nutlope/hallmark</a>, 2.6k stars, MIT license, retrieved 2026-06-04).</p>
+<figure class="figure--full" id="ch03-fig-new01">
+  <img src="../images/ch03-fig-new01--print.png" alt="Pipeline diagram showing Hallmark's anti-slop quality process: agent generates UI, passes through 57 slop-test gates checking for AI tells (purple gradients, emoji icons, generic spacing, AI-typical hero layouts), then pre-emit self-critique, with rejection loops back to regeneration for any failure, producing clean output only when all gates pass" loading="lazy" />
+  <figcaption>Hallmark's anti-slop pipeline: 57 test gates and a self-critique stage reject AI-typical patterns before output reaches the designer</figcaption>
+</figure>
+
+
+  <p>The skill operates on four verbs. Each verb is a different mode of use:</p>
+
+  <table>
+    <thead>
+      <tr><th>Verb</th><th>What it does</th><th>When to use it</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><em>(default)</em></td><td>Build new UI. Picks a macrostructure, applies a theme, runs 57 slop gates and a self-critique. Regenerates if any gate fails.</td><td>Generating any new UI from scratch</td></tr>
+      <tr><td><code>hallmark audit &lt;target&gt;</code></td><td>Score existing code against anti-patterns. Returns a punch list with scores. No edits.</td><td>Reviewing code the agent already generated, or auditing a legacy codebase</td></tr>
+      <tr><td><code>hallmark redesign &lt;target&gt;</code></td><td>Throws out the visual structure, keeps copy + information architecture + brand, rebuilds with a different visual fingerprint.</td><td>When the content is right but the look is wrong</td></tr>
+      <tr><td><code>hallmark study &lt;screenshot | URL&gt;</code></td><td>Extracts visual DNA from a design you admire: macrostructure, type pairing, color anchor. Optionally emits a portable design.md.</td><td>Learning from reference designs</td></tr>
+    </tbody>
+  </table>
+
+  <p>Install:</p>
+
+  <pre><code class="language-bash">npx skills add nutlope/hallmark</code></pre>
+
+  <p>Manual install for other agents:</p>
+
+  <pre><code># Claude Code
+cp -r hallmark ~/.claude/skills/hallmark/
+
+# Cursor
+cp hallmark/SKILL.md .cursor/rules/hallmark.mdc
+
+# Codex CLI
+cp -r hallmark ~/.codex/skills/hallmark/</code></pre>
+
+  <h5 id="hallmark-themes">The 20 Named Themes</h5>
+
+  <p>Each theme defines a complete visual system: macrostructure (layout grid, section ordering), type pairing (display + body fonts), color anchor (primary palette), and composition rules (spacing rhythm, element hierarchy). The 20 themes cover a wide range:</p>
+
+  <table>
+    <thead>
+      <tr><th>Theme</th><th>Visual Character</th><th>Best For</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Editorial</td><td>Serif display, clean body, strong hierarchy</td><td>Publications, blogs, content sites</td></tr>
+      <tr><td>Brutalism</td><td>Raw typography, exposed structure, no decoration</td><td>Portfolios, art projects, statement sites</td></tr>
+      <tr><td>Cobalt</td><td>Blue-primary corporate, tight spacing</td><td>Enterprise, SaaS, B2B</td></tr>
+      <tr><td>Carnival</td><td>Saturated warm palette, playful type</td><td>Events, entertainment, consumer apps</td></tr>
+      <tr><td>Lumen</td><td>Light-on-light, airy, generous whitespace</td><td>Lifestyle, wellness, minimal products</td></tr>
+      <tr><td>Hum</td><td>Warm neutrals, understated confidence</td><td>Consulting, agencies, professional services</td></tr>
+    </tbody>
+  </table>
+
+  <p>The full list of 20 is in the skill's CATALOG.md. The important point: each theme has been hand-tuned to avoid the 57 slop patterns. The theme is not just a color palette. It is a complete visual rule-set that constrains every design decision the agent makes.</p>
+
+  <h5 id="hallmark-custom">Custom Mode</h5>
+
+  <p>When a brief carries creative intent that no catalog theme fits, Hallmark switches to Custom mode and designs from scratch. Made-to-measure palette, type pairing, and layout. The same 57 slop-test gates still apply. No template underneath. This is the mode you use when you want the anti-slop discipline without committing to any of the 20 named themes.</p>
+
+  <h5 id="hallmark-examples">Practical Examples</h5>
+
+  <p><strong>Example 1: Generate a landing page with a specific theme.</strong></p>
+
+  <pre><code class="language-text">Build a landing page for a time-tracking SaaS product.
+Use the Cobalt theme. The page needs: hero with headline and CTA,
+three feature sections, a pricing table with two tiers, and a footer.
+
+Company: Tempo. Tagline: "Ship on time, every time."</code></pre>
+
+  <p>The agent picks the Cobalt theme's macrostructure (corporate layout, tight spacing, blue-primary palette), generates the HTML, runs it through 57 slop gates, self-critiques the output, and returns clean markup. If the first pass produces a purple gradient hero (a common AI tell), the slop gate catches it and regenerates with the Cobalt palette instead.</p>
+
+  <p><strong>Example 2: Audit existing agent-generated code.</strong></p>
+
+  <pre><code class="language-text">hallmark audit src/pages/landing.tsx</code></pre>
+
+  <p>This returns a scored report without editing the file:</p>
+
+  <pre><code>## Hallmark Audit: src/pages/landing.tsx
+
+Score: 34/100 (Moderate slop detected)
+
+### Findings
+
+| Gate | Pattern Found | Severity | Location |
+|------|---------------|----------|----------|
+| G-12 | Purple gradient hero background | High | line 45 |
+| G-23 | Emoji as section icons (🚀 📊 ✨) | Medium | lines 67, 89, 112 |
+| G-31 | Inter used as display font | Medium | line 22 |
+| G-41 | Generic "hero-headline-center" macrostructure | Low | line 38 |
+| G-48 | Rounded card with left-border accent | Medium | line 156 |
+
+### Recommendation
+Apply `hallmark redesign src/pages/landing.tsx` to rebuild the visual
+structure while preserving the copy and information architecture.</code></pre>
+
+  <p>The audit tells you exactly what AI tells exist in the code, where they are, and how severe they are. The designer decides whether to fix them manually or hand the file back to the agent for a redesign.</p>
+
+  <p><strong>Example 3: Redesign while preserving content.</strong></p>
+
+  <pre><code class="language-text">hallmark redesign src/pages/landing.tsx</code></pre>
+
+  <p>The agent reads the existing file, extracts the copy ("Ship on time, every time"), the information architecture (hero, features, pricing, footer), and the brand context. Then it throws out the visual structure and rebuilds with a different theme's fingerprint. Same words. Different skin. The 57 gates run again on the new output.</p>
+
+  <p>This is useful when the first agent pass got the content right but the visual wrong. Instead of editing CSS for an hour, you tell Hallmark to try a different visual direction while keeping the content you approved.</p>
+
+  <p><strong>Example 4: Study a reference design.</strong></p>
+
+  <pre><code class="language-text">hallmark study https://stripe.com</code></pre>
+
+  <p>The agent fetches the page, extracts the visual DNA, and returns a structured breakdown:</p>
+
+  <pre><code>## Study: stripe.com
+
+### Macrostructure
+- Full-width hero with centered headline
+- Diagonal/angled section dividers
+- Dense feature grid with icon + headline + body
+- Alternating background tones (white / light gray)
+
+### Type Pairing
+- Display: Custom sans-serif (geometric, wide)
+- Body: System sans-serif, 16px, 1.6 line-height
+
+### Color Anchor
+- Primary: #635BFF (indigo)
+- Background: #FFFFFF / #F6F9FC
+- Text: #1A1F36
+- Accent: #00D4FF (cyan, used sparingly)
+
+### Anti-Slop Notes
+- No gradients on backgrounds
+- No emoji
+- No rounded-corner-left-border cards
+- Heavy use of custom SVG illustrations (not stock)</code></pre>
+
+  <p>You can feed this study output back into a generation prompt: "Build a landing page using the Stripe study's macrostructure, type pairing, and color anchor." The agent composes from the reference's visual DNA instead of defaulting to AI-typical patterns.</p>
+
+  <h5 id="hallmark-use-cases">When Hallmark Matters Most</h5>
+
+  <p>Hallmark addresses a specific problem: the gap between "technically correct" and "visually honest." Agent-generated code can pass every lint check, every accessibility audit, and every responsive breakpoint test, and still look like it was made by a machine. The slop patterns are subtle. A human designer spots them in seconds. An agent without Hallmark doesn't know they exist.</p>
+
+  <p>The skill matters most in three scenarios:</p>
+
+  <p><strong>Customer-facing products.</strong> Internal tools can look AI-generated without consequence. Nobody judges the visual quality of an admin dashboard. But a landing page, a marketing site, a product onboarding flow --- these are the first impression. If they look AI-generated, the brand loses credibility. Hallmark's 57 gates catch the tells before they ship.</p>
+
+  <p><strong>Design system consistency.</strong> When an agent generates components for an existing design system, the output needs to match the system's visual identity. A design system that uses sharp corners and dense information layouts will reject an agent's rounded-card-with-gradient output. Hallmark's audit verb catches these mismatches. Point it at a generated component and it scores the output against anti-patterns that conflict with most established design systems.</p>
+
+  <p><strong>Portfolio and agency work.</strong> Design agencies and freelancers who use agents to accelerate production face a reputational risk: if the output looks AI-generated, clients question the value. Hallmark's study verb helps here. Study a client's existing site, extract the visual DNA, then generate new pages that inherit the client's visual language. The output matches the brand. The anti-slop gates ensure no AI tells leak through.</p>
+
+  <div class="callout">
+    <p><strong>My take:</strong> Hallmark fills a gap that no other skill addresses. Open Design and TypeUI optimize for variety --- more themes, more design systems, more visual directions. Hallmark optimizes for authenticity --- fewer AI tells, more visual honesty. The two approaches complement each other. Use Open Design or TypeUI to explore directions. Use Hallmark to clean the output before it ships. The audit verb alone is worth the install. Point it at any file an agent generated and you get a concrete, actionable list of what to fix.</p>
+  </div>
 
   <p>Install a skill by placing its directory in the appropriate skills folder. Project-level skills go in <code>.claude/skills/</code>, <code>.opencode/skills/</code>, or <code>.agents/skills/</code> inside the project root. These are committed to git and shared with the team. User-level skills go in <code>~/.claude/skills/</code> or <code>~/.agents/skills/</code>. These are personal and available across all projects.</p>
 
@@ -850,7 +1039,7 @@ Output a single HTML file.
 
   <p>The composability of skills is their most powerful feature. Individual skills are simple. A brand-prototype skill generates prototypes. A design-review skill checks quality. An export skill converts to code. None of these is complex on its own. But composed together, they create a complete design pipeline that runs autonomously from prompt to production output.</p>
 
-  <h4 id="03-4-feishu">Beautiful Feishu Whiteboard: Agent-Authored SVG in Enterprise Documents</h4>
+  <h4 id="03.4-feishu">Beautiful Feishu Whiteboard: Agent-Authored SVG in Enterprise Documents</h4>
 
   <p>The Beautiful Feishu Whiteboard skill takes a specific niche: generating editable SVG diagrams inside Feishu/Lark documents. It provides 35 curated color palette styles and a SKILL.md that teaches an agent how to compose whiteboard diagrams within the hard rendering constraints of Feishu's SVG renderer.</p>
 
@@ -868,9 +1057,9 @@ Output a single HTML file.
 
   <p>As of June 2026, the repo has 159 stars and an MIT license (source: <a href="https://github.com/zarazhangrui/beautiful-feishu-whiteboard">github.com/zarazhangrui/beautiful-feishu-whiteboard</a>, retrieved 2026-06-04).</p>
 
-  <h3 id="s-03-5">SkillSpector: Security Scanning for Agent Skills</h3>
+<h3 id="s-03-5">SkillSpector: Security Scanning for Agent Skills</h3>
 
-  <p>Every skill you install gives the agent new capabilities, new instructions, and potentially new attack surfaces. Open Design ships 31 skills. TypeUI ships 67. Hallmark, anydesign, Huashu Design, and hundreds of community skills are all installable with a single command. The ecosystem is growing fast. The trust model has not kept up.</p>
+<p>Every skill you install gives the agent new capabilities, new instructions, and potentially new attack surfaces. Open Design ships 31 skills. TypeUI ships 67. Hallmark, anydesign, Huashu Design, and hundreds of community skills are all installable with a single command. The ecosystem is growing fast. The trust model has not kept up.</p>
 
   <p>Research from NVIDIA found that 26.1% of sampled skills contain vulnerabilities and 5.2% show likely malicious intent (source: <a href="https://github.com/nvidia/skillspector">github.com/nvidia/skillspector</a>, 1.2k stars, Apache 2.0, retrieved 2026-06-04). The numbers are high because skills run with the agent's full permissions. A skill that contains a hidden prompt injection can override your system prompt. A skill that harvests environment variables can exfiltrate API keys. A skill with unpinned dependencies can pull compromised packages.</p>
 
@@ -881,7 +1070,7 @@ Output a single HTML file.
 </figure>
 
 
-  <h4 id="s-03-5a">The 16 Vulnerability Categories</h4>
+  <h4 id="03.5a">The 16 Vulnerability Categories</h4>
 
   <p>SkillSpector organizes its 64 patterns into 16 categories. For design teams, four categories matter most:</p>
 
@@ -899,7 +1088,7 @@ Output a single HTML file.
 
   <p>The remaining 12 categories cover system prompt leakage, memory poisoning, tool misuse, rogue agent behavior, trigger abuse, behavioral AST analysis (detecting <code>exec()</code>, <code>eval()</code>, <code>subprocess</code> calls), taint tracking, YARA signatures (malware, webshells, cryptominers), MCP least privilege violations, and MCP tool poisoning. The full list is in the SkillSpector documentation.</p>
 
-  <h4 id="s-03-5b">Risk Scoring</h4>
+  <h4 id="03.5b">Risk Scoring</h4>
 
   <p>The scoring system is straightforward:</p>
 
@@ -917,12 +1106,12 @@ Output a single HTML file.
 
   <p>Scoring weights: CRITICAL issues add 50 points, HIGH adds 25, MEDIUM adds 10, LOW adds 5. Executable scripts get a 1.3x multiplier. A skill with one CRITICAL prompt injection pattern and one HIGH data exfiltration pattern scores at least 97.5 (50 + 25, multiplied by 1.3 for executable scripts). That skill is blocked.</p>
 
-  <h4 id="s-03-5c">Installation and Usage</h4>
+  <h4 id="03.5c">Installation and Usage</h4>
 
   <pre><code class="language-bash"># Install SkillSpector
 git clone https://github.com/nvidia/skillspector.git
 cd skillspector
-uv venv .venv &amp;&amp; source .venv/bin/activate
+uv venv .venv && source .venv/bin/activate
 make install
 
 # Scan a skill before installing it
@@ -941,7 +1130,7 @@ skillspector patterns</code></pre>
 
   <p>The two-stage analysis runs static checks first (fast, no API cost), then optionally passes findings to an LLM for semantic evaluation. The static scan alone catches most patterns. The LLM stage adds deeper inspection for ambiguous cases.</p>
 
-  <h4 id="s-03-5d">Integration with Agent Workflows</h4>
+  <h4 id="03.5d">Integration with Agent Workflows</h4>
 
   <p>Running SkillSpector manually before every skill install is tedious. Here is how to integrate it into each agent platform so scanning happens automatically.</p>
 
@@ -954,7 +1143,7 @@ skillspector patterns</code></pre>
     "PreToolUse": [
       {
         "matcher": "skill_install",
-        "command": "skillspector scan $SKILL_DIR --format json --output /tmp/skill-report.json &amp;&amp; python3 -c \"import json; r=json.load(open('/tmp/skill-report.json')); exit(1) if r['risk_score'] > 50 else exit(0)\""
+        "command": "skillspector scan $SKILL_DIR --format json --output /tmp/skill-report.json && python3 -c \"import json; r=json.load(open('/tmp/skill-report.json')); exit(1) if r['risk_score'] > 50 else exit(0)\""
       }
     ]
   }
@@ -999,7 +1188,7 @@ jobs:
       - name: Install SkillSpector
         run: |
           git clone https://github.com/nvidia/skillspector.git
-          cd skillspector &amp;&amp; make install
+          cd skillspector && make install
       - name: Scan all skills
         run: |
           for dir in .claude/skills/*/ .opencode/skills/*/ .codex/skills/*/; do
@@ -1015,7 +1204,7 @@ jobs:
 
   <p>This runs on every push. If any skill scores above 50, the CI job fails. The SARIF output integrates with GitHub's security tab for visibility.</p>
 
-  <h4 id="s-03-5e">Real-World Use Cases</h4>
+  <h4 id="03.5e">Real-World Use Cases</h4>
 
   <p><strong>Use case 1: Scanning a community skill before first install.</strong></p>
 
@@ -1053,7 +1242,7 @@ echo "## Team Skill Security Audit — $(date)"
 echo ""
 for dir in .claude/skills/*/; do
   NAME=$(basename "$dir")
-  SCORE=$(skillspector scan "$dir" --no-llm --format json 2&gt;/dev/null \
+  SCORE=$(skillspector scan "$dir" --no-llm --format json 2>/dev/null \
     | python3 -c "import sys,json; print(json.load(sys.stdin).get('risk_score','error'))")
   if [ "$SCORE" = "error" ]; then
     echo "| $NAME | ERROR | Scan failed |"
@@ -1105,9 +1294,9 @@ done</code></pre>
     <p><strong>My take:</strong> Every team installing third-party skills should run SkillSpector. The 26.1% vulnerability rate is not theoretical --- it reflects the current state of a rapidly growing ecosystem where anyone can publish a skill and most consumers install without inspection. The static-only scan (<code>--no-llm</code>) is fast, free, and catches the majority of patterns. Add it to CI, set a threshold, and treat exceptions as intentional decisions recorded in git. The five minutes it takes to scan a skill is nothing compared to the cost of a compromised agent session.</p>
   </div>
 
-  <h3 id="s-03-6">Building a Custom Design Harness</h3>
+<h3 id="s-03-6">Building a Custom Design Harness</h3>
 
-  <p>A design harness is a configuration stack that constrains agent output quality. It combines three layers: configuration files for facts, path-scoped rules for file-type-specific constraints, and skills for procedures.</p>
+<p>A design harness is a configuration stack that constrains agent output quality. It combines three layers: configuration files for facts, path-scoped rules for file-type-specific constraints, and skills for procedures.</p>
 <figure class="figure--full" id="ch03-fig-03">
   <img src="../images/ch03-fig-03--web.webp" alt="VS Code file explorer showing a design harness project structure with .claude/rules directory, skills directory containing SKILL.md files, and a design-tokens directory" loading="lazy" />
   <figcaption>A design harness directory structure with scoped rules, skills, and token files</figcaption>
@@ -1185,12 +1374,12 @@ Output a single HTML file with embedded CSS.
   </div>
 
   <div class="callout warning">
-    <p><strong>Warning:</strong> Path-scoped rules in <code>.claude/rules/</code> are a Claude Code feature. OpenCode does not support path-scoped rules in the same way as of May 2026. For cross-agent compatibility, put design constraints in AGENTS.md or in the skill file itself. Do not rely solely on <code>.claude/rules/</code> if your team uses multiple agent platforms.</p>
+    <p><strong>Warning:</strong> Path-scoped rules in <code>.claude/rules/</code> are a Claude Code feature. OpenCode does not support path-scoped rules in the same way as of June 2026. For cross-agent compatibility, put design constraints in AGENTS.md or in the skill file itself. Do not rely solely on <code>.claude/rules/</code> if your team uses multiple agent platforms.</p>
   </div>
 
-  <h3 id="s-03-7">A Complete Example: Brand-Consistent Prototypes</h3>
+<h3 id="s-03-7">A Complete Example: Brand-Consistent Prototypes</h3>
 
-  <p>Here is a complete design harness for generating brand-consistent prototypes. This configuration works in both Claude Code and OpenCode without modification.</p>
+<p>Here is a complete design harness for generating brand-consistent prototypes. This configuration works in both Claude Code and OpenCode without modification.</p>
 
   <p>The project structure:</p>
 
@@ -1309,6 +1498,93 @@ Output a single HTML file with embedded CSS.
     <p class="bookmark-footer"><strong>Link:</strong> <a href="https://taste.jaytel.com">Taste skills from design references</a></p>
   </div>
 <!-- clip-update-run:2026-05-28-agentic-design-clips:end -->
+<!-- clip-update-run:2026-06-11-clip-update:start -->
+  <div id="03.prompt-template-discipline-role-output-constraints-stop" class="clip-passage">
+
+<h3 id="s-03-8">Prompt-template discipline: role / output / constraints / stop</h3>
+
+<p>A design skill usually tells the agent what to make and how to check it. What it leaves out is when to stop and who the agent is — and those two omissions are where design skills quietly fail. A prompt-template that survives daily use has a fixed shape, and that shape is most of why it stays reliable.</p>
+    <p>The structure I keep coming back to has four labeled blocks. Treat them as the skeleton every design prompt fills:</p>
+    <pre><code>ROLE         who the agent is — and, explicitly, who it is not
+OUTPUT       the exact sections or table columns to fill, named up front and never invented
+CONSTRAINTS  the design-system rules it must hold (tokens, components, accessibility)
+STOP         a condition the agent can verify against its own output</code></pre>
+    <p>Three of these are general; <code>CONSTRAINTS</code> is the design-specific one. Without it an agent will happily invent a fourth button style or a new accent color to &quot;improve&quot; the result. The other three each kill a different failure mode: <code>ROLE</code> stops mission creep, <code>OUTPUT</code> stops the model from reformatting its answer every run, and <code>STOP</code> stops the endless elaboration that turns one component into a redesign.</p>
+    <p>Here are five templates I use for design work, each filling that skeleton. Copy one, swap in your file names, and run it.</p>
+    <p><strong>1. UI component spec</strong></p>
+    <pre><code>ROLE:        You are an interaction designer speccing one component. You are not a brand designer; do not change colors, type, or invent new components.
+OUTPUT:      Fill these sections only — Anatomy / States (default, hover, focus, disabled, loading, error) / Tokens used / Accessibility (role, keyboard, contrast).
+CONSTRAINTS: Use only tokens in design-system.md. Compose existing primitives; do not create new ones.
+STOP:        Stop after one component with every state above filled. No variants, no alternative styles.</code></pre>
+    <p><strong>2. Heuristic UX audit</strong></p>
+    <pre><code>ROLE:        You are a usability evaluator applying Nielsen&#39;s 10 heuristics. You are not a redesigner; do not propose a new layout.
+OUTPUT:      One table — Heuristic | Observation | Severity (0–4) | Smallest fix. One row per heuristic, all ten.
+CONSTRAINTS: Judge only what is visible in the provided screen. No assumptions about screens you cannot see.
+STOP:        Stop when all ten heuristics have exactly one row. Do not redesign or add extra findings.</code></pre>
+    <p><strong>3. Primary task flow / IA</strong></p>
+    <pre><code>ROLE:        You are a product designer mapping one primary task flow. You are not writing UI copy or choosing visuals.
+OUTPUT:      Numbered steps from entry to success, each as Screen → User action → System response → Next. List decision points as branches.
+CONSTRAINTS: One happy path plus at most two edge branches (error, empty). Reuse existing screen names where given.
+STOP:        Stop once the success state is reached and the two edge branches are noted. Do not expand secondary flows.</code></pre>
+    <p><strong>4. Design-system token mapping</strong></p>
+    <pre><code>ROLE:        You are a design-systems engineer mapping a screen to tokens. You are not inventing a palette or scale.
+OUTPUT:      One table — Element | Property | Token. Group by color, typography, spacing, radius, shadow.
+CONSTRAINTS: Use only values that exist in tokens.json. If an element has no matching token, mark it &quot;GAP&quot; — never invent a value.
+STOP:        Stop when every visible element maps to a token or a flagged GAP. Do not propose new tokens.</code></pre>
+    <p><strong>5. Microcopy for system states</strong></p>
+    <pre><code>ROLE:        You are a product UX writer for one screen&#39;s system states. You are not changing layout or flow.
+OUTPUT:      One table — State (empty, loading, error, success) | Element | Copy | Max chars. One option per cell.
+CONSTRAINTS: Match the voice in voice.md. Plain language, sentence case, no exclamation marks.
+STOP:        Stop after the four states are covered with one option each. No alternates, no A/B variants.</code></pre>
+    <p>The discipline pays off when you fold the skeleton into a skill you already run. Take any HTML-prototype skill that lists quality checks but never names a role or a stop condition. Add a <code>ROLE</code> line (&quot;you are a layout engineer, not a brand strategist&quot;), keep the existing quality checks as the <code>OUTPUT</code> and <code>CONSTRAINTS</code> blocks, and end with a <code>STOP</code>: <code>stop after one HTML file passes all checks; do not generate alternative themes</code>. Run the skill ten times with those three lines and ten times without them, and count the iterations each version costs before the output is usable. The delta is the whole argument for template discipline.</p>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-01.png" alt="A reusable prompt-template skeleton — role, output, constraints, stop — and the iteration cost when the blocks are missing." loading="lazy" />
+      <figcaption>Figure: The four-block template skeleton, and what a reliable template buys you over an unstructured prompt.</figcaption>
+    </figure>
+  </div>
+
+  <div id="03.typeui-one-markdown-file-per-component" class="clip-passage">
+
+<h3 id="s-03-9">TypeUI: one markdown file per component</h3>
+
+<p>TypeUI (<a href="https://www.typeui.sh">typeui.sh</a>, source at <a href="https://github.com/bergside/typeui">github.com/bergside/typeui</a>) is a design-skill platform that installs curated design systems into your coding agent, and there is a detail in how it stores a system that is worth pulling out, because it generalizes past the product. Instead of one theme JSON blob, a system is a folder of small markdown files: <code>brand.md</code>, <code>buttons.md</code>, <code>typography.md</code>, <code>cards.md</code>, one file per concern. The reasoning the author gives is blunt and correct: agents like markdown and natural language, so the design system should be markdown and natural language. You are not asking the agent to parse a schema. You are handing it prose it already reads fluently.</p>
+    <p>The import side is the interesting part. You can bring a predefined theme, drop your own SKILL files in a ZIP, or pull from Figma (beta), and an algorithm proposes token and variable candidates per file. You then review, edit, add, remove before publishing. That review gate is the point: the machine drafts, you direct. Once published, the system is served to Claude, Codex, Cursor, and others through an MCP server, so &quot;what design systems do I have?&quot; becomes a real query the agent answers.</p>
+    <p>The transferable lesson, independent of whether you pay for TypeUI: split your design system into one markdown file per component and let the agent read it directly. Same instinct as a single design-system markdown file, at finer granularity — and easier for the agent to load only the one file it needs.</p>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-08.png" alt="One design system stored as separate markdown files, served to multiple agents through one MCP endpoint." loading="lazy" />
+      <figcaption>Figure: A markdown-per-component design system served through one MCP endpoint.</figcaption>
+    </figure>
+  </div>
+
+  <div id="03.xiaohei-illustration-skill-a-single-character-explainer-graphic-capability" class="clip-passage">
+
+<h3 id="s-03-10">Xiaohei illustration skill: a single-character explainer-graphic capability</h3>
+
+<p>ian-xiaohei-illustrations is a Codex skill that turns text — a blog post, an article, even a code repo — into hand-drawn explainer graphics narrated by a single recurring blob character on a white 16:9 ground with sparse red, orange, and blue annotations. Feed it the X recommendation-algorithm repo and you get a conveyor-belt diagram where signals like dwell and like ride along, ranked. It defaults to Chinese; ask for English and it complies.</p>
+    <p>The output is cute, and the cuteness buries the actual lesson. The point is not the blob. The point is that this is a capability you teach an agent once and reuse, versus a prompt you rewrite every run. A skill freezes a complete visual fingerprint — one character, one palette, one layout grammar — into a reusable instruction. That compounds: every explainer you generate looks like it came from the same hand, with zero re-prompting.</p>
+    <p>That is the same principle that powers any anti-slop or HTML-design skill — encode the style once, reuse it everywhere — applied at illustration scale rather than UI scale. It also flags a quieter risk: a skill that ingests arbitrary text is a plausible prompt-injection surface, even when, as here, the published version checks clean. The design takeaway stands on its own, which is why I would mention it in a sentence rather than give it a section.</p>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-07.png" alt="A skill freezes one visual fingerprint that every run reuses, versus re-prompting per output." loading="lazy" />
+      <figcaption>Figure: A reusable skill (one fingerprint) versus re-prompting per output.</figcaption>
+    </figure>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-07-xiaohei-demo.png" alt="Xiaohei-style demo: the blob mascot stamps plain text through a SKILL, and three identically-styled cards come out, circled &quot;same fingerprint&quot;." loading="lazy" />
+      <figcaption>Live demo, generated in the Xiaohei style (single black blob, white 16:9 ground, sparse red/orange/blue annotations) via Nano Banana 2.0 from a reusable `book/xiaohei-explainer` template. It illustrates this candidate&#39;s own thesis: teach the style once, reuse the same fingerprint every run.</figcaption>
+    </figure>
+  </div>
+
+  <div id="03.skillvault-a-marketplace-for-discovering-and-distributing-agent-skills" class="clip-passage">
+
+<h3 id="s-03-11">SkillVault: a marketplace for discovering and distributing agent skills</h3>
+
+<p>Skills are no longer only things you write or clone from a known repo. There are now cross-tool marketplaces — SkillVault (skillvault.md) is the clearest example — that index skills, agents, hooks, and rules for Claude Code, Codex, Cursor, and a dozen other agents, with a CLI, a macOS app, and a web catalog. You install with a single command, the same shape as installing any other skill.</p>
+    <p>I treat a marketplace the way I treat any dependency source: a starting point, not a standard. Browsing large skill bundles is fast, but most of what you find is general-purpose engineering or productivity tooling, not design. The design skills that matter are still the focused ones — huashu-design, an anti-slop guardrail skill, a documented design-system spec — and those you are better off understanding line by line before you trust them with your brand. Use a marketplace to discover; read the SKILL.md before you install. A skill earns its place by tightening intent, generation, critique, and revision, and you cannot judge that from a catalog card.</p>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-09.png" alt="A skill marketplace as a discovery layer feeding into the install-and-review step." loading="lazy" />
+      <figcaption>Figure: A marketplace as a discovery layer ahead of the install-and-review gate.</figcaption>
+    </figure>
+  </div>
+<!-- clip-update-run:2026-06-11-clip-update:end -->
 
 <div class="callout tip">
     <p><strong>Next:</strong> Chapter 04 covers design-as-code --- the foundational formats (.pen files, .op files, HTML canvas, design tokens) that make agentic design possible. Understanding these formats is essential for everything that follows.</p>
@@ -1375,7 +1651,7 @@ Output a single HTML file with embedded CSS.
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1395,7 +1671,7 @@ Output a single HTML file with embedded CSS.
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1463,10 +1739,9 @@ Output a single HTML file with embedded CSS.
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>

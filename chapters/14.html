@@ -927,6 +927,20 @@
   <div class="callout">
     <p><strong>My take:</strong> I am optimistic about the trajectory but realistic about the timeline. The tools covered in this book are version 1.0 of agentic design. The MCP protocol is young. The skill ecosystem is nascent. The permission models are thin. But the direction is clear: design and code are converging, agents are becoming collaborative, and the canvas is returning as the primary interface for creative work. The designers who learn to direct agents --- not just use them --- will define the next decade of product design.</p>
   </div>
+<!-- clip-update-run:2026-06-11-clip-update:start -->
+  <div id="14.generative-ui-frameworks-when-the-agent-renders-the-interface-at-runtime" class="clip-passage">
+
+<h3 id="s-14-9">Generative UI frameworks: when the agent renders the interface at runtime</h3>
+
+<figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-02.png" alt="Two delivery models — emit-source (reviewable) versus render-at-runtime (ephemeral) — and what each costs the critique loop." loading="lazy" />
+      <figcaption>Figure: Emit-source versus render-at-runtime, and the cost to the critique loop.</figcaption>
+    </figure>
+    <p>The agentic design tools in wide use today produce an artifact you can read — a <code>.pen</code> file, an HTML page, a token set, a diff. There is a quieter frontier where the agent skips the artifact and renders the interface directly at runtime, constrained to your design system. The umbrella terms circulating in mid-2026 are generative UI, AG-UI, and MCP Apps: the agent receives intent, then assembles live components from your library on the fly rather than emitting source for you to review.</p>
+    <p>I am cautious here, and the reason is the loop that produces good design: intent, then generation, then critique, then revision. Critique needs something durable to point at. Runtime-generated UI weakens that step: if the interface only exists for the duration of a session, you cannot diff it, you cannot leave a comment on line 40, you cannot revert to yesterday&#39;s version. You trade reviewability for immediacy.</p>
+    <p>That trade makes sense for ephemeral, personalized surfaces — a dashboard assembled per-user, a form that adapts to the conversation. It makes much less sense for durable product surfaces that need to be reviewed, versioned, and shipped. Watch the space, but do not confuse &quot;the agent rendered a UI&quot; with &quot;the agent produced a design you can direct.&quot; The second is the harder and more useful problem.</p>
+  </div>
+<!-- clip-update-run:2026-06-11-clip-update:end -->
 
   <div class="callout tip">
     <p><strong>Next:</strong> This chapter concludes the main content of the book. <a href="A.html">Appendix A</a> provides a comprehensive tool comparison matrix for quick reference. <a href="B.html">Appendix B</a> contains the full MCP server reference. <a href="C.html">Appendix C</a> offers a prompt library organized by design task.</p>

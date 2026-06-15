@@ -232,7 +232,6 @@
     .book-content li::marker { color: rgba(0,0,0,0.25); }
 
 
-
     .chapter-hero {
       position: relative;
       z-index: 2;
@@ -344,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -413,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -469,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">13 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">14 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -497,7 +493,7 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-07-1" data-section="s-07-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>What Makes Huashu Design Different</span></a>
           <a href="#s-07-2" data-section="s-07-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Installing and Configuring Huashu Design</span></a>
@@ -518,7 +514,7 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-07-1" data-section="s-07-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>What Makes Huashu Design Different</span></a>
           <a href="#s-07-2" data-section="s-07-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Installing and Configuring Huashu Design</span></a>
@@ -533,7 +529,7 @@
         <div class="book-content">
 <h3 id="s-07-1">What Makes Huashu Design Different</h3>
 
-  <p>Most design tools give you a canvas, panels, and property inspectors. Huashu Design gives you none of that. The entire tool is a <code>SKILL.md</code> file --- 811 lines of instructions that teach any skill-capable agent how to produce production-grade visual artifacts using nothing but HTML, CSS, and JavaScript.</p>
+<p>Most design tools give you a canvas, panels, and property inspectors. Huashu Design gives you none of that. The entire tool is a <code>SKILL.md</code> file --- 811 lines of instructions that teach any skill-capable agent how to produce production-grade visual artifacts using nothing but HTML, CSS, and JavaScript.</p>
 
   <p>The distinction matters. When I say "HTML-native design," I don't mean "export to HTML." I mean the agent embodies different roles depending on the task --- UX designer for prototypes, animator for motion design, slide designer for decks --- and produces HTML as the primary artifact. There is no graphics tool layer. The conversation <em>is</em> the interface.</p>
 
@@ -617,9 +613,9 @@
     </tbody>
   </table>
 
-  <h3 id="s-07-2">Installing and Configuring Huashu Design</h3>
+<h3 id="s-07-2">Installing and Configuring Huashu Design</h3>
 
-  <p>One command:</p>
+<p>One command:</p>
 
   <pre><code>$ npx skills add alchaincyf/huashu-design</code></pre>
 
@@ -657,9 +653,9 @@
 
   <p>After installation, you start a conversation with your agent and describe what you want. The skill activates when the agent detects a design task. You don't invoke it explicitly.</p>
 
-  <h3 id="s-07-3">The Junior Designer Workflow</h3>
+<h3 id="s-07-3">The Junior Designer Workflow</h3>
 
-  <p>This is the core pattern of Huashu Design. The agent is your junior designer. You are the manager. The workflow exists because one-shotting a complex design rarely produces good results.</p>
+<p>This is the core pattern of Huashu Design. The agent is your junior designer. You are the manager. The workflow exists because one-shotting a complex design rarely produces good results.</p>
 <figure class="figure--full" id="ch07-fig-02">
   <img src="../images/ch07-fig-02--web.webp" alt="Huashu Design HTML prototype showing a polished iOS application interface with real Unsplash images, navigation between screens, and production-quality visual design output" loading="lazy" />
   <figcaption>iOS app prototype generated by Huashu Design with real images and interactive navigation</figcaption>
@@ -735,9 +731,9 @@
     <p><strong>My take:</strong> The Junior Designer Workflow is the most important contribution Huashu Design makes to the agent design ecosystem. Most agent-generated design fails because the agent tries to produce a final artifact immediately. Huashu's approach --- hypothesis first, polish later --- maps onto how real designers actually work. I use this pattern even when I'm not using Huashu Design specifically.</p>
   </div>
 
-  <h3 id="s-07-4">Core Asset Protocol: Brand-Consistent Output</h3>
+<h3 id="s-07-4">Core Asset Protocol: Brand-Consistent Output</h3>
 
-  <p>The hardest rule in the skill. When your task involves a specific brand, the agent must follow a 5-step process before writing a single line of HTML.</p>
+<p>The hardest rule in the skill. When your task involves a specific brand, the agent must follow a 5-step process before writing a single line of HTML.</p>
 
   <p>The problem the protocol solves: agents default to generic visuals. Without real brand assets, an iPhone prototype looks like every other phone. A Volta Motors slide deck looks like a generic car pitch. The Core Asset Protocol forces the agent to gather real assets first.</p>
 
@@ -845,9 +841,9 @@
 - Body: 'Volta Sans', 'Inter', sans-serif, 400
 - Mono: 'JetBrains Mono', monospace, 400</code></pre>
 
-  <h3 id="s-07-5">Design Direction Advisor: 5 Schools x 20 Philosophies</h3>
+<h3 id="s-07-5">Design Direction Advisor: 5 Schools x 20 Philosophies</h3>
 
-  <p>When the brief is vague --- no brand context, no style reference, user wants recommendations --- the Direction Advisor activates. It presents 20 design philosophies organized into 5 schools, each with a distinct worldview.</p>
+<p>When the brief is vague --- no brand context, no style reference, user wants recommendations --- the Direction Advisor activates. It presents 20 design philosophies organized into 5 schools, each with a distinct worldview.</p>
 <figure class="figure--grid-3" id="ch07-fig-03">
   <img src="../images/ch07-fig-03--web.webp" alt="Three-column comparison showing the same design brief rendered in three different Huashu Design philosophical directions with distinct color palettes, typography, and layout approaches" loading="lazy" />
   <figcaption>Three design variants of the same brief showing different philosophical directions</figcaption>
@@ -919,9 +915,9 @@
 
   <p>The 24 prebuilt showcases serve a specific purpose: they give you a visual vocabulary. Most people can't describe what they want in design terms. But when you see a Minimalist layout next to a Kinetic Poetry layout next to an Eastern Philosophy layout, you can point and say "something like that one." The showcases bridge the gap between vague intent and specific direction.</p>
 
-  <h3 id="s-07-6">Anti-AI-Slop Rules and Quality Guardrails</h3>
+<h3 id="s-07-6">Anti-AI-Slop Rules and Quality Guardrails</h3>
 
-  <p>The skill defines "AI slop" precisely: <em>the visual greatest common denominator of AI training data</em>. It carries zero brand information. You've seen it. Aggressive purple gradients. Emoji as icons. Rounded cards with a left colored border. Dark blue <code>#0D1117</code> backgrounds. Inter or Roboto as the display font.</p>
+<p>The skill defines "AI slop" precisely: <em>the visual greatest common denominator of AI training data</em>. It carries zero brand information. You've seen it. Aggressive purple gradients. Emoji as icons. Rounded cards with a left colored border. Dark blue <code>#0D1117</code> backgrounds. Inter or Roboto as the display font.</p>
 
   <p>The skill lists specific elements to avoid:</p>
 
@@ -949,9 +945,9 @@
 
   <p>That last rule is worth pausing on. "One detail at 120%, everything else at 80%." Most AI-generated design is 100% everything --- every element competing for attention, nothing breathing. Restraint is the signal.</p>
 
-  <h3 id="s-07-7">The 5-Dimension Expert Critique</h3>
+<h3 id="s-07-7">The 5-Dimension Expert Critique</h3>
 
-  <p>After the agent produces an artifact, you can run a critique. The skill evaluates on 5 dimensions, each scored 0-10:</p>
+<p>After the agent produces an artifact, you can run a critique. The skill evaluates on 5 dimensions, each scored 0-10:</p>
 <figure class="figure--full" id="ch07-fig-04">
   <img src="../images/ch07-fig-04--web.webp" alt="Huashu Design 5-dimension expert critique showing a radar chart with scores for philosophical consistency, visual hierarchy, detail execution, functionality, and innovation each rated on a 10-point scale" loading="lazy" />
   <figcaption>5-dimension expert critique with radar chart scoring philosophical consistency through innovation</figcaption>
@@ -976,9 +972,9 @@
     <p><strong>My take:</strong> The self-critique capability is the feature I didn't know I needed. Most agent design tools produce output and stop. Huashu Design produces output, then evaluates its own work against explicit criteria. The radar chart makes the evaluation legible. I run the critique on every artifact before delivery, even when I think it looks good.</p>
   </div>
 
-  <h3 id="s-07-8">Export: MP4, GIF, PPTX, PDF</h3>
+<h3 id="s-07-8">Export: MP4, GIF, PPTX, PDF</h3>
 
-  <p>Huashu Design doesn't just produce HTML. The <code>scripts/</code> directory contains a full export toolchain.</p>
+<p>Huashu Design doesn't just produce HTML. The <code>scripts/</code> directory contains a full export toolchain.</p>
 
   <p><strong>Motion design</strong>: MP4 at 25fps base with 60fps interpolation. GIF with palette optimization. 6 scene-specific background music tracks with automatic ducking. The animation model uses Stage + Sprite time-slicing with <code>useTime</code>, <code>useSprite</code>, <code>interpolate</code>, and <code>Easing</code> APIs from <code>assets/animations.jsx</code>.</p>
 
@@ -1144,7 +1140,7 @@ function ProductReveal() {
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1164,7 +1160,7 @@ function ProductReveal() {
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1232,10 +1228,9 @@ function ProductReveal() {
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>

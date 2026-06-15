@@ -232,7 +232,6 @@
     .book-content li::marker { color: rgba(0,0,0,0.25); }
 
 
-
     .chapter-hero {
       position: relative;
       z-index: 2;
@@ -344,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -413,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -469,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">19 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -497,7 +493,7 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-06-1" data-section="s-06-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Open Design: The Open-Source Claude Design Alternative</span></a>
           <a href="#s-06-2" data-section="s-06-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up Open Design</span></a>
@@ -518,7 +514,7 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-06-1" data-section="s-06-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Open Design: The Open-Source Claude Design Alternative</span></a>
           <a href="#s-06-2" data-section="s-06-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up Open Design</span></a>
@@ -533,7 +529,7 @@
         <div class="book-content">
 <h3 id="s-06-1">Open Design: The Open-Source Claude Design Alternative</h3>
 
-  <p>Open Design is a local-first, open-source alternative to Anthropic's Claude Design. As of May 2026, it has 43.6k GitHub stars, 5k forks, and an Apache-2.0 license. It does not ship its own agent. Instead, it wires existing coding agents into a skill-driven design workflow.</p>
+<p>Open Design is a local-first, open-source alternative to Anthropic's Claude Design. As of May 2026, it has 43.6k GitHub stars, 5k forks, and an Apache-2.0 license. It does not ship its own agent. Instead, it wires existing coding agents into a skill-driven design workflow.</p>
 
   <p>The context: Anthropic released Claude Design on April 17, 2026 with the Opus 4.7 model. It went viral. It also stayed closed-source, paid-only, cloud-only, and locked to Anthropic's model. Open Design provides the same artifact-first loop — prompt, generate, preview, iterate — without any of the lock-in.</p>
 
@@ -641,9 +637,9 @@
 
   <p>Sixteen total as of May 2026. The daemon detects whichever ones are installed and offers them in the model picker. No need to install all 16 — install the agent you prefer, and Open Design detects it automatically.</p>
 
-  <h3 id="s-06-2">Setting Up Open Design</h3>
+<h3 id="s-06-2">Setting Up Open Design</h3>
 
-  <p>Open Design runs locally via the <code>pnpm tools-dev</code> command. The quickstart is three commands:</p>
+<p>Open Design runs locally via the <code>pnpm tools-dev</code> command. The quickstart is three commands:</p>
 
   <pre><code>$ git clone https://github.com/nexu-io/open-design
 $ cd open-design
@@ -683,9 +679,9 @@ Output:
     <p><strong>Warning:</strong> Open Design is at version 0.8.0-preview as of May 2026. The API and skill protocol may change before 1.0. Pin your skill files to specific versions if you rely on them in production. The daemon's security model blocks internal-IP and SSRF requests at the edge, but loopback is allowed for Ollama and LM Studio.</p>
   </div>
 
-  <h3 id="s-06-3">Skills, Design Systems, and Visual Directions</h3>
+<h3 id="s-06-3">Skills, Design Systems, and Visual Directions</h3>
 
-  <p>Open Design's power comes from three layers: skills (what to make), design systems (how it looks), and visual directions (the aesthetic philosophy).</p>
+<p>Open Design's power comes from three layers: skills (what to make), design systems (how it looks), and visual directions (the aesthetic philosophy).</p>
 <figure class="figure--full" id="ch06-fig-02">
   <img src="../images/ch06-fig-02--web.webp" alt="Open Design design system picker showing a searchable grid of 129 design systems including Linear, Stripe, Vercel, shadcn, and other popular options as selectable templates" loading="lazy" />
   <figcaption>Open Design system picker with 129 design systems including Linear, Stripe, and Vercel</figcaption>
@@ -788,9 +784,9 @@ Use semantic HTML with Tailwind CSS classes.</code></pre>
     <p><strong>My take:</strong> The skill system is Open Design's killer feature. 31 skills means 31 starting points for different design tasks. Compare this to Claude Design, which has one generic artifact generation mode. The skill selection is not perfect — sometimes the daemon picks the wrong skill for ambiguous prompts — but you can always override it. The 129 design systems are impressive on paper, but most teams will use 3-5. The value is in having the right system available, not the quantity.</p>
   </div>
 
-  <h3 id="s-06-4">The Interactive Question Form and Direction Picker</h3>
+<h3 id="s-06-4">The Interactive Question Form and Direction Picker</h3>
 
-  <p>Before the model writes a pixel, Open Design locks the brief. The interactive question form captures surface, audience, tone, brand context, and scale. This takes roughly 30 seconds. The claim: "30 seconds of radios beats 30 minutes of redirects."</p>
+<p>Before the model writes a pixel, Open Design locks the brief. The interactive question form captures surface, audience, tone, brand context, and scale. This takes roughly 30 seconds. The claim: "30 seconds of radios beats 30 minutes of redirects."</p>
 <figure class="figure--full" id="ch06-fig-05">
   <img src="../images/ch06-fig-05--web.webp" alt="Open Design interface showing the interactive direction picker with three visual style thumbnails and a question form asking for design preferences before generating the artifact" loading="lazy" />
   <figcaption>Open Design direction picker showing three visual style options before artifact generation</figcaption>
@@ -871,9 +867,9 @@ Scale:      Single page</code></pre>
     <p><strong>My take:</strong> The question form is Open Design's smartest feature. Most agent design failures come from vague prompts. Locking the brief before generation is a simple pattern that dramatically improves output quality. I've tested this across 20+ runs: briefed outputs are consistently better than unbriefed ones.</p>
   </div>
 
-  <h3 id="s-06-5">OpenPencil: AI-Native Vector Design with Agent Teams</h3>
+<h3 id="s-06-5">OpenPencil: AI-Native Vector Design with Agent Teams</h3>
 
-  <p>OpenPencil is the first open-source AI-native vector design tool. As of May 2026, it has 3.1k GitHub stars, 317 forks, and an MIT license. The differentiator: concurrent Agent Teams — multiple AI agents working on different sections of a design simultaneously.</p>
+<p>OpenPencil is the first open-source AI-native vector design tool. As of May 2026, it has 3.1k GitHub stars, 317 forks, and an MIT license. The differentiator: concurrent Agent Teams — multiple AI agents working on different sections of a design simultaneously.</p>
 <figure class="figure--full" id="ch06-fig-03">
   <img src="../images/ch06-fig-03--web.webp" alt="OpenPencil editor showing a vector canvas with three color-coded regions indicating concurrent agent teams working on header, sidebar, and main content sections with real-time status indicators" loading="lazy" />
   <figcaption>OpenPencil canvas with concurrent Agent Teams working on different design sections</figcaption>
@@ -935,9 +931,9 @@ Scale:      Single page</code></pre>
 
   <p>The structure mirrors what you see on the canvas: a document containing canvases, canvases containing frames, frames containing text and shapes. Each property is a readable key-value pair. A <code>git diff</code> on this file shows exactly what changed — a color, a font size, a layout direction.</p>
 
-  <h3 id="s-06-6">Setting Up OpenPencil and Its MCP Server</h3>
+<h3 id="s-06-6">Setting Up OpenPencil and Its MCP Server</h3>
 
-  <p>OpenPencil has three installation paths: package manager, CLI, or Docker.</p>
+<p>OpenPencil has three installation paths: package manager, CLI, or Docker.</p>
 
   <p><strong>macOS (Homebrew):</strong></p>
 
@@ -1020,9 +1016,9 @@ codegen_assemble({ output_path: "src/LandingPage.tsx" })</code></pre>
     <p><strong>Warning:</strong> OpenPencil's MCP server tool list is still evolving as of May 2026. The tools mentioned above are documented in the README, but the complete enumeration may differ. Check the latest README for the current tool set before building workflows around specific MCP functions.</p>
   </div>
 
-  <h3 id="s-06-7">Concurrent Agent Teams: Parallel Design on Canvas</h3>
+<h3 id="s-06-7">Concurrent Agent Teams: Parallel Design on Canvas</h3>
 
-  <p>OpenPencil's signature feature is concurrent Agent Teams. An orchestrator decomposes a complex page into spatial sub-tasks. Multiple AI agents then work on different sections simultaneously — one on the hero, another on features, a third on the footer.</p>
+<p>OpenPencil's signature feature is concurrent Agent Teams. An orchestrator decomposes a complex page into spatial sub-tasks. Multiple AI agents then work on different sections simultaneously — one on the hero, another on features, a third on the footer.</p>
 <figure class="figure--grid-2" id="ch06-fig-04">
   <img src="../images/ch06-fig-04--web.webp" alt="Side-by-side comparison of a card component generated by Open Design as an HTML artifact and by OpenPencil as a vector canvas element showing structural and visual differences" loading="lazy" />
   <figcaption>Same component generated by Open Design (left) and OpenPencil (right) showing output differences</figcaption>
@@ -1105,9 +1101,9 @@ Include links, social icons, and copyright."</code></pre>
 
   <p>OpenPencil also ships an embeddable SDK for building custom design tools. The monorepo packages include <code>pen-types</code>, <code>pen-core</code>, <code>pen-engine</code> (headless), <code>pen-react</code> (React UI SDK), <code>pen-codegen</code>, <code>pen-figma</code>, <code>pen-renderer</code>, <code>pen-mcp</code>, <code>pen-sdk</code>, and <code>pen-ai-skills</code>. Chapter 11 covers multi-agent patterns in depth.</p>
 
-  <h3 id="s-06-8">Comparing Open Design and OpenPencil</h3>
+<h3 id="s-06-8">Comparing Open Design and OpenPencil</h3>
 
-  <p>Both tools are open-source. Both support agent-driven design. But they solve different problems. Here's how they compare:</p>
+<p>Both tools are open-source. Both support agent-driven design. But they solve different problems. Here's how they compare:</p>
 
   <table>
     <thead>
@@ -1256,7 +1252,7 @@ Include links, social icons, and copyright."</code></pre>
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1276,7 +1272,7 @@ Include links, social icons, and copyright."</code></pre>
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1344,10 +1340,9 @@ Include links, social icons, and copyright."</code></pre>
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>

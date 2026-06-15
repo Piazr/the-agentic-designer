@@ -232,7 +232,6 @@
     .book-content li::marker { color: rgba(0,0,0,0.25); }
 
 
-
     .chapter-hero {
       position: relative;
       z-index: 2;
@@ -344,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -413,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -469,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">23 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">31 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -481,11 +477,13 @@
       <div class="flex gap-8 overflow-x-auto py-3 -mb-px scrollbar-hide">
         <a href="#s-11-1" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">From Single Agent to Design Team</a>
         <a href="#s-11-2" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Orchestrator Pattern: Decompose, Delegate, Merge</a>
-        <a href="#s-11-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">OpenPencil&#x27;s Concurrent Agent Teams in Practice</a>
+        <a href="#s-11-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">OpenPencil's Concurrent Agent Teams in Practice</a>
         <a href="#s-11-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Subagent-Driven Development for Design Tasks</a>
         <a href="#s-11-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Orchestration Strategies: When to Parallelize</a>
         <a href="#s-11-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Dynamic Workflows: Orchestration as a Design Artifact</a>
         <a href="#s-11-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Complexity Tax: When Single Agent Wins</a>
+        <a href="#s-11-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Multica: treating agents as assignable teammates on a task board</a>
+        <a href="#s-11-9" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Self-healing `/goal` commands and the limits of autonomous plans</a>
       </div>
     </div>
   </nav>
@@ -496,15 +494,17 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-11-1" data-section="s-11-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Single Agent to Design Team</span></a>
           <a href="#s-11-2" data-section="s-11-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Orchestrator Pattern: Decompose, Delegate, Merge</span></a>
-          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil&#x27;s Concurrent Agent Teams in Practice</span></a>
+          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil's Concurrent Agent Teams in Practice</span></a>
           <a href="#s-11-4" data-section="s-11-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Subagent-Driven Development for Design Tasks</span></a>
           <a href="#s-11-5" data-section="s-11-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Orchestration Strategies: When to Parallelize</span></a>
           <a href="#s-11-6" data-section="s-11-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Dynamic Workflows: Orchestration as a Design Artifact</span></a>
           <a href="#s-11-7" data-section="s-11-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Complexity Tax: When Single Agent Wins</span></a>
+          <a href="#s-11-8" data-section="s-11-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Multica: treating agents as assignable teammates on a task board</span></a>
+          <a href="#s-11-9" data-section="s-11-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Self-healing `/goal` commands and the limits of autonomous plans</span></a>
       </nav>
     </aside>
   </div>
@@ -516,21 +516,23 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-11-1" data-section="s-11-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Single Agent to Design Team</span></a>
           <a href="#s-11-2" data-section="s-11-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Orchestrator Pattern: Decompose, Delegate, Merge</span></a>
-          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil&#x27;s Concurrent Agent Teams in Practice</span></a>
+          <a href="#s-11-3" data-section="s-11-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>OpenPencil's Concurrent Agent Teams in Practice</span></a>
           <a href="#s-11-4" data-section="s-11-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Subagent-Driven Development for Design Tasks</span></a>
           <a href="#s-11-5" data-section="s-11-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Orchestration Strategies: When to Parallelize</span></a>
           <a href="#s-11-6" data-section="s-11-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Dynamic Workflows: Orchestration as a Design Artifact</span></a>
           <a href="#s-11-7" data-section="s-11-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Complexity Tax: When Single Agent Wins</span></a>
+          <a href="#s-11-8" data-section="s-11-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Multica: treating agents as assignable teammates on a task board</span></a>
+          <a href="#s-11-9" data-section="s-11-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Self-healing `/goal` commands and the limits of autonomous plans</span></a>
       </nav>
       <main class="chapter-main">
         <div class="book-content">
 <h3 id="s-11-1">From Single Agent to Design Team</h3>
 
-  <p>A single agent handles a design task sequentially. It reads the brief, loads the context, generates the output, and iterates. This works for small, focused tasks: a single component, a landing page hero section, a set of design tokens.</p>
+<p>A single agent handles a design task sequentially. It reads the brief, loads the context, generates the output, and iterates. This works for small, focused tasks: a single component, a landing page hero section, a set of design tokens.</p>
 
   <p>Multi-agent means multiple agents working in parallel on different parts of the same design. This mirrors how human design teams already work. A UX researcher handles user flows. A visual designer handles the high-fidelity mockup. A motion designer handles animations. An engineer handles production code. Different people, different skills, one output.</p>
 
@@ -579,9 +581,9 @@
     </tbody>
   </table>
 
-  <h3 id="s-11-2">The Orchestrator Pattern: Decompose, Delegate, Merge</h3>
+<h3 id="s-11-2">The Orchestrator Pattern: Decompose, Delegate, Merge</h3>
 
-  <p>The orchestrator pattern is the backbone of multi-agent design. A single agent --- the orchestrator --- takes the design brief, breaks it into sub-tasks, assigns each sub-task to a worker agent, and merges the results.</p>
+<p>The orchestrator pattern is the backbone of multi-agent design. A single agent --- the orchestrator --- takes the design brief, breaks it into sub-tasks, assigns each sub-task to a worker agent, and merges the results.</p>
 <figure class="figure--full" id="ch11-fig-04">
   <img src="../images/ch11-fig-04--web.webp" alt="Orchestration flow diagram showing the Decompose-Delegate-Merge pattern: a design brief enters the orchestrator which splits into three parallel worker agents, their outputs merge with conflict resolution for spacing and style consistency, producing the final unified design" loading="lazy" />
   <figcaption>Decompose-Delegate-Merge orchestration pattern with conflict resolution in the merge step</figcaption>
@@ -605,15 +607,15 @@
 
   <p>The orchestrator pattern appears in three places in the agentic design ecosystem.</p>
 
-  <p>OpenPencil's Agent Teams use spatial decomposition with a built-in orchestrator that manages canvas regions. Subagent-driven development uses functional or spatial decomposition with the parent agent as orchestrator. MCP chaining (covered in <a href="10.html#s-10-7">section 10.7</a>) uses pipeline decomposition where the agent sequences tool calls across multiple MCP servers.</p>
+  <p>OpenPencil's Agent Teams use spatial decomposition with a built-in orchestrator that manages canvas regions. Subagent-driven development uses functional or spatial decomposition with the parent agent as orchestrator. MCP chaining (covered in <a href="#10.7">section 10.7</a>) uses pipeline decomposition where the agent sequences tool calls across multiple MCP servers.</p>
 
   <div class="callout">
     <p><strong>My take:</strong> The orchestrator pattern is the right mental model for multi-agent design, but the merge step is where current tools are weakest. An orchestrator can decompose and delegate reliably. Merging spatial outputs with visual consistency is still an unsolved problem in most tooling. OpenPencil's concurrent Agent Teams are the closest to solving this, but even they require human review after merge.</p>
   </div>
 
-  <h3 id="s-11-3">OpenPencil's Concurrent Agent Teams in Practice</h3>
+<h3 id="s-11-3">OpenPencil's Concurrent Agent Teams in Practice</h3>
 
-  <p>OpenPencil (3k+ GitHub stars as of May 2026) is the first open-source AI-native vector design tool with built-in concurrent Agent Teams. Multiple agents can work on different regions of the same canvas simultaneously.</p>
+<p>OpenPencil (3k+ GitHub stars as of May 2026) is the first open-source AI-native vector design tool with built-in concurrent Agent Teams. Multiple agents can work on different regions of the same canvas simultaneously.</p>
 <figure class="figure--full" id="ch11-fig-02">
   <img src="../images/ch11-fig-02--web.webp" alt="OpenPencil editor showing a completed dashboard design with three color-coded regions indicating where concurrent agent teams worked: header agent, sidebar agent, and main content agent results merged into a unified layout" loading="lazy" />
   <figcaption>OpenPencil canvas showing merged output from three concurrent agent teams on one dashboard</figcaption>
@@ -634,9 +636,9 @@
 
   <p><strong>Component libraries.</strong> Agents work on different component variants in parallel. One agent builds button variants. Another builds form input variants. A third builds card variants. Each agent applies the same design system tokens, ensuring consistency without coordination overhead.</p>
 
-  <h3 id="s-11-4">Subagent-Driven Development for Design Tasks</h3>
+<h3 id="s-11-4">Subagent-Driven Development for Design Tasks</h3>
 
-  <p>Subagent-driven development is the pattern where a parent agent spawns child agents to handle independent tasks in parallel. Applied to design, the parent receives the brief (for example, "build a marketing site"), decomposes it into sections (hero, features, testimonials, footer), and assigns each section to a subagent.</p>
+<p>Subagent-driven development is the pattern where a parent agent spawns child agents to handle independent tasks in parallel. Applied to design, the parent receives the brief (for example, "build a marketing site"), decomposes it into sections (hero, features, testimonials, footer), and assigns each section to a subagent.</p>
 <figure class="figure--full" id="ch11-fig-03">
   <img src="../images/ch11-fig-03--web.webp" alt="Terminal output showing an agent performing automated design review, checking generated components against design token specifications, and flagging two violations: incorrect border radius and non-standard color usage with suggested corrections" loading="lazy" />
   <figcaption>Agent design review workflow checking output against design system constraints and flagging issues</figcaption>
@@ -655,9 +657,9 @@
     <p><strong>My take:</strong> Subagent-driven development shines for large designs with clearly separable sections. I use it for full-page builds where each section is visually independent. For anything smaller --- a single component, a design token update, a visual refinement --- single agent is faster and cheaper. The emerging best practice is correct: start single-agent, escalate to multi-agent only when the task clearly exceeds single-agent capacity.</p>
   </div>
 
-  <h3 id="s-11-5">Orchestration Strategies: When to Parallelize</h3>
+<h3 id="s-11-5">Orchestration Strategies: When to Parallelize</h3>
 
-  <p>The decision to parallelize is not binary. It depends on task size, interdependence between sections, time constraints, and token budget. The following table provides a decision framework.</p>
+<p>The decision to parallelize is not binary. It depends on task size, interdependence between sections, time constraints, and token budget. The following table provides a decision framework.</p>
 
   <table>
     <thead>
@@ -724,7 +726,8 @@
 
   <p><strong>Pipeline.</strong> Agents in sequence, each specializing in one stage. Wireframe to visual to code. Each stage's output is the next stage's input. Not parallel, but allows deep specialization at each stage.</p>
 
-  <h3 id="s-11-6">Dynamic Workflows: Orchestration as a Design Artifact</h3>
+<h3 id="s-11-6">Dynamic Workflows: Orchestration as a Design Artifact</h3>
+
 <p>Dynamic Workflows matter in agentic design because they move the operating model out of a single conversation. The designer no longer has to manually coordinate every research pass, audit, verifier, and synthesis step. The workflow carries the process.</p>
 
 
@@ -797,18 +800,20 @@
 <pre><code class="language-bash">/deep-research What are the strongest current patterns for AI-assisted design QA?</code></pre>
 
 <ol start="2">
-  <li>Ask Claude to create a workflow by including the word <code>workflow</code> in your prompt:</li>
+  <li>Use the trigger word <code>ultracode</code> in your prompt to explicitly start a dynamic workflow:</li>
 </ol>
 
-<pre><code class="language-text">Run a workflow to audit every component in this design system for token drift, accessibility gaps, and inconsistent responsive behavior.</code></pre>
+<pre><code class="language-text">Use ultracode to audit every component in this design system for token drift, accessibility gaps, and inconsistent responsive behavior.</code></pre>
 
 <ol start="3">
-  <li>Use ultracode mode so Claude decides when a substantial task should become a workflow:</li>
+  <li>Describe the task naturally and let Claude decide when a workflow is appropriate:</li>
 </ol>
 
-<pre><code class="language-bash">/effort ultracode</code></pre>
+<pre><code class="language-text">Run a design system audit across all 120 components. Check tokens, accessibility, and responsive behavior. Return a prioritized report.</code></pre>
 
-<p>For most designers, the second option is the best starting point. Say the word <code>workflow</code> only when you mean it. Claude Code highlights the word because it is a trigger. If you accidentally type it and do not want a workflow, ignore the trigger for that prompt.</p>
+<p>The trigger word changed in late May 2026. Previously, including the word <code>workflow</code> in your prompt would activate a dynamic workflow. That caused false triggers: you might say "this is a good workflow" in conversation and accidentally launch one. The trigger word is now <code>ultracode</code>. You can still say "use a workflow for this" in natural language and Claude will understand your intent, but only <code>ultracode</code> guarantees a workflow fires. If you say "workflow" without meaning to, nothing happens.</p>
+
+<p>For most designers, the second option (explicit <code>ultracode</code> trigger) is the best starting point when you know you want a workflow. The third option (natural language) works when you are unsure and want Claude to decide.</p>
 
 <p>You manage workflow runs with:</p>
 
@@ -1161,13 +1166,50 @@ Only edit files if I explicitly approve after the report.</code></pre>
   <figcaption>The strongest design workflow outputs are reports, plans, gates, and backlog decisions.</figcaption>
 </figure>
 
-<p><strong>Resource:</strong> See <a href="https://code.claude.com/docs/en/workflows">Claude Code Dynamic Workflows</a> for the official workflow commands, runtime behavior, saved workflow locations, permissions, token cost, and current availability.</p>
+<h4 id="workflow-patterns-from-the-field">Workflow Patterns from the Field</h4>
+
+<p>Anthropic published a detailed field guide on dynamic workflows in June 2026. Several patterns from that guide are worth knowing even if you never write a workflow yourself, because they describe how complex design tasks decompose across multiple agents.</p>
+
+<p><strong>Fan-out-and-synthesize.</strong> Split a task into parallel steps, run a subagent on each, then merge the results. This is the pattern behind batch design work: generating 20 hero section variants in parallel, each with its own clean context so they don't cross-contaminate. The synthesis step is a barrier. It waits for all fan-out agents, then merges their structured outputs into one result.</p>
+
+<p><strong>Adversarial verification.</strong> For every subagent that produces output, spawn a second subagent that critiques it against a rubric. This directly addresses self-preferential bias. I use this for design reviews: one agent generates, another marks up every weakness. The workflow structurally prevents an agent from grading its own work.</p>
+
+<p><strong>Tournament.</strong> Spawn N agents that compete on the same task with different approaches. A judging agent picks the winner through pairwise comparison. This is how I run naming exercises and direction exploration. Generate broadly, then let a focused judge narrow it down. Comparative judgment is more reliable than absolute scoring.</p>
+
+<p><strong>Loop until done.</strong> For tasks where you don't know the scope upfront, keep spawning agents until a stop condition is met. No new findings. No remaining errors. Quality threshold reached. Useful for iterative design refinement where "done" is a quality bar, not a line count.</p>
+
+<p>The failure modes these patterns address are real. Anthropic names three specifically:</p>
+
+<ul>
+  <li><strong>Agentic laziness:</strong> the agent stops before finishing and declares the job done after partial progress. Address 35 of 50 items in a design audit and call it complete.</li>
+  <li><strong>Self-preferential bias:</strong> the agent prefers its own results, especially when asked to verify them against a rubric.</li>
+  <li><strong>Goal drift:</strong> gradual loss of fidelity to the original objective across many turns, especially after context compaction. Edge-case requirements and "don't do X" constraints get lost.</li>
+</ul>
+
+<p>Each pattern targets a specific failure mode. Fan-out reduces laziness by giving each agent a bounded, completable task. Adversarial verification eliminates self-preferential bias by structurally separating production from critique. Loop-until-done handles goal drift by checking a stop condition instead of trusting the agent to self-assess completion.</p>
+
+<p>A practical design prompt using these patterns:</p>
+
+<pre><code class="language-text">Use ultracode to review my landing page.
+For each section, spawn one agent that audits the visual hierarchy
+and another that checks accessibility. Synthesize into a priority-ranked
+fix list.</code></pre>
+
+<p>This gives you a structured review with independent quality checks per section. No single agent grades its own work. The synthesis step merges everything into one actionable list.</p>
+
+<p>Workflows can also be saved and distributed as part of a skill. A design team could ship a standard "design audit" workflow that every team member runs before shipping. The workflow is a JavaScript file in the skill folder, referenced from SKILL.md. More on skill distribution in Chapter 03.</p>
+
+<div class="callout">
+  <p><strong>My take:</strong> The pattern language matters more than any single workflow. Once you understand fan-out, adversarial verification, tournament, and loop-until-done, you can compose them for any design task. You don't need to memorize specific workflow scripts. You need to recognize which failure mode you're fighting and apply the right structural fix.</p>
+</div>
+
+<p><strong>Resource:</strong> See <a href="https://code.claude.com/docs/en/workflows">Claude Code Dynamic Workflows</a> for the official workflow commands, runtime behavior, saved workflow locations, permissions, token cost, and current availability. See also <a href="https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code">"A Harness for Every Task"</a> (Anthropic, June 2026) for the full pattern catalog and field examples.</p>
 
 <p>Context management is the critical challenge across all strategies. Each subagent needs design system context: brand colors, typography, spacing. This context must be communicated without duplication. Shared CLAUDE.md or AGENTS.md files (covered in Chapter 03) solve this by providing a single source of truth that all agents read from.</p>
 
-  <h3 id="s-11-7">The Complexity Tax: When Single Agent Wins</h3>
+<h3 id="s-11-7">The Complexity Tax: When Single Agent Wins</h3>
 
-  <p>Multi-agent introduces overhead that is easy to underestimate. I call this the complexity tax, and it has five components.</p>
+<p>Multi-agent introduces overhead that is easy to underestimate. I call this the complexity tax, and it has five components.</p>
 
   <p><strong>Orchestration cost.</strong> Tokens spent on decomposition instructions and merge instructions. The orchestrator has to explain the task to each worker, define boundaries, and then parse and merge the results. These are tokens not spent on actual design work.</p>
 
@@ -1217,6 +1259,34 @@ Only edit files if I explicitly approve after the report.</code></pre>
   <div class="callout">
     <p><strong>My take:</strong> A poorly orchestrated multi-agent team can be slower and produce worse results than a single well-prompted agent. I have seen this play out multiple times. The enthusiasm for parallelism is understandable, but the merge step is where multi-agent design fails in practice. Until tooling gets better at resolving cross-region inconsistencies automatically, treat multi-agent as an optimization for large, well-bounded tasks, not a default approach.</p>
   </div>
+<!-- clip-update-run:2026-06-11-clip-update:start -->
+  <div id="11.multica-treating-agents-as-assignable-teammates-on-a-task-board" class="clip-passage">
+
+<h3 id="s-11-8">Multica: treating agents as assignable teammates on a task board</h3>
+
+<p>Most multi-agent orchestration lives inside one session: a parent agent spawns workers, merges their output, and exits when the conversation ends. Multica (open-source, github.com/multica-ai/multica) makes a different bet — orchestration as standing infrastructure. Agents become first-class entries on a task board. You assign an issue to an agent the way you assign it to a colleague; it claims the work, writes code, reports blockers, and updates status over WebSocket, across Claude Code, Codex, OpenCode, Gemini, and others. Squads add a routing layer: assign to <code>@FrontendTeam</code> and a leader agent delegates to a member.</p>
+    <p>Two ideas here matter for design teams specifically. First, &quot;compounding skills&quot; — every solved task becomes a reusable skill for the whole team, which is the per-repo skill convention applied at the organization level instead of the project level. Second, autopilots: cron-triggered recurring work, so a weekly design-system audit or a nightly token-drift check runs itself.</p>
+    <p>My honest read: this solves a coordination problem, not a merge problem. The hard part of multi-agent design — reconciling spatial output from independent workers into one consistent canvas — is still yours to review. What Multica buys you is persistence and routing: the plan lives in a board, not a conversation, so it survives across sessions. That is the right tool only once your design work is large and recurring enough to justify the standing overhead.</p>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-10.png" alt="In-session orchestration versus Multica&#39;s persistent task-board assignment model." loading="lazy" />
+      <figcaption>Figure: In-session orchestration versus a persistent task-board model.</figcaption>
+    </figure>
+  </div>
+
+  <div id="11.self-healing-goal-commands-and-the-limits-of-autonomous-plans" class="clip-passage">
+
+<h3 id="s-11-9">Self-healing `/goal` commands and the limits of autonomous plans</h3>
+
+<p>When the plan for an autonomous run lives in code rather than in a conversation, the next question is what happens when the plan is wrong. Most autonomous runs fail the same way: the plan was plausible at the start, drifted partway through, and nothing noticed until the output was already broken. Robert Courson&#39;s <code>/supergoal</code> command is one community attempt at the obvious fix — a <code>/goal</code> upgrade he describes as &quot;self-healing, self-governing,&quot; built for Claude Code, Codex, and any IDE that supports <code>/goal</code>. The premise is that an autonomous build should detect when it has gone off-plan and repair the plan, not just the code.</p>
+    <p>I am flagging this as a direction, not a recommendation. One commenter admitted rewriting the same goal three times in a single session before it held, which tells you the self-repair is still aspirational. But the instinct is right, and it maps directly onto a recurring weakness in autonomous design work: the merge step, and more broadly the moment where an autonomous run needs a check against its own intent. A design plan that can notice &quot;this no longer matches the brief&quot; and revise itself is the missing governor on long agentic runs.</p>
+    <p>For now, treat self-healing goals as something to watch and test on a small design task before trusting them on anything that takes hours. The pattern matters more than this specific implementation.</p>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-05.png" alt="A self-governing plan loop versus a plan that fails silently." loading="lazy" />
+      <figcaption>Figure: A self-governing plan loop versus a plan that fails silently.</figcaption>
+    </figure>
+  </div>
+<!-- clip-update-run:2026-06-11-clip-update:end -->
+
 
   <div class="callout tip">
     <p><strong>Next:</strong> Whether one agent or many, the output eventually needs to become production code. Chapter 12 walks through the complete pipeline from design artifact to production-ready UI, covering code export from Paper, Pencil, and OpenPencil, responsive breakpoints, accessibility enforcement, and the review-and-iterate loop.</p>
@@ -1283,7 +1353,7 @@ Only edit files if I explicitly approve after the report.</code></pre>
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1303,7 +1373,7 @@ Only edit files if I explicitly approve after the report.</code></pre>
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1371,10 +1441,9 @@ Only edit files if I explicitly approve after the report.</code></pre>
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>

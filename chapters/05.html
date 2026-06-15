@@ -343,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -412,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -468,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">17 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">18 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -495,7 +492,7 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-05-1" data-section="s-05-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper: Connected HTML/CSS Canvas for Teams</span></a>
           <a href="#s-05-2" data-section="s-05-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up the Paper MCP Server</span></a>
@@ -515,7 +512,7 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-05-1" data-section="s-05-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Paper: Connected HTML/CSS Canvas for Teams</span></a>
           <a href="#s-05-2" data-section="s-05-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up the Paper MCP Server</span></a>
@@ -529,7 +526,7 @@
         <div class="book-content">
 <h3 id="s-05-1">Paper: Connected HTML/CSS Canvas for Teams</h3>
 
-  <p>Paper (paper.design) is a connected HTML/CSS canvas for teams shipping with AI agents. Built by the Paper team, it exposes a rich MCP server that lets agents read designs, export JSX, and write HTML back to the canvas. The key differentiator: design-to-code and code-to-design in the same loop.</p>
+<p>Paper (paper.design) is a connected HTML/CSS canvas for teams shipping with AI agents. Built by the Paper team, it exposes a rich MCP server that lets agents read designs, export JSX, and write HTML back to the canvas. The key differentiator: design-to-code and code-to-design in the same loop.</p>
 <figure class="figure--full" id="ch05-fig-01">
   <img src="../images/ch05-fig-01--web.webp" alt="Paper design editor showing an HTML CSS canvas with design elements, a layers panel on the left, and toolbar options demonstrating the connected canvas workflow" loading="lazy" />
   <figcaption>Paper editor canvas with HTML/CSS design surface, layers panel, and connected tools</figcaption>
@@ -544,9 +541,9 @@
 
   <p>The architecture is straightforward. Paper Desktop runs a local HTTP server that implements the MCP protocol. Agents connect to this server and call tools like <code>get_screenshot</code>, <code>get_jsx</code>, <code>write_html</code>, and <code>export</code>. The server communicates with Paper's canvas in real time. Changes appear on canvas within seconds of an agent writing them.</p>
 
-  <h3 id="s-05-2">Setting Up the Paper MCP Server</h3>
+<h3 id="s-05-2">Setting Up the Paper MCP Server</h3>
 
-  <p>The Paper MCP server runs locally at <code>http://127.0.0.1:29979/mcp</code>. It starts automatically when Paper Desktop is open and a file is loaded. The setup differs by agent platform.</p>
+<p>The Paper MCP server runs locally at <code>http://127.0.0.1:29979/mcp</code>. It starts automatically when Paper Desktop is open and a file is loaded. The setup differs by agent platform.</p>
 <figure class="figure--full" id="ch05-fig-02">
   <img src="../images/ch05-fig-02--web.webp" alt="Terminal output showing the Paper MCP server configuration commands for Claude Code and OpenCode with successful connection verification at port 29979" loading="lazy" />
   <figcaption>Paper MCP server setup showing configuration for Claude Code and OpenCode</figcaption>
@@ -708,9 +705,9 @@ $ /plugin install paper-desktop@paper</code></pre>
 
   <p>The full tool set includes <code>get_basic_info</code>, <code>get_selection</code>, <code>get_node_info</code>, <code>get_children</code>, <code>get_fill_image</code>, <code>get_font_family_info</code>, <code>get_guide</code>, <code>set_text_content</code>, <code>rename_nodes</code>, <code>duplicate_nodes</code>, <code>move_nodes</code>, and <code>finish_working_on_nodes</code>. Appendix B covers every tool in detail.</p>
 
-  <h3 id="s-05-3">Paper Workflows: Design-to-Code and Code-to-Design</h3>
+<h3 id="s-05-3">Paper Workflows: Design-to-Code and Code-to-Design</h3>
 
-  <p>Paper supports two primary workflows: design-to-code (export from canvas to code) and code-to-design (write code back to canvas). The MCP server makes both possible within a single agent session.</p>
+<p>Paper supports two primary workflows: design-to-code (export from canvas to code) and code-to-design (write code back to canvas). The MCP server makes both possible within a single agent session.</p>
 
   <div class="flow">
     <div class="flow-item">
@@ -818,9 +815,9 @@ frames I have selected in Paper? Each frame is a different breakpoint.</code></p
     <p><strong>My take:</strong> Paper's <code>get_jsx</code> tool is the single most time-saving feature in the agentic design ecosystem. Translating a design to JSX by hand takes 30-60 minutes per component. <code>get_jsx</code> does it in seconds. The output is clean Tailwind markup that's often production-ready. The limitation: Paper Desktop must be running, which excludes Linux users as of May 2026.</p>
   </div>
 
-  <h3 id="s-05-4">Pencil: Vector Design Inside Your IDE</h3>
+<h3 id="s-05-4">Pencil: Vector Design Inside Your IDE</h3>
 
-  <p>Pencil (pencil.dev) takes a different approach. It's a vector design tool that integrates directly into your IDE. The tagline: "Design on canvas. Land in code." Unlike Paper's HTML/CSS canvas, Pencil provides a native vector design experience — layers, paths, boolean operations, the works — but it lives inside the development environment, not in a separate browser tab.</p>
+<p>Pencil (pencil.dev) takes a different approach. It's a vector design tool that integrates directly into your IDE. The tagline: "Design on canvas. Land in code." Unlike Paper's HTML/CSS canvas, Pencil provides a native vector design experience — layers, paths, boolean operations, the works — but it lives inside the development environment, not in a separate browser tab.</p>
 <figure class="figure--full" id="ch05-fig-03">
   <img src="../images/ch05-fig-03--web.webp" alt="VS Code with Pencil extension showing a vector design canvas with editable elements, a hierarchical design tree panel, and a properties inspector for the selected component" loading="lazy" />
   <figcaption>Pencil vector design canvas inside VS Code with the design tree and component inspector</figcaption>
@@ -881,9 +878,9 @@ frames I have selected in Paper? Each frame is a different breakpoint.</code></p
 
   <p>Code on Canvas is Pencil's bridge between visual design and live code. You can embed code that runs inside the design surface — generating data visualizations, rendering dynamic content, or displaying API responses directly on the canvas. The agent can write and modify this embedded code, creating designs that respond to real data rather than static mockups.</p>
 
-  <h3 id="s-05-5">The .pen File Format and Pencil CLI</h3>
+<h3 id="s-05-5">The .pen File Format and Pencil CLI</h3>
 
-  <p>The <code>.pen</code> file format is Pencil's native design-as-code format. It's structured, parseable, and designed for git. The format supports all of Pencil's core concepts: nodes, styles, components, variables, and layout rules.</p>
+<p>The <code>.pen</code> file format is Pencil's native design-as-code format. It's structured, parseable, and designed for git. The format supports all of Pencil's core concepts: nodes, styles, components, variables, and layout rules.</p>
 <figure class="figure--half-right" id="ch05-fig-04">
   <img src="../images/ch05-fig-04--web.webp" alt="Pencil inspector panel showing a selected component with its child nodes, layout properties, and design token references for colors and typography" loading="lazy" />
   <figcaption>Pencil node tree inspector showing component structure and design token bindings</figcaption>
@@ -940,9 +937,9 @@ jobs:
 
   <p>Import and export capabilities round out the format. Pencil can import SVG, PNG, and Figma files. Export targets include SVG, PNG, PDF, and code generation. The Figma import is useful for migrating existing designs: open the <code>.fig</code> file in Pencil, and it converts the layers, styles, and components into the <code>.pen</code> format. The conversion isn't perfect — some Figma-specific features like auto-layout translate differently — but it preserves the structure well enough to continue designing.</p>
 
-  <h3 id="s-05-6">Design-to-Code Sync with Pencil</h3>
+<h3 id="s-05-6">Design-to-Code Sync with Pencil</h3>
 
-  <p>Pencil's design-to-code sync is bidirectional. Design changes propagate to code. Code changes propagate to design. The sync happens through the <code>.pen</code> file format and Pencil's MCP integration.</p>
+<p>Pencil's design-to-code sync is bidirectional. Design changes propagate to code. Code changes propagate to design. The sync happens through the <code>.pen</code> file format and Pencil's MCP integration.</p>
 
   <p>The sync workflow, with concrete agent prompts at each step:</p>
 
@@ -986,9 +983,9 @@ corner radius (12px instead of 8px) and add a hover state.</code></pre>
 
   <p>The bidirectional sync means the design file stays in sync with the implementation. No more design files rotting in Figma while the codebase diverges. The <code>.pen</code> file is the source of truth for both design and code.</p>
 
-  <h3 id="s-05-7">Building a Real Workflow: Paper to Production</h3>
+<h3 id="s-05-7">Building a Real Workflow: Paper to Production</h3>
 
-  <p>This section walks through a complete workflow: designing in Paper, generating code with an agent, and deploying to production.</p>
+<p>This section walks through a complete workflow: designing in Paper, generating code with an agent, and deploying to production.</p>
 <figure class="figure--grid-2" id="ch05-fig-05">
   <img src="../images/ch05-fig-05--web.webp" alt="Side-by-side comparison of Paper HTML CSS canvas and Pencil vector canvas showing identical button components rendered in each tool with different design approaches" loading="lazy" />
   <figcaption>Paper and Pencil side-by-side showing the same component in each design format</figcaption>
@@ -1225,7 +1222,7 @@ page component with responsive breakpoints.</code></pre>
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1245,7 +1242,7 @@ page component with responsive breakpoints.</code></pre>
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1313,10 +1310,9 @@ page component with responsive breakpoints.</code></pre>
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>

@@ -232,7 +232,6 @@
     .book-content li::marker { color: rgba(0,0,0,0.25); }
 
 
-
     .chapter-hero {
       position: relative;
       z-index: 2;
@@ -344,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -413,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -469,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">11 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">15 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -486,6 +482,7 @@
         <a href="#s-12-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Accessibility: Agents as A11y Enforcers</a>
         <a href="#s-12-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Performance Optimization in the Agent Loop</a>
         <a href="#s-12-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">The Review-and-Iterate Loop</a>
+        <a href="#s-12-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Visual prompting: point, draw, or talk on the live UI</a>
       </div>
     </div>
   </nav>
@@ -496,7 +493,7 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-12-1" data-section="s-12-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Full Pipeline: Design Artifact to Production Code</span></a>
           <a href="#s-12-2" data-section="s-12-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Code Export from Paper: JSX and Tailwind</span></a>
@@ -505,6 +502,7 @@
           <a href="#s-12-5" data-section="s-12-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Accessibility: Agents as A11y Enforcers</span></a>
           <a href="#s-12-6" data-section="s-12-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Performance Optimization in the Agent Loop</span></a>
           <a href="#s-12-7" data-section="s-12-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Review-and-Iterate Loop</span></a>
+          <a href="#s-12-8" data-section="s-12-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Visual prompting: point, draw, or talk on the live UI</span></a>
       </nav>
     </aside>
   </div>
@@ -516,7 +514,7 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-12-1" data-section="s-12-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Full Pipeline: Design Artifact to Production Code</span></a>
           <a href="#s-12-2" data-section="s-12-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Code Export from Paper: JSX and Tailwind</span></a>
@@ -525,12 +523,13 @@
           <a href="#s-12-5" data-section="s-12-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Accessibility: Agents as A11y Enforcers</span></a>
           <a href="#s-12-6" data-section="s-12-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Performance Optimization in the Agent Loop</span></a>
           <a href="#s-12-7" data-section="s-12-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>The Review-and-Iterate Loop</span></a>
+          <a href="#s-12-8" data-section="s-12-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Visual prompting: point, draw, or talk on the live UI</span></a>
       </nav>
       <main class="chapter-main">
         <div class="book-content">
 <h3 id="s-12-1">The Full Pipeline: Design Artifact to Production Code</h3>
 
-  <p>The pipeline from design to production code has five stages. Each stage can be handled by an agent, a human, or a combination of both.</p>
+<p>The pipeline from design to production code has five stages. Each stage can be handled by an agent, a human, or a combination of both.</p>
 <figure class="figure--full" id="ch12-fig-04">
   <img src="../images/ch12-fig-04--web.webp" alt="Pipeline flow diagram showing five stages from design artifact to production: Paper canvas design, JSX and Tailwind export, responsive and accessible adaptation, human visual review, and Vercel deployment with agent responsibilities marked at stages two through four" loading="lazy" />
   <figcaption>The five-stage deploy pipeline from design artifact to production with agent and human roles</figcaption>
@@ -568,9 +567,9 @@
 
   <p>The pipeline differs depending on which tool produced the design. Paper exports JSX directly because Paper is HTML/CSS natively. Pencil generates React+Tailwind from its .pen file format. OpenPencil has the widest export surface: React+Tailwind, HTML+CSS, Vue, Svelte, Flutter, SwiftUI, Jetpack Compose, and React Native. Chapter 06 covers OpenPencil in depth.</p>
 
-  <h3 id="s-12-2">Code Export from Paper: JSX and Tailwind</h3>
+<h3 id="s-12-2">Code Export from Paper: JSX and Tailwind</h3>
 
-  <p>Paper's <code>get_jsx</code> MCP tool is the foundation of the export pipeline. It takes a node ID and a format parameter (<code>tailwind</code> or <code>inline-styles</code>) and returns JSX as a string. The output is production-quality because Paper's canvas is real HTML/CSS --- there is no translation layer and no approximation.</p>
+<p>Paper's <code>get_jsx</code> MCP tool is the foundation of the export pipeline. It takes a node ID and a format parameter (<code>tailwind</code> or <code>inline-styles</code>) and returns JSX as a string. The output is production-quality because Paper's canvas is real HTML/CSS --- there is no translation layer and no approximation.</p>
 <figure class="figure--full" id="ch12-fig-01">
   <img src="../images/ch12-fig-01--web.webp" alt="Terminal session showing an AI agent calling the Paper MCP get_jsx tool for a hero section, receiving JSX output with Tailwind CSS classes, and creating a React component file with the generated code" loading="lazy" />
   <figcaption>Agent generating a React component from Paper MCP get_jsx output with Tailwind classes</figcaption>
@@ -612,9 +611,9 @@ get_computed_styles({
 # Agent compares returned styles against generated JSX
 # Identifies mismatches and fixes them</code></pre>
 
-  <h3 id="s-12-3">Code Generation from Pencil and OpenPencil</h3>
+<h3 id="s-12-3">Code Generation from Pencil and OpenPencil</h3>
 
-  <p>Pencil's design-to-code pipeline reads .pen files and generates React+Tailwind components via its CLI. The .pen file format is JSON-based (covered in Chapter 04), which makes it diffable and versionable. Design variables in .pen files map directly to CSS custom properties.</p>
+<p>Pencil's design-to-code pipeline reads .pen files and generates React+Tailwind components via its CLI. The .pen file format is JSON-based (covered in Chapter 04), which makes it diffable and versionable. Design variables in .pen files map directly to CSS custom properties.</p>
 
   <pre><code># Pencil: Generate React components from .pen file
 $ pencil export --format react-tailwind --input design.pen --output src/
@@ -723,9 +722,9 @@ codegen_clean({ removeTempFiles: true })</code></pre>
     </tbody>
   </table>
 
-  <h3 id="s-12-4">Responsive Breakpoints and Layout Translation</h3>
+<h3 id="s-12-4">Responsive Breakpoints and Layout Translation</h3>
 
-  <p>Responsive design is where agent-driven workflows save the most time. Translating a desktop design to mobile, tablet, and wide-screen variants is tedious, mechanical work. Agents excel at it.</p>
+<p>Responsive design is where agent-driven workflows save the most time. Translating a desktop design to mobile, tablet, and wide-screen variants is tedious, mechanical work. Agents excel at it.</p>
 <figure class="figure--grid-3" id="ch12-fig-02">
   <img src="../images/ch12-fig-02--web.webp" alt="Three-column responsive preview showing the same navigation component at three breakpoints: 375px mobile with hamburger menu, 768px tablet with condensed links, and 1280px desktop with full navigation and search bar" loading="lazy" />
   <figcaption>Same component at mobile (375px), tablet (768px), and desktop (1280px) responsive breakpoints</figcaption>
@@ -775,9 +774,9 @@ get_jsx({ nodeId: "desktop-frame", format: "tailwind" })
 # Tablet:  &lt;div className="md:grid-cols-2"&gt;
 # Mobile:  &lt;div className="grid-cols-1"&gt;</code></pre>
 
-  <h3 id="s-12-5">Accessibility: Agents as A11y Enforcers</h3>
+<h3 id="s-12-5">Accessibility: Agents as A11y Enforcers</h3>
 
-  <p>Accessibility is the area where agent-driven code generation has the biggest quality advantage over manual implementation. Agents do not skip alt text. Agents do not forget form labels. Agents do not overlook keyboard navigation. Every accessibility attribute is applied consistently, every time.</p>
+<p>Accessibility is the area where agent-driven code generation has the biggest quality advantage over manual implementation. Agents do not skip alt text. Agents do not forget form labels. Agents do not overlook keyboard navigation. Every accessibility attribute is applied consistently, every time.</p>
 <figure class="figure--full" id="ch12-fig-03">
   <img src="../images/ch12-fig-03--web.webp" alt="Terminal output from an automated accessibility audit showing 18 passed WCAG 2.1 AA criteria and 3 failed criteria including missing alt text on images and insufficient color contrast, each with specific element selectors and suggested fixes" loading="lazy" />
   <figcaption>Agent accessibility audit showing WCAG 2.1 AA pass/fail results with automated fix suggestions</figcaption>
@@ -816,9 +815,9 @@ Fix any issues you find before showing me the code."
     <p><strong>My take:</strong> Agents as a11y enforcers is one of the highest-value applications of agentic design. Accessibility is always the first thing cut when deadlines loom. An agent that applies every aria attribute, checks every contrast ratio, and ensures keyboard navigation works is worth the token cost. I would rather have an agent-generated accessibility audit than a manual audit that was rushed or skipped.</p>
   </div>
 
-  <h3 id="s-12-6">Performance Optimization in the Agent Loop</h3>
+<h3 id="s-12-6">Performance Optimization in the Agent Loop</h3>
 
-  <p>Performance optimization is another area where agents handle mechanical work well. The agent generates the initial code, then optimizes it as a post-processing step.</p>
+<p>Performance optimization is another area where agents handle mechanical work well. The agent generates the initial code, then optimizes it as a post-processing step.</p>
 
   <p>Paper's <code>export</code> tool supports format and scale overrides. The agent can generate responsive image sets with proper srcset attributes directly from the canvas.</p>
 
@@ -879,9 +878,9 @@ export({
     </tbody>
   </table>
 
-  <h3 id="s-12-7">The Review-and-Iterate Loop</h3>
+<h3 id="s-12-7">The Review-and-Iterate Loop</h3>
 
-  <p>The pipeline is not one-shot. It is a loop: generate, review, iterate. The agent produces code. The human reviews the output in a browser. The human gives feedback. The agent adjusts. Repeat until the output meets the design intent.</p>
+<p>The pipeline is not one-shot. It is a loop: generate, review, iterate. The agent produces code. The human reviews the output in a browser. The human gives feedback. The agent adjusts. Repeat until the output meets the design intent.</p>
 <figure class="figure--grid-2" id="ch12-fig-05">
   <img src="../images/ch12-fig-05--web.webp" alt="Side-by-side comparison of a hero section as designed in Paper canvas on the left and as rendered on the deployed production website on the right, demonstrating high visual fidelity between design and live output" loading="lazy" />
   <figcaption>Paper canvas design (left) compared with the deployed production website (right) showing visual fidelity</figcaption>
@@ -924,6 +923,23 @@ finish_working_on_nodes({ nodeIds: ["hero-frame", "features-frame"] })</code></p
   <div class="callout">
     <p><strong>My take:</strong> The review-and-iterate loop is where agentic design delivers real value. The agent handles the tedious parts --- responsive variants, token mapping, accessibility attributes, performance optimization. The human handles the creative parts --- does this look right, does this match the brand, does this solve the user's problem. This division of labor works because it plays to the strengths of both parties.</p>
   </div>
+<!-- clip-update-run:2026-06-11-clip-update:start -->
+  <div id="12.visual-prompting-point-draw-or-talk-on-the-live-ui" class="clip-passage">
+
+<h3 id="s-12-8">Visual prompting: point, draw, or talk on the live UI</h3>
+
+<figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-annotating-a-rendered-button-on--uu69hd.jpg" alt="Annotating a rendered button on the live UI to drive a source edit" loading="lazy" />
+      <figcaption>An on-screen annotation on the live UI resolves into an edit in the button&#39;s source code.</figcaption>
+    </figure>
+    <p>This upgrade lands on the exact step you have been running since the start of the chapter: you open the generated page, read it with your own eyes, and tell the agent what is wrong. The channel still works — we are just widening it. The prompt is a feature Cursor shipped as <a href="https://cursor.com/blog/design-mode">Design Mode</a>, announced in one line: &quot;With Design Mode, you can now point, draw, or talk to update your UI.&quot; The pitch underneath is just as compact — give the agent visual prompts to shrink the gap between what you see and what it understands.</p>
+    <p>Today the critique usually travels as text: you look at the rendered page and type &quot;the CTA button is too small, the heading weight is wrong.&quot; That forces you to translate a visual problem into prose and the agent to translate it back. Two translations sit between the thing you see and the thing the agent acts on, and each is a place to lose intent. You say &quot;too small&quot; meaning &quot;cramped against its own label&quot;; the agent scales the whole element, font and all, and the loop burns an iteration recovering what you already knew at a glance.</p>
+    <p>Design Mode collapses that round-trip. You point, draw, or talk directly on the rendered UI, and the agent maps the annotation back to the source code — not to a throwaway DOM patch. That distinction is load-bearing: browsers have let you nudge styles in dev tools for years, but those nudges vanish on reload because they never touch the files behind the page. As one early user put it, the changes go to the source code, not just the DOM — so the edit survives the next generation. You circle the cramped &quot;Start&quot; button, pin a short note beside it — &quot;more padding, match the hero&quot; — and the agent resolves your mark to the <code>&lt;button&gt;</code> in the source and bumps its Tailwind padding. The next round renders the same layout, untouched except where you pointed, and your box and note are gone because the request has been absorbed into the code.</p>
+    <p>Three ways in, one destination: *point* to select, *draw* to make the boundary unambiguous, *talk* to pin a few words to the spot. &quot;Too small&quot; is ambiguous; a box around the element is not. The picture in your head and the picture the agent acts on start out as the same picture. The reactions split the same way — one reader saw a translation layer collapsing that used to demand a designer and developer kept in sync; another said the designer-developer gap just shrank and Figma handoff was starting to look nervous.</p>
+    <p>It does not change the division of labor, and it does not settle every question. The agent still generates, you still judge — as one commenter put it, point, draw, talk is friendly, but you still want someone with taste near the button before you get proud of it. There is a fair durability worry too: whether the code holds up after ten iterations or quietly degrades into the tangled markup hand-editing tools used to produce. The same review discipline answers it — visual prompting changes how you say what is wrong, not whether you still read the diff. Run a small experiment: feed one round of feedback as text and one as an on-screen annotation, and compare how many follow-ups each needs. The annotated round usually converges faster, because the agent spends fewer guesses reconstructing what you meant.</p>
+  </div>
+<!-- clip-update-run:2026-06-11-clip-update:end -->
+
 
   <div class="callout tip">
     <p><strong>Next:</strong> The tools and patterns covered in this book are not theoretical. Chapter 13 presents four detailed case studies of agentic design workflows used by real teams, with honest assessments of what worked, what did not, and how long each workflow took from start to finish.</p>
@@ -990,7 +1006,7 @@ finish_working_on_nodes({ nodeIds: ["hero-frame", "features-frame"] })</code></p
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1010,7 +1026,7 @@ finish_working_on_nodes({ nodeIds: ["hero-frame", "features-frame"] })</code></p
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1078,10 +1094,9 @@ finish_working_on_nodes({ nodeIds: ["hero-frame", "features-frame"] })</code></p
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>

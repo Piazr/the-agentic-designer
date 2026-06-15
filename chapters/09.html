@@ -232,7 +232,6 @@
     .book-content li::marker { color: rgba(0,0,0,0.25); }
 
 
-
     .chapter-hero {
       position: relative;
       z-index: 2;
@@ -344,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -413,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -469,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">16 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">32 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -484,11 +480,11 @@
         <a href="#s-09-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Setting Up a Remotion Project with Agent Assistance</a>
         <a href="#s-09-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Hyperframes: HTML-Native Video Built for Agents</a>
         <a href="#s-09-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Setting Up Hyperframes with AI Agents</a>
-        <a href="#s-09-5a" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">frame.md: Your Design System, Ready for Video</a>
-        <a href="#s-09-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">From Reference Video to Animation</a>
+        <a href="#s-09-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">From Reference Video to Animation: Agent-Driven Motion Extraction</a>
         <a href="#s-09-7" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Animation Runtimes: GSAP, CSS, Lottie, Three.js</a>
         <a href="#s-09-8" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Rendering, Preview, and the Dev Loop</a>
         <a href="#s-09-9" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Remotion vs Hyperframes: An Honest Comparison</a>
+        <a href="#s-09-10" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">html-video: a CapCut-style editing layer on top of Hyperframes</a>
       </div>
     </div>
   </nav>
@@ -499,18 +495,18 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-09-1" data-section="s-09-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Why Agents Need Programmatic Video</span></a>
           <a href="#s-09-2" data-section="s-09-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Remotion: React-Based Video Production</span></a>
           <a href="#s-09-3" data-section="s-09-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up a Remotion Project with Agent Assistance</span></a>
           <a href="#s-09-4" data-section="s-09-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Hyperframes: HTML-Native Video Built for Agents</span></a>
           <a href="#s-09-5" data-section="s-09-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up Hyperframes with AI Agents</span></a>
-          <a href="#s-09-5a" data-section="s-09-5a" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>frame.md: Your Design System, Ready for Video</span></a>
-          <a href="#s-09-6" data-section="s-09-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Reference Video to Animation</span></a>
+          <a href="#s-09-6" data-section="s-09-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Reference Video to Animation: Agent-Driven Motion Extraction</span></a>
           <a href="#s-09-7" data-section="s-09-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Animation Runtimes: GSAP, CSS, Lottie, Three.js</span></a>
           <a href="#s-09-8" data-section="s-09-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Rendering, Preview, and the Dev Loop</span></a>
           <a href="#s-09-9" data-section="s-09-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Remotion vs Hyperframes: An Honest Comparison</span></a>
+          <a href="#s-09-10" data-section="s-09-10" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>html-video: a CapCut-style editing layer on top of Hyperframes</span></a>
       </nav>
     </aside>
   </div>
@@ -522,24 +518,24 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-09-1" data-section="s-09-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Why Agents Need Programmatic Video</span></a>
           <a href="#s-09-2" data-section="s-09-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Remotion: React-Based Video Production</span></a>
           <a href="#s-09-3" data-section="s-09-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up a Remotion Project with Agent Assistance</span></a>
           <a href="#s-09-4" data-section="s-09-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Hyperframes: HTML-Native Video Built for Agents</span></a>
           <a href="#s-09-5" data-section="s-09-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Setting Up Hyperframes with AI Agents</span></a>
-          <a href="#s-09-5a" data-section="s-09-5a" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>frame.md: Your Design System, Ready for Video</span></a>
-          <a href="#s-09-6" data-section="s-09-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Reference Video to Animation</span></a>
+          <a href="#s-09-6" data-section="s-09-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>From Reference Video to Animation: Agent-Driven Motion Extraction</span></a>
           <a href="#s-09-7" data-section="s-09-7" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Animation Runtimes: GSAP, CSS, Lottie, Three.js</span></a>
           <a href="#s-09-8" data-section="s-09-8" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Rendering, Preview, and the Dev Loop</span></a>
           <a href="#s-09-9" data-section="s-09-9" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Remotion vs Hyperframes: An Honest Comparison</span></a>
+          <a href="#s-09-10" data-section="s-09-10" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>html-video: a CapCut-style editing layer on top of Hyperframes</span></a>
       </nav>
       <main class="chapter-main">
         <div class="book-content">
 <h3 id="s-09-1">Why Agents Need Programmatic Video</h3>
 
-  <p>Traditional video tools --- Premiere, After Effects, Final Cut --- require GUI interaction. Agents can't click timeline scrubbers. They can't drag keyframes. They can't adjust bezier curves on easing functions with a mouse. Programmatic video frameworks solve this by treating video as code: versionable, diffable, reproducible.</p>
+<p>Traditional video tools --- Premiere, After Effects, Final Cut --- require GUI interaction. Agents can't click timeline scrubbers. They can't drag keyframes. They can't adjust bezier curves on easing functions with a mouse. Programmatic video frameworks solve this by treating video as code: versionable, diffable, reproducible.</p>
 
   <p>The shift mirrors what happened with design. Design moved from GUI-only tools (Photoshop) to code-friendly formats (CSS, HTML, design tokens). Video is making the same transition. The timing matters because agents can now produce video artifacts the same way they produce code and design --- by writing text that compiles to frames.</p>
 
@@ -547,9 +543,9 @@
 
   <p>Two approaches have emerged. Remotion uses React components as the authoring format. Hyperframes uses HTML + GSAP. The philosophical difference sounds minor. In practice, it shapes everything: how you author, how you preview, how you debug, how you render, and what your license allows.</p>
 
-  <h3 id="s-09-2">Remotion: React-Based Video Production</h3>
+<h3 id="s-09-2">Remotion: React-Based Video Production</h3>
 
-  <p>Remotion is the established player. Created by Jonny Burger (Remotion AG), 47.1k GitHub stars, 3.3k forks, 622+ releases as of May 2026. The current version is v4.0.462. It's TypeScript-first (74.5%), with PHP for Lambda rendering and Rust for native components. The ecosystem is substantial: 3M npm installs, 800+ pages of documentation, 35+ templates, 8000+ Discord members, and 300+ contributors. Trusted by GitHub, Musixmatch, Wistia, and SoundCloud.</p>
+<p>Remotion is the established player. Created by Jonny Burger (Remotion AG), 47.1k GitHub stars, 3.3k forks, 622+ releases as of May 2026. The current version is v4.0.462. It's TypeScript-first (74.5%), with PHP for Lambda rendering and Rust for native components. The ecosystem is substantial: 3M npm installs, 800+ pages of documentation, 35+ templates, 8000+ Discord members, and 300+ contributors. Trusted by GitHub, Musixmatch, Wistia, and SoundCloud.</p>
 <figure class="figure--full" id="ch09-fig-01">
   <img src="../images/ch09-fig-01--web.webp" alt="Remotion Studio interface showing a React video composition with a preview player on the left, a composition list panel, timeline controls with frame-by-frame scrubbing, and render parameter settings" loading="lazy" />
   <figcaption>Remotion Studio showing a video composition with preview player and timeline controls</figcaption>
@@ -714,9 +710,9 @@ $ npx remotion render --frames=0-29               # render specific range</code>
 
   <p>Beyond local CLI rendering, Remotion supports Node.js SSR API (<code>renderMedia()</code>), AWS Lambda for distributed rendering, GitHub Actions for CI/CD, and Google Cloud Run (alpha as of May 2026). The Lambda integration is mature and production-tested for hyperscale rendering. The SSR API lets you render from any Node.js process, which is particularly useful for agent-driven pipelines.</p>
 
-  <h3 id="s-09-3">Setting Up a Remotion Project with Agent Assistance</h3>
+<h3 id="s-09-3">Setting Up a Remotion Project with Agent Assistance</h3>
 
-  <p>Quick start:</p>
+<p>Quick start:</p>
 
   <pre><code>$ npx create-video@latest</code></pre>
 
@@ -771,9 +767,9 @@ export const RemotionRoot = () =&gt; (
 
   <p>Remotion also provides a <code>Player</code> component for embedding video previews in web applications and a <code>Recorder</code> for screen recording. The Editor Starter is a commercial template for building custom video editing applications on top of Remotion's rendering engine.</p>
 
-  <h3 id="s-09-4">Hyperframes: HTML-Native Video Built for Agents</h3>
+<h3 id="s-09-4">Hyperframes: HTML-Native Video Built for Agents</h3>
 
-  <p>Hyperframes takes a fundamentally different approach. Created by HeyGen, 19k GitHub stars, 1.8k forks, Apache 2.0 license. The tagline is direct: "Write HTML. Render video. Built for agents."</p>
+<p>Hyperframes takes a fundamentally different approach. Created by HeyGen, 19k GitHub stars, 1.8k forks, Apache 2.0 license. The tagline is direct: "Write HTML. Render video. Built for agents."</p>
 <figure class="figure--full" id="ch09-fig-02">
   <img src="../images/ch09-fig-02--web.webp" alt="Hyperframes editor showing an HTML timeline with GSAP animation keyframes on multiple layers, a properties panel for the selected keyframe, and a real-time preview of the animated sequence" loading="lazy" />
   <figcaption>Hyperframes timeline editor with GSAP keyframes, layer panel, and animation preview</figcaption>
@@ -872,9 +868,9 @@ $ npx hyperframes doctor          # diagnose issues</code></pre>
     <p><strong>My take:</strong> Hyperframes' seek-based rendering is technically superior to Remotion's wall-clock approach for animation libraries. GSAP in Remotion races through timelines at wall-clock speed during render, producing mostly-empty frames after the initial frames. Hyperframes pauses GSAP, seeks to the exact time, then captures. If your video uses GSAP heavily, this alone is reason to choose Hyperframes.</p>
   </div>
 
-  <h3 id="s-09-5">Setting Up Hyperframes with AI Agents</h3>
+<h3 id="s-09-5">Setting Up Hyperframes with AI Agents</h3>
 
-  <p>The recommended path is skill-based:</p>
+<p>The recommended path is skill-based:</p>
 
   <pre><code>$ npx skills add heygen-com/hyperframes</code></pre>
 
@@ -904,7 +900,7 @@ $ claude --plugin-dir .</code></pre>
 
   <p>Hyperframes supports two capture modes. <strong>BeginFrame mode</strong> runs on Linux and is fully deterministic --- no wall-clock dependency. <strong>Screenshot mode</strong> runs on macOS and Windows, falling back automatically when BeginFrame isn't available. For production CI/CD pipelines, Linux with BeginFrame mode is the recommended setup.</p>
 
-  <h4 id="s-09-5a">frame.md: Your Design System, Ready for Video</h4>
+  <h4 id="09.5a">frame.md: Your Design System, Ready for Video</h4>
 
   <p>Every brand has a design spec. Colors, typography, spacing, composition rules. These specs are written for the web --- for screens where users scroll, resize, and interact. They are not written for a camera. frame.md bridges this gap. It translates a web-oriented design spec into a video-ready specification that an agent can use to compose branded video without guessing at scale, timing, or motion.</p>
 
@@ -915,7 +911,7 @@ $ claude --plugin-dir .</code></pre>
 </figure>
 
 
-  <p>You start with a design.md --- the same format used by Open Design (covered in Chapter 06). frame.md reads your colors, type scale, spacing tokens, and composition rules, then rewrites them for the 16:9 frame. The output is a DESIGN.md superset: all your original design tokens plus video-specific parameters like timing, transitions, track ordering, and camera moves. The agent reads this superset and produces Hyperframes HTML that inherits your brand identity automatically.</p>
+  <p>You start with a design.md --- the same format used by Open Design (covered in <a href="#06">Chapter 06</a>). frame.md reads your colors, type scale, spacing tokens, and composition rules, then rewrites them for the 16:9 frame. The output is a DESIGN.md superset: all your original design tokens plus video-specific parameters like timing, transitions, track ordering, and camera moves. The agent reads this superset and produces Hyperframes HTML that inherits your brand identity automatically.</p>
 
   <p>The tool lives at hyperframes.dev/design. Paste your design spec, and it returns a frame.md you drop into your project. For teams already using Open Design's DESIGN.md format, this creates a direct path: one spec drives both static output and video output without duplication.</p>
 
@@ -998,7 +994,7 @@ $ claude --plugin-dir .</code></pre>
 
   <p>Step 1: Start the project with the template.</p>
 
-  <pre><code class="language-bash">npx hyperframes init product-launch --template blue_professional
+  <pre><code class="language-bash">npx hyperframes init product-launch --template blue-professional
 cd product-launch
 npx hyperframes preview</code></pre>
 
@@ -1086,12 +1082,12 @@ npx hyperframes render     # produce the MP4</code></pre>
   <p><strong>Scenario 3: Agent-driven video at scale.</strong> A content team runs 50 product videos per month across multiple brands. Each brand has its own frame.md template. The agent selects the right template based on the product's brand, composes the video from the template's animation patterns, and renders. No human touches the visual identity. Humans review the narrative and the data accuracy.</p>
 
   <div class="callout">
-    <p><strong>My take:</strong> frame.md is the connective tissue between this chapter and Chapter 08 (Design Systems and Tokens). Your design system now has a path to video output that does not require a separate motion design effort. The agent reads the design spec, the frame.md template translates it, and the Hyperframes engine renders the result. This is the design-as-code principle extended to video: the same tokens, the same rules, the same review process, just a different output format.</p>
+    <p><strong>My take:</strong> frame.md is the connective tissue between this chapter and <a href="#08">Chapter 08</a> (Design Systems and Tokens). Your design system now has a path to video output that does not require a separate motion design effort. The agent reads the design spec, the frame.md template translates it, and the Hyperframes engine renders the result. This is the design-as-code principle extended to video: the same tokens, the same rules, the same review process, just a different output format.</p>
   </div>
 
-  <h3 id="s-09-6">From Reference Video to Animation: Agent-Driven Motion Extraction</h3>
+<h3 id="s-09-6">From Reference Video to Animation: Agent-Driven Motion Extraction</h3>
 
-  <p>Motion design often starts from reference. You see an animation on stripe.com, in an Apple keynote, or in a competitor's app, and you want to replicate it. The traditional approach is to describe the motion in words, let the agent interpret those words, and iterate through several failed attempts. The agent's mental model of "smooth ease-out with a slight overshoot" never matches what you actually saw.</p>
+<p>Motion design often starts from reference. You see an animation on stripe.com, in an Apple keynote, or in a competitor's app, and you want to replicate it. The traditional approach is to describe the motion in words, let the agent interpret those words, and iterate through several failed attempts. The agent's mental model of "smooth ease-out with a slight overshoot" never matches what you actually saw.</p>
 
   <p>A better approach emerged in mid-2026: drop the reference video into an agent session, let the agent analyze the motion, and produce a structured specification you can feed into Remotion, Hyperframes, or MagicPath. The agent does the hard part --- frame extraction, timing analysis, easing identification --- and you get an accurate starting point instead of a vague description.</p>
 <figure class="figure--full" id="ch09-fig-new02">
@@ -1100,7 +1096,7 @@ npx hyperframes render     # produce the MP4</code></pre>
 </figure>
 
 
-  <h4 id="s-09-6a">How the Agent Analyzes Video</h4>
+  <h4 id="09.6a">How the Agent Analyzes Video</h4>
 
   <p>The agent does not watch video the way you do. It breaks the video into frames, inspects the differences between consecutive frames, and builds a structured description of what moves, when, and how. Pietro Schirano demonstrated this workflow with Codex: drag a video into the prompt, tell Codex to "recreate these animations," and it analyzes the motion and generates implementation code (source: <a href="https://x.com/skirano/status/2061828390223593694">@skirano</a>, retrieved 2026-06-03).</p>
 
@@ -1115,7 +1111,7 @@ npx hyperframes render     # produce the MP4</code></pre>
   <p>This is not a Codex-specific capability. Any agent with access to <code>ffmpeg</code> and visual understanding can do it. Claude Code, Codex, Cursor, and OpenCode all support the workflow. The key requirement is that the agent can process the video frames, which means either native multimodal support or a preprocessing step that converts frames to images the agent can inspect.</p>
 
 
-  <h4 id="s-09-6b">AnimSpec: Video-to-Prompt Extraction</h4>
+  <h4 id="09.6b">AnimSpec: Video-to-Prompt Extraction</h4>
 
   <p>AnimSpec (animspec.com) automates this extraction. You upload a screen recording, choose an output format, and AnimSpec produces a structured prompt your coding agent can implement. It offers 16 output formats covering UI cloning, animation recreation, design token extraction, and UX audits.</p>
 
@@ -1138,7 +1134,7 @@ npx hyperframes render     # produce the MP4</code></pre>
   <p>The AnimSpec workflow is: record your screen → upload → choose format → get prompt → paste into agent. It handles the frame extraction and motion analysis that your agent would otherwise need to do manually with ffmpeg.</p>
 
 
-  <h4 id="s-09-6c">MagicPath: Agent-to-Design Handoff</h4>
+  <h4 id="09.6c">MagicPath: Agent-to-Design Handoff</h4>
 
   <p>MagicPath takes a different approach. Instead of producing a prompt for your coding agent, it provides a shared canvas where external agents (Claude Code, Codex, Cursor) can build editable designs directly. The agent analyzes the video, generates the motion specification, and creates the animation on the MagicPath canvas --- no manual paste step required (source: <a href="https://www.magicpath.ai/documentation">MagicPath Documentation</a>, retrieved 2026-06-04).</p>
 
@@ -1153,7 +1149,7 @@ npx hyperframes render     # produce the MP4</code></pre>
   <p>For the motion design workflow, the MagicPath skill enables this pattern: your agent analyzes a reference video, extracts the motion parameters, and builds the animation directly on the canvas. You then review it visually, make edits in the visual editor, and export production-ready code when it looks right. The entire loop --- from reference video to editable animation --- runs through one agent session.</p>
 
 
-  <h4 id="s-09-6d">Fitting Extraction into the Motion Stack</h4>
+  <h4 id="09.6d">Fitting Extraction into the Motion Stack</h4>
 
   <p>These tools solve different parts of the same problem. AnimSpec extracts motion from video and produces a prompt. MagicPath receives an agent's output and renders it on an editable canvas. Remotion and Hyperframes render production video from code. They compose into a pipeline:</p>
 
@@ -1174,7 +1170,7 @@ npx hyperframes render     # produce the MP4</code></pre>
   <p>The extraction step is where agent capability matters most. A good agent extracts accurate timing, identifies the correct easing function, and distinguishes between simultaneous and sequential animations. A less capable agent produces vague descriptions like "fades in smoothly" that still require manual interpretation. This is where AnimSpec's structured analysis adds value: it standardizes the extraction so the output quality does not depend on which agent you use.</p>
 
 
-  <h4 id="s-09-6e">Practical Workflow: Recreating a Competitor's Onboarding Animation</h4>
+  <h4 id="09.6e">Practical Workflow: Recreating a Competitor's Onboarding Animation</h4>
 
   <p>A concrete example ties the tools together. You see a competitor's onboarding flow with smooth card transitions and want to replicate the motion pattern in your own product.</p>
 
@@ -1231,9 +1227,9 @@ timing, and easing."</code></pre>
     <p><strong>My take:</strong> Video-to-animation extraction is the missing piece in the motion design stack. The current workflow for reference-driven motion is broken: you describe what you see in words, the agent interprets those words, and you iterate on a foundation of ambiguity. Extraction tools fix this by starting from the actual motion parameters instead of a verbal description. AnimSpec standardizes the extraction. MagicPath gives the agent a direct path to editable output. Neither replaces Remotion or Hyperframes for production rendering --- they make those tools more effective by giving them accurate input. Expect this category to grow fast. As agents get better at visual analysis, the extraction step will become a standard part of every motion design workflow.</p>
   </div>
 
-  <h3 id="s-09-7">Animation Runtimes: GSAP, CSS, Lottie, Three.js</h3>
+<h3 id="s-09-7">Animation Runtimes: GSAP, CSS, Lottie, Three.js</h3>
 
-  <p>The animation runtime is the most consequential technical difference between Remotion and Hyperframes. It affects how every library behaves during rendering. Understanding this difference is essential for choosing the right tool.</p>
+<p>The animation runtime is the most consequential technical difference between Remotion and Hyperframes. It affects how every library behaves during rendering. Understanding this difference is essential for choosing the right tool.</p>
 <figure class="figure--grid-2" id="ch09-fig-03">
   <img src="../images/ch09-fig-03--web.webp" alt="Side-by-side comparison showing GSAP JavaScript animation code and CSS keyframe animation code producing identical visual results for an interactive button hover effect" loading="lazy" />
   <figcaption>GSAP and CSS animation approaches compared for the same interactive element</figcaption>
@@ -1300,9 +1296,9 @@ tl.from("#title", { opacity: 0, y: 50, duration: 1 })
 
   <p>The pattern is clear. Hyperframes supports more animation runtimes with deterministic seeking. Remotion supports fewer runtimes but integrates deeply with the React ecosystem. If your video relies on GSAP, the choice is straightforward. If your video is pure React with spring animations, Remotion is the natural fit.</p>
 
-  <h3 id="s-09-8">Rendering, Preview, and the Dev Loop</h3>
+<h3 id="s-09-8">Rendering, Preview, and the Dev Loop</h3>
 
-  <p>The development loop differs significantly between the two tools. This affects how fast you can iterate, which matters more in agent workflows than in traditional video production.</p>
+<p>The development loop differs significantly between the two tools. This affects how fast you can iterate, which matters more in agent workflows than in traditional video production.</p>
 <figure class="figure--full" id="ch09-fig-04">
   <img src="../images/ch09-fig-04--web.webp" alt="Terminal output from a Remotion render command showing a progress bar rendering frame 120 of 300 at 30fps with estimated completion time and final output file size in megabytes" loading="lazy" />
   <figcaption>Remotion render progress showing frame-by-frame video encoding in the terminal</figcaption>
@@ -1359,9 +1355,9 @@ $ npx hyperframes render --output final.mp4        # Hyperframes: custom output<
     </tbody>
   </table>
 
-  <h3 id="s-09-9">Remotion vs Hyperframes: An Honest Comparison</h3>
+<h3 id="s-09-9">Remotion vs Hyperframes: An Honest Comparison</h3>
 
-  <p>I've used both. Here's where each wins and loses.</p>
+<p>I've used both. Here's where each wins and loses.</p>
 <figure class="figure--full" id="ch09-fig-05">
   <img src="../images/ch09-fig-05--web.webp" alt="A single frame from an AI-generated course video showing branded educational content with animated text overlays, smooth transitions, and design system-consistent color palette and typography" loading="lazy" />
   <figcaption>Course video frame generated by Hyperframes with branded educational animation and text overlays</figcaption>
@@ -1464,6 +1460,22 @@ $ npx hyperframes render --output final.mp4        # Hyperframes: custom output<
   <p>Both tools support design token integration from your design system (Chapter 08). Whether you write <code>var(--color-primary)</code> in a TSX component or an HTML data-attribute div, the token flows through correctly. This means your videos share the same visual language as your web UI, your prototypes, and your slide decks.</p>
 
   <p>The video export pipeline from Huashu Design (Chapter 07) sits adjacent to both tools. Huashu produces HTML animations and exports them to MP4/GIF using its own render pipeline (25fps base + 60fps interpolation). For design-focused motion --- product intros, UI walkthroughs, animated infographics --- Huashu's pipeline is simpler and faster to set up. For complex video compositions with multiple clips, audio tracks, and transitions, Remotion or Hyperframes are the right tools.</p>
+<!-- clip-update-run:2026-06-11-clip-update:start -->
+  <div id="09.html-video-a-capcut-style-editing-layer-on-top-of-hyperframes" class="clip-passage">
+
+<h3 id="s-09-10">html-video: a CapCut-style editing layer on top of Hyperframes</h3>
+
+<p><a href="https://github.com/heygen-com/hyperframes">Hyperframes</a> is the engine an agent writes against: an HTML-native runtime that turns markup into rendered video frames. html-video is the dashboard built on top of it. It is an open-source (Apache 2.0) editing layer that sits on the Hyperframes runtime, and the pitch is blunt: a CapCut for agents that write HTML. You hand it a website link, a file, or an article, and the agent generates an MP4 from one of 20-plus style templates aimed at product promos and explainers.</p>
+    <p>What earns it a place in a video workflow is the editing model. Authoring against Hyperframes alone is render-then-look: you write markup, render the whole timeline, then watch it back to find what is wrong. html-video adds paginated preview and frame-level text editing, so you change a caption on page three and see it without re-rendering the whole timeline. That tightens the critique-revision step that pure CLI rendering leaves slow.</p>
+    <p>Two integrations matter. It auto-detects six local agent CLIs — Claude Code, Codex, Cursor, Hermes among them — and lets you switch in the top bar with no extra API keys. And it wires in MiniMax for narration and background music generated from the video&#39;s own content, so audio stops being a separate manual step.</p>
+    <p>This is a layering pattern: the framework gives the agent a deterministic, diffable target, and html-video adds the human-facing editing surface and template library on top. You do not have to choose. The agent can author against Hyperframes directly, or you can sit in html-video to scrub, edit text inline, and pick a template — the artifact underneath stays HTML either way.</p>
+    <figure class="clip-figure">
+      <img src="../images/clip-2026-06-11-clip-update-fig-06.png" alt="html-video sits as an editing layer between the agent and the Hyperframes render engine." loading="lazy" />
+      <figcaption>Figure: html-video as an editing layer over the Hyperframes runtime.</figcaption>
+    </figure>
+  </div>
+<!-- clip-update-run:2026-06-11-clip-update:end -->
+
 
   <div class="callout tip">
     <p><strong>Next:</strong> All of these design tools connect to agents through MCP servers. Chapter 10 covers the Model Context Protocol in depth --- how to configure MCP servers for Figma, Paper, Pencil, OpenPencil, and other tools, and how to chain them together for multi-tool workflows.</p>
@@ -1530,7 +1542,7 @@ $ npx hyperframes render --output final.mp4        # Hyperframes: custom output<
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1550,7 +1562,7 @@ $ npx hyperframes render --output final.mp4        # Hyperframes: custom output<
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1618,10 +1630,9 @@ $ npx hyperframes render --output final.mp4        # Hyperframes: custom output<
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>

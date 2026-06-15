@@ -232,7 +232,6 @@
     .book-content li::marker { color: rgba(0,0,0,0.25); }
 
 
-
     .chapter-hero {
       position: relative;
       z-index: 2;
@@ -344,7 +343,7 @@
       padding-right: clamp(24px, 4vw, 80px);
     }
 
-        .nav-hover-link {
+    .nav-hover-link {
       position: relative;
       overflow: hidden;
       display: inline-flex;
@@ -413,10 +412,7 @@
 </head>
 <body class="min-h-screen bg-white text-black">
 
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
-    <!-- Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-50 flex h-14 items-center justify-between bg-white border-b border-black select-none">
     <div class="flex h-full items-center">
       <a href="../index.html" id="logo-link" class="flex h-full items-center bg-black px-4 text-white hover:bg-neutral-900 transition-colors">
@@ -469,7 +465,7 @@
         </div>
         <div class="mt-8 md:mt-0 md:text-right flex-shrink-0">
           <p class="font-mono text-[13px] font-medium text-black/25">Reading time</p>
-          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">16 <span class="text-lg font-normal">min</span></p>
+          <p class="font-sans text-4xl font-bold tracking-tight text-black/30 mt-1">18 <span class="text-lg font-normal">min</span></p>
         </div>
       </div>
     </div>
@@ -484,6 +480,7 @@
         <a href="#s-13-3" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Case Study 3: Product Launch Video with Huashu Design and Hyperframes</a>
         <a href="#s-13-4" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Case Study 4: Cross-Platform Component Library with Pencil and OpenPencil</a>
         <a href="#s-13-5" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Patterns Across the Case Studies</a>
+        <a href="#s-13-6" class="whitespace-nowrap font-mono text-[13px] font-medium text-black/40 hover:text-black transition-colors">Notes</a>
       </div>
     </div>
   </nav>
@@ -494,13 +491,14 @@
       <nav class="sidebar-nav" id="chapter-sidebar-nav">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-13-1" data-section="s-13-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 1: Startup Marketing Site with Paper and Claude Code</span></a>
           <a href="#s-13-2" data-section="s-13-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 2: Brand-Consistent Pitch Deck with Open Design</span></a>
           <a href="#s-13-3" data-section="s-13-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 3: Product Launch Video with Huashu Design and Hyperframes</span></a>
           <a href="#s-13-4" data-section="s-13-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 4: Cross-Platform Component Library with Pencil and OpenPencil</span></a>
           <a href="#s-13-5" data-section="s-13-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Patterns Across the Case Studies</span></a>
+          <a href="#s-13-6" data-section="s-13-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Notes</span></a>
       </nav>
     </aside>
   </div>
@@ -512,13 +510,14 @@
       <nav class="chapter-mobile-nav sidebar-nav" aria-label="In this chapter">
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mb-4">Front Matter</p>
           <a href="preface.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Preface</span></a>
-          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright &amp; License</span></a>
+          <a href="copyright.html" class="sidebar-link flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black py-2"><span>Copyright & License</span></a>
           <p class="font-mono text-[11px] uppercase tracking-wider text-black/25 mt-6 mb-4">In this chapter</p>
           <a href="#s-13-1" data-section="s-13-1" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 1: Startup Marketing Site with Paper and Claude Code</span></a>
           <a href="#s-13-2" data-section="s-13-2" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 2: Brand-Consistent Pitch Deck with Open Design</span></a>
           <a href="#s-13-3" data-section="s-13-3" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 3: Product Launch Video with Huashu Design and Hyperframes</span></a>
           <a href="#s-13-4" data-section="s-13-4" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Case Study 4: Cross-Platform Component Library with Pencil and OpenPencil</span></a>
           <a href="#s-13-5" data-section="s-13-5" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Patterns Across the Case Studies</span></a>
+          <a href="#s-13-6" data-section="s-13-6" class="sidebar-link group flex items-center gap-3 font-mono text-[11px] text-black/35 hover:text-black transition-all duration-200 py-2"><span class="inline-block w-0 group-[.active]:w-9 h-px bg-black transition-all duration-200"></span><span>Notes</span></a>
       </nav>
       <main class="chapter-main">
         <div class="book-content">
@@ -568,9 +567,9 @@
     </tbody>
   </table>
 
-  <h3 id="s-13-1">Case Study 1: Startup Marketing Site with Paper and Claude Code</h3>
+<h3 id="s-13-1">Case Study 1: Startup Marketing Site with Paper and Claude Code</h3>
 
-  <p>The setup: a designer at a small SaaS startup needs to ship a marketing site. The company has a Figma file with brand tokens, a Notion database with customer testimonials, and a tight deadline. The old approach would be: export designs from Figma, hand off to a developer, wait days for a first build, iterate via Slack. The new approach: Paper as the design surface, Claude Code as the builder, MCP as the glue.</p>
+<p>The setup: a designer at a small SaaS startup needs to ship a marketing site. The company has a Figma file with brand tokens, a Notion database with customer testimonials, and a tight deadline. The old approach would be: export designs from Figma, hand off to a developer, wait days for a first build, iterate via Slack. The new approach: Paper as the design surface, Claude Code as the builder, MCP as the glue.</p>
 <figure class="figure--full" id="ch13-fig-01">
   <img src="../images/ch13-fig-01--web.webp" alt="Architecture diagram for the startup marketing site case study showing Figma brand tokens flowing into Paper design canvas, Claude Code agent building via MCP connection, and final deployment to Vercel with a four-hour timeline" loading="lazy" />
   <figcaption>Case Study 1 architecture: Paper + Claude Code + MCP pipeline from Figma tokens to deployed site</figcaption>
@@ -658,9 +657,9 @@
     <p><strong>My take:</strong> Paper's <code>get_jsx</code> tool is the single most polished design-to-code bridge I have used. The fact that Paper's canvas IS HTML means zero translation loss. But the MCP connection stability issues are real. I restart my agent session every 60 minutes now as a precaution. The Paper team is aware of this and has it on their roadmap.</p>
   </div>
 
-  <h3 id="s-13-2">Case Study 2: Brand-Consistent Pitch Deck with Open Design</h3>
+<h3 id="s-13-2">Case Study 2: Brand-Consistent Pitch Deck with Open Design</h3>
 
-  <p>The setup: a product team at an early-stage company is preparing a pitch deck for their next funding round. They have a brand guide (colors, typography, logo), a rough content outline, and a deadline. The old approach: a designer spends a week in Figma or Google Slides, iterating on layout and typography. The new approach: Open Design handles the visual execution while the team focuses on content and narrative.</p>
+<p>The setup: a product team at an early-stage company is preparing a pitch deck for their next funding round. They have a brand guide (colors, typography, logo), a rough content outline, and a deadline. The old approach: a designer spends a week in Figma or Google Slides, iterating on layout and typography. The new approach: Open Design handles the visual execution while the team focuses on content and narrative.</p>
 
   <p>The team lead installs Open Design and launches it with the prompt: "Make me a magazine-style pitch deck for our Series A raise. Brand: fintech, professional, trustworthy. Use our logo and color palette."</p>
 
@@ -713,9 +712,9 @@
 
   <p><strong>What didn't:</strong> Open Design is honest about its limitations, as described in the project's README: "We are iterating fast on main."<sup class="footnote-ref"><a href="#fn-ch13-2">2</a></sup> The tool has rough edges. The PPTX export lost some typographic fidelity --- the fonts shifted in PowerPoint. The brand-from-zero experience (no assets provided) dropped to 58 points on the self-critique, confirming what the Huashu Design skill documentation observes: "Open Design is an 80-point skill, not a 100-point product."<sup class="footnote-ref"><a href="#fn-ch13-3">3</a></sup> The team with no brand assets ended up abandoning the agent output and starting over in Figma.</p>
 
-  <h3 id="s-13-3">Case Study 3: Product Launch Video with Huashu Design and Hyperframes</h3>
+<h3 id="s-13-3">Case Study 3: Product Launch Video with Huashu Design and Hyperframes</h3>
 
-  <p>The setup: a creative technologist at a consumer technology company needs a 60-second product launch video. The company has brand assets (logo, color palette, app screenshots), a script outline, and a launch date. Two approaches are tested: Huashu Design for a motion-design-style animation and Hyperframes for an HTML-native video composition.</p>
+<p>The setup: a creative technologist at a consumer technology company needs a 60-second product launch video. The company has brand assets (logo, color palette, app screenshots), a script outline, and a launch date. Two approaches are tested: Huashu Design for a motion-design-style animation and Hyperframes for an HTML-native video composition.</p>
 
   <p><strong>The Huashu Design approach.</strong> The technologist installs the Huashu Design skill and prompts: "Turn this product launch into a 60-second animation. Use our brand colors (a vivid blue primary, dark navy background). Export MP4 and GIF."</p>
 
@@ -785,15 +784,15 @@
 
   <p><strong>What worked:</strong> Huashu Design produced a more polished, brand-consistent output. The Core Asset Protocol and anti-slop rules made a visible difference --- the final video looked professional, not AI-generated. Hyperframes was faster to iterate on because the block model is simpler. The live preview loop in Hyperframes (edit HTML, see result, repeat) felt more natural for rapid prototyping.</p>
 
-  <p><strong>What didn't:</strong> Huashu Design is bilingual --- the SKILL.md is in Chinese, which adds friction for English-speaking teams. The custom Stage/Sprite API is less flexible than GSAP for complex animations. Hyperframes lacks brand enforcement --- the agent can produce off-brand output unless you constrain it with a separate skill. Both tools are single-machine rendering only; for distributed rendering at scale, Remotion's Lambda is still the only option (covered in <a href="09.html">Chapter 09</a>).</p>
+  <p><strong>What didn't:</strong> Huashu Design is bilingual --- the SKILL.md is in Chinese, which adds friction for English-speaking teams. The custom Stage/Sprite API is less flexible than GSAP for complex animations. Hyperframes lacks brand enforcement --- the agent can produce off-brand output unless you constrain it with a separate skill. Both tools are single-machine rendering only; for distributed rendering at scale, Remotion's Lambda is still the only option (covered in <a href="#09">Chapter 09</a>).</p>
 
   <div class="callout">
     <p><strong>My take:</strong> For one-off videos where brand consistency matters, Huashu Design wins. The anti-slop rules and Core Asset Protocol produce output that doesn't scream "AI-made." For iterative video work where speed matters more than polish, Hyperframes is the better choice. I use both, depending on the project. The bilingual documentation issue with Huashu Design is real but manageable --- the code examples are language-agnostic.</p>
   </div>
 
-  <h3 id="s-13-4">Case Study 4: Cross-Platform Component Library with Pencil and OpenPencil</h3>
+<h3 id="s-13-4">Case Study 4: Cross-Platform Component Library with Pencil and OpenPencil</h3>
 
-  <p>The setup: a design systems team at a mid-size company maintains a component library that targets web (React), iOS (SwiftUI), and Android (Jetpack Compose). The team has been using Figma for design and hand-writing platform-specific implementations. The goal: use agentic design tools to reduce the synchronization overhead between platforms.</p>
+<p>The setup: a design systems team at a mid-size company maintains a component library that targets web (React), iOS (SwiftUI), and Android (Jetpack Compose). The team has been using Figma for design and hand-writing platform-specific implementations. The goal: use agentic design tools to reduce the synchronization overhead between platforms.</p>
 
   <p><strong>The Pencil workflow.</strong> The team designs components in .pen files inside their Git repository. Each component uses Pencil's variables for design tokens (colors, spacing, typography) and slots for content areas. Slots translate directly to React component props. Variables map to CSS custom properties. The .pen files are plain text, so they diff cleanly in pull requests.</p>
 
@@ -866,9 +865,9 @@
 
   <p>The team's honest conclusion: agentic design tools eliminated 40% of the boring work (basic component synchronization) but created 20% of new work (fixing agent-generated output for complex components). Net positive, but not the 10x improvement the team hoped for.</p>
 
-  <h3 id="s-13-5">Patterns Across the Case Studies</h3>
+<h3 id="s-13-5">Patterns Across the Case Studies</h3>
 
-  <p>Four different workflows, four different tool combinations, four different output types. The patterns that emerge are consistent.</p>
+<p>Four different workflows, four different tool combinations, four different output types. The patterns that emerge are consistent.</p>
 <figure class="figure--full" id="ch13-fig-03">
   <img src="../images/ch13-fig-03--web.webp" alt="Gantt-style timeline showing four case study workflows as parallel tracks with design, build, iterate, and ship phases: marketing site in 4 hours, pitch deck in 2 hours, launch video in 3 hours, and component library over 8 hours across three days" loading="lazy" />
   <figcaption>Timeline comparison of four case studies showing design, build, iterate, and ship phases</figcaption>
@@ -964,12 +963,14 @@
 <!-- clip-update-run:2026-05-28-agentic-design-clips:end -->
 
 <div class="callout tip">
-    <p><strong>Next:</strong> These case studies show where agentic design is today. <a href="14.html">Chapter 14</a> looks at where it is heading --- the trends, predictions, and risks that will shape the next two years.</p>
+    <p><strong>Next:</strong> These case studies show where agentic design is today. <a href="#14">Chapter 14</a> looks at where it is heading --- the trends, predictions, and risks that will shape the next two years.</p>
   </div>
 
   <section class="footnotes">
-    <h3>Notes</h3>
-    <ol>
+
+<h3 id="s-13-6">Notes</h3>
+
+<ol>
       <li id="fn-ch13-1">Paper documentation, "Working with Agents" guide. Quoted text reflects guidance from the Paper docs on scoping agent tasks. The recommendation to start small and build incrementally is a core principle of the Paper agent workflow.</li>
       <li id="fn-ch13-2">Open Design README, GitHub repository. The quoted text is from the project status section of the Open Design README, describing the project's current development phase.</li>
       <li id="fn-ch13-3">Huashu Design skill documentation (<code>SKILL.md</code>). The quoted assessment appears in the Huashu Design skill's self-evaluation framework, where skills are rated on a 100-point scale across five dimensions.</li>
@@ -1037,7 +1038,7 @@
   </section>
 
   <!-- Chapter Index -->
-  <div class="chapter-stack border-t border-black">
+  <div class="chapter-stack border-t border-black bg-white">
     <div class="page-shell py-16">
       <div class="flex flex-col justify-between gap-12 md:flex-row md:items-start">
         <div class="max-w-sm">
@@ -1057,7 +1058,7 @@
           </a>
           <a href="copyright.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Front Matter</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright &amp; License</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Copyright & License</h3>
           </a>
           <a href="01.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Chapter 01</p>
@@ -1125,10 +1126,9 @@
           </a>
           <a href="C.html" class="group border-b border-black pb-4">
             <p class="font-mono text-[10px] uppercase tracking-wider text-black/40">Appendix C</p>
-            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library</h3>
+            <h3 class="font-sans text-sm font-medium group-hover:underline" style="font-family: 'Beausite Classic Medium', sans-serif">Prompt Library for Design Tasks</h3>
           </a>
         </div>
-      </div>
       </div>
       <div class="flex flex-col items-start justify-between gap-4 border-t border-black pt-8 mt-12 md:flex-row md:items-center">
         <p class="font-mono text-xs text-black/30">&copy;2026 Mehran Mozaffari. All rights reserved.</p>
